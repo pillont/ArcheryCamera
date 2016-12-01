@@ -3,9 +3,19 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:my="clr-namespace:CameraArchery.UsersControl"
         Title="VideoWindow" Height="300" Width="300" WindowState="Maximized" WindowStyle="None"
-        Closing="Window_Closed" KeyDown="Window_KeyDown" ShowInTaskbar="False">
+        Closing="Window_Closed" KeyDown="Window_KeyDown" ShowInTaskbar="False" Background="Black">
 
-    <TabControl x:Name="MainTabControl" Background="Black" SelectionChanged="TabControl_SelectionChanged">
+    <TabControl x:Name="MainTabControl" BorderThickness="0"  Background="Black" SelectionChanged="TabControl_SelectionChanged">
+        <TabControl.Resources>
+            <Style TargetType="{x:Type TabPanel}">
+                <Setter Property="Background" Value="Black"></Setter>
+            </Style>
+            <Style TargetType="{x:Type TabItem}">
+                <Setter Property="Background" Value="CornflowerBlue"></Setter>
+
+            </Style>
+
+        </TabControl.Resources>
         <TabItem Header="{DynamicResource ResourceKey=video}">
             <Grid>
                 <Popup Name="myPopup" IsOpen="True" HorizontalAlignment="Center" 
@@ -19,7 +29,8 @@
                             DockPanel.Dock="Bottom"/>
                     <StackPanel Width="100" DockPanel.Dock="Left" VerticalAlignment="Center" 
                             x:Name="ButtonPanel" Visibility="Collapsed">
-                        <Button Margin="5" HorizontalAlignment="Center" Height="50" Content="{DynamicResource ResourceKey=StartRecord}" 
+                        <Button Margin="5" HorizontalAlignment="Center" Height="50" Background="CornflowerBlue" 
+                                Content="{DynamicResource ResourceKey=StartRecord}" 
                             Click="Recording_Click"/>
                     </StackPanel>
                     <Image x:Name="pictureBox1"/>
