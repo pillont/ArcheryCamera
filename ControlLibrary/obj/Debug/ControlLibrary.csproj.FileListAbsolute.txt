@@ -1,0 +1,12 @@
+F:\CameraArchery\ControlLibrary\bin\Debug\ControlLibrary.dll
+F:\CameraArchery\ControlLibrary\bin\Debug\ControlLibrary.pdb
+F:\CameraArchery\ControlLibrary\bin\Debug\Interop.WMPLib.dll
+F:\CameraArchery\ControlLibrary\bin\Debug\AxInterop.WMPLib.dll
+F:\CameraArchery\ControlLibrary\obj\Debug\ControlLibrary.csprojResolveAssemblyReference.cache
+F:\CameraArchery\ControlLibrary\obj\Debug\Interop.WMPLib.dll
+F:\CameraArchery\ControlLibrary\obj\Debug\AxInterop.WMPLib.dll
+F:\CameraArchery\ControlLibrary\obj\Debug\ControlLibrary.csproj.ResolveComReference.cache
+F:\CameraArchery\ControlLibrary\obj\Debug\ControlLibrary.UserControl1.resources
+F:\CameraArchery\ControlLibrary\obj\Debug\ControlLibrary.csproj.GenerateResource.Cache
+F:\CameraArchery\ControlLibrary\obj\Debug\ControlLibrary.dll
+F:\CameraArchery\ControlLibrary\obj\Debug\ControlLibrary.pdb

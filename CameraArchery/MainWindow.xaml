@@ -1,0 +1,35 @@
+﻿<Window x:Class="CameraArchery.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CameraArchery"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="300" Width="525"
+        ResizeMode="NoResize" WindowStartupLocation="CenterScreen"  Closing="Window_Closing">
+    <Grid>
+        <Popup Name="myPopup" IsOpen="False" HorizontalAlignment="Center" PlacementTarget="{Binding ElementName=comboBox1}" Placement="Bottom">
+            <TextBlock Name="myPopupText" 
+             Background="Red" Text="{DynamicResource ResourceKey=devicePopUp}"/>
+        </Popup>
+        <StackPanel>
+
+            <TextBlock TextAlignment="Center" Margin="0,30" FontSize="30" FontWeight="Bold" Foreground="CornflowerBlue" Text="{DynamicResource ResourceKey=chooseDevice}"/>
+
+            <StackPanel Orientation="Horizontal" Margin="30,0,30,10">
+                <ComboBox x:Name="comboBox1" Width="350" Margin="0,0,10,0" HorizontalContentAlignment="Center" SelectionChanged="comboBox1_SelectionChanged" VerticalContentAlignment="Center" Background="Red"/>
+            
+                    <Button x:Name="testbutton" Content="{DynamicResource ResourceKey=refresh}" Height="30" Width="88" Click="rfsh_Click" Background="CornflowerBlue">
+            </Button>
+            </StackPanel>
+
+            <Button x:Name="Setting" Click="setting_Click" Content="{DynamicResource ResourceKey=setting}" Height="30" Margin="30,20,30,10"  Background="CornflowerBlue"/>
+
+            <UniformGrid Margin="30,0,30,10">
+                <Button Click="quit_Click" Margin="0,0,10,0" Content="{DynamicResource ResourceKey=quit}" Height="30"  Background="CornflowerBlue"/>
+
+                <Button x:Name="startButton"  Margin="10,0,0,0" Click="start_Click" Content="{DynamicResource ResourceKey=start}" Height="30" Background="CornflowerBlue"/>
+            </UniformGrid>
+        </StackPanel>
+    </Grid>
+</Window>

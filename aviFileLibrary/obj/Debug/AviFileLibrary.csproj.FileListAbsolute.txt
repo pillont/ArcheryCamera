@@ -1,0 +1,13 @@
+F:\CameraArchery\aviFileLibrary\bin\Debug\aviFileLibrary.dll
+F:\CameraArchery\aviFileLibrary\bin\Debug\aviFileLibrary.pdb
+F:\CameraArchery\aviFileLibrary\obj\Debug\aviFileLibrary.dll
+F:\CameraArchery\aviFileLibrary\obj\Debug\aviFileLibrary.pdb
+F:\CameraArchery\aviFileLibrary\bin\Debug\Accord.dll.config
+F:\CameraArchery\aviFileLibrary\bin\Debug\Accord.dll
+F:\CameraArchery\aviFileLibrary\bin\Debug\Accord.Video.dll
+F:\CameraArchery\aviFileLibrary\bin\Debug\Accord.Video.VFW.dll
+F:\CameraArchery\aviFileLibrary\bin\Debug\Accord.xml
+F:\CameraArchery\aviFileLibrary\bin\Debug\Accord.Video.xml
+F:\CameraArchery\aviFileLibrary\bin\Debug\Accord.Video.VFW.xml
+F:\CameraArchery\aviFileLibrary\bin\Debug\Accord.Video.DirectShow.dll
+F:\CameraArchery\aviFileLibrary\bin\Debug\Accord.Video.DirectShow.xml

@@ -1,0 +1,21 @@
+﻿<Window x:Class="CameraArchery.View.CustomMessageBox"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Height="200" Width="300"
+        WindowStyle="ToolWindow" WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize" ShowInTaskbar="False" Topmost="True" >
+    <DockPanel  LastChildFill="True">
+        <TextBlock x:Name="MessageBlock" TextWrapping="Wrap" DockPanel.Dock="Top" TextAlignment="Center" VerticalAlignment="Center" Foreground="Red" FontWeight="Bold" FontSize="23"/>
+        <TextBlock x:Name="DetailBlock"  TextWrapping="Wrap" DockPanel.Dock="Top" TextAlignment="Center" VerticalAlignment="Center" />
+        <Button DockPanel.Dock="Top" x:Name="DetailButton" Margin="10,0" Click="Detail_Click"/>
+        <Button DockPanel.Dock="Bottom" Content="{DynamicResource ResourceKey=return}" Height="30" Margin="10,0" Click="Return_Click"/>
+        
+        <DockPanel LastChildFill="True" Visibility="Collapsed" x:Name="PanelDetail">
+            <TextBlock x:Name="MessageBlock2" TextWrapping="Wrap" DockPanel.Dock="Top" TextAlignment="Center" VerticalAlignment="Center"  FontWeight="Bold" FontSize="16" Text="Thanks to send it to the SI"/>
+            <TextBox x:Name="LogTextBox" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+         ScrollViewer.VerticalScrollBarVisibility="Auto" 
+                 TextWrapping="Wrap"/>
+                 
+        </DockPanel>
+    </DockPanel>
+</Window>

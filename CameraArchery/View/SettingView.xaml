@@ -1,0 +1,25 @@
+﻿<Window x:Class="CameraArchery.View.SettingView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:my="clr-namespace:CameraArchery.UsersControl"
+        Title="SettingView" Height="370" Width="300"
+        ResizeMode="NoResize" WindowStartupLocation="CenterScreen"
+        Closing="Window_Closed" ShowInTaskbar="False">
+    <WrapPanel HorizontalAlignment="Center" Orientation="Vertical">
+        
+        <TextBlock Width="200" TextAlignment="Center" Margin="5" FontSize="30" FontWeight="Bold" Foreground="CornflowerBlue" Text="{DynamicResource ResourceKey=setting}"/>
+        <TextBlock TextAlignment="Center" TextWrapping="Wrap" Margin="0,10,0,5" Text="{DynamicResource ResourceKey=FrameRate}"/>
+        <my:CustomNumericInput x:Name="FrameInput"/>
+
+        <TextBlock TextAlignment="Center" TextWrapping="Wrap" Margin="0,10,0,5" Text="{DynamicResource ResourceKey=lagTime}"/>
+        <my:CustomSpliter x:Name="Spliter" Maximum="15"  TickFrequency="1" />
+
+        <TextBlock TextAlignment="Center" Margin="0,15,0,5" TextWrapping="Wrap" Text="{DynamicResource ResourceKey=language}"></TextBlock>
+        <ComboBox x:Name="LanguageComboBox" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="30" Background="LightBlue"/>
+
+        <WrapPanel HorizontalAlignment="Center" Margin="12,25" >
+            <Button Content="{DynamicResource ResourceKey=return}" Margin="5" Click="Close_click" Height="30" MinWidth="70" Background="CornflowerBlue"/>
+            <Button Content="{DynamicResource ResourceKey=save}" Margin="5" Click="Save_Click" Height="30" MinWidth="70" Background="CornflowerBlue"/>
+        </WrapPanel>
+    </WrapPanel>
+</Window>

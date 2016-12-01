@@ -1,0 +1,46 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+
+    <!-- user message -->
+    <system:String x:Key="AlreadyStart">Application déjà lancée</system:String>
+    <system:String x:Key="DuplicationApplication">Duplication d'application</system:String>
+
+    <!-- error message -->
+    <system:String x:Key="Error">Erreur</system:String>
+    <system:String x:Key="IncorrectInput">Entrées incorrectes</system:String>
+    <system:String x:Key="FileError">Erreur dans les fichiers, contacter le SI</system:String>
+    <system:String x:Key="FrameError">Erreur dans la gestion de la video, contacter le SI</system:String>
+    <system:String x:Key="LogError">Erreur dans la gestion des logs, contacter le SI</system:String>
+    <system:String x:Key="SerializationError">Erreur dans l'enregistrement, contacter le SI</system:String>
+    <system:String x:Key="SettingError">Erreur de paramètres</system:String>
+    <system:String x:Key="SettingErrorMessage">Erreur durant la récupération du fichier de paramètres, les paramètres sont réinitialisés par default</system:String>
+    <system:String x:Key="VideoFileException">Exception de lecture des vidéos</system:String>
+    <system:String x:Key="VideoFileNotFound">Les vidéos n'ont pas été trouvées</system:String>
+    
+    
+    <!-- application text -->
+    <system:String x:Key="setting">Paramètres</system:String>
+    <system:String x:Key="frame">Images par seconde</system:String>
+    <system:String x:Key="lagTime">Décalage (seconde)</system:String>
+    <system:String x:Key="language">Langue</system:String>
+    <system:String x:Key="return">Retour</system:String>
+    <system:String x:Key="save">Sauvegarder</system:String>
+    <system:String x:Key="start">Démarrer</system:String>
+    <system:String x:Key="chooseDevice">Choisissez votre caméra</system:String>
+    <system:String x:Key="quit">Quitter</system:String>
+    <system:String x:Key="refresh">Recharger</system:String>
+    <system:String x:Key="videoPopUp">Appuyez sur |échape| pour quitter</system:String>
+    <system:String x:Key="devicePopUp">Veuillez selectionner une caméra</system:String>
+    <system:String x:Key="ShowDetail">Voir les détails</system:String>
+    <system:String x:Key="HideDetail">Cacher les détails</system:String>
+    <system:String x:Key="StartRecord">Enregistrer</system:String>
+    <system:String x:Key="StopRecord">Arrêter</system:String>
+    <system:String x:Key="FrameRate">Images par seconde</system:String>
+    <system:String x:Key="video">Vidéo</system:String>
+    <system:String x:Key="replay">Revoir</system:String>
+    <system:String x:Key="exitBox">Quitter</system:String>
+    <system:String x:Key="exitBoxMessage">Souhaitez vous quittez l'application?</system:String>
+    
+
+</ResourceDictionary>

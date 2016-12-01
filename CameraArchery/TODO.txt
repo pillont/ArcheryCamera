@@ -1,0 +1,15 @@
+﻿.exe a faire pour la première version
+
+button -> image
+language setting a utiliser
+remettre les icones
+icone delete
+commentaire
+test
+log
+.exe a faire pour la deuxieme version
+
+formes sur image
+.exe a faire pour la troisieme version
+
+envoie de log par mail
