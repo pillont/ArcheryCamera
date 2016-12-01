@@ -41,6 +41,8 @@
     <system:String x:Key="replay">Revoir</system:String>
     <system:String x:Key="exitBox">Quitter</system:String>
     <system:String x:Key="exitBoxMessage">Souhaitez vous quittez l'application?</system:String>
+    <system:String x:Key="framebyframe">Image par image</system:String>
+
     
 
 </ResourceDictionary>

@@ -6,7 +6,7 @@
         Closing="Window_Closed" KeyDown="Window_KeyDown" ShowInTaskbar="False">
 
     <TabControl x:Name="MainTabControl" Background="Black" SelectionChanged="TabControl_SelectionChanged">
-        <TabItem Header="{Binding ElementName=video}">
+        <TabItem Header="{DynamicResource ResourceKey=video}">
             <Grid>
                 <Popup Name="myPopup" IsOpen="True" HorizontalAlignment="Center" 
                             PlacementTarget="{Binding ElementName=MainPanel}" Placement="Center">
@@ -17,16 +17,16 @@
                 <DockPanel LastChildFill="True">
                     <ProgressBar Height="20"  x:Name="ProgressBar"  
                             DockPanel.Dock="Bottom"/>
-                    <StackPanel Width="70" DockPanel.Dock="Left" 
+                    <StackPanel Width="100" DockPanel.Dock="Left" VerticalAlignment="Center" 
                             x:Name="ButtonPanel" Visibility="Collapsed">
-                        <Button Height="50" Content="{DynamicResource ResourceKey=StartRecord}" 
+                        <Button Margin="5" HorizontalAlignment="Center" Height="50" Content="{DynamicResource ResourceKey=StartRecord}" 
                             Click="Recording_Click"/>
                     </StackPanel>
                     <Image x:Name="pictureBox1"/>
                 </DockPanel>    
             </Grid>
         </TabItem>
-        <TabItem Header="{Binding ElementName=replay}">
+        <TabItem Header="{DynamicResource ResourceKey=replay}">
             <my:CustomReplay x:Name="Replay"/>
         </TabItem>
     </TabControl>

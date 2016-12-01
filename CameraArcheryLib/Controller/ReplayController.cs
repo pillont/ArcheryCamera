@@ -16,14 +16,21 @@ namespace CameraArcheryLib.Controller
 
     public class ReplayController
     {
-        public delegate void IsStateChangeDel(bool b);
+
+        public delegate void IsStateChangeDel();
+        public delegate void IsStateBoolChangeDel(bool b);
         
         /*
          * event of the change of state
          */
-        public event IsStateChangeDel IsPauseChange;
-        public event IsStateChangeDel IsStartChange;
-        public event IsStateChangeDel IsFrameByFrameChange;
+        public event IsStateBoolChangeDel IsPauseChange;
+        public event IsStateBoolChangeDel IsStartChange;
+        public event IsStateBoolChangeDel IsFrameByFrameChange;
+
+        public event IsStateChangeDel OnStart;
+        public event IsStateChangeDel OnStop;
+
+        
 
 
         /// <summary>
@@ -72,6 +79,12 @@ namespace CameraArcheryLib.Controller
             private set
             {
                 isStart = value;
+
+                if (isStart && OnStart != null)
+                    OnStart();
+
+                if (!isStart && OnStop != null)
+                    OnStop();
 
                 if (IsStartChange != null)
                     IsStartChange(value);

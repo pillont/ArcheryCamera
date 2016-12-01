@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-C:\Users\etudiant\Desktop\RepoGit\testCamera\CameraArchery\obj\x86\Debug\
+C:\Users\etudiant\Desktop\RepoGit\CameraArchery\CameraArchery\obj\x86\Debug\
 CameraArchery
 none
 false
 DEBUG;TRACE
-C:\Users\etudiant\Desktop\RepoGit\testCamera\CameraArchery\App.xaml
+C:\Users\etudiant\Desktop\RepoGit\CameraArchery\CameraArchery\App.xaml
 9338251635
-159626964
+1-275459792
 152094004237
-271956173954
+27-1649760625
 MainWindow.xaml;Ressources\Strings\StringResources.fr.xaml;Ressources\Strings\StringResources.xaml;View\CustomMessageBox.xaml;UsersControl\CustomNumericInput.xaml;UsersControl\CustomSpliter.xaml;UsersControl\CustomReplay.xaml;View\SettingView.xaml;View\VideoWindow.xaml;
 
 True

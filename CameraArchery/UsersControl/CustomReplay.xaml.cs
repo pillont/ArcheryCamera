@@ -50,6 +50,7 @@ namespace CameraArchery.UsersControl
             }
         }
 
+
         /// <summary>
         /// replay Controller to manage the replay
         /// </summary>
@@ -64,11 +65,30 @@ namespace CameraArchery.UsersControl
             this.DataContext = this;
             StartPauseUri = new Uri("pack://application:,,,/Ressources/Images/play.png");
 
-            ReplayController = new ReplayController(MediaElementVideo, TimeSlider, lblStatus, VideoList);
+            ReplayController = new ReplayController(MediaElementVideo, TimeSlider, lblStatus, VideoList); 
+            ReplayController.OnStart += OnStartVideo; 
+            ReplayController.OnStop += OnStopVideo;
 
             Refresh();
         }
 
+
+
+        /// <summary>
+        /// event when the video is start
+        /// </summary>
+        private void OnStartVideo()
+        {
+            CheckButton.IsEnabled = true;
+        }
+
+        /// <summary>
+        /// event when the video is stop
+        /// </summary>
+        private void OnStopVideo()
+        {
+            CheckButton.IsEnabled = false;
+        }
         /// <summary>
         /// refresh the replay view
         /// </summary>

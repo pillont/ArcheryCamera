@@ -6,7 +6,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300" Unloaded="UserControl_Unloaded" Loaded="UserControl_Loaded">
     <DockPanel LastChildFill="True">
-        <ListBox SelectionMode="Single" HorizontalAlignment="Center" x:Name="VideoList" Width="150" 
+        <ListBox SelectionMode="Single" Background="MidnightBlue" HorizontalAlignment="Center" x:Name="VideoList" Width="150" 
                  DockPanel.Dock="Left" SelectionChanged="VideoList_SelectionChanged" Loaded="VideoList_Loaded">
             <ListBox.ItemTemplate>
                 <DataTemplate>
@@ -55,8 +55,8 @@
                     </Button.Template>
                 </Button>
 
-                <CheckBox Content="Frame by frame" Foreground="White" Checked="Frame_Click" 
-                          IsChecked="{Binding IsFrameByFrame}" DockPanel.Dock="Right"/>
+                <CheckBox x:Name="CheckButton" Content="{DynamicResource ResourceKey=framebyframe}" Foreground="White" Checked="Frame_Click" VerticalAlignment="Center" 
+                          IsChecked="{Binding IsFrameByFrame}" IsEnabled="{Binding IsStart}" DockPanel.Dock="Right"/>
 
                 <Label Background="Black" Foreground="White" DockPanel.Dock="Right" Height="30" Width="70"
                        x:Name="SpeedLabel" Content="100%" HorizontalContentAlignment="Center" Margin="5" />
@@ -72,7 +72,7 @@
                 <Label Background="Black" Foreground="White" HorizontalContentAlignment="Left" DockPanel.Dock="Right" 
                        Name="lblStatus" Margin="5" />
 
-                <Slider x:Name="TimeSlider" Height="30" Width="500" ValueChanged="TimeSlider_ValueChanged" 
+                <Slider x:Name="TimeSlider" Height="30" Width="500" ValueChanged="TimeSlider_ValueChanged" VerticalAlignment="Center"
                         GotMouseCapture="TimeSlider_GotMouseCapture" LostMouseCapture="TimeSlider_LostMouseCapture"/>
             </DockPanel>
         </StackPanel>

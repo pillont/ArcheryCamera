@@ -36,6 +36,11 @@ namespace CameraArchery
         /// </summary>
         private FilterInfoCollection videoDevices { get;  set; }
 
+        /// <summary>
+        /// inform if the window will be restart or not
+        /// </summary>
+        private bool IsWindowsRestart { get; set; }
+
 
         /// <summary>
         /// init the view
@@ -66,6 +71,8 @@ namespace CameraArchery
 
             // start
             InitializeComponent();
+
+            IsWindowsRestart = false;
 
             // init icon 
             Uri iconUri = new Uri(@"../../../Ressources/Logos/logoViseur.ico", UriKind.Relative);
@@ -99,6 +106,7 @@ namespace CameraArchery
             if (window.IsChange)
             {
                 new MainWindow().Show();
+                IsWindowsRestart = true;
                 this.Close();
             }
         }
@@ -238,8 +246,13 @@ namespace CameraArchery
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            LogHelper.Write("--------------------STOP OF THE APPLICATION---------------------");
-            Environment.Exit(0);
+            if (!IsWindowsRestart)
+            {
+                LogHelper.Write("--------------------STOP OF THE APPLICATION---------------------");
+                Environment.Exit(0);
+            }
+            else
+                IsWindowsRestart = false;
         }
     }
 }
