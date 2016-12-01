@@ -1,0 +1,7 @@
+/!\/!\/!\  ERROR   /!\/!\
+test
+
+/!\/!\/!\  ERROR   /!\/!\
+test2
+   à CameraArcheryTest.LogHelperTest.TestError() dans f:\CameraArchery\CameraArcheryTest\LogHelperTest.cs:ligne 81
+dimanche 20 novembre 2016 11:35:26 : Deserialization of setting : Setting : Time = 5, Language = English
