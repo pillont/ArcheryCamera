@@ -17,7 +17,11 @@
                                Width="100" Height="100" Stretch="UniformToFill" />
                         <StackPanel.ContextMenu>
                             <ContextMenu>
-                                <MenuItem Header="Delete" Click="DeleteItem_Click" />
+                                <MenuItem Header="{DynamicResource ResourceKey=delete}" Click="DeleteItem_Click">
+                                    <MenuItem.Icon>
+                                        <Image Source="pack://application:,,,/Ressources/Images/delete.png"  Height="20" Width="20"/>
+                                    </MenuItem.Icon>
+                                </MenuItem>
                             </ContextMenu>
                         </StackPanel.ContextMenu>
                     </StackPanel>

@@ -15,9 +15,24 @@ namespace CameraArchery.UsersControl
     /// </summary>
     public partial class CustomReplay : System.Windows.Controls.UserControl, INotifyPropertyChanged
     {
+        /// <summary>
+        /// uri of the play image
+        /// </summary>
+        public const string URI_PLAY = "pack://application:,,,/Ressources/Images/play.png";
 
-        private Uri startPauseUri;
+        /// <summary>
+        /// uri of the pause image
+        /// </summary>
+        public const string URI_PAUSE = "pack://application:,,,/Ressources/Images/pause.png";
 
+        /// <summary>
+        /// event to dataBinding
+        /// </summary>
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        /// <summary>
+        /// Uri of the start/pause image
+        /// </summary>
         public Uri StartPauseUri
         {
             get
@@ -30,7 +45,8 @@ namespace CameraArchery.UsersControl
                 OnPropertyChanged("StartPauseUri");
             }
         }
-
+        private Uri startPauseUri;
+        
         /// <summary>
         /// inform if the vieo is in frame by frame or not
         /// </summary>
@@ -63,7 +79,8 @@ namespace CameraArchery.UsersControl
         {
             InitializeComponent();
             this.DataContext = this;
-            StartPauseUri = new Uri("pack://application:,,,/Ressources/Images/play.png");
+            
+            StartPauseUri = new Uri(URI_PLAY);
 
             ReplayController = new ReplayController(MediaElementVideo, TimeSlider, lblStatus, VideoList); 
             ReplayController.OnStart += OnStartVideo; 
@@ -133,19 +150,19 @@ namespace CameraArchery.UsersControl
             if (!ReplayController.isStart)
             {
                 ReplayController.Start();
-                StartPauseUri = new Uri("pack://application:,,,/Ressources/Images/pause.png");
+                StartPauseUri = new Uri(URI_PAUSE);
             }
             //continue
             else if (ReplayController.IsPause)
             {
                 ReplayController.Play();
-                StartPauseUri = new Uri("pack://application:,,,/Ressources/Images/pause.png");
+                StartPauseUri = new Uri(URI_PAUSE);
             }
             //pause
             else
             {
                 ReplayController.Pause();
-                StartPauseUri = new Uri("pack://application:,,,/Ressources/Images/play.png");
+                StartPauseUri = new Uri(URI_PLAY);
             }
         }
 
@@ -156,18 +173,9 @@ namespace CameraArchery.UsersControl
         /// <param name="e"></param>
         private void Stop_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            StartPauseUri = new Uri("pack://application:,,,/Ressources/Images/play.png");
+            StartPauseUri = new Uri(URI_PLAY);
 
             ReplayController.Stop();
-        }
-
-        /// <summary>
-        /// pause or replay the current video
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void PauseReplay_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
         }
 
         /// <summary>
@@ -306,20 +314,28 @@ namespace CameraArchery.UsersControl
         {
             ReplayController.FrameByFrameSetup();
         }
-
+        
+        /// <summary>
+        /// function to delete by the contextual menu
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void DeleteItem_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             ReplayController.ListRecordController.RemoveVideo(MediaElementVideo, VideoList);
         }
 
-        public event PropertyChangedEventHandler  PropertyChanged;
-
+       
+        /// <summary>
+        /// function to dataBinding
+        /// </summary>
+        /// <param name="propertyName"></param>
         protected void OnPropertyChanged(string propertyName)
         {
-        if (PropertyChanged != null)
-        {
-            PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-        }
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
         }
      }
 }

@@ -75,7 +75,7 @@ namespace CameraArchery
             IsWindowsRestart = false;
 
             // init icon 
-            Uri iconUri = new Uri(@"../../../Ressources/Logos/logoViseur.ico", UriKind.Relative);
+            Uri iconUri = new Uri(@"pack://application:,,,/Ressources/Logos/logoViseur.ico");
             this.Icon = BitmapFrame.Create(iconUri);
 
 

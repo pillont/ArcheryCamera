@@ -35,8 +35,8 @@ namespace CameraArchery.View
             InitializeComponent();
 
             // init icon 
-            Uri iconUri = new Uri(@"../../Ressources/logoSetting.ico", UriKind.Relative);
-           // this.Icon = BitmapFrame.Create(iconUri);
+            Uri iconUri = new Uri(@"pack://application:,,,/Ressources/Logos/logoSetting.ico");
+            this.Icon = BitmapFrame.Create(iconUri);
 
 
             LanguageComboBox.ItemsSource = Enum.GetValues(typeof(LanguageController.Languages)).Cast<LanguageController.Languages>();

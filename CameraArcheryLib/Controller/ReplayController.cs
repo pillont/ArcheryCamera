@@ -13,20 +13,19 @@ using System.Windows.Threading;
 
 namespace CameraArcheryLib.Controller
 {
-
+    /// <summary>
+    /// controller to manage the video replay
+    /// </summary>
     public class ReplayController
     {
-
-        public delegate void IsStateChangeDel();
-        public delegate void IsStateBoolChangeDel(bool b);
-        
         /*
          * event of the change of state
          */
+        public delegate void IsStateChangeDel();
+        public delegate void IsStateBoolChangeDel(bool b);
         public event IsStateBoolChangeDel IsPauseChange;
         public event IsStateBoolChangeDel IsStartChange;
         public event IsStateBoolChangeDel IsFrameByFrameChange;
-
         public event IsStateChangeDel OnStart;
         public event IsStateChangeDel OnStop;
 
