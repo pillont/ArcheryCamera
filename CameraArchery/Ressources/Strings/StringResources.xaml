@@ -42,5 +42,7 @@
     <system:String x:Key="FrameRate">Frame Rate</system:String>
     <system:String x:Key="video">Video</system:String>
     <system:String x:Key="replay">Replay</system:String>
+    <system:String x:Key="framebyframe">Frame by frame</system:String>
+    <system:String x:Key="delete">Delete</system:String>
 
 </ResourceDictionary>

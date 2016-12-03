@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="CameraArchery.UsersControl.CustomReplay"
+﻿<Window x:Class="CameraArchery.View.CustomReplay"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -17,11 +17,7 @@
                                Width="100" Height="100" Stretch="UniformToFill" />
                         <StackPanel.ContextMenu>
                             <ContextMenu>
-                                <MenuItem Header="{DynamicResource ResourceKey=delete}" Click="DeleteItem_Click">
-                                    <MenuItem.Icon>
-                                        <Image Source="pack://application:,,,/Ressources/Images/delete.png"  Height="20" Width="20"/>
-                                    </MenuItem.Icon>
-                                </MenuItem>
+                                <MenuItem Header="Delete" Click="DeleteItem_Click" />
                             </ContextMenu>
                         </StackPanel.ContextMenu>
                     </StackPanel>
@@ -76,7 +72,7 @@
                 <Label Background="Black" Foreground="White" HorizontalContentAlignment="Left" DockPanel.Dock="Right" 
                        Name="lblStatus" Margin="5" />
 
-                <Slider x:Name="TimeSlider" Height="30" Width="500" ValueChanged="TimeSlider_ValueChanged" VerticalAlignment="Center"
+                <Slider x:Name="TimeSlider" Height="30" Width="300" ValueChanged="TimeSlider_ValueChanged" VerticalAlignment="Center"
                         GotMouseCapture="TimeSlider_GotMouseCapture" LostMouseCapture="TimeSlider_LostMouseCapture"/>
             </DockPanel>
         </StackPanel>
@@ -84,4 +80,4 @@
         <MediaElement  x:Name="MediaElementVideo" Source="video/10.avi" LoadedBehavior="Manual" 
                       UnloadedBehavior="Stop" MediaEnded="MediaElementVideo_MediaEnded" ScrubbingEnabled="True"/>
     </DockPanel>
-</UserControl>
+</Window>

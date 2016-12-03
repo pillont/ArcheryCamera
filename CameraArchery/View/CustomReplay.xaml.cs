@@ -7,32 +7,18 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using System.IO;
 using System.ComponentModel;
+using System.Windows;
 
-namespace CameraArchery.UsersControl
+namespace CameraArchery.View
 {
     /// <summary>
     /// Interaction logic for CustomReplay.xaml
     /// </summary>
-    public partial class CustomReplay : System.Windows.Controls.UserControl, INotifyPropertyChanged
+    public partial class CustomReplay : Window, INotifyPropertyChanged
     {
-        /// <summary>
-        /// uri of the play image
-        /// </summary>
-        public const string URI_PLAY = "pack://application:,,,/Ressources/Images/play.png";
 
-        /// <summary>
-        /// uri of the pause image
-        /// </summary>
-        public const string URI_PAUSE = "pack://application:,,,/Ressources/Images/pause.png";
+        private Uri startPauseUri;
 
-        /// <summary>
-        /// event to dataBinding
-        /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        /// <summary>
-        /// Uri of the start/pause image
-        /// </summary>
         public Uri StartPauseUri
         {
             get
@@ -45,8 +31,7 @@ namespace CameraArchery.UsersControl
                 OnPropertyChanged("StartPauseUri");
             }
         }
-        private Uri startPauseUri;
-        
+
         /// <summary>
         /// inform if the vieo is in frame by frame or not
         /// </summary>
@@ -77,29 +62,36 @@ namespace CameraArchery.UsersControl
         /// </summary>
         public CustomReplay()
         {
-            InitializeComponent();
-            this.DataContext = this;
-            
-            StartPauseUri = new Uri(URI_PLAY);
+            LanguageController.InitLanguage(this.Resources.MergedDictionaries);
 
-            ReplayController = new ReplayController(MediaElementVideo, TimeSlider, lblStatus, VideoList);
-            ReplayController.IsStartChange += ReplayController_IsStartChange; 
-            
+            InitializeComponent();
+           // this.DataContext = this;
+            StartPauseUri = new Uri("pack://application:,,,/Ressources/Images/play.png");
+
+            ReplayController = new ReplayController(MediaElementVideo, TimeSlider, lblStatus, VideoList); 
+            ReplayController.OnStart += OnStartVideo; 
+            ReplayController.OnStop += OnStopVideo;
+
             Refresh();
         }
-        
+
+
+
         /// <summary>
-        /// event when the IsStarProperty change
+        /// event when the video is start
         /// </summary>
-        /// <param name="b"></param>
-        void ReplayController_IsStartChange(bool b)
+        private void OnStartVideo()
         {
-            if(b)
-                CheckButton.IsEnabled = true;
-            else
-                CheckButton.IsEnabled = false;
+            CheckButton.IsEnabled = true;
         }
 
+        /// <summary>
+        /// event when the video is stop
+        /// </summary>
+        private void OnStopVideo()
+        {
+            CheckButton.IsEnabled = false;
+        }
         /// <summary>
         /// refresh the replay view
         /// </summary>
@@ -121,8 +113,9 @@ namespace CameraArchery.UsersControl
             }
             catch(Exception e)
             {
-                var res = MessageBox.Show(LanguageController.Get("VideoFileException"), LanguageController.Get("VideoFileNotFound"), MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
-                if (res == DialogResult.OK)
+                var res =  System.Windows.Forms.MessageBox.Show(LanguageController.Get("VideoFileException"), 
+                                            LanguageController.Get("VideoFileNotFound"), MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
+                if (res == System.Windows.Forms.DialogResult.OK)
                     RefreshList();
                 else
                     Environment.Exit(-1);
@@ -144,19 +137,19 @@ namespace CameraArchery.UsersControl
             if (!ReplayController.isStart)
             {
                 ReplayController.Start();
-                StartPauseUri = new Uri(URI_PAUSE);
+                StartPauseUri = new Uri("pack://application:,,,/Ressources/Images/pause.png");
             }
             //continue
             else if (ReplayController.IsPause)
             {
                 ReplayController.Play();
-                StartPauseUri = new Uri(URI_PAUSE);
+                StartPauseUri = new Uri("pack://application:,,,/Ressources/Images/pause.png");
             }
             //pause
             else
             {
                 ReplayController.Pause();
-                StartPauseUri = new Uri(URI_PLAY);
+                StartPauseUri = new Uri("pack://application:,,,/Ressources/Images/play.png");
             }
         }
 
@@ -167,9 +160,18 @@ namespace CameraArchery.UsersControl
         /// <param name="e"></param>
         private void Stop_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            StartPauseUri = new Uri(URI_PLAY);
+            StartPauseUri = new Uri("pack://application:,,,/Ressources/Images/play.png");
 
             ReplayController.Stop();
+        }
+
+        /// <summary>
+        /// pause or replay the current video
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void PauseReplay_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
         }
 
         /// <summary>
@@ -247,6 +249,7 @@ namespace CameraArchery.UsersControl
         private void UserControl_Unloaded(object sender, System.Windows.RoutedEventArgs e)
         {
             ReplayController.StopTimer();
+
         }
 
         /// <summary>
@@ -267,7 +270,7 @@ namespace CameraArchery.UsersControl
         private void SpeedDown_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             ReplayController.SpeedDown();
-            SpeedLabel.Content = ReplayController.RefreshSpeedLabel();
+            RefreshSpeedLabel();
         }
 
         /// <summary>
@@ -278,7 +281,24 @@ namespace CameraArchery.UsersControl
         private void SpeedUp_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             ReplayController.SpeedUp();
-            SpeedLabel.Content = ReplayController.RefreshSpeedLabel();
+            RefreshSpeedLabel();
+        }
+
+        /// <summary>
+        /// get the current time of the mediaElement and show it
+        /// </summary>
+        private void RefreshSpeedLabel()
+        {
+            var time = Convert.ToInt32(ReplayController.SpeedRatio * 100);
+            
+            // more slowly
+            if(time == 0)
+                time ++;
+            // if stop
+            if (time == -10)
+                time = 0;
+
+            SpeedLabel.Content = time.ToString() + "%";
         }
 
         /// <summary>
@@ -290,28 +310,20 @@ namespace CameraArchery.UsersControl
         {
             ReplayController.FrameByFrameSetup();
         }
-        
-        /// <summary>
-        /// function to delete by the contextual menu
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+
         private void DeleteItem_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             ReplayController.ListRecordController.RemoveVideo(MediaElementVideo, VideoList);
         }
 
-       
-        /// <summary>
-        /// function to dataBinding
-        /// </summary>
-        /// <param name="propertyName"></param>
+        public event PropertyChangedEventHandler  PropertyChanged;
+
         protected void OnPropertyChanged(string propertyName)
         {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
+        if (PropertyChanged != null)
+        {
+            PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+        }
         }
      }
 }

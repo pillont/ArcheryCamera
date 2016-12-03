@@ -12,12 +12,10 @@ namespace CameraArcheryLib
     /// </summary>
     public static class LanguageController
     {
-        public delegate void ErrorFindDictDel(Exception e);
-
         /// <summary>
         /// event if error during the find of the dictionnaries
         /// </summary>
-        public static event ErrorFindDictDel OnErrorFindDictionary;
+        public static event Action<Exception> OnErrorFindDictionary;
 
         /// <summary>
         /// language possible

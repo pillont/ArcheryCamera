@@ -148,6 +148,11 @@ namespace CameraArchery.View
 
         }    
         
+        /// <summary>
+        /// event when the tabControler selected replay
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (e.Source is TabControl && videoController.recorderController.IsRedording)

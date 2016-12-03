@@ -2,6 +2,6 @@
 <Setting xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <RateFrame>5</RateFrame>
   <VideoNumber>2</VideoNumber>
-  <Time>5</Time>
-  <Language>English</Language>
+  <Time>1</Time>
+  <Language>Français</Language>
 </Setting>

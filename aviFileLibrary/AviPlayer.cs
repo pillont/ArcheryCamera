@@ -33,7 +33,6 @@ namespace AviFile {
         private int currentFrameIndex;
         private Bitmap currentBitmap;
 
-        private delegate void SimpleDelegate();
         public event EventHandler Stopped;
 
         /// <summary>Returns the current playback status</summary>
@@ -67,12 +66,12 @@ namespace AviFile {
             for (currentFrameIndex = 0; (currentFrameIndex < videoStream.CountFrames) && isRunning; currentFrameIndex++) {
                 //show frame
                 currentBitmap = videoStream.GetBitmap(currentFrameIndex);
-                picDisplay.Invoke(new SimpleDelegate(SetDisplayPicture));
-                picDisplay.Invoke(new SimpleDelegate(picDisplay.Refresh));
+                picDisplay.Invoke(new Action(SetDisplayPicture));
+                picDisplay.Invoke(new Action(picDisplay.Refresh));
 
                 //show position
                 if (ctlFrameIndexFeedback != null) {
-                    ctlFrameIndexFeedback.Invoke(new SimpleDelegate(SetLabelText));
+                    ctlFrameIndexFeedback.Invoke(new Action(SetLabelText));
                 }
 
                 //wait for the next frame
