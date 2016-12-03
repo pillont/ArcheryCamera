@@ -5,6 +5,7 @@ using CameraArcheryLib.Factories;
 using CameraArcheryLib.Models;
 using CameraArcheryLib.Utils;
 using SharpAvi.Output;
+using System;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
@@ -16,27 +17,22 @@ namespace CameraArcheryLib.Controller
     /// </summary>
     public class VideoController
     {
-
+        /// <summary>
+        /// controller to record the video
+        /// </summary>
         public RecorderController recorderController { get; set; }
 
-        /// <summary>
-        /// delegate to show each frame
-        /// </summary>
-        /// <param name="bm"></param>
-        public delegate void showImageDel(Bitmap bm);
-
+        
         /// <summary>
         /// delegate to show each frame
         /// </summary>
         /// <param name="bm"></param>
         public delegate void newFrameDelegate(ref Bitmap bm);
 
-        public delegate void closeVideoDelegate();
-        
         /// <summary>
         /// event when the video is close
         /// </summary>
-        public event closeVideoDelegate OnVideoClose;
+        public event Action OnVideoClose;
         
         /// <summary>
         /// event when new frame is capture
@@ -51,7 +47,7 @@ namespace CameraArcheryLib.Controller
         /// <summary>
         /// function to show each frame
         /// </summary>
-        private showImageDel showImage { get; set; }
+        private Action<Bitmap> showImage { get; set; }
 
         /// <summary>
         ///  source of the video
@@ -65,7 +61,7 @@ namespace CameraArcheryLib.Controller
         /// </summary>
         /// <param name="showImageDel">function to show each images in the view</param>
         /// <param name="videoDevices">device to take the video</param>
-        public VideoController(showImageDel showImageDel,  FilterInfo videoDevices)
+        public VideoController(Action<Bitmap> showImageDel,  FilterInfo videoDevices)
         {
             this.recorderController = new RecorderController();
             this.videoDevice = videoDevices;

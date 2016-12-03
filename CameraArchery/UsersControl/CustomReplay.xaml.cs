@@ -82,30 +82,24 @@ namespace CameraArchery.UsersControl
             
             StartPauseUri = new Uri(URI_PLAY);
 
-            ReplayController = new ReplayController(MediaElementVideo, TimeSlider, lblStatus, VideoList); 
-            ReplayController.OnStart += OnStartVideo; 
-            ReplayController.OnStop += OnStopVideo;
-
+            ReplayController = new ReplayController(MediaElementVideo, TimeSlider, lblStatus, VideoList);
+            ReplayController.IsStartChange += ReplayController_IsStartChange; 
+            
             Refresh();
         }
-
-
-
+        
         /// <summary>
-        /// event when the video is start
+        /// event when the IsStarProperty change
         /// </summary>
-        private void OnStartVideo()
+        /// <param name="b"></param>
+        void ReplayController_IsStartChange(bool b)
         {
-            CheckButton.IsEnabled = true;
+            if(b)
+                CheckButton.IsEnabled = true;
+            else
+                CheckButton.IsEnabled = false;
         }
 
-        /// <summary>
-        /// event when the video is stop
-        /// </summary>
-        private void OnStopVideo()
-        {
-            CheckButton.IsEnabled = false;
-        }
         /// <summary>
         /// refresh the replay view
         /// </summary>
@@ -253,7 +247,6 @@ namespace CameraArchery.UsersControl
         private void UserControl_Unloaded(object sender, System.Windows.RoutedEventArgs e)
         {
             ReplayController.StopTimer();
-
         }
 
         /// <summary>
@@ -274,7 +267,7 @@ namespace CameraArchery.UsersControl
         private void SpeedDown_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             ReplayController.SpeedDown();
-            RefreshSpeedLabel();
+            SpeedLabel.Content = ReplayController.RefreshSpeedLabel();
         }
 
         /// <summary>
@@ -285,24 +278,7 @@ namespace CameraArchery.UsersControl
         private void SpeedUp_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             ReplayController.SpeedUp();
-            RefreshSpeedLabel();
-        }
-
-        /// <summary>
-        /// get the current time of the mediaElement and show it
-        /// </summary>
-        private void RefreshSpeedLabel()
-        {
-            var time = Convert.ToInt32(ReplayController.SpeedRatio * 100);
-            
-            // more slowly
-            if(time == 0)
-                time ++;
-            // if stop
-            if (time == -10)
-                time = 0;
-
-            SpeedLabel.Content = time.ToString() + "%";
+            SpeedLabel.Content = ReplayController.RefreshSpeedLabel();
         }
 
         /// <summary>

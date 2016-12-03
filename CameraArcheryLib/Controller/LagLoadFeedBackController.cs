@@ -1,5 +1,6 @@
 ﻿using CameraArcheryLib.Factories;
 using CameraArcheryLib.Utils;
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
@@ -13,22 +14,19 @@ namespace CameraArcheryLib.Controller
     /// </summary>
     public class LagLoadFeedBackController
     {
-        public delegate void OnPropertyChangedDouble(double property);
-        public delegate void OnPropertyChangedVisibility(Visibility property);
-
         /// <summary>
         /// event when progress change
         /// </summary>
-        public OnPropertyChangedDouble OnProgressChange;
+        public Action<double> OnProgressChange;
 
         /// <summary>
         /// event when visibility change
         /// </summary>
-        public OnPropertyChangedVisibility OnVisibilityChange;
+        public Action<Visibility> OnVisibilityChange;
 
         /// <summary>
         /// value of the progress
-        /// </summary>
+        /// </summary>-
         public double Progress
         {
             get

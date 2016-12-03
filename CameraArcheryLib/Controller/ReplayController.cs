@@ -19,19 +19,24 @@ namespace CameraArcheryLib.Controller
     public class ReplayController
     {
         /*
-         * event of the change of state
+         * event of the changes of state
          */
-        public delegate void IsStateChangeDel();
-        public delegate void IsStateBoolChangeDel(bool b);
-        public event IsStateBoolChangeDel IsPauseChange;
-        public event IsStateBoolChangeDel IsStartChange;
-        public event IsStateBoolChangeDel IsFrameByFrameChange;
-        public event IsStateChangeDel OnStart;
-        public event IsStateChangeDel OnStop;
-
         
+        /// <summary>
+        /// when the state of pause is changed
+        /// </summary>
+        public event Action<bool> IsPauseChange;
+        
+        /// <summary>
+        /// when the state of start is changed
+        /// </summary>
+        public event Action<bool> IsStartChange;
 
-
+        /// <summary>
+        /// when the state of frame to frame is changed
+        /// </summary>
+        public event Action<bool> IsFrameByFrameChange;
+        
         /// <summary>
         /// media element to manage
         /// </summary>
@@ -79,11 +84,6 @@ namespace CameraArcheryLib.Controller
             {
                 isStart = value;
 
-                if (isStart && OnStart != null)
-                    OnStart();
-
-                if (!isStart && OnStop != null)
-                    OnStop();
 
                 if (IsStartChange != null)
                     IsStartChange(value);
@@ -154,7 +154,6 @@ namespace CameraArcheryLib.Controller
 
         }
 
-
         /// <summary>
         /// load the file in the media element
         /// </summary>
@@ -203,6 +202,7 @@ namespace CameraArcheryLib.Controller
 
         /// <summary>
         ///  start the timer
+        ///  <para>timer update each second the value on the label timer</para>
         /// </summary>
         public void StartTimer()
         {
@@ -218,6 +218,10 @@ namespace CameraArcheryLib.Controller
 
         /// <summary>
         /// function of the timer to update the timer
+        /// <para>set the timer to zero</para>
+        /// <para>get the value if possible</para>
+        /// <para>change the value</para>
+        /// <para> if no file, inform the user</para>
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -230,19 +234,12 @@ namespace CameraArcheryLib.Controller
             
             if (MediaElement.Source != null)
             {
-                // change the position
+                // get time
                 if (MediaElement.NaturalDuration.HasTimeSpan)
                 {
                     position = MediaElement.Position;
                     TimeSlider.Maximum = MediaElement.NaturalDuration.TimeSpan.Seconds;
                     duration = MediaElement.NaturalDuration.TimeSpan;
-
-                    if (MediaElement.Position == MediaElement.NaturalDuration.TimeSpan)
-                    {
-                        MediaElement.Source = null;
-                        timer = null;
-                        ((DispatcherTimer)sender).Stop();
-                    }
                 }
                 // change the values
                 TimeSlider.Value = position.Seconds;
@@ -317,7 +314,6 @@ namespace CameraArcheryLib.Controller
                     if(!isPause)
                         MediaElement.Play();
                 }
-
             }
             return res;
         }
@@ -340,6 +336,24 @@ namespace CameraArcheryLib.Controller
                 MediaElement.Position = nextValue;
             else
                 MediaElement.Position = new TimeSpan(0);
+        }
+
+        /// <summary>
+        /// get the current time of the mediaElement and show it
+        /// </summary>
+        public string RefreshSpeedLabel()
+        {
+            var time = Convert.ToInt32(SpeedRatio * 100);
+            
+            // more slowly
+            if(time == 0)
+                time ++;
+            // if stop
+            if (time == -10)
+                time = 0;
+
+            return time.ToString() + "%";
+        
         }
     }
 }
