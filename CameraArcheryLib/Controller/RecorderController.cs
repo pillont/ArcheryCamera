@@ -48,7 +48,7 @@ namespace CameraArcheryLib.Controller
         /// <summary>
         /// inform if the controller is recodring or not
         /// </summary>
-        public bool IsRedording
+        public bool IsRecording
         {
             get
             {

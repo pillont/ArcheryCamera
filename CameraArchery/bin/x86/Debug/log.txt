@@ -1,0 +1,13 @@
+﻿mercredi 7 décembre 2016 23:56:43 : start click
+mercredi 7 décembre 2016 23:56:44 : stop click
+mercredi 7 décembre 2016 23:56:45 : start click
+mercredi 7 décembre 2016 23:56:46 : Pause click
+mercredi 7 décembre 2016 23:56:47 : reply click
+mercredi 7 décembre 2016 23:56:48 : Pause click
+mercredi 7 décembre 2016 23:56:49 : stop click
+mercredi 7 décembre 2016 23:56:49 : video window key down : System
+mercredi 7 décembre 2016 23:56:51 : video window key down : System
+mercredi 7 décembre 2016 23:57:02 : video window key down : Escape
+mercredi 7 décembre 2016 23:57:02 : stop the video
+mercredi 7 décembre 2016 23:57:02 : ------------- video window close -------------
+mercredi 7 décembre 2016 23:57:04 : --------------------STOP OF THE APPLICATION---------------------

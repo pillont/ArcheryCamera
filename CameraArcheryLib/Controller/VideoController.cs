@@ -77,7 +77,7 @@ namespace CameraArcheryLib.Controller
         public bool Recording()
         {
             // start recording
-            if (!recorderController.IsRedording)
+            if (!recorderController.IsRecording)
             {
                 recorderController.StartRecording();
                 OnNewFrame += recorderController.VideoController_OnNewFrame;
