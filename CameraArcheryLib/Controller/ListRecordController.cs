@@ -164,7 +164,6 @@ namespace CameraArcheryLib.Controller
             VideoList.ItemsSource = list;
 
             File.Delete(file.FullName);
-
             VideoList.SelectedIndex = 0;
         }
     }
