@@ -1,5 +1,6 @@
 ﻿.exe a faire pour la première version
 
+menu contextuel pour rename
 language setting a utiliser
 commentaire
 test

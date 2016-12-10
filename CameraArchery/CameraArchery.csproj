@@ -210,6 +210,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="UsersControl\CustomBrowser.xaml.cs">
+      <DependentUpon>CustomBrowser.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\CustomBrowserFolder.xaml.cs">
+      <DependentUpon>CustomBrowserFolder.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\CustomMessageBox.xaml.cs">
       <DependentUpon>CustomMessageBox.xaml</DependentUpon>
     </Compile>
@@ -247,6 +253,14 @@
     <Page Include="Ressources\Strings\StringResources.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UsersControl\CustomBrowser.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\CustomBrowserFolder.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\CustomMessageBox.xaml">
       <SubType>Designer</SubType>
