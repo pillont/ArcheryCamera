@@ -1,5 +1,7 @@
 ﻿.exe a faire pour la première version
 
+queue monitor à faire
+enregistrement sur l image montréee, pas celle rentrant
 menu contextuel pour rename
 language setting a utiliser
 commentaire
