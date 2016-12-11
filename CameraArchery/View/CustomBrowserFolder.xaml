@@ -2,17 +2,41 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:self="clr-namespace:CameraArchery.View"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:CameraArchery.UsersControl.EditableTextBlock"
         Title="CustomBrowserFolder" Height="300" Width="300">
     <StackPanel>
         <TreeView Name="TreeControl">
-            <TreeView.ItemTemplate>
+            <TreeView.Resources>
                 <HierarchicalDataTemplate DataType="{x:Type self:MenuItem}" ItemsSource="{Binding Items}">
-                    <TextBlock Text="{Binding Title}" />                   
+                    <local:EditableTextBlock Text="{Binding Title, Mode=TwoWay}"
+                                             IsInEditMode="{Binding Edit, Mode=TwoWay}"/>
                 </HierarchicalDataTemplate>
-            </TreeView.ItemTemplate>
+                <Style TargetType="TreeViewItem">
+                    <Setter Property="IsSelected" Value="{Binding IsSelected}"/>
+                    <Setter Property="IsExpanded" Value="{Binding IsExpanded}"/>
+
+                        <Setter Property="BorderThickness" Value="1.5"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="BorderBrush" Value="#adc6e5"/>
+                            </Trigger>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsSelected" Value="True"/>
+                                </MultiTrigger.Conditions>
+                                <Setter Property="BorderBrush" Value="LightGray"/>
+                            </MultiTrigger>
+                        </Style.Triggers>
+                        <Style.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="2"/>
+                            </Style>
+                        </Style.Resources>
+                </Style>
+            </TreeView.Resources>
         </TreeView>
 
-        <Button Content="add file"/>
+        <Button Content="add file" Click="Button_Click"/>
         <Button Content="Return"/>
         <Button Content="OK"/>
     </StackPanel>

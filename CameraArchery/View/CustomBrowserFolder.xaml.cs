@@ -25,10 +25,13 @@ namespace CameraArchery.View
         {
             InitializeComponent();
 
-
-
-            TreeControl.Items.Add(GetFolder(uri));
-
+            if (!Directory.Exists(uri))
+                Directory.CreateDirectory(uri);
+            var root = GetFolder(uri);
+            TreeControl.Items.Add(root);
+            root.IsSelected = true;
+            root.IsExpanded = true;
+            
         }
 
         private MenuItem GetFolder(string uri)
@@ -40,16 +43,25 @@ namespace CameraArchery.View
 
             return root;
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
     }
 
 
     public class MenuItem
     {
+        public bool IsExpanded { get; set; }
+        public bool IsSelected { get; set; }
         public string Title { get; set; }
         public ObservableCollection<MenuItem> Items { get; set; }
         public MenuItem()
         {
             this.Items = new ObservableCollection<MenuItem>();
+            IsSelected = false;
+            IsExpanded = false;
         }
 
     }

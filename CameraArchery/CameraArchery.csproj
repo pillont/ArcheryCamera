@@ -213,6 +213,8 @@
     <Compile Include="UsersControl\CustomBrowser.xaml.cs">
       <DependentUpon>CustomBrowser.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UsersControl\EditableTextBlock\EditableTextBlock.cs" />
+    <Compile Include="UsersControl\EditableTextBlock\EditableTextBlockAdorner.cs" />
     <Compile Include="View\CustomBrowserFolder.xaml.cs">
       <DependentUpon>CustomBrowserFolder.xaml</DependentUpon>
     </Compile>
@@ -311,6 +313,7 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <None Include="UsersControl\EditableTextBlock\DiagramEditableTextBlock.cd" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

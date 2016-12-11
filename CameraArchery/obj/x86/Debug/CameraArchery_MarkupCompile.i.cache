@@ -12,7 +12,11 @@ DEBUG;TRACE
 C:\Users\etudiant\Desktop\RepoGit\CameraArchery\CameraArchery\App.xaml
 9338251635
 1-275459792
+<<<<<<< HEAD
 152094004237
+=======
+19-1832065807
+>>>>>>> editable browser ok
 27-1649760625
 MainWindow.xaml;Ressources\Strings\StringResources.fr.xaml;Ressources\Strings\StringResources.xaml;View\CustomMessageBox.xaml;UsersControl\CustomNumericInput.xaml;UsersControl\CustomSpliter.xaml;UsersControl\CustomReplay.xaml;View\SettingView.xaml;View\VideoWindow.xaml;
 
