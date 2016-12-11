@@ -8,8 +8,9 @@
         <TreeView Name="TreeControl">
             <TreeView.Resources>
                 <HierarchicalDataTemplate DataType="{x:Type self:MenuItem}" ItemsSource="{Binding Items}">
-                    <local:EditableTextBlock Text="{Binding Title, Mode=TwoWay}"
-                                             IsInEditMode="{Binding Edit, Mode=TwoWay}"/>
+                    <local:EditableTextBlock Text="{Binding Name, Mode=TwoWay}"
+                                             IsInEditMode="{Binding Edit, Mode=TwoWay}" />
+                                           <!--  OnStopEditing="{Binding OnStopEditing}"/> -->
                 </HierarchicalDataTemplate>
                 <Style TargetType="TreeViewItem">
                     <Setter Property="IsSelected" Value="{Binding IsSelected}"/>
@@ -36,7 +37,7 @@
             </TreeView.Resources>
         </TreeView>
 
-        <Button Content="add file" Click="Button_Click"/>
+        <Button Content="add file" Click="Add_Click"/>
         <Button Content="Return"/>
         <Button Content="OK"/>
     </StackPanel>

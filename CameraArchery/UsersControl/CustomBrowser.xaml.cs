@@ -83,7 +83,7 @@ namespace CameraArchery.UsersControl
 
         private void ShowDialog()
         {
-            new CustomBrowserFolder("video").ShowDialog();
+            new CustomBrowserFolder(new Uri("video", UriKind.Relative)).ShowDialog();
         }
         
         /// <summary>

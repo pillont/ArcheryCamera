@@ -3,11 +3,25 @@ using System.Windows;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Data;
+using System;
 
 namespace CameraArchery.UsersControl.EditableTextBlock
 {
     public class EditableTextBlock : TextBlock
     {
+        private event Func<string, bool> onStopEditing;
+        public event Func<string, bool> OnStopEditing
+        {
+            add 
+            {
+                onStopEditing += value;
+            }
+            remove 
+            {
+                onStopEditing -= value;
+            }
+        }
+
         private string InitText;
         
         public bool IsInEditMode
@@ -111,7 +125,11 @@ namespace CameraArchery.UsersControl.EditableTextBlock
                 Text = InitText;
             }
             else
+            {
+                if (onStopEditing == null 
+                || onStopEditing(Text))
                 IsInEditMode = false;
+            }
         }
 
         /// <summary>
