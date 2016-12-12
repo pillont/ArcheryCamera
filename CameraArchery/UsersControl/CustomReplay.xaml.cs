@@ -158,7 +158,6 @@ namespace CameraArchery.UsersControl
             ReplayController.IsStartChange += ReplayController_IsStartChange; 
             
             Refresh();
-            BrowserControl.DefaultFile = SettingFactory.CurrentSetting.VideoFolder; 
 
         }
         

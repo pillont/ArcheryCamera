@@ -145,7 +145,6 @@ C:\Users\etudiant\Desktop\RepoGit\CameraArchery\CameraArchery\obj\x86\Debug\Ress
 C:\Users\etudiant\Desktop\RepoGit\CameraArchery\CameraArchery\obj\x86\Debug\View\CustomMessageBox.baml
 C:\Users\etudiant\Desktop\RepoGit\CameraArchery\CameraArchery\obj\x86\Debug\UsersControl\CustomNumericInput.baml
 C:\Users\etudiant\Desktop\RepoGit\CameraArchery\CameraArchery\obj\x86\Debug\UsersControl\CustomSpliter.baml
-C:\Users\etudiant\Desktop\RepoGit\CameraArchery\CameraArchery\obj\x86\Debug\UsersControl\CustomReplay.baml
 C:\Users\etudiant\Desktop\RepoGit\CameraArchery\CameraArchery\obj\x86\Debug\MainWindow.g.cs
 <<<<<<< HEAD
 =======
@@ -165,6 +164,7 @@ C:\Users\etudiant\Desktop\RepoGit\CameraArchery\CameraArchery\obj\x86\Debug\Came
 C:\Users\etudiant\Desktop\RepoGit\CameraArchery\CameraArchery\obj\x86\Debug\CameraArchery_MarkupCompile.lref
 C:\Users\etudiant\Desktop\RepoGit\CameraArchery\CameraArchery\obj\x86\Debug\MainWindow.baml
 C:\Users\etudiant\Desktop\RepoGit\CameraArchery\CameraArchery\obj\x86\Debug\View\CustomBrowserFolder.baml
+C:\Users\etudiant\Desktop\RepoGit\CameraArchery\CameraArchery\obj\x86\Debug\UsersControl\CustomReplay.baml
 C:\Users\etudiant\Desktop\RepoGit\CameraArchery\CameraArchery\obj\x86\Debug\View\SettingView.baml
 C:\Users\etudiant\Desktop\RepoGit\CameraArchery\CameraArchery\obj\x86\Debug\View\VideoWindow.baml
 C:\Users\etudiant\Desktop\RepoGit\CameraArchery\CameraArchery\obj\x86\Debug\CameraArchery.g.resources

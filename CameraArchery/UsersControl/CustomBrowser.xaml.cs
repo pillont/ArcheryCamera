@@ -47,21 +47,6 @@ namespace CameraArchery.UsersControl
         /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private string defaultFile;
-        public string DefaultFile
-        {
-            get
-            {
-                return defaultFile;
-            }
-            set
-            {
-                defaultFile = value;
-                SelectedUri = DefaultFile;
-            }
-        }
-
-
         private string selectedUri;
         public string SelectedUri 
         { 
@@ -103,7 +88,7 @@ namespace CameraArchery.UsersControl
         {
             var root = new Uri(@"" + LanguageController.Get("videoFolder"), UriKind.Relative);
             var initUri = new Uri(@"" + SettingFactory.CurrentSetting.VideoFolder, UriKind.Relative);
-            
+           
             var dialog = new CustomBrowserFolder(root, initUri);
             dialog.ShowDialog();
 

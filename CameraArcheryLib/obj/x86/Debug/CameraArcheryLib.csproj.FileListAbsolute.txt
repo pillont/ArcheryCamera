@@ -90,6 +90,5 @@ C:\Users\etudiant\Desktop\RepoGit\CameraArchery\CameraArcheryLib\bin\x86\Debug\A
 C:\Users\etudiant\Desktop\RepoGit\CameraArchery\CameraArcheryLib\bin\x86\Debug\Accord.Video.VFW.xml
 C:\Users\etudiant\Desktop\RepoGit\CameraArchery\CameraArcheryLib\bin\x86\Debug\DirectShowLib.pdb
 C:\Users\etudiant\Desktop\RepoGit\CameraArchery\CameraArcheryLib\bin\x86\Debug\SharpAvi.xml
-C:\Users\etudiant\Desktop\RepoGit\CameraArchery\CameraArcheryLib\obj\x86\Debug\CameraArcheryLib.csprojResolveAssemblyReference.cache
 C:\Users\etudiant\Desktop\RepoGit\CameraArchery\CameraArcheryLib\obj\x86\Debug\CameraArcheryLib.dll
 C:\Users\etudiant\Desktop\RepoGit\CameraArchery\CameraArcheryLib\obj\x86\Debug\CameraArcheryLib.pdb

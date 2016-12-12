@@ -138,8 +138,11 @@ namespace CameraArchery.View
             return true;
 =======
 
+<<<<<<< HEAD
             BrowserControl.DefaultFile = SettingFactory.CurrentSetting.VideoFolder; 
 >>>>>>> selected and return value on the browser ok
+=======
+>>>>>>> same value in the two browsers
         }
 
         /// <summary>
@@ -243,6 +246,7 @@ namespace CameraArchery.View
         private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             LogHelper.Write("tab control change to : "+MainTabControl.SelectedValue+ ". Is recording : " + videoController.recorderController.IsRecording);
 
             if (e.Source is TabControl && videoController.recorderController.IsRecording)
@@ -250,6 +254,21 @@ namespace CameraArchery.View
             if (e.Source is System.Windows.Controls.TabControl && videoController.recorderController.IsRedording)
 >>>>>>> create folders ok
                 MainTabControl.SelectedIndex = 0;
+=======
+            if (e.Source is System.Windows.Controls.TabControl)
+            {
+                // no change
+                if (videoController.recorderController.IsRedording)
+                    MainTabControl.SelectedIndex = 0;
+                //change
+                else
+                {
+                    // update the value in the folder
+                    BrowserControl.SelectedUri = SettingFactory.CurrentSetting.VideoFolder;
+                    Replay.BrowserControl.SelectedUri = SettingFactory.CurrentSetting.VideoFolder;
+                }
+            }
+>>>>>>> same value in the two browsers
         }
     }
 }
