@@ -5702,4 +5702,450 @@ lundi 12 décembre 2016 17:16:21 : start video load for : 1 seconds
 lundi 12 décembre 2016 17:16:22 : end of video load
 lundi 12 décembre 2016 17:16:22 : start the video
 lundi 12 décembre 2016 17:16:34 : video window key down : System
+<<<<<<< HEAD
 >>>>>>> same value in the two browsers
+=======
+lundi 12 décembre 2016 17:18:09 : video window key down : System
+lundi 12 décembre 2016 17:18:09 : video window key down : System
+lundi 12 décembre 2016 17:18:09 : stop the video
+lundi 12 décembre 2016 17:18:09 : ------------- video window close -------------
+lundi 12 décembre 2016 17:18:12 : --------------------STOP OF THE APPLICATION---------------------
+lundi 12 décembre 2016 18:26:27 : 
+lundi 12 décembre 2016 18:26:27 : 
+lundi 12 décembre 2016 18:26:27 : -----------------START OF THE APPLICATION--------------------
+/!\/!\/!\  ERROR   /!\/!\
+Une erreur s'est produite lors de la réflexion du type 'CameraArcheryLib.Models.Setting'.
+   à System.Xml.Serialization.XmlReflectionImporter.ImportTypeMapping(TypeModel model, String ns, ImportContext context, String dataType, XmlAttributes a, Boolean repeats, Boolean openModel, RecursionLimiter limiter)
+   à System.Xml.Serialization.XmlReflectionImporter.ImportElement(TypeModel model, XmlRootAttribute root, String defaultNamespace, RecursionLimiter limiter)
+   à System.Xml.Serialization.XmlReflectionImporter.ImportTypeMapping(Type type, XmlRootAttribute root, String defaultNamespace)
+   à System.Xml.Serialization.XmlSerializer..ctor(Type type, String defaultNamespace)
+   à System.Xml.Serialization.XmlSerializer..ctor(Type type)
+   à CameraArcheryLib.Utils.SerializeHelper.Deserialization[T](String filePath) dans c:\Users\etudiant\Desktop\RepoGit\CameraArchery\CameraArcheryLib\Utils\SerializeHelper.cs:ligne 42
+   à CameraArcheryLib.Factories.SettingFactory.get_CurrentSetting() dans c:\Users\etudiant\Desktop\RepoGit\CameraArchery\CameraArcheryLib\Factories\SettingFactory.cs:ligne 64
+/!\/!\/!\  ERROR   /!\/!\
+Une erreur s'est produite lors de la réflexion du type 'CameraArcheryLib.Models.Setting'.
+   à System.Xml.Serialization.XmlReflectionImporter.ImportTypeMapping(TypeModel model, String ns, ImportContext context, String dataType, XmlAttributes a, Boolean repeats, Boolean openModel, RecursionLimiter limiter)
+   à System.Xml.Serialization.XmlReflectionImporter.ImportElement(TypeModel model, XmlRootAttribute root, String defaultNamespace, RecursionLimiter limiter)
+   à System.Xml.Serialization.XmlReflectionImporter.ImportTypeMapping(Type type, XmlRootAttribute root, String defaultNamespace)
+   à System.Xml.Serialization.XmlSerializer..ctor(Type type, String defaultNamespace)
+   à System.Xml.Serialization.XmlSerializer..ctor(Type type)
+   à CameraArcheryLib.Utils.SerializeHelper.Serialization[T](T objet, String filePath) dans c:\Users\etudiant\Desktop\RepoGit\CameraArchery\CameraArcheryLib\Utils\SerializeHelper.cs:ligne 19
+   à CameraArcheryLib.Factories.SettingFactory.InitSetting() dans c:\Users\etudiant\Desktop\RepoGit\CameraArchery\CameraArcheryLib\Factories\SettingFactory.cs:ligne 94
+   à CameraArcheryLib.Factories.SettingFactory.get_CurrentSetting() dans c:\Users\etudiant\Desktop\RepoGit\CameraArchery\CameraArcheryLib\Factories\SettingFactory.cs:ligne 76
+   à CameraArcheryLib.LanguageController.get_CurrentDictionnary() dans c:\Users\etudiant\Desktop\RepoGit\CameraArchery\CameraArcheryLib\Controller\LanguageController.cs:ligne 47
+lundi 12 décembre 2016 18:26:36 : 
+lundi 12 décembre 2016 18:26:36 : 
+lundi 12 décembre 2016 18:26:36 : -----------------START OF THE APPLICATION--------------------
+/!\/!\/!\  ERROR   /!\/!\
+Une erreur s'est produite lors de la réflexion du type 'CameraArcheryLib.Models.Setting'.
+   à System.Xml.Serialization.XmlReflectionImporter.ImportTypeMapping(TypeModel model, String ns, ImportContext context, String dataType, XmlAttributes a, Boolean repeats, Boolean openModel, RecursionLimiter limiter)
+   à System.Xml.Serialization.XmlReflectionImporter.ImportElement(TypeModel model, XmlRootAttribute root, String defaultNamespace, RecursionLimiter limiter)
+   à System.Xml.Serialization.XmlReflectionImporter.ImportTypeMapping(Type type, XmlRootAttribute root, String defaultNamespace)
+   à System.Xml.Serialization.XmlSerializer..ctor(Type type, String defaultNamespace)
+   à System.Xml.Serialization.XmlSerializer..ctor(Type type)
+   à CameraArcheryLib.Utils.SerializeHelper.Deserialization[T](String filePath) dans c:\Users\etudiant\Desktop\RepoGit\CameraArchery\CameraArcheryLib\Utils\SerializeHelper.cs:ligne 42
+   à CameraArcheryLib.Factories.SettingFactory.get_CurrentSetting() dans c:\Users\etudiant\Desktop\RepoGit\CameraArchery\CameraArcheryLib\Factories\SettingFactory.cs:ligne 64
+/!\/!\/!\  ERROR   /!\/!\
+Une erreur s'est produite lors de la réflexion du type 'CameraArcheryLib.Models.Setting'.
+   à System.Xml.Serialization.XmlReflectionImporter.ImportTypeMapping(TypeModel model, String ns, ImportContext context, String dataType, XmlAttributes a, Boolean repeats, Boolean openModel, RecursionLimiter limiter)
+   à System.Xml.Serialization.XmlReflectionImporter.ImportElement(TypeModel model, XmlRootAttribute root, String defaultNamespace, RecursionLimiter limiter)
+   à System.Xml.Serialization.XmlReflectionImporter.ImportTypeMapping(Type type, XmlRootAttribute root, String defaultNamespace)
+   à System.Xml.Serialization.XmlSerializer..ctor(Type type, String defaultNamespace)
+   à System.Xml.Serialization.XmlSerializer..ctor(Type type)
+   à CameraArcheryLib.Utils.SerializeHelper.Serialization[T](T objet, String filePath) dans c:\Users\etudiant\Desktop\RepoGit\CameraArchery\CameraArcheryLib\Utils\SerializeHelper.cs:ligne 19
+   à CameraArcheryLib.Factories.SettingFactory.InitSetting() dans c:\Users\etudiant\Desktop\RepoGit\CameraArchery\CameraArcheryLib\Factories\SettingFactory.cs:ligne 94
+   à CameraArcheryLib.Factories.SettingFactory.get_CurrentSetting() dans c:\Users\etudiant\Desktop\RepoGit\CameraArchery\CameraArcheryLib\Factories\SettingFactory.cs:ligne 76
+   à CameraArcheryLib.LanguageController.get_CurrentDictionnary() dans c:\Users\etudiant\Desktop\RepoGit\CameraArchery\CameraArcheryLib\Controller\LanguageController.cs:ligne 47
+lundi 12 décembre 2016 18:26:54 : 
+lundi 12 décembre 2016 18:26:54 : 
+lundi 12 décembre 2016 18:26:54 : -----------------START OF THE APPLICATION--------------------
+/!\/!\/!\  ERROR   /!\/!\
+Une erreur s'est produite lors de la réflexion du type 'CameraArcheryLib.Models.Setting'.
+   à System.Xml.Serialization.XmlReflectionImporter.ImportTypeMapping(TypeModel model, String ns, ImportContext context, String dataType, XmlAttributes a, Boolean repeats, Boolean openModel, RecursionLimiter limiter)
+   à System.Xml.Serialization.XmlReflectionImporter.ImportElement(TypeModel model, XmlRootAttribute root, String defaultNamespace, RecursionLimiter limiter)
+   à System.Xml.Serialization.XmlReflectionImporter.ImportTypeMapping(Type type, XmlRootAttribute root, String defaultNamespace)
+   à System.Xml.Serialization.XmlSerializer..ctor(Type type, String defaultNamespace)
+   à System.Xml.Serialization.XmlSerializer..ctor(Type type)
+   à CameraArcheryLib.Utils.SerializeHelper.Deserialization[T](String filePath) dans c:\Users\etudiant\Desktop\RepoGit\CameraArchery\CameraArcheryLib\Utils\SerializeHelper.cs:ligne 42
+   à CameraArcheryLib.Factories.SettingFactory.get_CurrentSetting() dans c:\Users\etudiant\Desktop\RepoGit\CameraArchery\CameraArcheryLib\Factories\SettingFactory.cs:ligne 64
+/!\/!\/!\  ERROR   /!\/!\
+Une erreur s'est produite lors de la réflexion du type 'CameraArcheryLib.Models.Setting'.
+   à System.Xml.Serialization.XmlReflectionImporter.ImportTypeMapping(TypeModel model, String ns, ImportContext context, String dataType, XmlAttributes a, Boolean repeats, Boolean openModel, RecursionLimiter limiter)
+   à System.Xml.Serialization.XmlReflectionImporter.ImportElement(TypeModel model, XmlRootAttribute root, String defaultNamespace, RecursionLimiter limiter)
+   à System.Xml.Serialization.XmlReflectionImporter.ImportTypeMapping(Type type, XmlRootAttribute root, String defaultNamespace)
+   à System.Xml.Serialization.XmlSerializer..ctor(Type type, String defaultNamespace)
+   à System.Xml.Serialization.XmlSerializer..ctor(Type type)
+   à CameraArcheryLib.Utils.SerializeHelper.Serialization[T](T objet, String filePath) dans c:\Users\etudiant\Desktop\RepoGit\CameraArchery\CameraArcheryLib\Utils\SerializeHelper.cs:ligne 19
+   à CameraArcheryLib.Factories.SettingFactory.InitSetting() dans c:\Users\etudiant\Desktop\RepoGit\CameraArchery\CameraArcheryLib\Factories\SettingFactory.cs:ligne 94
+   à CameraArcheryLib.Factories.SettingFactory.get_CurrentSetting() dans c:\Users\etudiant\Desktop\RepoGit\CameraArchery\CameraArcheryLib\Factories\SettingFactory.cs:ligne 76
+   à CameraArcheryLib.LanguageController.get_CurrentDictionnary() dans c:\Users\etudiant\Desktop\RepoGit\CameraArchery\CameraArcheryLib\Controller\LanguageController.cs:ligne 47
+lundi 12 décembre 2016 18:27:45 : 
+lundi 12 décembre 2016 18:27:45 : 
+lundi 12 décembre 2016 18:27:45 : -----------------START OF THE APPLICATION--------------------
+/!\/!\/!\  ERROR   /!\/!\
+Une erreur s'est produite lors de la réflexion du type 'CameraArcheryLib.Models.Setting'.
+   à System.Xml.Serialization.XmlReflectionImporter.ImportTypeMapping(TypeModel model, String ns, ImportContext context, String dataType, XmlAttributes a, Boolean repeats, Boolean openModel, RecursionLimiter limiter)
+   à System.Xml.Serialization.XmlReflectionImporter.ImportElement(TypeModel model, XmlRootAttribute root, String defaultNamespace, RecursionLimiter limiter)
+   à System.Xml.Serialization.XmlReflectionImporter.ImportTypeMapping(Type type, XmlRootAttribute root, String defaultNamespace)
+   à System.Xml.Serialization.XmlSerializer..ctor(Type type, String defaultNamespace)
+   à System.Xml.Serialization.XmlSerializer..ctor(Type type)
+   à CameraArcheryLib.Utils.SerializeHelper.Deserialization[T](String filePath) dans c:\Users\etudiant\Desktop\RepoGit\CameraArchery\CameraArcheryLib\Utils\SerializeHelper.cs:ligne 42
+   à CameraArcheryLib.Factories.SettingFactory.get_CurrentSetting() dans c:\Users\etudiant\Desktop\RepoGit\CameraArchery\CameraArcheryLib\Factories\SettingFactory.cs:ligne 64
+lundi 12 décembre 2016 18:28:49 : 
+lundi 12 décembre 2016 18:28:49 : 
+lundi 12 décembre 2016 18:28:49 : -----------------START OF THE APPLICATION--------------------
+lundi 12 décembre 2016 18:30:17 : 
+lundi 12 décembre 2016 18:30:17 : 
+lundi 12 décembre 2016 18:30:17 : -----------------START OF THE APPLICATION--------------------
+lundi 12 décembre 2016 18:30:19 : new value in the devices list : Logitech QuickCam Communicate STX, 
+lundi 12 décembre 2016 18:30:19 : combo box of device selection changed : Logitech QuickCam Communicate STX
+lundi 12 décembre 2016 18:30:22 : click to start video windows
+lundi 12 décembre 2016 18:30:22 : combo box of device selection changed : 
+lundi 12 décembre 2016 18:30:22 : new value in the devices list : Logitech QuickCam Communicate STX, 
+lundi 12 décembre 2016 18:30:22 : combo box of device selection changed : Logitech QuickCam Communicate STX
+lundi 12 décembre 2016 18:30:22 : video window will be started
+lundi 12 décembre 2016 18:30:22 : --------------- open video view -----------------
+lundi 12 décembre 2016 18:30:29 : video start
+lundi 12 décembre 2016 18:30:29 : start video load for : 5 seconds
+lundi 12 décembre 2016 18:33:16 : 
+lundi 12 décembre 2016 18:33:16 : 
+lundi 12 décembre 2016 18:33:16 : -----------------START OF THE APPLICATION--------------------
+lundi 12 décembre 2016 18:33:16 : new value in the devices list : Logitech QuickCam Communicate STX, 
+lundi 12 décembre 2016 18:33:16 : combo box of device selection changed : Logitech QuickCam Communicate STX
+lundi 12 décembre 2016 18:34:52 : 
+lundi 12 décembre 2016 18:34:52 : 
+lundi 12 décembre 2016 18:34:52 : -----------------START OF THE APPLICATION--------------------
+lundi 12 décembre 2016 18:34:52 : Deserialization of setting : Setting : Time = 5, Language = English
+lundi 12 décembre 2016 18:34:52 : new value in the devices list : Logitech QuickCam Communicate STX, 
+lundi 12 décembre 2016 18:34:52 : combo box of device selection changed : Logitech QuickCam Communicate STX
+lundi 12 décembre 2016 18:35:03 : 
+lundi 12 décembre 2016 18:35:03 : 
+lundi 12 décembre 2016 18:35:03 : -----------------START OF THE APPLICATION--------------------
+lundi 12 décembre 2016 18:35:04 : new value in the devices list : Logitech QuickCam Communicate STX, 
+lundi 12 décembre 2016 18:35:04 : combo box of device selection changed : Logitech QuickCam Communicate STX
+lundi 12 décembre 2016 18:35:05 : click to start video windows
+lundi 12 décembre 2016 18:35:05 : combo box of device selection changed : 
+lundi 12 décembre 2016 18:35:05 : new value in the devices list : Logitech QuickCam Communicate STX, 
+lundi 12 décembre 2016 18:35:05 : combo box of device selection changed : Logitech QuickCam Communicate STX
+lundi 12 décembre 2016 18:35:05 : video window will be started
+lundi 12 décembre 2016 18:35:05 : --------------- open video view -----------------
+lundi 12 décembre 2016 18:35:06 : video start
+lundi 12 décembre 2016 18:35:06 : start video load for : 5 seconds
+lundi 12 décembre 2016 18:35:11 : end of video load
+lundi 12 décembre 2016 18:35:11 : start the video
+lundi 12 décembre 2016 18:43:16 : 
+lundi 12 décembre 2016 18:43:16 : 
+lundi 12 décembre 2016 18:43:16 : -----------------START OF THE APPLICATION--------------------
+lundi 12 décembre 2016 18:43:16 : Deserialization of setting : Setting : Time = 5, Language = English
+lundi 12 décembre 2016 18:43:16 : new value in the devices list : Logitech QuickCam Communicate STX, 
+lundi 12 décembre 2016 18:43:16 : combo box of device selection changed : Logitech QuickCam Communicate STX
+lundi 12 décembre 2016 18:43:18 : click to start video windows
+lundi 12 décembre 2016 18:43:18 : combo box of device selection changed : 
+lundi 12 décembre 2016 18:43:18 : new value in the devices list : Logitech QuickCam Communicate STX, 
+lundi 12 décembre 2016 18:43:18 : combo box of device selection changed : Logitech QuickCam Communicate STX
+lundi 12 décembre 2016 18:43:18 : video window will be started
+lundi 12 décembre 2016 18:43:18 : --------------- open video view -----------------
+lundi 12 décembre 2016 18:43:19 : video start
+lundi 12 décembre 2016 18:43:19 : start video load for : 5 seconds
+lundi 12 décembre 2016 18:43:24 : end of video load
+lundi 12 décembre 2016 18:43:24 : start the video
+lundi 12 décembre 2016 22:39:32 : 
+lundi 12 décembre 2016 22:39:32 : 
+lundi 12 décembre 2016 22:39:32 : -----------------START OF THE APPLICATION--------------------
+lundi 12 décembre 2016 22:39:34 : Deserialization of setting : Setting : Time = 5, Language = English
+lundi 12 décembre 2016 22:39:44 : new value in the devices list : Logitech QuickCam Communicate STX, 
+lundi 12 décembre 2016 22:39:45 : combo box of device selection changed : Logitech QuickCam Communicate STX
+lundi 12 décembre 2016 22:39:54 : click to start video windows
+lundi 12 décembre 2016 22:39:54 : combo box of device selection changed : 
+lundi 12 décembre 2016 22:39:54 : new value in the devices list : Logitech QuickCam Communicate STX, 
+lundi 12 décembre 2016 22:39:54 : combo box of device selection changed : Logitech QuickCam Communicate STX
+lundi 12 décembre 2016 22:39:54 : video window will be started
+lundi 12 décembre 2016 22:39:54 : --------------- open video view -----------------
+lundi 12 décembre 2016 22:39:57 : video start
+lundi 12 décembre 2016 22:39:58 : start video load for : 5 seconds
+lundi 12 décembre 2016 22:40:03 : end of video load
+lundi 12 décembre 2016 22:40:03 : start the video
+lundi 12 décembre 2016 22:47:09 : 
+lundi 12 décembre 2016 22:47:09 : 
+lundi 12 décembre 2016 22:47:09 : -----------------START OF THE APPLICATION--------------------
+lundi 12 décembre 2016 22:47:09 : Deserialization of setting : Setting : Time = 5, Language = English
+lundi 12 décembre 2016 22:47:10 : new value in the devices list : Logitech QuickCam Communicate STX, 
+lundi 12 décembre 2016 22:47:10 : combo box of device selection changed : Logitech QuickCam Communicate STX
+lundi 12 décembre 2016 22:47:11 : click to start video windows
+lundi 12 décembre 2016 22:47:11 : combo box of device selection changed : 
+lundi 12 décembre 2016 22:47:11 : new value in the devices list : Logitech QuickCam Communicate STX, 
+lundi 12 décembre 2016 22:47:11 : combo box of device selection changed : Logitech QuickCam Communicate STX
+lundi 12 décembre 2016 22:47:11 : video window will be started
+lundi 12 décembre 2016 22:47:11 : --------------- open video view -----------------
+lundi 12 décembre 2016 22:47:12 : video start
+lundi 12 décembre 2016 22:47:12 : start video load for : 5 seconds
+lundi 12 décembre 2016 22:47:17 : end of video load
+lundi 12 décembre 2016 22:47:17 : start the video
+lundi 12 décembre 2016 22:48:11 : 
+lundi 12 décembre 2016 22:48:11 : 
+lundi 12 décembre 2016 22:48:11 : -----------------START OF THE APPLICATION--------------------
+lundi 12 décembre 2016 22:48:11 : Deserialization of setting : Setting : Time = 5, Language = English
+lundi 12 décembre 2016 22:48:11 : new value in the devices list : Logitech QuickCam Communicate STX, 
+lundi 12 décembre 2016 22:48:11 : combo box of device selection changed : Logitech QuickCam Communicate STX
+lundi 12 décembre 2016 22:48:13 : click to start video windows
+lundi 12 décembre 2016 22:48:13 : combo box of device selection changed : 
+lundi 12 décembre 2016 22:48:13 : new value in the devices list : Logitech QuickCam Communicate STX, 
+lundi 12 décembre 2016 22:48:13 : combo box of device selection changed : Logitech QuickCam Communicate STX
+lundi 12 décembre 2016 22:48:13 : video window will be started
+lundi 12 décembre 2016 22:48:13 : --------------- open video view -----------------
+lundi 12 décembre 2016 22:48:14 : video start
+lundi 12 décembre 2016 22:48:14 : start video load for : 5 seconds
+lundi 12 décembre 2016 22:48:19 : end of video load
+lundi 12 décembre 2016 22:48:19 : start the video
+lundi 12 décembre 2016 22:48:42 : 
+lundi 12 décembre 2016 22:48:42 : 
+lundi 12 décembre 2016 22:48:42 : -----------------START OF THE APPLICATION--------------------
+lundi 12 décembre 2016 22:48:42 : Deserialization of setting : Setting : Time = 5, Language = English
+lundi 12 décembre 2016 22:48:42 : new value in the devices list : Logitech QuickCam Communicate STX, 
+lundi 12 décembre 2016 22:48:42 : combo box of device selection changed : Logitech QuickCam Communicate STX
+lundi 12 décembre 2016 22:48:43 : click to start video windows
+lundi 12 décembre 2016 22:48:43 : combo box of device selection changed : 
+lundi 12 décembre 2016 22:48:43 : new value in the devices list : Logitech QuickCam Communicate STX, 
+lundi 12 décembre 2016 22:48:43 : combo box of device selection changed : Logitech QuickCam Communicate STX
+lundi 12 décembre 2016 22:48:43 : video window will be started
+lundi 12 décembre 2016 22:48:43 : --------------- open video view -----------------
+lundi 12 décembre 2016 22:48:44 : video start
+lundi 12 décembre 2016 22:48:44 : start video load for : 5 seconds
+lundi 12 décembre 2016 22:48:49 : end of video load
+lundi 12 décembre 2016 22:48:49 : start the video
+lundi 12 décembre 2016 22:49:11 : 
+lundi 12 décembre 2016 22:49:11 : 
+lundi 12 décembre 2016 22:49:11 : -----------------START OF THE APPLICATION--------------------
+lundi 12 décembre 2016 22:49:11 : Deserialization of setting : Setting : Time = 5, Language = English
+lundi 12 décembre 2016 22:49:12 : new value in the devices list : Logitech QuickCam Communicate STX, 
+lundi 12 décembre 2016 22:49:12 : combo box of device selection changed : Logitech QuickCam Communicate STX
+lundi 12 décembre 2016 22:49:13 : click to start video windows
+lundi 12 décembre 2016 22:49:13 : combo box of device selection changed : 
+lundi 12 décembre 2016 22:49:13 : new value in the devices list : Logitech QuickCam Communicate STX, 
+lundi 12 décembre 2016 22:49:13 : combo box of device selection changed : Logitech QuickCam Communicate STX
+lundi 12 décembre 2016 22:49:13 : video window will be started
+lundi 12 décembre 2016 22:49:13 : --------------- open video view -----------------
+lundi 12 décembre 2016 22:49:14 : video start
+lundi 12 décembre 2016 22:49:14 : start video load for : 5 seconds
+lundi 12 décembre 2016 22:49:19 : end of video load
+lundi 12 décembre 2016 22:49:19 : start the video
+lundi 12 décembre 2016 22:49:38 : video window key down : System
+lundi 12 décembre 2016 22:49:39 : video window key down : System
+lundi 12 décembre 2016 22:49:39 : stop the video
+lundi 12 décembre 2016 22:49:39 : ------------- video window close -------------
+lundi 12 décembre 2016 22:49:40 : -------------------END OF THE APPLICATION-------------------
+lundi 12 décembre 2016 22:49:40 : 
+lundi 12 décembre 2016 22:49:40 : 
+lundi 12 décembre 2016 22:52:01 : 
+lundi 12 décembre 2016 22:52:01 : 
+lundi 12 décembre 2016 22:52:01 : -----------------START OF THE APPLICATION--------------------
+lundi 12 décembre 2016 22:52:01 : Deserialization of setting : Setting : Time = 5, Language = English
+lundi 12 décembre 2016 22:52:02 : new value in the devices list : Logitech QuickCam Communicate STX, 
+lundi 12 décembre 2016 22:52:02 : combo box of device selection changed : Logitech QuickCam Communicate STX
+lundi 12 décembre 2016 22:52:04 : click to start video windows
+lundi 12 décembre 2016 22:52:04 : combo box of device selection changed : 
+lundi 12 décembre 2016 22:52:04 : new value in the devices list : Logitech QuickCam Communicate STX, 
+lundi 12 décembre 2016 22:52:04 : combo box of device selection changed : Logitech QuickCam Communicate STX
+lundi 12 décembre 2016 22:52:04 : video window will be started
+lundi 12 décembre 2016 22:52:04 : --------------- open video view -----------------
+lundi 12 décembre 2016 22:52:04 : video start
+lundi 12 décembre 2016 22:52:04 : start video load for : 5 seconds
+lundi 12 décembre 2016 22:52:09 : end of video load
+lundi 12 décembre 2016 22:52:09 : start the video
+lundi 12 décembre 2016 22:53:02 : video window key down : System
+lundi 12 décembre 2016 22:53:03 : video window key down : System
+lundi 12 décembre 2016 22:53:03 : video window key down : System
+lundi 12 décembre 2016 22:53:03 : video window key down : System
+lundi 12 décembre 2016 22:53:03 : video window key down : System
+lundi 12 décembre 2016 22:53:03 : video window key down : System
+lundi 12 décembre 2016 22:53:03 : video window key down : System
+lundi 12 décembre 2016 22:53:03 : video window key down : System
+lundi 12 décembre 2016 22:53:03 : video window key down : System
+lundi 12 décembre 2016 22:53:03 : video window key down : System
+lundi 12 décembre 2016 22:53:03 : video window key down : System
+lundi 12 décembre 2016 22:53:03 : video window key down : System
+lundi 12 décembre 2016 22:53:03 : video window key down : System
+lundi 12 décembre 2016 22:53:03 : video window key down : System
+lundi 12 décembre 2016 22:53:03 : video window key down : System
+lundi 12 décembre 2016 22:53:03 : video window key down : System
+lundi 12 décembre 2016 22:53:03 : video window key down : System
+lundi 12 décembre 2016 22:53:03 : video window key down : System
+lundi 12 décembre 2016 22:53:03 : video window key down : System
+lundi 12 décembre 2016 22:53:03 : video window key down : System
+lundi 12 décembre 2016 22:53:03 : video window key down : System
+lundi 12 décembre 2016 22:53:03 : video window key down : System
+lundi 12 décembre 2016 22:53:03 : video window key down : System
+lundi 12 décembre 2016 22:53:03 : video window key down : System
+lundi 12 décembre 2016 22:53:03 : video window key down : System
+lundi 12 décembre 2016 22:53:03 : video window key down : System
+lundi 12 décembre 2016 22:53:04 : video window key down : System
+lundi 12 décembre 2016 22:53:04 : video window key down : System
+lundi 12 décembre 2016 22:53:04 : video window key down : System
+lundi 12 décembre 2016 22:53:04 : video window key down : System
+lundi 12 décembre 2016 22:53:04 : video window key down : System
+lundi 12 décembre 2016 22:53:04 : video window key down : System
+lundi 12 décembre 2016 22:53:04 : video window key down : System
+lundi 12 décembre 2016 22:53:04 : video window key down : System
+lundi 12 décembre 2016 22:53:04 : video window key down : System
+lundi 12 décembre 2016 22:53:04 : video window key down : System
+lundi 12 décembre 2016 22:53:04 : video window key down : System
+lundi 12 décembre 2016 22:53:04 : video window key down : System
+lundi 12 décembre 2016 22:53:04 : video window key down : System
+lundi 12 décembre 2016 22:53:04 : video window key down : System
+lundi 12 décembre 2016 22:53:04 : video window key down : System
+lundi 12 décembre 2016 22:53:04 : video window key down : System
+lundi 12 décembre 2016 22:53:04 : video window key down : System
+lundi 12 décembre 2016 22:53:04 : video window key down : System
+lundi 12 décembre 2016 22:53:04 : video window key down : System
+lundi 12 décembre 2016 22:53:04 : video window key down : System
+lundi 12 décembre 2016 22:53:04 : video window key down : System
+lundi 12 décembre 2016 22:53:04 : video window key down : System
+lundi 12 décembre 2016 22:53:04 : video window key down : System
+lundi 12 décembre 2016 22:53:04 : video window key down : System
+lundi 12 décembre 2016 22:53:04 : video window key down : System
+lundi 12 décembre 2016 22:53:04 : video window key down : System
+lundi 12 décembre 2016 22:53:04 : video window key down : System
+lundi 12 décembre 2016 22:53:04 : video window key down : System
+lundi 12 décembre 2016 22:53:04 : video window key down : System
+lundi 12 décembre 2016 22:53:04 : video window key down : System
+lundi 12 décembre 2016 22:53:04 : video window key down : System
+lundi 12 décembre 2016 22:53:04 : video window key down : System
+lundi 12 décembre 2016 22:53:04 : video window key down : System
+lundi 12 décembre 2016 22:53:05 : video window key down : System
+lundi 12 décembre 2016 22:53:05 : video window key down : System
+lundi 12 décembre 2016 22:53:05 : video window key down : System
+lundi 12 décembre 2016 22:53:05 : video window key down : System
+lundi 12 décembre 2016 22:53:05 : video window key down : System
+lundi 12 décembre 2016 22:53:05 : video window key down : System
+lundi 12 décembre 2016 22:53:05 : video window key down : System
+lundi 12 décembre 2016 22:53:05 : video window key down : System
+lundi 12 décembre 2016 22:53:05 : video window key down : System
+lundi 12 décembre 2016 22:53:05 : video window key down : System
+lundi 12 décembre 2016 22:53:05 : stop the video
+lundi 12 décembre 2016 22:53:05 : ------------- video window close -------------
+lundi 12 décembre 2016 22:53:07 : -------------------END OF THE APPLICATION-------------------
+lundi 12 décembre 2016 22:53:07 : 
+lundi 12 décembre 2016 22:53:07 : 
+lundi 12 décembre 2016 22:54:07 : 
+lundi 12 décembre 2016 22:54:07 : 
+lundi 12 décembre 2016 22:54:07 : -----------------START OF THE APPLICATION--------------------
+lundi 12 décembre 2016 22:54:07 : Deserialization of setting : Setting : Time = 5, Language = English
+lundi 12 décembre 2016 22:54:07 : new value in the devices list : Logitech QuickCam Communicate STX, 
+lundi 12 décembre 2016 22:54:07 : combo box of device selection changed : Logitech QuickCam Communicate STX
+lundi 12 décembre 2016 22:54:09 : -------------------END OF THE APPLICATION-------------------
+lundi 12 décembre 2016 22:54:09 : 
+lundi 12 décembre 2016 22:54:09 : 
+lundi 12 décembre 2016 22:54:24 : 
+lundi 12 décembre 2016 22:54:24 : 
+lundi 12 décembre 2016 22:54:24 : -----------------START OF THE APPLICATION--------------------
+lundi 12 décembre 2016 22:54:24 : Deserialization of setting : Setting : Time = 5, Language = English
+lundi 12 décembre 2016 22:54:24 : new value in the devices list : Logitech QuickCam Communicate STX, 
+lundi 12 décembre 2016 22:54:24 : combo box of device selection changed : Logitech QuickCam Communicate STX
+lundi 12 décembre 2016 22:54:26 : click to start video windows
+lundi 12 décembre 2016 22:54:26 : combo box of device selection changed : 
+lundi 12 décembre 2016 22:54:26 : new value in the devices list : Logitech QuickCam Communicate STX, 
+lundi 12 décembre 2016 22:54:26 : combo box of device selection changed : Logitech QuickCam Communicate STX
+lundi 12 décembre 2016 22:54:26 : video window will be started
+lundi 12 décembre 2016 22:54:26 : --------------- open video view -----------------
+lundi 12 décembre 2016 22:54:27 : video start
+lundi 12 décembre 2016 22:54:27 : start video load for : 5 seconds
+lundi 12 décembre 2016 22:54:32 : end of video load
+lundi 12 décembre 2016 22:54:32 : start the video
+lundi 12 décembre 2016 22:54:40 : video window key down : System
+lundi 12 décembre 2016 22:54:40 : video window key down : System
+lundi 12 décembre 2016 22:54:40 : stop the video
+lundi 12 décembre 2016 22:54:40 : ------------- video window close -------------
+lundi 12 décembre 2016 22:54:42 : click to start video windows
+lundi 12 décembre 2016 22:54:42 : combo box of device selection changed : 
+lundi 12 décembre 2016 22:54:42 : new value in the devices list : Logitech QuickCam Communicate STX, 
+lundi 12 décembre 2016 22:54:42 : combo box of device selection changed : Logitech QuickCam Communicate STX
+lundi 12 décembre 2016 22:54:42 : video window will be started
+lundi 12 décembre 2016 22:54:42 : --------------- open video view -----------------
+lundi 12 décembre 2016 22:54:42 : video start
+lundi 12 décembre 2016 22:54:42 : start video load for : 5 seconds
+lundi 12 décembre 2016 22:54:47 : end of video load
+lundi 12 décembre 2016 22:54:47 : start the video
+lundi 12 décembre 2016 22:54:50 : video window key down : System
+lundi 12 décembre 2016 22:54:50 : video window key down : System
+lundi 12 décembre 2016 22:54:50 : video window key down : System
+lundi 12 décembre 2016 22:54:50 : video window key down : System
+lundi 12 décembre 2016 22:54:50 : video window key down : System
+lundi 12 décembre 2016 22:54:50 : video window key down : System
+lundi 12 décembre 2016 22:54:50 : video window key down : System
+lundi 12 décembre 2016 22:54:50 : stop the video
+lundi 12 décembre 2016 22:54:50 : ------------- video window close -------------
+lundi 12 décembre 2016 22:54:52 : --------------------STOP OF THE APPLICATION---------------------
+lundi 12 décembre 2016 22:55:40 : 
+lundi 12 décembre 2016 22:55:40 : 
+lundi 12 décembre 2016 22:55:40 : -----------------START OF THE APPLICATION--------------------
+lundi 12 décembre 2016 22:55:40 : Deserialization of setting : Setting : Time = 5, Language = English
+lundi 12 décembre 2016 22:55:41 : new value in the devices list : Logitech QuickCam Communicate STX, 
+lundi 12 décembre 2016 22:55:41 : combo box of device selection changed : Logitech QuickCam Communicate STX
+lundi 12 décembre 2016 22:55:42 : click to start video windows
+lundi 12 décembre 2016 22:55:42 : combo box of device selection changed : 
+lundi 12 décembre 2016 22:55:42 : new value in the devices list : Logitech QuickCam Communicate STX, 
+lundi 12 décembre 2016 22:55:42 : combo box of device selection changed : Logitech QuickCam Communicate STX
+lundi 12 décembre 2016 22:55:42 : video window will be started
+lundi 12 décembre 2016 22:55:42 : --------------- open video view -----------------
+lundi 12 décembre 2016 22:56:10 : 
+lundi 12 décembre 2016 22:56:10 : 
+lundi 12 décembre 2016 22:56:10 : -----------------START OF THE APPLICATION--------------------
+lundi 12 décembre 2016 22:56:10 : Deserialization of setting : Setting : Time = 5, Language = English
+lundi 12 décembre 2016 22:56:11 : new value in the devices list : Logitech QuickCam Communicate STX, 
+lundi 12 décembre 2016 22:56:11 : combo box of device selection changed : Logitech QuickCam Communicate STX
+lundi 12 décembre 2016 22:56:13 : click to start video windows
+lundi 12 décembre 2016 22:56:13 : combo box of device selection changed : 
+lundi 12 décembre 2016 22:56:13 : new value in the devices list : Logitech QuickCam Communicate STX, 
+lundi 12 décembre 2016 22:56:13 : combo box of device selection changed : Logitech QuickCam Communicate STX
+lundi 12 décembre 2016 22:56:13 : video window will be started
+lundi 12 décembre 2016 22:56:13 : --------------- open video view -----------------
+lundi 12 décembre 2016 22:56:13 : video start
+lundi 12 décembre 2016 22:56:13 : start video load for : 5 seconds
+lundi 12 décembre 2016 22:56:18 : end of video load
+lundi 12 décembre 2016 22:56:19 : start the video
+lundi 12 décembre 2016 22:57:33 : video window key down : System
+lundi 12 décembre 2016 22:57:33 : video window key down : System
+lundi 12 décembre 2016 22:57:33 : stop the video
+lundi 12 décembre 2016 22:57:33 : ------------- video window close -------------
+lundi 12 décembre 2016 22:57:35 : --------------------STOP OF THE APPLICATION---------------------
+lundi 12 décembre 2016 23:01:45 : 
+lundi 12 décembre 2016 23:01:45 : 
+lundi 12 décembre 2016 23:01:45 : -----------------START OF THE APPLICATION--------------------
+lundi 12 décembre 2016 23:01:45 : Deserialization of setting : Setting : Time = 5, Language = English
+lundi 12 décembre 2016 23:01:45 : new value in the devices list : Logitech QuickCam Communicate STX, 
+lundi 12 décembre 2016 23:01:45 : combo box of device selection changed : Logitech QuickCam Communicate STX
+lundi 12 décembre 2016 23:01:55 : click to start video windows
+lundi 12 décembre 2016 23:01:55 : combo box of device selection changed : 
+lundi 12 décembre 2016 23:01:55 : new value in the devices list : Logitech QuickCam Communicate STX, 
+lundi 12 décembre 2016 23:01:55 : combo box of device selection changed : Logitech QuickCam Communicate STX
+lundi 12 décembre 2016 23:01:55 : video window will be started
+lundi 12 décembre 2016 23:01:55 : --------------- open video view -----------------
+lundi 12 décembre 2016 23:01:55 : video start
+lundi 12 décembre 2016 23:01:55 : start video load for : 5 seconds
+lundi 12 décembre 2016 23:02:01 : end of video load
+lundi 12 décembre 2016 23:02:01 : start the video
+lundi 12 décembre 2016 23:02:22 : video window key down : System
+lundi 12 décembre 2016 23:03:27 : 
+lundi 12 décembre 2016 23:03:27 : 
+lundi 12 décembre 2016 23:03:27 : -----------------START OF THE APPLICATION--------------------
+lundi 12 décembre 2016 23:03:27 : Deserialization of setting : Setting : Time = 5, Language = English
+lundi 12 décembre 2016 23:03:27 : new value in the devices list : Logitech QuickCam Communicate STX, 
+lundi 12 décembre 2016 23:03:27 : combo box of device selection changed : Logitech QuickCam Communicate STX
+lundi 12 décembre 2016 23:03:29 : click to start video windows
+lundi 12 décembre 2016 23:03:29 : combo box of device selection changed : 
+lundi 12 décembre 2016 23:03:29 : new value in the devices list : Logitech QuickCam Communicate STX, 
+lundi 12 décembre 2016 23:03:29 : combo box of device selection changed : Logitech QuickCam Communicate STX
+lundi 12 décembre 2016 23:03:29 : video window will be started
+lundi 12 décembre 2016 23:03:29 : --------------- open video view -----------------
+lundi 12 décembre 2016 23:03:29 : video start
+lundi 12 décembre 2016 23:03:29 : start video load for : 5 seconds
+lundi 12 décembre 2016 23:03:34 : end of video load
+lundi 12 décembre 2016 23:03:34 : start the video
+lundi 12 décembre 2016 23:03:43 : video window key down : System
+lundi 12 décembre 2016 23:03:59 : video window key down : Escape
+lundi 12 décembre 2016 23:03:59 : stop the video
+lundi 12 décembre 2016 23:03:59 : ------------- video window close -------------
+lundi 12 décembre 2016 23:04:00 : -------------------END OF THE APPLICATION-------------------
+lundi 12 décembre 2016 23:04:00 : 
+lundi 12 décembre 2016 23:04:00 : 
+>>>>>>> generic path for browser

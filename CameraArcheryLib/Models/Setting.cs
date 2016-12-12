@@ -1,4 +1,5 @@
 ﻿using CameraArcheryLib.Utils;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -37,7 +38,7 @@ namespace CameraArcheryLib.Models
         /// language of the application
         /// </summary>
         [XmlElement(ElementName = "VideoFolder")]
-        public string VideoFolder { get; set; }
+        public String VideoFolder { get; set; }
 
         /// <summary>
         /// default ctor to serializations
@@ -56,7 +57,7 @@ namespace CameraArcheryLib.Models
         /// <param name="time">time of lag in second</param>
         /// <param name="language">language</param>
         public Setting(int time, LanguageController.Languages language, int frame)
-            :base()
+            :this()
         {
             this.Time = time;
             this.Language = language;

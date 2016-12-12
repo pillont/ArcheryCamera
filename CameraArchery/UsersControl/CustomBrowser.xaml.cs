@@ -47,8 +47,8 @@ namespace CameraArchery.UsersControl
         /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private string selectedUri;
-        public string SelectedUri 
+        private Uri selectedUri;
+        public Uri SelectedUri 
         { 
             get
             {
@@ -58,7 +58,8 @@ namespace CameraArchery.UsersControl
             {
                 selectedUri = value;
                 OnPropertyChanged("SelectedUri");
-                FileName = selectedUri.Split('\\').Last();    
+
+                FileName = selectedUri.OriginalString.Split('\\').Last();
             }
         }
 
@@ -84,19 +85,23 @@ namespace CameraArchery.UsersControl
             Foreground = Brushes.Black;
         }
 
+        public Uri Root { get; set; }
         private void ShowDialog()
         {
-            var root = new Uri(@"" + LanguageController.Get("videoFolder"), UriKind.Relative);
-            var initUri = new Uri(@"" + SettingFactory.CurrentSetting.VideoFolder, UriKind.Relative);
-           
-            var dialog = new CustomBrowserFolder(root, initUri);
+            if (Root == null)
+                Root = new Uri(Directory.GetCurrentDirectory(), UriKind.Relative);
+
+            if (SelectedUri == null)
+                SelectedUri = new Uri(Directory.GetCurrentDirectory(), UriKind.Relative);
+
+            var dialog = new CustomBrowserFolder(Root, SelectedUri);
             dialog.ShowDialog();
 
-            var uriString = dialog.SelectedUri.OriginalString;
-            if(SettingFactory.CurrentSetting.VideoFolder != uriString)
-                SettingController.UpdateUri(uriString);
+            var newUri = dialog.SelectedUri;
+            if(SettingFactory.CurrentSetting.VideoFolder != newUri.OriginalString)
+                SettingController.UpdateUri(newUri);
 
-            SelectedUri = uriString;
+            SelectedUri = newUri;
         }
         
         /// <summary>

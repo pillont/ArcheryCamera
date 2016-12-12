@@ -105,9 +105,15 @@ namespace CameraArchery.View
             this.Close();
         }
 
-        private void Window_Closed(object sender, EventArgs e)
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if(IsToSave)
+
+            if (TreeControl.SelectedItem == null)
+            {
+                MessageBox.Show("URI NULL ");
+                e.Cancel = true;
+            }
+            else if (IsToSave)
                 this.SelectedUri = (TreeControl.SelectedItem as CustomMenuItem).Uri;
         }
     }

@@ -4,7 +4,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:local="clr-namespace:CameraArchery.UsersControl.EditableTextBlock"
         ShowInTaskbar="False" ResizeMode="NoResize" WindowStartupLocation="CenterScreen"
-        Closed="Window_Closed"
+        Closing="Window_Closing"
         Title="CustomBrowserFolder" Height="300" Width="300">
     <DockPanel LastChildFill="True">
 

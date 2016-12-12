@@ -35,7 +35,7 @@
 <<<<<<< HEAD
 =======
 
-                        <my:CustomBrowser x:Name="BrowserControl"  Width="120"></my:CustomBrowser>
+                        <my:CustomBrowser x:Name="BrowserControl" Width="120"></my:CustomBrowser>
                         
 >>>>>>> custom tree started
                     </StackPanel>

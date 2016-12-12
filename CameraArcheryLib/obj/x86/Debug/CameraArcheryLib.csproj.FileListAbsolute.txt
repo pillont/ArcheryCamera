@@ -92,3 +92,4 @@ C:\Users\etudiant\Desktop\RepoGit\CameraArchery\CameraArcheryLib\bin\x86\Debug\D
 C:\Users\etudiant\Desktop\RepoGit\CameraArchery\CameraArcheryLib\bin\x86\Debug\SharpAvi.xml
 C:\Users\etudiant\Desktop\RepoGit\CameraArchery\CameraArcheryLib\obj\x86\Debug\CameraArcheryLib.dll
 C:\Users\etudiant\Desktop\RepoGit\CameraArchery\CameraArcheryLib\obj\x86\Debug\CameraArcheryLib.pdb
+C:\Users\etudiant\Desktop\RepoGit\CameraArchery\CameraArcheryLib\obj\x86\Debug\CameraArcheryLib.csprojResolveAssemblyReference.cache

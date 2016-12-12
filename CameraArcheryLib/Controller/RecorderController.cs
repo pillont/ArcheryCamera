@@ -26,15 +26,21 @@ namespace CameraArcheryLib.Controller
         private object writerLocker = new object();
 
         /// <summary>
-        /// directory of the videos
-        /// </summary>
-        public const string VideoDirectory = "video/";
-        
-        /// <summary>
         /// extension of the video files
         /// </summary>
         public const string ExtensionFile = ".avi";
 
+        /// <summary>
+        /// directory of the videos
+        /// </summary>
+        public string VideoDirectory
+        {
+            get
+            {
+                return SettingFactory.CurrentSetting.VideoFolder;
+            }
+        }
+        
         /// <summary>
         /// width of the video files
         /// </summary>
@@ -66,7 +72,7 @@ namespace CameraArcheryLib.Controller
         public void StartRecording()
         {
            // get name
-            var name = VideoDirectory +SettingFactory.CurrentSetting.VideoNumber + ExtensionFile;
+            var name = VideoDirectory +"\\"+SettingFactory.CurrentSetting.VideoNumber + ExtensionFile;
 
             //save new value
             SettingFactory.CurrentSetting.VideoNumber++;

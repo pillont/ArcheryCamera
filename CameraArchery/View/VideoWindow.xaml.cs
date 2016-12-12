@@ -102,6 +102,7 @@ namespace CameraArchery.View
             LogHelper.Write("slider is capture at " + obj +" sec");
         }
 
+<<<<<<< HEAD
         private bool CustomReplayComponent_OnSliderChange(double arg)
         {
             LogHelper.Write("slider is change to " + arg + " sec");
@@ -143,6 +144,10 @@ namespace CameraArchery.View
 >>>>>>> selected and return value on the browser ok
 =======
 >>>>>>> same value in the two browsers
+=======
+            BrowserControl.Root = new Uri(LanguageController.Get("videoFolder"), UriKind.Relative);
+            Replay.BrowserControl.Root = new Uri(LanguageController.Get("videoFolder"), UriKind.Relative);
+>>>>>>> generic path for browser
         }
 
         /// <summary>
@@ -264,8 +269,8 @@ namespace CameraArchery.View
                 else
                 {
                     // update the value in the folder
-                    BrowserControl.SelectedUri = SettingFactory.CurrentSetting.VideoFolder;
-                    Replay.BrowserControl.SelectedUri = SettingFactory.CurrentSetting.VideoFolder;
+                    BrowserControl.SelectedUri = new Uri(SettingFactory.CurrentSetting.VideoFolder, UriKind.Relative);
+                    Replay.BrowserControl.SelectedUri = new Uri(SettingFactory.CurrentSetting.VideoFolder, UriKind.Relative);
                 }
             }
 >>>>>>> same value in the two browsers

@@ -45,13 +45,13 @@ namespace CameraArcheryLib.Controller
         /// change the uri on the setting
         /// </summary>
         /// <param name="uri">new value of the uri -> must is an existing directory</param>
-        public static void UpdateUri(string uri)
+        public static void UpdateUri(Uri uri)
         {
-            Contract.EnsuresOnThrow<ArgumentException>(Directory.Exists(uri), "folder not existing");
+            Contract.EnsuresOnThrow<ArgumentException>(Directory.Exists(uri.AbsolutePath), "folder not existing");
 
             Setting values = SettingFactory.CurrentSetting;
 
-            values.VideoFolder = uri;
+            values.VideoFolder = uri.OriginalString;
             SerializeHelper.Serialization<Setting>(values, SettingFactory.FilePath);
          }
     }
