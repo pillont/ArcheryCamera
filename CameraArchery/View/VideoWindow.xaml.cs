@@ -61,6 +61,7 @@ namespace CameraArchery.View
             // add lag on the video Controller
             videoController.OnNewFrame += (ref Bitmap img) => img = timeLagController.OnNewFrame(img);
             videoController.OnVideoClose += () => timeLagController.Clear();
+<<<<<<< HEAD
         
             CustomReplayComponent.OnStopClick += CustomReplayComponent_OnStopClick;
             CustomReplayComponent.OnStartClick += CustomReplayComponent_OnStartClick;
@@ -135,6 +136,10 @@ namespace CameraArchery.View
         {
             LogHelper.Write("stop click");
             return true;
+=======
+
+            BrowserControl.DefaultFile = SettingFactory.CurrentSetting.VideoFolder; 
+>>>>>>> selected and return value on the browser ok
         }
 
         /// <summary>

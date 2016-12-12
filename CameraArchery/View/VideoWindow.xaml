@@ -35,7 +35,7 @@
 <<<<<<< HEAD
 =======
 
-                        <my:CustomBrowser DefaultFile="pack://application:,,,/Ressources" Foreground="White"></my:CustomBrowser>
+                        <my:CustomBrowser x:Name="BrowserControl" Foreground="White"></my:CustomBrowser>
                         
 >>>>>>> custom tree started
                     </StackPanel>

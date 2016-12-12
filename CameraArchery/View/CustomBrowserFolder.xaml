@@ -1,19 +1,19 @@
 ﻿<Window x:Class="CameraArchery.View.CustomBrowserFolder"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:self="clr-namespace:CameraArchery.View"
+        xmlns:self="clr-namespace:CameraArchery.VisualModel"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:local="clr-namespace:CameraArchery.UsersControl.EditableTextBlock"
         Title="CustomBrowserFolder" Height="300" Width="300">
     <StackPanel>
         <TreeView Name="TreeControl">
             <TreeView.Resources>
-                <HierarchicalDataTemplate DataType="{x:Type self:MenuItem}" ItemsSource="{Binding Items}">
+                <HierarchicalDataTemplate DataType="{x:Type self:CustomMenuItem}" ItemsSource="{Binding Items}">
                     <local:EditableTextBlock Text="{Binding Name, Mode=TwoWay}"
                                              IsInEditMode="{Binding Edit, Mode=TwoWay}" />
                 </HierarchicalDataTemplate>
                 <Style TargetType="TreeViewItem">
-                    <Setter Property="IsSelected" Value="{Binding IsSelected}"/>
-                    <Setter Property="IsExpanded" Value="{Binding IsExpanded}"/>
+                    <Setter Property="IsSelected" Value="{Binding IsSelected, Mode=TwoWay}"/>
+                    <Setter Property="IsExpanded" Value="{Binding IsExpanded, Mode=TwoWay}"/>
 
                         <Setter Property="BorderThickness" Value="1.5"/>
                         <Style.Triggers>
@@ -37,7 +37,7 @@
         </TreeView>
 
         <Button Content="add file" Click="Add_Click"/>
-        <Button Content="Return"/>
-        <Button Content="OK"/>
+        <Button Content="Return" Click="Return_Click"/>
+        <Button Content="OK" Click="Save_Click"/>
     </StackPanel>
 </Window>

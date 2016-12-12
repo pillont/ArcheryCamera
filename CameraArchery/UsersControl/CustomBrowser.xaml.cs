@@ -1,5 +1,7 @@
 ﻿using CameraArchery.View;
 using CameraArcheryLib;
+using CameraArcheryLib.Controller;
+using CameraArcheryLib.Factories;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -84,7 +86,17 @@ namespace CameraArchery.UsersControl
 
         private void ShowDialog()
         {
-            new CustomBrowserFolder(new Uri(@""+LanguageController.Get("videoFolder"), UriKind.Relative)).ShowDialog();
+            var root = new Uri(@"" + LanguageController.Get("videoFolder"), UriKind.Relative);
+            var initUri = new Uri(@"" + SettingFactory.CurrentSetting.VideoFolder, UriKind.Relative);
+            
+            var dialog = new CustomBrowserFolder(root, initUri);
+            dialog.ShowDialog();
+
+            var uriString = dialog.SelectedUri.OriginalString;
+            if(SettingFactory.CurrentSetting.VideoFolder != uriString)
+                SettingController.UpdateUri(uriString);
+
+            FileName = uriString;
         }
         
         /// <summary>

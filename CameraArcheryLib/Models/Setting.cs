@@ -34,6 +34,12 @@ namespace CameraArcheryLib.Models
         public LanguageController.Languages Language { get; set; }
 
         /// <summary>
+        /// language of the application
+        /// </summary>
+        [XmlElement(ElementName = "VideoFolder")]
+        public string VideoFolder { get; set; }
+
+        /// <summary>
         /// default ctor to serializations
         /// </summary>
         public Setting()
@@ -41,6 +47,7 @@ namespace CameraArcheryLib.Models
             Time = 0;
             Frame = 1;
             this.Language = LanguageController.Languages.English;
+            VideoFolder = "Video";
         }
 
         /// <summary>

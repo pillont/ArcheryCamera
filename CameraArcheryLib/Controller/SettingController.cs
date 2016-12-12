@@ -2,6 +2,8 @@
 using CameraArcheryLib.Models;
 using CameraArcheryLib.Utils;
 using System;
+using System.Diagnostics.Contracts;
+using System.IO;
 using System.Windows;
 
 namespace CameraArcheryLib.Controller
@@ -38,5 +40,19 @@ namespace CameraArcheryLib.Controller
             SerializeHelper.Serialization<Setting>(values, SettingFactory.FilePath);
             LogHelper.Write("New setting" + values.ToString());
         }
+
+        /// <summary>
+        /// change the uri on the setting
+        /// </summary>
+        /// <param name="uri">new value of the uri -> must is an existing directory</param>
+        public static void UpdateUri(string uri)
+        {
+            Contract.EnsuresOnThrow<ArgumentException>(Directory.Exists(uri), "folder not existing");
+
+            Setting values = SettingFactory.CurrentSetting;
+
+            values.VideoFolder = uri;
+            SerializeHelper.Serialization<Setting>(values, SettingFactory.FilePath);
+         }
     }
 }   
