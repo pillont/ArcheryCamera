@@ -26,13 +26,17 @@ namespace CameraArchery.View
     /// </summary>
     public partial class CustomBrowserFolder : Window
     {
+
+        private bool IsToSave { get; set; }
         public Uri InitUri { get; set; }
         public Uri SelectedUri { get; set; }
         private Uri RootUri { get; set; }
+
         public CustomBrowserFolder(Uri rootUri, Uri initUri)
         {
             InitializeComponent();
 
+            IsToSave = false;
             RootUri = rootUri;
             InitUri = initUri;
             SelectedUri = initUri;
@@ -41,7 +45,11 @@ namespace CameraArchery.View
 
         private CustomMenuItem GetFolder(Uri uri)
         {
-            CustomMenuItem root = new CustomMenuItem(uri) { IsSelected = (uri == SelectedUri) , isExpanded = (SelectedUri.OriginalString.StartsWith(uri.OriginalString)) };
+            CustomMenuItem root = new CustomMenuItem(uri) 
+            {   
+                IsSelected = (uri == SelectedUri) , 
+                isExpanded = (SelectedUri.OriginalString.StartsWith(uri.OriginalString)) 
+            };
 
             foreach(var dir in Directory.EnumerateDirectories(uri.OriginalString))
                 root.Items.Add(GetFolder(new Uri(dir, UriKind.Relative)));
@@ -90,16 +98,17 @@ namespace CameraArchery.View
             treeItem.IsExpanded = true;            
         }
 
-        private void Return_Click(object sender, RoutedEventArgs e)
-        {
-            this.SelectedUri = InitUri;
-            this.Close();
-        }
 
         private void Save_Click(object sender, RoutedEventArgs e)
         {
-            this.SelectedUri = (TreeControl.SelectedItem as CustomMenuItem).Uri;
+            IsToSave = true;
             this.Close();
+        }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            if(IsToSave)
+                this.SelectedUri = (TreeControl.SelectedItem as CustomMenuItem).Uri;
         }
     }
 }

@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using System.IO;
 using System.ComponentModel;
+using CameraArcheryLib.Factories;
 
 namespace CameraArchery.UsersControl
 {
@@ -157,6 +158,8 @@ namespace CameraArchery.UsersControl
             ReplayController.IsStartChange += ReplayController_IsStartChange; 
             
             Refresh();
+            BrowserControl.DefaultFile = SettingFactory.CurrentSetting.VideoFolder; 
+
         }
         
         /// <summary>

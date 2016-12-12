@@ -1,0 +1,15 @@
+﻿<UserControl x:Class="CameraArchery.UsersControl.CustomBrowser"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="30" d:DesignWidth="500"
+            MouseDown="Button_Click">
+    <DockPanel LastChildFill="True" VerticalAlignment="Bottom">
+        <Image x:Name="StartImageButton" DockPanel.Dock="Right" Height="25" 
+                                       Source="pack://application:,,,/Ressources/Images/searchFile.png"/>
+               
+        <TextBlock Text="{Binding FileName, Mode=TwoWay}" Foreground="{Binding Foreground}"/>
+    </DockPanel>
+</UserControl>

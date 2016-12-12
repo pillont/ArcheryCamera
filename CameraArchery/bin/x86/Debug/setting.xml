@@ -2,7 +2,7 @@
 <Setting xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <RateFrame>5</RateFrame>
   <VideoNumber>0</VideoNumber>
-  <Time>0</Time>
+  <Time>1</Time>
   <Language>English</Language>
-  <VideoFolder>Video\Nouveau dossier\New folder(2)\New folder\New folder</VideoFolder>
+  <VideoFolder>Video\New folder\New folder(2)</VideoFolder>
 </Setting>

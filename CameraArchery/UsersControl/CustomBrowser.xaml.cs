@@ -57,19 +57,34 @@ namespace CameraArchery.UsersControl
             set
             {
                 defaultFile = value;
-                fileName = DefaultFile;
+                SelectedUri = DefaultFile;
             }
         }
 
 
-        private string fileName;
-        public string FileName 
+        private string selectedUri;
+        public string SelectedUri 
         { 
             get
             {
-                return fileName;
+                return selectedUri;
             }
             set
+            {
+                selectedUri = value;
+                OnPropertyChanged("SelectedUri");
+                FileName = selectedUri.Split('\\').Last();    
+            }
+        }
+
+        public string fileName;
+        public string FileName
+        {
+            get 
+            { 
+                return fileName;
+            }
+            set 
             {
                 fileName = value;
                 OnPropertyChanged("FileName");
@@ -96,7 +111,7 @@ namespace CameraArchery.UsersControl
             if(SettingFactory.CurrentSetting.VideoFolder != uriString)
                 SettingController.UpdateUri(uriString);
 
-            FileName = uriString;
+            SelectedUri = uriString;
         }
         
         /// <summary>

@@ -3,19 +3,26 @@
         xmlns:self="clr-namespace:CameraArchery.VisualModel"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:local="clr-namespace:CameraArchery.UsersControl.EditableTextBlock"
+        ShowInTaskbar="False" ResizeMode="NoResize" WindowStartupLocation="CenterScreen"
+        Closed="Window_Closed"
         Title="CustomBrowserFolder" Height="300" Width="300">
-    <StackPanel>
-        <TreeView Name="TreeControl">
-            <TreeView.Resources>
-                <HierarchicalDataTemplate DataType="{x:Type self:CustomMenuItem}" ItemsSource="{Binding Items}">
-                    <local:EditableTextBlock Text="{Binding Name, Mode=TwoWay}"
-                                             IsInEditMode="{Binding Edit, Mode=TwoWay}" />
-                </HierarchicalDataTemplate>
-                <Style TargetType="TreeViewItem">
-                    <Setter Property="IsSelected" Value="{Binding IsSelected, Mode=TwoWay}"/>
-                    <Setter Property="IsExpanded" Value="{Binding IsExpanded, Mode=TwoWay}"/>
+    <DockPanel LastChildFill="True">
 
-                        <Setter Property="BorderThickness" Value="1.5"/>
+        <StackPanel DockPanel.Dock="Bottom" HorizontalAlignment="Right" Orientation="Horizontal">
+            <Button Content="add file" Click="Add_Click" Margin="5" Height="25" MinWidth="60" Background="CornflowerBlue"/>
+            <Button Content="OK" Click="Save_Click" Margin="5" Height="25" MinWidth="60" Background="CornflowerBlue"/>
+        </StackPanel>
+        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" >
+            <TreeView Name="TreeControl">
+                <TreeView.Resources>
+                    <HierarchicalDataTemplate DataType="{x:Type self:CustomMenuItem}" ItemsSource="{Binding Items}">
+                        <local:EditableTextBlock Text="{Binding Name, Mode=TwoWay}"
+                                             IsInEditMode="{Binding Edit, Mode=TwoWay}" />
+                    </HierarchicalDataTemplate>
+                    <Style TargetType="TreeViewItem">
+                        <Setter Property="IsSelected" Value="{Binding IsSelected, Mode=TwoWay}"/>
+                        <Setter Property="IsExpanded" Value="{Binding IsExpanded, Mode=TwoWay}"/>
+
                         <Style.Triggers>
                             <Trigger Property="IsSelected" Value="True">
                                 <Setter Property="BorderBrush" Value="#adc6e5"/>
@@ -32,12 +39,9 @@
                                 <Setter Property="CornerRadius" Value="2"/>
                             </Style>
                         </Style.Resources>
-                </Style>
-            </TreeView.Resources>
-        </TreeView>
-
-        <Button Content="add file" Click="Add_Click"/>
-        <Button Content="Return" Click="Return_Click"/>
-        <Button Content="OK" Click="Save_Click"/>
-    </StackPanel>
+                    </Style>
+                </TreeView.Resources>
+            </TreeView>
+        </ScrollViewer>
+    </DockPanel>
 </Window>

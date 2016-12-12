@@ -27,7 +27,7 @@
                 <DockPanel LastChildFill="True">
                     <ProgressBar Height="20"  x:Name="ProgressBar"  
                             DockPanel.Dock="Bottom"/>
-                    <StackPanel Width="100" DockPanel.Dock="Left" VerticalAlignment="Center" 
+                    <StackPanel Width="150" DockPanel.Dock="Left" VerticalAlignment="Center" 
                             x:Name="ButtonPanel" Visibility="Collapsed">
                         <Button Margin="5" HorizontalAlignment="Center" Height="50" Background="CornflowerBlue" 
                                 Content="{DynamicResource ResourceKey=StartRecord}" 
@@ -35,7 +35,7 @@
 <<<<<<< HEAD
 =======
 
-                        <my:CustomBrowser x:Name="BrowserControl" Foreground="White"></my:CustomBrowser>
+                        <my:CustomBrowser x:Name="BrowserControl" Foreground="White" Width="120"></my:CustomBrowser>
                         
 >>>>>>> custom tree started
                     </StackPanel>
