@@ -3412,4 +3412,277 @@ dimanche 11 décembre 2016 23:39:12 : video window key down : System
 dimanche 11 décembre 2016 23:39:12 : video window key down : System
 dimanche 11 décembre 2016 23:39:12 : stop the video
 dimanche 11 décembre 2016 23:39:12 : ------------- video window close -------------
+<<<<<<< HEAD
 >>>>>>> edition zone update names of folders
+=======
+lundi 12 décembre 2016 09:08:07 : 
+lundi 12 décembre 2016 09:08:07 : 
+lundi 12 décembre 2016 09:08:07 : -----------------START OF THE APPLICATION--------------------
+lundi 12 décembre 2016 09:08:07 : Deserialization of setting : Setting : Time = 1, Language = Français
+lundi 12 décembre 2016 09:08:07 : new value in the devices list : Logitech QuickCam Communicate STX, 
+lundi 12 décembre 2016 09:08:07 : combo box of device selection changed : Logitech QuickCam Communicate STX
+lundi 12 décembre 2016 09:08:09 : click to start video windows
+lundi 12 décembre 2016 09:08:09 : combo box of device selection changed : 
+lundi 12 décembre 2016 09:08:09 : new value in the devices list : Logitech QuickCam Communicate STX, 
+lundi 12 décembre 2016 09:08:09 : combo box of device selection changed : Logitech QuickCam Communicate STX
+lundi 12 décembre 2016 09:08:09 : video window will be started
+lundi 12 décembre 2016 09:08:09 : --------------- open video view -----------------
+lundi 12 décembre 2016 09:08:09 : video start
+lundi 12 décembre 2016 09:08:09 : start video load for : 1 seconds
+lundi 12 décembre 2016 09:08:10 : end of video load
+lundi 12 décembre 2016 09:08:10 : start the video
+lundi 12 décembre 2016 09:08:17 : video window key down : System
+lundi 12 décembre 2016 09:08:18 : video window key down : System
+lundi 12 décembre 2016 09:08:18 : stop the video
+lundi 12 décembre 2016 09:08:18 : ------------- video window close -------------
+lundi 12 décembre 2016 09:08:19 : --------------------STOP OF THE APPLICATION---------------------
+lundi 12 décembre 2016 09:10:00 : 
+lundi 12 décembre 2016 09:10:00 : 
+lundi 12 décembre 2016 09:10:00 : -----------------START OF THE APPLICATION--------------------
+lundi 12 décembre 2016 09:10:00 : Deserialization of setting : Setting : Time = 1, Language = Français
+lundi 12 décembre 2016 09:10:00 : new value in the devices list : Logitech QuickCam Communicate STX, 
+lundi 12 décembre 2016 09:10:00 : combo box of device selection changed : Logitech QuickCam Communicate STX
+lundi 12 décembre 2016 09:10:03 : click to start video windows
+lundi 12 décembre 2016 09:10:03 : combo box of device selection changed : 
+lundi 12 décembre 2016 09:10:03 : new value in the devices list : Logitech QuickCam Communicate STX, 
+lundi 12 décembre 2016 09:10:03 : combo box of device selection changed : Logitech QuickCam Communicate STX
+lundi 12 décembre 2016 09:10:03 : video window will be started
+lundi 12 décembre 2016 09:10:03 : --------------- open video view -----------------
+lundi 12 décembre 2016 09:10:03 : video start
+lundi 12 décembre 2016 09:10:03 : start video load for : 1 seconds
+lundi 12 décembre 2016 09:10:04 : end of video load
+lundi 12 décembre 2016 09:10:04 : start the video
+lundi 12 décembre 2016 09:10:14 : video window key down : System
+lundi 12 décembre 2016 09:10:14 : video window key down : System
+lundi 12 décembre 2016 09:10:14 : stop the video
+lundi 12 décembre 2016 09:10:14 : ------------- video window close -------------
+lundi 12 décembre 2016 09:10:16 : --------------------STOP OF THE APPLICATION---------------------
+lundi 12 décembre 2016 09:10:45 : 
+lundi 12 décembre 2016 09:10:45 : 
+lundi 12 décembre 2016 09:10:45 : -----------------START OF THE APPLICATION--------------------
+lundi 12 décembre 2016 09:10:45 : Deserialization of setting : Setting : Time = 1, Language = Français
+lundi 12 décembre 2016 09:10:45 : new value in the devices list : Logitech QuickCam Communicate STX, 
+lundi 12 décembre 2016 09:10:45 : combo box of device selection changed : Logitech QuickCam Communicate STX
+lundi 12 décembre 2016 09:10:48 : click to start video windows
+lundi 12 décembre 2016 09:10:48 : combo box of device selection changed : 
+lundi 12 décembre 2016 09:10:48 : new value in the devices list : Logitech QuickCam Communicate STX, 
+lundi 12 décembre 2016 09:10:48 : combo box of device selection changed : Logitech QuickCam Communicate STX
+lundi 12 décembre 2016 09:10:48 : video window will be started
+lundi 12 décembre 2016 09:10:48 : --------------- open video view -----------------
+lundi 12 décembre 2016 09:10:48 : video start
+lundi 12 décembre 2016 09:10:48 : start video load for : 1 seconds
+lundi 12 décembre 2016 09:10:49 : end of video load
+lundi 12 décembre 2016 09:10:49 : start the video
+lundi 12 décembre 2016 09:12:01 : 
+lundi 12 décembre 2016 09:12:01 : 
+lundi 12 décembre 2016 09:12:01 : -----------------START OF THE APPLICATION--------------------
+lundi 12 décembre 2016 09:12:02 : Deserialization of setting : Setting : Time = 1, Language = Français
+lundi 12 décembre 2016 09:12:02 : new value in the devices list : Logitech QuickCam Communicate STX, 
+lundi 12 décembre 2016 09:12:02 : combo box of device selection changed : Logitech QuickCam Communicate STX
+lundi 12 décembre 2016 09:12:05 : click to start video windows
+lundi 12 décembre 2016 09:12:05 : combo box of device selection changed : 
+lundi 12 décembre 2016 09:12:05 : new value in the devices list : Logitech QuickCam Communicate STX, 
+lundi 12 décembre 2016 09:12:05 : combo box of device selection changed : Logitech QuickCam Communicate STX
+lundi 12 décembre 2016 09:12:05 : video window will be started
+lundi 12 décembre 2016 09:12:05 : --------------- open video view -----------------
+lundi 12 décembre 2016 09:12:05 : video start
+lundi 12 décembre 2016 09:12:05 : start video load for : 1 seconds
+lundi 12 décembre 2016 09:12:06 : end of video load
+lundi 12 décembre 2016 09:12:06 : start the video
+lundi 12 décembre 2016 09:12:59 : video window key down : System
+lundi 12 décembre 2016 09:12:59 : video window key down : System
+lundi 12 décembre 2016 09:12:59 : stop the video
+lundi 12 décembre 2016 09:12:59 : ------------- video window close -------------
+lundi 12 décembre 2016 09:13:01 : --------------------STOP OF THE APPLICATION---------------------
+lundi 12 décembre 2016 09:19:33 : 
+lundi 12 décembre 2016 09:19:33 : 
+lundi 12 décembre 2016 09:19:33 : -----------------START OF THE APPLICATION--------------------
+lundi 12 décembre 2016 09:19:33 : Deserialization of setting : Setting : Time = 1, Language = Français
+lundi 12 décembre 2016 09:19:33 : new value in the devices list : Logitech QuickCam Communicate STX, 
+lundi 12 décembre 2016 09:19:33 : combo box of device selection changed : Logitech QuickCam Communicate STX
+lundi 12 décembre 2016 09:19:35 : click to start video windows
+lundi 12 décembre 2016 09:19:35 : combo box of device selection changed : 
+lundi 12 décembre 2016 09:19:35 : new value in the devices list : Logitech QuickCam Communicate STX, 
+lundi 12 décembre 2016 09:19:35 : combo box of device selection changed : Logitech QuickCam Communicate STX
+lundi 12 décembre 2016 09:19:35 : video window will be started
+lundi 12 décembre 2016 09:19:35 : --------------- open video view -----------------
+lundi 12 décembre 2016 09:19:35 : video start
+lundi 12 décembre 2016 09:19:35 : start video load for : 1 seconds
+lundi 12 décembre 2016 09:19:36 : end of video load
+lundi 12 décembre 2016 09:19:36 : start the video
+lundi 12 décembre 2016 09:20:09 : 
+lundi 12 décembre 2016 09:20:09 : 
+lundi 12 décembre 2016 09:20:09 : -----------------START OF THE APPLICATION--------------------
+lundi 12 décembre 2016 09:20:10 : Deserialization of setting : Setting : Time = 1, Language = Français
+lundi 12 décembre 2016 09:20:10 : new value in the devices list : Logitech QuickCam Communicate STX, 
+lundi 12 décembre 2016 09:20:10 : combo box of device selection changed : Logitech QuickCam Communicate STX
+lundi 12 décembre 2016 09:20:11 : click to start video windows
+lundi 12 décembre 2016 09:20:11 : combo box of device selection changed : 
+lundi 12 décembre 2016 09:20:11 : new value in the devices list : Logitech QuickCam Communicate STX, 
+lundi 12 décembre 2016 09:20:11 : combo box of device selection changed : Logitech QuickCam Communicate STX
+lundi 12 décembre 2016 09:20:11 : video window will be started
+lundi 12 décembre 2016 09:20:11 : --------------- open video view -----------------
+lundi 12 décembre 2016 09:20:12 : video start
+lundi 12 décembre 2016 09:20:12 : start video load for : 1 seconds
+lundi 12 décembre 2016 09:20:13 : end of video load
+lundi 12 décembre 2016 09:20:13 : start the video
+lundi 12 décembre 2016 09:20:20 : video window key down : System
+lundi 12 décembre 2016 09:20:20 : video window key down : System
+lundi 12 décembre 2016 09:20:20 : stop the video
+lundi 12 décembre 2016 09:20:20 : ------------- video window close -------------
+lundi 12 décembre 2016 09:20:23 : -------------------END OF THE APPLICATION-------------------
+lundi 12 décembre 2016 09:20:23 : 
+lundi 12 décembre 2016 09:20:23 : 
+lundi 12 décembre 2016 09:20:36 : 
+lundi 12 décembre 2016 09:20:36 : 
+lundi 12 décembre 2016 09:20:36 : -----------------START OF THE APPLICATION--------------------
+lundi 12 décembre 2016 09:20:36 : Deserialization of setting : Setting : Time = 1, Language = Français
+lundi 12 décembre 2016 09:20:36 : new value in the devices list : Logitech QuickCam Communicate STX, 
+lundi 12 décembre 2016 09:20:36 : combo box of device selection changed : Logitech QuickCam Communicate STX
+lundi 12 décembre 2016 09:20:38 : click to start video windows
+lundi 12 décembre 2016 09:20:38 : combo box of device selection changed : 
+lundi 12 décembre 2016 09:20:38 : new value in the devices list : Logitech QuickCam Communicate STX, 
+lundi 12 décembre 2016 09:20:38 : combo box of device selection changed : Logitech QuickCam Communicate STX
+lundi 12 décembre 2016 09:20:38 : video window will be started
+lundi 12 décembre 2016 09:20:38 : --------------- open video view -----------------
+lundi 12 décembre 2016 09:20:38 : video start
+lundi 12 décembre 2016 09:20:38 : start video load for : 1 seconds
+lundi 12 décembre 2016 09:20:39 : end of video load
+lundi 12 décembre 2016 09:20:39 : start the video
+lundi 12 décembre 2016 09:23:52 : 
+lundi 12 décembre 2016 09:23:52 : 
+lundi 12 décembre 2016 09:23:52 : -----------------START OF THE APPLICATION--------------------
+lundi 12 décembre 2016 09:23:53 : Deserialization of setting : Setting : Time = 1, Language = Français
+lundi 12 décembre 2016 09:23:53 : new value in the devices list : Logitech QuickCam Communicate STX, 
+lundi 12 décembre 2016 09:23:53 : combo box of device selection changed : Logitech QuickCam Communicate STX
+lundi 12 décembre 2016 09:23:54 : click to start video windows
+lundi 12 décembre 2016 09:23:54 : combo box of device selection changed : 
+lundi 12 décembre 2016 09:23:54 : new value in the devices list : Logitech QuickCam Communicate STX, 
+lundi 12 décembre 2016 09:23:54 : combo box of device selection changed : Logitech QuickCam Communicate STX
+lundi 12 décembre 2016 09:23:54 : video window will be started
+lundi 12 décembre 2016 09:23:54 : --------------- open video view -----------------
+lundi 12 décembre 2016 09:23:54 : video start
+lundi 12 décembre 2016 09:23:54 : start video load for : 1 seconds
+lundi 12 décembre 2016 09:23:55 : end of video load
+lundi 12 décembre 2016 09:23:55 : start the video
+lundi 12 décembre 2016 09:25:26 : 
+lundi 12 décembre 2016 09:25:26 : 
+lundi 12 décembre 2016 09:25:26 : -----------------START OF THE APPLICATION--------------------
+lundi 12 décembre 2016 09:25:26 : Deserialization of setting : Setting : Time = 1, Language = Français
+lundi 12 décembre 2016 09:25:27 : new value in the devices list : Logitech QuickCam Communicate STX, 
+lundi 12 décembre 2016 09:25:27 : combo box of device selection changed : Logitech QuickCam Communicate STX
+lundi 12 décembre 2016 09:25:28 : click to start video windows
+lundi 12 décembre 2016 09:25:28 : combo box of device selection changed : 
+lundi 12 décembre 2016 09:25:28 : new value in the devices list : Logitech QuickCam Communicate STX, 
+lundi 12 décembre 2016 09:25:28 : combo box of device selection changed : Logitech QuickCam Communicate STX
+lundi 12 décembre 2016 09:25:28 : video window will be started
+lundi 12 décembre 2016 09:25:28 : --------------- open video view -----------------
+lundi 12 décembre 2016 09:25:28 : video start
+lundi 12 décembre 2016 09:25:28 : start video load for : 1 seconds
+lundi 12 décembre 2016 09:25:29 : end of video load
+lundi 12 décembre 2016 09:25:29 : start the video
+lundi 12 décembre 2016 09:31:42 : 
+lundi 12 décembre 2016 09:31:42 : 
+lundi 12 décembre 2016 09:31:42 : -----------------START OF THE APPLICATION--------------------
+lundi 12 décembre 2016 09:31:42 : Deserialization of setting : Setting : Time = 1, Language = Français
+lundi 12 décembre 2016 09:31:43 : new value in the devices list : Logitech QuickCam Communicate STX, 
+lundi 12 décembre 2016 09:31:43 : combo box of device selection changed : Logitech QuickCam Communicate STX
+lundi 12 décembre 2016 09:31:45 : click to start video windows
+lundi 12 décembre 2016 09:31:45 : combo box of device selection changed : 
+lundi 12 décembre 2016 09:31:45 : new value in the devices list : Logitech QuickCam Communicate STX, 
+lundi 12 décembre 2016 09:31:45 : combo box of device selection changed : Logitech QuickCam Communicate STX
+lundi 12 décembre 2016 09:31:45 : video window will be started
+lundi 12 décembre 2016 09:31:45 : --------------- open video view -----------------
+lundi 12 décembre 2016 09:31:46 : video start
+lundi 12 décembre 2016 09:31:46 : start video load for : 1 seconds
+lundi 12 décembre 2016 09:31:47 : end of video load
+lundi 12 décembre 2016 09:31:47 : start the video
+lundi 12 décembre 2016 09:33:13 : 
+lundi 12 décembre 2016 09:33:13 : 
+lundi 12 décembre 2016 09:33:13 : -----------------START OF THE APPLICATION--------------------
+lundi 12 décembre 2016 09:33:14 : Deserialization of setting : Setting : Time = 1, Language = Français
+lundi 12 décembre 2016 09:33:14 : new value in the devices list : Logitech QuickCam Communicate STX, 
+lundi 12 décembre 2016 09:33:14 : combo box of device selection changed : Logitech QuickCam Communicate STX
+lundi 12 décembre 2016 09:33:16 : click to start video windows
+lundi 12 décembre 2016 09:33:16 : combo box of device selection changed : 
+lundi 12 décembre 2016 09:33:16 : new value in the devices list : Logitech QuickCam Communicate STX, 
+lundi 12 décembre 2016 09:33:16 : combo box of device selection changed : Logitech QuickCam Communicate STX
+lundi 12 décembre 2016 09:33:16 : video window will be started
+lundi 12 décembre 2016 09:33:16 : --------------- open video view -----------------
+lundi 12 décembre 2016 09:33:16 : video start
+lundi 12 décembre 2016 09:33:16 : start video load for : 1 seconds
+lundi 12 décembre 2016 09:33:17 : end of video load
+lundi 12 décembre 2016 09:33:17 : start the video
+lundi 12 décembre 2016 09:36:22 : 
+lundi 12 décembre 2016 09:36:22 : 
+lundi 12 décembre 2016 09:36:22 : -----------------START OF THE APPLICATION--------------------
+lundi 12 décembre 2016 09:36:22 : Deserialization of setting : Setting : Time = 1, Language = Français
+lundi 12 décembre 2016 09:36:23 : new value in the devices list : Logitech QuickCam Communicate STX, 
+lundi 12 décembre 2016 09:36:23 : combo box of device selection changed : Logitech QuickCam Communicate STX
+lundi 12 décembre 2016 09:36:25 : click to start video windows
+lundi 12 décembre 2016 09:36:25 : combo box of device selection changed : 
+lundi 12 décembre 2016 09:36:25 : new value in the devices list : Logitech QuickCam Communicate STX, 
+lundi 12 décembre 2016 09:36:25 : combo box of device selection changed : Logitech QuickCam Communicate STX
+lundi 12 décembre 2016 09:36:25 : video window will be started
+lundi 12 décembre 2016 09:36:25 : --------------- open video view -----------------
+lundi 12 décembre 2016 09:36:25 : video start
+lundi 12 décembre 2016 09:36:25 : start video load for : 1 seconds
+lundi 12 décembre 2016 09:36:26 : end of video load
+lundi 12 décembre 2016 09:36:26 : start the video
+lundi 12 décembre 2016 09:43:29 : 
+lundi 12 décembre 2016 09:43:29 : 
+lundi 12 décembre 2016 09:43:29 : -----------------START OF THE APPLICATION--------------------
+lundi 12 décembre 2016 09:43:29 : Deserialization of setting : Setting : Time = 1, Language = Français
+lundi 12 décembre 2016 09:45:24 : 
+lundi 12 décembre 2016 09:45:24 : 
+lundi 12 décembre 2016 09:45:24 : -----------------START OF THE APPLICATION--------------------
+lundi 12 décembre 2016 09:45:24 : Deserialization of setting : Setting : Time = 1, Language = Français
+lundi 12 décembre 2016 09:45:24 : new value in the devices list : Logitech QuickCam Communicate STX, 
+lundi 12 décembre 2016 09:45:24 : combo box of device selection changed : Logitech QuickCam Communicate STX
+lundi 12 décembre 2016 09:45:26 : click to start video windows
+lundi 12 décembre 2016 09:45:26 : combo box of device selection changed : 
+lundi 12 décembre 2016 09:45:26 : new value in the devices list : Logitech QuickCam Communicate STX, 
+lundi 12 décembre 2016 09:45:26 : combo box of device selection changed : Logitech QuickCam Communicate STX
+lundi 12 décembre 2016 09:45:26 : video window will be started
+lundi 12 décembre 2016 09:45:26 : --------------- open video view -----------------
+lundi 12 décembre 2016 09:45:26 : video start
+lundi 12 décembre 2016 09:45:27 : start video load for : 1 seconds
+lundi 12 décembre 2016 09:45:28 : end of video load
+lundi 12 décembre 2016 09:45:28 : start the video
+lundi 12 décembre 2016 09:49:08 : 
+lundi 12 décembre 2016 09:49:08 : 
+lundi 12 décembre 2016 09:49:08 : -----------------START OF THE APPLICATION--------------------
+lundi 12 décembre 2016 09:49:08 : Deserialization of setting : Setting : Time = 1, Language = Français
+lundi 12 décembre 2016 09:49:08 : new value in the devices list : Logitech QuickCam Communicate STX, 
+lundi 12 décembre 2016 09:49:08 : combo box of device selection changed : Logitech QuickCam Communicate STX
+lundi 12 décembre 2016 09:49:16 : click to start video windows
+lundi 12 décembre 2016 09:49:16 : combo box of device selection changed : 
+lundi 12 décembre 2016 09:49:16 : new value in the devices list : Logitech QuickCam Communicate STX, 
+lundi 12 décembre 2016 09:49:16 : combo box of device selection changed : Logitech QuickCam Communicate STX
+lundi 12 décembre 2016 09:49:16 : video window will be started
+lundi 12 décembre 2016 09:49:16 : --------------- open video view -----------------
+lundi 12 décembre 2016 09:49:16 : video start
+lundi 12 décembre 2016 09:49:16 : start video load for : 1 seconds
+lundi 12 décembre 2016 09:49:17 : end of video load
+lundi 12 décembre 2016 09:49:17 : start the video
+lundi 12 décembre 2016 09:49:40 : video window key down : System
+lundi 12 décembre 2016 09:49:40 : stop the video
+lundi 12 décembre 2016 09:49:40 : ------------- video window close -------------
+lundi 12 décembre 2016 09:49:41 : --------------------STOP OF THE APPLICATION---------------------
+lundi 12 décembre 2016 09:52:05 : 
+lundi 12 décembre 2016 09:52:05 : 
+lundi 12 décembre 2016 09:52:05 : -----------------START OF THE APPLICATION--------------------
+lundi 12 décembre 2016 09:52:06 : Deserialization of setting : Setting : Time = 1, Language = Français
+lundi 12 décembre 2016 09:52:06 : new value in the devices list : Logitech QuickCam Communicate STX, 
+lundi 12 décembre 2016 09:52:06 : combo box of device selection changed : Logitech QuickCam Communicate STX
+lundi 12 décembre 2016 09:52:09 : click to start video windows
+lundi 12 décembre 2016 09:52:09 : combo box of device selection changed : 
+lundi 12 décembre 2016 09:52:09 : new value in the devices list : Logitech QuickCam Communicate STX, 
+lundi 12 décembre 2016 09:52:09 : combo box of device selection changed : Logitech QuickCam Communicate STX
+lundi 12 décembre 2016 09:52:09 : video window will be started
+lundi 12 décembre 2016 09:52:09 : --------------- open video view -----------------
+lundi 12 décembre 2016 09:52:09 : video start
+lundi 12 décembre 2016 09:52:09 : start video load for : 1 seconds
+lundi 12 décembre 2016 09:52:10 : end of video load
+lundi 12 décembre 2016 09:52:10 : start the video
+>>>>>>> create folders ok

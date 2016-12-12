@@ -17,6 +17,9 @@
     <system:String x:Key="SettingErrorMessage">Erreur durant la récupération du fichier de paramètres, les paramètres sont réinitialisés par default</system:String>
     <system:String x:Key="VideoFileException">Exception de lecture des vidéos</system:String>
     <system:String x:Key="VideoFileNotFound">Les vidéos n'ont pas été trouvées</system:String>
+    <system:String x:Key="fileExisting">Le document est déjà existant</system:String>
+    <system:String x:Key="fileExistingCaption">Erreur dans le nom de dossier</system:String>
+    
     
     
     <!-- application text -->
@@ -43,4 +46,10 @@
     <system:String x:Key="exitBoxMessage">Souhaitez vous quittez l'application?</system:String>
     <system:String x:Key="framebyframe">Image par image</system:String>
     <system:String x:Key="delete">Supprimer</system:String>
+
+    <!-- file name -->
+    <system:String x:Key="newDirectoryName">Nouveau dossier</system:String>
+    <system:String x:Key="videoFolder">Video</system:String>
+    
+
 </ResourceDictionary>

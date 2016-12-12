@@ -10,7 +10,6 @@
                 <HierarchicalDataTemplate DataType="{x:Type self:MenuItem}" ItemsSource="{Binding Items}">
                     <local:EditableTextBlock Text="{Binding Name, Mode=TwoWay}"
                                              IsInEditMode="{Binding Edit, Mode=TwoWay}" />
-                                           <!--  OnStopEditing="{Binding OnStopEditing}"/> -->
                 </HierarchicalDataTemplate>
                 <Style TargetType="TreeViewItem">
                     <Setter Property="IsSelected" Value="{Binding IsSelected}"/>

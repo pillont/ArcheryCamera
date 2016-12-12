@@ -21,6 +21,9 @@
     <system:String x:Key="VideoFileNotFound">Video files not found</system:String>
     <system:String x:Key="exitBox">Quit</system:String>
     <system:String x:Key="exitBoxMessage">Would you want to quit the application?</system:String>
+    <system:String x:Key="fileExisting">file is already existing</system:String>
+    <system:String x:Key="fileExistingCaption">Error file name</system:String>
+
 
     <!-- application text -->
     <system:String x:Key="setting">Settings</system:String>
@@ -44,5 +47,9 @@
     <system:String x:Key="replay">Replay</system:String>
     <system:String x:Key="framebyframe">Frame by frame</system:String>
     <system:String x:Key="delete">Delete</system:String>
+    
+    <!-- file name -->
+    <system:String x:Key="newDirectoryName">New folder</system:String>
+    <system:String x:Key="videoFolder">Video</system:String>
 
 </ResourceDictionary>

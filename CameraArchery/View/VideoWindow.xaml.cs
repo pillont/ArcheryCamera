@@ -237,9 +237,13 @@ namespace CameraArchery.View
         /// <param name="e"></param>
         private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+<<<<<<< HEAD
             LogHelper.Write("tab control change to : "+MainTabControl.SelectedValue+ ". Is recording : " + videoController.recorderController.IsRecording);
 
             if (e.Source is TabControl && videoController.recorderController.IsRecording)
+=======
+            if (e.Source is System.Windows.Controls.TabControl && videoController.recorderController.IsRedording)
+>>>>>>> create folders ok
                 MainTabControl.SelectedIndex = 0;
         }
     }

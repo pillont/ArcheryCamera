@@ -1,4 +1,5 @@
-﻿using CameraArcheryLib.Utils;
+﻿using CameraArcheryLib;
+using CameraArcheryLib.Utils;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -62,8 +63,19 @@ namespace CameraArchery.View
         private void Add_Click(object sender, RoutedEventArgs e)
         {
             var item = (TreeControl.SelectedItem as MenuItem);
-            var newUri = new Uri(item.Uri.OriginalString + "\\new", UriKind.Relative);
-            item.Items.Add(new MenuItem(newUri, true));
+            var InitUri = new Uri(item.Uri.OriginalString + "\\"+ LanguageController.Get("newDirectoryName"), UriKind.Relative);
+            var finalUri = new Uri(InitUri.OriginalString, UriKind.Relative);
+            
+
+            int index = 0;
+            while (Directory.Exists(finalUri.OriginalString))
+            {
+                index ++;
+                finalUri = new Uri(@""+InitUri.OriginalString + "("+index+")", UriKind.Relative);
+            }
+
+            Directory.CreateDirectory(finalUri.OriginalString);
+            item.Items.Add(new MenuItem(finalUri));
         }
     }
 
@@ -88,11 +100,18 @@ namespace CameraArchery.View
             {
                 if (name != value)
                 {
-                    name = value;
                     try
                     {
                         var newUri = new Uri(Directory.GetParent(Uri.OriginalString).FullName + "\\" + value);
+
+
+                        if (Directory.Exists(newUri.OriginalString))
+                        {
+                            MessageBox.Show(LanguageController.Get("fileExisting"),LanguageController.Get("fileExistingCaption"),  MessageBoxButton.OK, MessageBoxImage.Error);
+                            return ;
+                        }
                         Directory.Move(Uri.OriginalString, newUri.OriginalString);
+                        name = value;
                         Uri = newUri;
                     }
                     catch (Exception e)
@@ -116,33 +135,11 @@ namespace CameraArchery.View
             IsSelected = false;
             IsExpanded = false;
 
-            if (!newFolder)
-            {    // use field to not update the uri
-                name = uri.OriginalString.Split('\\').Last();
-                OnStopEditing = (arg) => true;            
-            }
-            else
-                OnStopEditing = StopEditing_NewFolder;
+            // use field to not update the uri
+            name = uri.OriginalString.Split('\\').Last();
+            OnStopEditing = (arg) => true;            
         }
 
-        private bool StopEditing_NewFolder(string arg)
-        {
-            OnStopEditing = (arg2) => true;            
-
-            var newUri = Uri.OriginalString + '\\' + arg;
-
-            if (Directory.Exists(newUri))
-            {
-                MessageBox.Show("file is already existing", "error file name", MessageBoxButton.OK, MessageBoxImage.Error);
-                 Name = "";
-                return false;
-            }
-
-            Directory.CreateDirectory(newUri);
-            name = arg;
-            Uri = new Uri(newUri, UriKind.Relative);
-
-            return true;
-        }
+        
     }
 }
