@@ -4,52 +4,57 @@
 
     <!-- user message -->
     <system:String x:Key="AlreadyStart">Application already start</system:String>
+    <system:String x:Key="chooseDevice">Choose your camera</system:String>
+    <system:String x:Key="deleteFolderContent">The content of the folder will be delete too</system:String>
+    <system:String x:Key="devicePopUp">Please, choose a camera</system:String>
     <system:String x:Key="DuplicationApplication">Duplicate application</system:String>
+    <system:String x:Key="exitBoxMessage">Would you want to quit the application?</system:String>
+    <system:String x:Key="videoPopUp">Put |escape| to quit</system:String>
 
+    
     <!-- error message -->
+    <system:String x:Key="CollectDeviceError">Collect device error</system:String>
+    <system:String x:Key="CollectDeviceErrorMessage">Error during the collect of devices</system:String>
     <system:String x:Key="Error">Error</system:String>
     <system:String x:Key="IncorrectInput">Incorrect values</system:String>
     <system:String x:Key="FileError">Error in the files, contact the IT service</system:String>
+    <system:String x:Key="fileExisting">file is already existing</system:String>
+    <system:String x:Key="fileExistingCaption">Error file name</system:String>
+    <system:String x:Key="folderNotExisting">Directory not existing</system:String>
     <system:String x:Key="FrameError">Error in the management of the video, contact the IT service</system:String>
     <system:String x:Key="LogError">Error in the management of logs, contact the IT service</system:String>
     <system:String x:Key="SerializationError">Error in the saving , contact the IT service</system:String>
     <system:String x:Key="SettingError">Setting Error</system:String>
     <system:String x:Key="SettingErrorMessage">Error to find the setting file, new setting set</system:String>
-    <system:String x:Key="CollectDeviceError">Collect device error</system:String>
-    <system:String x:Key="CollectDeviceErrorMessage">Error during the collect of devices</system:String>
-    <system:String x:Key="VideoFileException">Exception to read videos</system:String>
+    <system:String x:Key="VideoFileException">Error to read videos</system:String>
     <system:String x:Key="VideoFileNotFound">Video files not found</system:String>
-    <system:String x:Key="exitBox">Quit</system:String>
-    <system:String x:Key="exitBoxMessage">Would you want to quit the application?</system:String>
-    <system:String x:Key="fileExisting">file is already existing</system:String>
-    <system:String x:Key="fileExistingCaption">Error file name</system:String>
 
-
+    
     <!-- application text -->
-    <system:String x:Key="setting">Settings</system:String>
+    <system:String x:Key="addFile">Add a folder</system:String>
+    <system:String x:Key="delete">Delete</system:String>
+    <system:String x:Key="exitBox">Quit</system:String>
     <system:String x:Key="frame">Frames per second</system:String>
+    <system:String x:Key="framebyframe">Frame by frame</system:String>
+    <system:String x:Key="FrameRate">Frame Rate</system:String>
+    <system:String x:Key="HideDetail">Hide details</system:String>
     <system:String x:Key="lagTime">Lag time (second)</system:String>
     <system:String x:Key="language">Language</system:String>
-    <system:String x:Key="return">Return</system:String>
-    <system:String x:Key="save">Save</system:String>
-    <system:String x:Key="start">Start</system:String>
-    <system:String x:Key="chooseDevice">Choose your camera</system:String>
+    <system:String x:Key="OK">OK</system:String>
     <system:String x:Key="quit">Quit</system:String>
-    <system:String x:Key="refresh">Refresh</system:String>
-    <system:String x:Key="videoPopUp">Put |escape| to quit</system:String>
-    <system:String x:Key="devicePopUp">Please, choose a camera</system:String>
+    <system:String x:Key="save">Save</system:String>
+    <system:String x:Key="setting">Settings</system:String>
     <system:String x:Key="ShowDetail">Show details</system:String>
-    <system:String x:Key="HideDetail">Hide details</system:String>
+    <system:String x:Key="start">Start</system:String>
+    <system:String x:Key="refresh">Refresh</system:String>
+    <system:String x:Key="replay">Replay</system:String>
+    <system:String x:Key="return">Return</system:String>
     <system:String x:Key="StartRecord">Start record</system:String>
     <system:String x:Key="StopRecord">Stop record</system:String>
-    <system:String x:Key="FrameRate">Frame Rate</system:String>
     <system:String x:Key="video">Video</system:String>
-    <system:String x:Key="replay">Replay</system:String>
-    <system:String x:Key="framebyframe">Frame by frame</system:String>
-    <system:String x:Key="delete">Delete</system:String>
+    
     
     <!-- file name -->
     <system:String x:Key="newDirectoryName">New folder</system:String>
     <system:String x:Key="videoFolder">Video</system:String>
-
 </ResourceDictionary>

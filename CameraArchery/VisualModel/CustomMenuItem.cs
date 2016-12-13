@@ -113,5 +113,25 @@ namespace CameraArchery.VisualModel
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
+
+
+        /// <summary>
+        /// delete item in his child
+        /// <para>if contains -> delete and return true</para>
+        /// <para>check in all the items and return true if found in the child</para>
+        /// </summary>
+        /// <param name="folderToDelete"></param>
+        /// <returns>return true if found, return false if not found</returns>
+        internal bool Delete(CustomMenuItem folderToDelete)
+        {
+            if (this.Items.Remove(folderToDelete))
+                return true;
+            
+            foreach (var item in Items)
+                if (item.Delete(folderToDelete))
+                    return true;
+                
+            return false;
+        }
     }
 }

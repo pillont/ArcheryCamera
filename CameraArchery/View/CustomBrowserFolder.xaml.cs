@@ -29,11 +29,17 @@ namespace CameraArchery.View
 
         private bool IsToSave { get; set; }
         public Uri InitUri { get; set; }
-        public Uri SelectedUri { get; set; }
+        public Uri selectedUri; 
+        public Uri SelectedUri
+        {
+            get { return selectedUri; }
+            set { selectedUri = value; }
+        }
         private Uri RootUri { get; set; }
 
         public CustomBrowserFolder(Uri rootUri, Uri initUri)
         {
+            LanguageController.InitLanguage(this.Resources.MergedDictionaries);
             InitializeComponent();
 
             IsToSave = false;
@@ -89,7 +95,6 @@ namespace CameraArchery.View
             }
 
             Directory.CreateDirectory(finalUri.OriginalString);
-            SelectedUri = finalUri;
          
             // change the current item
             var newItem = new CustomMenuItem(finalUri) { IsSelected = true };
@@ -113,8 +118,59 @@ namespace CameraArchery.View
                 MessageBox.Show("URI NULL ");
                 e.Cancel = true;
             }
+            
             else if (IsToSave)
                 this.SelectedUri = (TreeControl.SelectedItem as CustomMenuItem).Uri;
+
+            if (!Directory.Exists(this.SelectedUri.OriginalString))
+            {
+                e.Cancel = true;
+                MessageBox.Show(LanguageController.Get("folderNotExisting"), LanguageController.Get("fileExistingCaption"), 
+                    MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void DeleteItem_Click(object sender, RoutedEventArgs e)
+        {
+            var folderToDelete = (sender as MenuItem).DataContext as CustomMenuItem;
+
+            DeleteFolder(folderToDelete);
+
+        }
+
+        private void DeleteFolder(CustomMenuItem folderToDelete)
+        {
+            // check content
+            var files = Directory.EnumerateFiles(folderToDelete.Uri.OriginalString);
+            var directories = Directory.EnumerateDirectories(folderToDelete.Uri.OriginalString);
+            
+            if (files.Count() != 0
+            || directories.Count() != 0)
+            {
+                var res = MessageBox.Show(LanguageController.Get("deleteFolderContent"), LanguageController.Get("delete"),
+                                        MessageBoxButton.OKCancel, MessageBoxImage.Question);
+
+                //cancel
+                if (res != MessageBoxResult.OK)
+                    return;
+            }
+            //delete the folder
+            Directory.Delete(folderToDelete.Uri.OriginalString, true);
+
+            // suppr the item in the tree
+            (TreeControl.Items[0] as CustomMenuItem).Delete(folderToDelete);
+        }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            var key = e.Key;
+            LogHelper.Write("Browser key down : " + key);
+
+            if (key == Key.Delete)
+                DeleteFolder(TreeControl.SelectedItem as CustomMenuItem);
+
+            else if (key == Key.Escape)
+                this.Close();
         }
     }
 }

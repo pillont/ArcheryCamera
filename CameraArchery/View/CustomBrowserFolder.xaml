@@ -5,19 +5,29 @@
         xmlns:local="clr-namespace:CameraArchery.UsersControl.EditableTextBlock"
         ShowInTaskbar="False" ResizeMode="NoResize" WindowStartupLocation="CenterScreen"
         Closing="Window_Closing"
-        Title="CustomBrowserFolder" Height="300" Width="300">
+        Title="CustomBrowserFolder" Height="300" Width="300" KeyDown="Window_KeyDown">
     <DockPanel LastChildFill="True">
-
         <StackPanel DockPanel.Dock="Bottom" HorizontalAlignment="Right" Orientation="Horizontal">
-            <Button Content="add file" Click="Add_Click" Margin="5" Height="25" MinWidth="60" Background="CornflowerBlue"/>
-            <Button Content="OK" Click="Save_Click" Margin="5" Height="25" MinWidth="60" Background="CornflowerBlue"/>
+            <Button Content="{DynamicResource ResourceKey=addFile}" Click="Add_Click" Margin="5" Height="25" MinWidth="60" Background="CornflowerBlue"/>
+            <Button Content="{DynamicResource ResourceKey=OK}" Click="Save_Click" Margin="5" Height="25" MinWidth="60" Background="CornflowerBlue"/>
         </StackPanel>
         <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" >
             <TreeView Name="TreeControl">
                 <TreeView.Resources>
                     <HierarchicalDataTemplate DataType="{x:Type self:CustomMenuItem}" ItemsSource="{Binding Items}">
                         <local:EditableTextBlock Text="{Binding Name, Mode=TwoWay}"
-                                             IsInEditMode="{Binding Edit, Mode=TwoWay}" />
+                                             IsInEditMode="{Binding Edit, Mode=TwoWay}" >
+
+                            <local:EditableTextBlock.ContextMenu>
+                                <ContextMenu>
+                                    <MenuItem Header="{DynamicResource ResourceKey=delete}" Click="DeleteItem_Click">
+                                        <MenuItem.Icon>
+                                            <Image Source="pack://application:,,,/Ressources/Images/delete.png"  Height="20" Width="20"/>
+                                        </MenuItem.Icon>
+                                    </MenuItem>
+                                </ContextMenu>
+                            </local:EditableTextBlock.ContextMenu>
+                        </local:EditableTextBlock>
                     </HierarchicalDataTemplate>
                     <Style TargetType="TreeViewItem">
                         <Setter Property="IsSelected" Value="{Binding IsSelected, Mode=TwoWay}"/>
