@@ -32,12 +32,9 @@
                         <Button Margin="5" HorizontalAlignment="Center" Height="50" Background="CornflowerBlue" 
                                 Content="{DynamicResource ResourceKey=StartRecord}" 
                             Click="Recording_Click"/>
-<<<<<<< HEAD
-=======
 
                         <my:CustomBrowser x:Name="BrowserControl" Width="120"></my:CustomBrowser>
                         
->>>>>>> custom tree started
                     </StackPanel>
                     <Image x:Name="pictureBox1"/>
                 </DockPanel>    

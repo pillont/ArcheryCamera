@@ -11,3 +11,17 @@ F:\CameraArchery\aviFileLibrary\bin\Debug\Accord.Video.xml
 F:\CameraArchery\aviFileLibrary\bin\Debug\Accord.Video.VFW.xml
 F:\CameraArchery\aviFileLibrary\bin\Debug\Accord.Video.DirectShow.dll
 F:\CameraArchery\aviFileLibrary\bin\Debug\Accord.Video.DirectShow.xml
+C:\Users\etudiant\Desktop\RepoGit\CameraArchery\aviFileLibrary\bin\Debug\Accord.dll.config
+C:\Users\etudiant\Desktop\RepoGit\CameraArchery\aviFileLibrary\bin\Debug\aviFileLibrary.dll
+C:\Users\etudiant\Desktop\RepoGit\CameraArchery\aviFileLibrary\bin\Debug\aviFileLibrary.pdb
+C:\Users\etudiant\Desktop\RepoGit\CameraArchery\aviFileLibrary\bin\Debug\Accord.dll
+C:\Users\etudiant\Desktop\RepoGit\CameraArchery\aviFileLibrary\bin\Debug\Accord.Video.DirectShow.dll
+C:\Users\etudiant\Desktop\RepoGit\CameraArchery\aviFileLibrary\bin\Debug\Accord.Video.dll
+C:\Users\etudiant\Desktop\RepoGit\CameraArchery\aviFileLibrary\bin\Debug\Accord.Video.VFW.dll
+C:\Users\etudiant\Desktop\RepoGit\CameraArchery\aviFileLibrary\bin\Debug\Accord.xml
+C:\Users\etudiant\Desktop\RepoGit\CameraArchery\aviFileLibrary\bin\Debug\Accord.Video.xml
+C:\Users\etudiant\Desktop\RepoGit\CameraArchery\aviFileLibrary\bin\Debug\Accord.Video.DirectShow.xml
+C:\Users\etudiant\Desktop\RepoGit\CameraArchery\aviFileLibrary\bin\Debug\Accord.Video.VFW.xml
+C:\Users\etudiant\Desktop\RepoGit\CameraArchery\aviFileLibrary\obj\Debug\AviFileLibrary.csprojResolveAssemblyReference.cache
+C:\Users\etudiant\Desktop\RepoGit\CameraArchery\aviFileLibrary\obj\Debug\aviFileLibrary.dll
+C:\Users\etudiant\Desktop\RepoGit\CameraArchery\aviFileLibrary\obj\Debug\aviFileLibrary.pdb

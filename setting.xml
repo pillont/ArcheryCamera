@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Setting xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <RateFrame>5</RateFrame>
-  <VideoNumber>0</VideoNumber>
-  <Time>5</Time>
-  <Language>English</Language>
-  <VideoFolder>Video</VideoFolder>
-</Setting>

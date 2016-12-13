@@ -61,7 +61,6 @@ namespace CameraArchery.View
             // add lag on the video Controller
             videoController.OnNewFrame += (ref Bitmap img) => img = timeLagController.OnNewFrame(img);
             videoController.OnVideoClose += () => timeLagController.Clear();
-<<<<<<< HEAD
         
             CustomReplayComponent.OnStopClick += CustomReplayComponent_OnStopClick;
             CustomReplayComponent.OnStartClick += CustomReplayComponent_OnStartClick;
@@ -73,6 +72,10 @@ namespace CameraArchery.View
             CustomReplayComponent.OnListSelectionChange += CustomReplayComponent_OnListSelectionChange;
             CustomReplayComponent.OnFrameClick += CustomReplayComponent_OnFrameClick;
             CustomReplayComponent.OnDeleteFile += CustomReplayComponent_OnDeleteFile;
+
+            BrowserControl.Root = new Uri(LanguageController.Get("videoFolder"), UriKind.Relative);
+            CustomReplayComponent.BrowserControl.Root = new Uri(LanguageController.Get("videoFolder"), UriKind.Relative);
+      
         }
 
         private bool CustomReplayComponent_OnDeleteFile(DataBinding.VideoFile arg)
@@ -102,7 +105,6 @@ namespace CameraArchery.View
             LogHelper.Write("slider is capture at " + obj +" sec");
         }
 
-<<<<<<< HEAD
         private bool CustomReplayComponent_OnSliderChange(double arg)
         {
             LogHelper.Write("slider is change to " + arg + " sec");
@@ -137,17 +139,7 @@ namespace CameraArchery.View
         {
             LogHelper.Write("stop click");
             return true;
-=======
 
-<<<<<<< HEAD
-            BrowserControl.DefaultFile = SettingFactory.CurrentSetting.VideoFolder; 
->>>>>>> selected and return value on the browser ok
-=======
->>>>>>> same value in the two browsers
-=======
-            BrowserControl.Root = new Uri(LanguageController.Get("videoFolder"), UriKind.Relative);
-            Replay.BrowserControl.Root = new Uri(LanguageController.Get("videoFolder"), UriKind.Relative);
->>>>>>> generic path for browser
         }
 
         /// <summary>
@@ -250,30 +242,24 @@ namespace CameraArchery.View
         /// <param name="e"></param>
         private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-<<<<<<< HEAD
-<<<<<<< HEAD
             LogHelper.Write("tab control change to : "+MainTabControl.SelectedValue+ ". Is recording : " + videoController.recorderController.IsRecording);
 
             if (e.Source is TabControl && videoController.recorderController.IsRecording)
-=======
-            if (e.Source is System.Windows.Controls.TabControl && videoController.recorderController.IsRedording)
->>>>>>> create folders ok
                 MainTabControl.SelectedIndex = 0;
-=======
+       
             if (e.Source is System.Windows.Controls.TabControl)
             {
                 // no change
-                if (videoController.recorderController.IsRedording)
+                if (videoController.recorderController.IsRecording)
                     MainTabControl.SelectedIndex = 0;
                 //change
                 else
                 {
                     // update the value in the folder
                     BrowserControl.SelectedUri = new Uri(SettingFactory.CurrentSetting.VideoFolder, UriKind.Relative);
-                    Replay.BrowserControl.SelectedUri = new Uri(SettingFactory.CurrentSetting.VideoFolder, UriKind.Relative);
+                    CustomReplayComponent.BrowserControl.SelectedUri = new Uri(SettingFactory.CurrentSetting.VideoFolder, UriKind.Relative);
                 }
             }
->>>>>>> same value in the two browsers
         }
     }
 }
