@@ -1,11 +1,8 @@
-﻿
+﻿using System;
+using System.IO;
 using CameraArcheryLib.Controller;
 using CameraArcheryLib.Models;
 using CameraArcheryLib.Utils;
-using CameraArcheryLib.Models;
-using System;
-using System.Windows;
-using System.IO;
 
 
 namespace CameraArcheryLib.Factories

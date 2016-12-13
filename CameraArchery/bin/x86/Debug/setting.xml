@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Setting xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <RateFrame>5</RateFrame>
-  <VideoNumber>3</VideoNumber>
-  <Time>1</Time>
-  <Language>Français</Language>
+  <VideoNumber>2</VideoNumber>
+  <Time>5</Time>
+  <Language>English</Language>
+  <VideoFolder>Video\New folder</VideoFolder>
 </Setting>

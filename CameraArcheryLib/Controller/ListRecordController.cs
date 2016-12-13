@@ -1,5 +1,6 @@
 ﻿using Accord.Video.DirectShow;
 using CameraArchery.DataBinding;
+using CameraArcheryLib.Factories;
 using CameraArcheryLib.Utils;
 using System;
 using System.Collections.Generic;
@@ -84,7 +85,7 @@ namespace CameraArcheryLib.Controller
             // get the names
             VideoFile val = new VideoFile()
             {
-                Name = name.Replace(RecorderController.VideoDirectory, ""),
+                Name = name.Replace(SettingFactory.CurrentSetting.VideoFolder, ""),
                 FullName = name,
             };
 
@@ -136,10 +137,10 @@ namespace CameraArcheryLib.Controller
         /// <returns>list of the names</returns>
         public IEnumerable<string> getFileNames()
         {
-            if (!Directory.Exists(RecorderController.VideoDirectory))
+            if (!Directory.Exists(SettingFactory.CurrentSetting.VideoFolder))
                 return new List<string>();
 
-            return Directory.EnumerateFiles(RecorderController.VideoDirectory).Where(
+            return Directory.EnumerateFiles(SettingFactory.CurrentSetting.VideoFolder).Where(
                                         (file) => file.EndsWith(RecorderController.ExtensionFile));
         }
 
@@ -164,7 +165,6 @@ namespace CameraArcheryLib.Controller
             VideoList.ItemsSource = list;
 
             File.Delete(file.FullName);
-
             VideoList.SelectedIndex = 0;
         }
     }

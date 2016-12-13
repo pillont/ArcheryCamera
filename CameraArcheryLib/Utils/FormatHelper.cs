@@ -62,6 +62,7 @@ namespace CameraArcheryLib.Utils
             IntPtr ip = source.GetHbitmap();
             bs = System.Windows.Interop.Imaging.CreateBitmapSourceFromHBitmap(ip,
                                                                    IntPtr.Zero, Int32Rect.Empty,
+            
             System.Windows.Media.Imaging.BitmapSizeOptions.FromEmptyOptions());
 
             return bs;

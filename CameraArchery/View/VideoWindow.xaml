@@ -27,11 +27,14 @@
                 <DockPanel LastChildFill="True">
                     <ProgressBar Height="20"  x:Name="ProgressBar"  
                             DockPanel.Dock="Bottom"/>
-                    <StackPanel Width="100" DockPanel.Dock="Left" VerticalAlignment="Center" 
+                    <StackPanel Width="150" DockPanel.Dock="Left" VerticalAlignment="Center" 
                             x:Name="ButtonPanel" Visibility="Collapsed">
                         <Button Margin="5" HorizontalAlignment="Center" Height="50" Background="CornflowerBlue" 
                                 Content="{DynamicResource ResourceKey=StartRecord}" 
                             Click="Recording_Click"/>
+
+                        <my:CustomBrowser x:Name="BrowserControl" Width="120"></my:CustomBrowser>
+                        
                     </StackPanel>
                     <Image x:Name="pictureBox1"/>
                 </DockPanel>    
