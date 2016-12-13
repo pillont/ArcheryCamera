@@ -46,7 +46,78 @@ namespace CameraArchery.UsersControl
             }
         }
         private Uri startPauseUri;
+
+        /// <summary>
+        /// event during a start click
+        /// arg:
+        ///     1 : is Started
+        ///     2 : is Paused
+        /// return bool inform if can start
+        /// </summary>
+        public event Func<bool, bool, bool> OnStartClick;
+
+        /// <summary>
+        /// event during a stop click
+        /// return bool inform if can stop
+        /// </summary>
+        public event Func<bool> OnStopClick;
+
+        /// <summary>
+        /// event during a list video selection change
+        /// param : new value
+        /// </summary>
+        public event Action<VideoFile> OnListSelectionChange;
         
+        /// <summary>
+        /// event to inform the end of the video
+        /// </summary>
+        public event Action OnMediaEnded;
+
+        /// <summary>
+        /// event to inform the capture of a slider
+        /// </summary>
+        public event Action<double> OnSliderCapture;
+
+        /// <summary>
+        /// event to inform the change of the value of the slider
+        /// arg : new value
+        /// return : bool to inform if can change
+        /// </summary>
+        public event Func<double, bool> OnSliderChange;
+
+        /// <summary>
+        /// event to inform the speedDown click
+        /// arg : new value
+        /// return : bool to inform if can change
+        /// </summary>
+        public event Func<double, bool> OnSpeedDownClick;
+
+        /// <summary>
+        /// event to inform the speedUp click
+        /// arg : new value
+        /// return : bool to inform if can change
+        /// </summary>
+        public event Func<double, bool> OnSpeedUpClick;
+
+        /// <summary>
+        /// event to inform the frame by frame click
+        /// arg : new value
+        /// return : bool to inform if can change
+        /// </summary>
+        public event Func<bool> OnFrameClick;
+
+        /// <summary>
+        /// event to inform the deleting of a file
+        /// arg : file to delete
+        /// return : bool to inform if can delete
+        /// </summary>
+        public event Func<VideoFile, bool> OnDeleteFile;
+
+        /// <summary>
+        /// variable to save the value on mouse capture on the slider
+        /// </summary>
+        private double MouseCaptureValue;
+
         /// <summary>
         /// inform if the vieo is in frame by frame or not
         /// </summary>
@@ -137,6 +208,10 @@ namespace CameraArchery.UsersControl
         /// <param name="e"></param>
         private void Start_Click(object sender, System.Windows.RoutedEventArgs e)
         {
+            if (OnStartClick != null
+            && !OnStartClick(ReplayController.isStart, ReplayController.isPause))
+                return;
+            
             if (IsFrameByFrame)
                 return;
 
@@ -146,7 +221,7 @@ namespace CameraArchery.UsersControl
                 ReplayController.Start();
                 StartPauseUri = new Uri(URI_PAUSE);
             }
-            //continue
+            //reply
             else if (ReplayController.IsPause)
             {
                 ReplayController.Play();
@@ -167,6 +242,10 @@ namespace CameraArchery.UsersControl
         /// <param name="e"></param>
         private void Stop_Click(object sender, System.Windows.RoutedEventArgs e)
         {
+            if (OnStopClick != null
+            && !OnStopClick())
+                return;
+            
             StartPauseUri = new Uri(URI_PLAY);
 
             ReplayController.Stop();
@@ -183,6 +262,9 @@ namespace CameraArchery.UsersControl
 
             if (VideoList.SelectedValue != null)
                 ReplayController.LoadVideoFile();
+
+            if (OnListSelectionChange != null)
+                OnListSelectionChange(VideoList.SelectedValue as VideoFile);
         }
 
         /// <summary>
@@ -194,6 +276,10 @@ namespace CameraArchery.UsersControl
         {
             if (!IsFrameByFrame)
                 Stop_Click(sender, e);
+        
+            if (OnMediaEnded != null)
+                    OnMediaEnded();
+            
         }
 
         /// <summary>
@@ -214,6 +300,10 @@ namespace CameraArchery.UsersControl
         /// <param name="e"></param>
         private void TimeSlider_GotMouseCapture(object sender, System.Windows.Input.MouseEventArgs e)
         {
+            MouseCaptureValue = TimeSlider.Value;
+            if (OnSliderCapture != null)
+                OnSliderCapture(MouseCaptureValue);
+            
             if (TimeSlider.IsFocused && MediaElementVideo.Source != null)
                 MediaElementVideo.Pause();
         }
@@ -227,6 +317,10 @@ namespace CameraArchery.UsersControl
         {
             if (!ReplayController.IsPause && MediaElementVideo.Source != null)
                 MediaElementVideo.Play();
+
+            if (OnSliderChange != null &&
+                OnSliderChange(TimeSlider.Value))
+                TimeSlider.Value = MouseCaptureValue;
         }
 
         /// <summary>
@@ -266,7 +360,13 @@ namespace CameraArchery.UsersControl
         /// <param name="e"></param>
         private void SpeedDown_Click(object sender, System.Windows.RoutedEventArgs e)
         {
+            var initValue = ReplayController.MediaElement.SpeedRatio;
             ReplayController.SpeedDown();
+        
+            if (OnSpeedDownClick != null
+            && !OnSpeedDownClick(ReplayController.MediaElement.SpeedRatio))
+                ReplayController.MediaElement.SpeedRatio = initValue;
+            
             SpeedLabel.Content = ReplayController.RefreshSpeedLabel();
         }
 
@@ -277,7 +377,13 @@ namespace CameraArchery.UsersControl
         /// <param name="e"></param>
         private void SpeedUp_Click(object sender, System.Windows.RoutedEventArgs e)
         {
+            var initValue = ReplayController.MediaElement.SpeedRatio;
             ReplayController.SpeedUp();
+
+            if (OnSpeedUpClick != null
+            && !OnSpeedUpClick(ReplayController.MediaElement.SpeedRatio))
+                ReplayController.MediaElement.SpeedRatio = initValue;
+
             SpeedLabel.Content = ReplayController.RefreshSpeedLabel();
         }
 
@@ -288,6 +394,10 @@ namespace CameraArchery.UsersControl
         /// <param name="e"></param>
         private void Frame_Click(object sender, System.Windows.RoutedEventArgs e)
         {
+            if (OnFrameClick != null
+            && !OnFrameClick())
+                return;
+            
             ReplayController.FrameByFrameSetup();
         }
         
@@ -298,6 +408,10 @@ namespace CameraArchery.UsersControl
         /// <param name="e"></param>
         private void DeleteItem_Click(object sender, System.Windows.RoutedEventArgs e)
         {
+            if (OnDeleteFile != null
+            && !OnDeleteFile(VideoList.SelectedValue as VideoFile))
+                return;
+            
             ReplayController.ListRecordController.RemoveVideo(MediaElementVideo, VideoList);
         }
 

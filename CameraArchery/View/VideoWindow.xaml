@@ -38,7 +38,7 @@
             </Grid>
         </TabItem>
         <TabItem Header="{DynamicResource ResourceKey=replay}">
-            <my:CustomReplay x:Name="Replay"/>
+            <my:CustomReplay x:Name="CustomReplayComponent"/>
         </TabItem>
     </TabControl>
 </Window>

@@ -61,6 +61,80 @@ namespace CameraArchery.View
             // add lag on the video Controller
             videoController.OnNewFrame += (ref Bitmap img) => img = timeLagController.OnNewFrame(img);
             videoController.OnVideoClose += () => timeLagController.Clear();
+        
+            CustomReplayComponent.OnStopClick += CustomReplayComponent_OnStopClick;
+            CustomReplayComponent.OnStartClick += CustomReplayComponent_OnStartClick;
+            CustomReplayComponent.OnSpeedUpClick += CustomReplayComponent_OnSpeedUpClick;
+            CustomReplayComponent.OnSpeedDownClick += CustomReplayComponent_OnSpeedDownClick;
+            CustomReplayComponent.OnSliderChange += CustomReplayComponent_OnSliderChange;
+            CustomReplayComponent.OnSliderCapture += CustomReplayComponent_OnSliderCapture;
+            CustomReplayComponent.OnMediaEnded += CustomReplayComponent_OnMediaEnded;
+            CustomReplayComponent.OnListSelectionChange += CustomReplayComponent_OnListSelectionChange;
+            CustomReplayComponent.OnFrameClick += CustomReplayComponent_OnFrameClick;
+            CustomReplayComponent.OnDeleteFile += CustomReplayComponent_OnDeleteFile;
+        }
+
+        private bool CustomReplayComponent_OnDeleteFile(DataBinding.VideoFile arg)
+        {
+            LogHelper.Write("delete file "+ arg.FullName);
+            return true;
+        }
+
+        private bool CustomReplayComponent_OnFrameClick()
+        {
+            LogHelper.Write("on frame click");
+            return true;
+        }
+
+        private void CustomReplayComponent_OnListSelectionChange(DataBinding.VideoFile obj)
+        {
+            LogHelper.Write("selected file change : " + obj.FullName);
+        }
+
+        private void CustomReplayComponent_OnMediaEnded()
+        {
+            LogHelper.Write("media is ended");
+        }
+
+        private void CustomReplayComponent_OnSliderCapture(double obj)
+        {
+            LogHelper.Write("slider is capture at " + obj +" sec");
+        }
+
+        private bool CustomReplayComponent_OnSliderChange(double arg)
+        {
+            LogHelper.Write("slider is change to " + arg + " sec");
+            return true;
+        }
+
+        private bool CustomReplayComponent_OnSpeedDownClick(double arg)
+        {
+            LogHelper.Write("speed down : " + arg);
+            return true;
+        }
+
+        private bool CustomReplayComponent_OnSpeedUpClick(double arg)
+        {
+            LogHelper.Write("speed up : " + arg);
+            return true;    
+        }
+
+        private bool CustomReplayComponent_OnStartClick(bool isStart, bool isPause)
+        {
+            if(!isStart)
+            LogHelper.Write("start click");
+            else if (isPause)
+                    LogHelper.Write("reply click");
+            else
+                LogHelper.Write("Pause click");
+
+            return true;
+        }
+
+        private bool CustomReplayComponent_OnStopClick()
+        {
+            LogHelper.Write("stop click");
+            return true;
         }
 
         /// <summary>
@@ -140,12 +214,20 @@ namespace CameraArchery.View
         /// <param name="e"></param>
         private void Recording_Click(object sender, RoutedEventArgs e)
         {
+            LogHelper.Write("click recording");
+
             var isRecording = videoController.Recording();
 
-            (sender as Button).Content = isRecording ?
-                LanguageController.Get("StopRecord") :
-                LanguageController.Get("StartRecord");
-
+            if (isRecording)
+            {
+                LogHelper.Write("start recording");
+                (sender as Button).Content = LanguageController.Get("StopRecord");
+            }
+            else
+            {
+                LogHelper.Write("stop recording");
+                (sender as Button).Content = LanguageController.Get("StartRecord");
+            }
         }    
         
         /// <summary>
@@ -155,7 +237,9 @@ namespace CameraArchery.View
         /// <param name="e"></param>
         private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (e.Source is TabControl && videoController.recorderController.IsRedording)
+            LogHelper.Write("tab control change to : "+MainTabControl.SelectedValue+ ". Is recording : " + videoController.recorderController.IsRecording);
+
+            if (e.Source is TabControl && videoController.recorderController.IsRecording)
                 MainTabControl.SelectedIndex = 0;
         }
     }
