@@ -169,7 +169,6 @@
     <Compile Include="Controller\RecorderController.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Controller\ReplayController.cs" />
     <Compile Include="Controller\SettingController.cs" />
     <Compile Include="Controller\TimeLagController.cs" />
     <Compile Include="Controller\VideoController.cs" />

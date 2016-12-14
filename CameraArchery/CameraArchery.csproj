@@ -217,7 +217,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Behaviors\TestBehavior.cs" />
+    <Compile Include="Behaviors\LogReplayBehavior.cs" />
+    <Compile Include="Behaviors\ReplayBehavior.cs" />
+    <Compile Include="Behaviors\VideoBrowserBehavior.cs" />
     <Compile Include="UsersControl\CustomBrowser.xaml.cs">
       <DependentUpon>CustomBrowser.xaml</DependentUpon>
     </Compile>

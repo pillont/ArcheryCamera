@@ -38,6 +38,7 @@ namespace CameraArchery.UsersControl
             this.IsDouble = false;
         }
 
+        #region event
         /// <summary>
         /// event to limit the numeric input
         /// </summary>
@@ -50,5 +51,6 @@ namespace CameraArchery.UsersControl
             else
                 e.Handled = !FormatHelper.IsTextNumericInteger(TextBox.Text + e.Text);
         }
+        #endregion
     }
 }

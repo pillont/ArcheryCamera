@@ -1,5 +1,6 @@
 ﻿using Accord.Video.DirectShow;
 using CameraArchery.DataBinding;
+using CameraArcheryLib.Controller;
 using CameraArcheryLib.Factories;
 using CameraArcheryLib.Utils;
 using System;
@@ -12,14 +13,29 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using System.Windows.Interactivity;
 
-namespace CameraArcheryLib.Controller
+namespace CameraArchery.Behaviors
 {
     /// <summary>
     ///  controller to manage the list of recorded video file
     /// </summary>
-    public static class ListRecordController
+    public class ListRecordBehavior : Behavior<ListView>
     {
+        /// <summary>
+        /// list of the files
+        /// </summary>
+        public ListBox VideoList { get; set; }
+
+        /// <summary>
+        /// ctor
+        /// </summary>
+        /// <param name="videoList"></param>
+        public ListRecordBehavior(ListBox videoList)
+        {
+            this.VideoList = videoList;
+        }
+
         /// <summary>
         /// get the list of video
         /// <para> check all the file in the directory</para>
@@ -28,7 +44,7 @@ namespace CameraArcheryLib.Controller
         /// </summary>
         /// <param name="list">current list</param>
         /// <returns>list with all the file</returns>
-        public static IList<VideoFile> GetList()
+        public IList<VideoFile> GetList()
         {
             var res = new List<VideoFile>();
 
@@ -45,7 +61,7 @@ namespace CameraArcheryLib.Controller
                         Name = name.Replace(SettingFactory.CurrentSetting.VideoFolder + "\\", ""),
                         FullName = name
                     };
-            
+
                     // add the file in the list
                     if (file != null)
                         res.Add(file);
@@ -61,7 +77,7 @@ namespace CameraArcheryLib.Controller
             return res;
         }
 
-        
+
 
 
         /// <summary>
@@ -103,7 +119,7 @@ namespace CameraArcheryLib.Controller
         /// get all the file names in the video directory
         /// </summary>
         /// <returns>list of the names</returns>
-        public static IEnumerable<string> getFileNames()
+        public IEnumerable<string> getFileNames()
         {
             if (!Directory.Exists(SettingFactory.CurrentSetting.VideoFolder))
                 return new List<string>();
@@ -121,7 +137,7 @@ namespace CameraArcheryLib.Controller
         /// </summary>
         /// <param name="MediaElementVideo">mediaElement to view the file</param>
         /// <param name="VideoList">list of the video file</param>
-        public static void RemoveVideo(MediaElement MediaElementVideo, ListBox VideoList)
+        public void RemoveVideo(MediaElement MediaElementVideo, ListBox VideoList)
         {
             MediaElementVideo.Stop();
             MediaElementVideo.Source = null;
@@ -136,4 +152,5 @@ namespace CameraArcheryLib.Controller
             VideoList.SelectedIndex = 0;
         }
     }
+    
 }

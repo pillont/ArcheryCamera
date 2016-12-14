@@ -9,6 +9,8 @@ using System.Windows.Input;
 using System.Windows.Threading;
 using CameraArcheryLib;
 using Accord.Video.DirectShow;
+using System.Windows.Interactivity;
+using CameraArchery.Behaviors;
 
 namespace CameraArchery.View
 {
@@ -33,21 +35,19 @@ namespace CameraArchery.View
         /// <para>init the conponent</para>
         /// <para>init the video Controller</para>
         /// <para>init the time lag Controller</para>
-        /// <para>connect the Controller to the view</para>
-        /// <para>connect the lag Controller to the video Controller</para>
+        /// <para>connect the VideoBrowserBehavior and LogReplayBehavior</para>
         /// </summary>
         /// <param name="videoDevices">video device</param>
         public VideoWindow(FilterInfo videoDevice)
         {
             LogHelper.Write("--------------- open video view -----------------");
+            
             LanguageController.InitLanguage(this.Resources.MergedDictionaries);
-
             InitializeComponent();
 
             // new view Controller
             videoController = new VideoController(ShowImage, videoDevice);
             
-
             // init the time lag Controller
             timeLagController = new TimeLagController();
             timeLagController.lagLoadFeedBackController.OnProgressChange = (db) => Dispatcher.Invoke(() =>  ProgressBar.Value = db);
@@ -62,79 +62,8 @@ namespace CameraArchery.View
             videoController.OnNewFrame += (ref Bitmap img) => img = timeLagController.OnNewFrame(img);
             videoController.OnVideoClose += () => timeLagController.Clear();
         
-            CustomReplayComponent.OnStopClick += CustomReplayComponent_OnStopClick;
-            CustomReplayComponent.OnStartClick += CustomReplayComponent_OnStartClick;
-            CustomReplayComponent.OnSpeedUpClick += CustomReplayComponent_OnSpeedUpClick;
-            CustomReplayComponent.OnSpeedDownClick += CustomReplayComponent_OnSpeedDownClick;
-            CustomReplayComponent.OnSliderChange += CustomReplayComponent_OnSliderChange;
-            CustomReplayComponent.OnSliderCapture += CustomReplayComponent_OnSliderCapture;
-            CustomReplayComponent.OnMediaEnded += CustomReplayComponent_OnMediaEnded;
-            CustomReplayComponent.OnListSelectionChange += CustomReplayComponent_OnListSelectionChange;
-            CustomReplayComponent.OnFrameClick += CustomReplayComponent_OnFrameClick;
-            CustomReplayComponent.OnDeleteFile += CustomReplayComponent_OnDeleteFile;
-        }
-
-        private bool CustomReplayComponent_OnDeleteFile(DataBinding.VideoFile arg)
-        {
-            LogHelper.Write("delete file "+ arg.FullName);
-            return true;
-        }
-
-        private bool CustomReplayComponent_OnFrameClick()
-        {
-            LogHelper.Write("on frame click");
-            return true;
-        }
-
-        private void CustomReplayComponent_OnListSelectionChange(DataBinding.VideoFile obj)
-        {
-            LogHelper.Write("selected file change : " + obj);
-        }
-
-        private void CustomReplayComponent_OnMediaEnded()
-        {
-            LogHelper.Write("media is ended");
-        }
-
-        private void CustomReplayComponent_OnSliderCapture(double obj)
-        {
-            LogHelper.Write("slider is capture at " + obj +" sec");
-        }
-
-        private bool CustomReplayComponent_OnSliderChange(double arg)
-        {
-            LogHelper.Write("slider is change to " + arg + " sec");
-            return true;
-        }
-
-        private bool CustomReplayComponent_OnSpeedDownClick(double arg)
-        {
-            LogHelper.Write("speed down : " + arg);
-            return true;
-        }
-
-        private bool CustomReplayComponent_OnSpeedUpClick(double arg)
-        {
-            LogHelper.Write("speed up : " + arg);
-            return true;    
-        }
-
-        private bool CustomReplayComponent_OnStartClick(bool isStart, bool isPause)
-        {
-            if(!isStart)
-            LogHelper.Write("start click");
-            else if (isPause)
-                    LogHelper.Write("reply click");
-            else
-                LogHelper.Write("Pause click");
-
-            return true;
-        }
-
-        private bool CustomReplayComponent_OnStopClick()
-        {
-            LogHelper.Write("stop click");
-            return true;
+            Interaction.GetBehaviors(BrowserControl).Add(new VideoBrowserBehavior());
+            Interaction.GetBehaviors(CustomReplayComponent).Add(new LogReplayBehavior());
 
         }
 

@@ -7,6 +7,7 @@ using System;
 
 namespace CameraArchery.UsersControl.EditableTextBlock
 {
+
     public class EditableTextBlock : TextBlock
     {
         private string InitText;

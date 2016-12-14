@@ -1,5 +1,7 @@
 ﻿using Accord.Video.DirectShow;
 using CameraArchery.DataBinding;
+using CameraArchery.UsersControl;
+using CameraArcheryLib.Controller;
 using CameraArcheryLib.Factories;
 using CameraArcheryLib.Utils;
 using System;
@@ -9,106 +11,61 @@ using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Windows.Controls;
+using System.Windows.Interactivity;
 using System.Windows.Threading;
 
-namespace CameraArcheryLib.Controller
+namespace CameraArchery.Behaviors
 {
     /// <summary>
     /// controller to manage the video replay
     /// </summary>
-    public class ReplayController
+    public class ReplayBehavior : Behavior<CustomReplay>
     {
-        /*
-         * event of the changes of state
-         */
-        
-        /// <summary>
-        /// when the state of pause is changed
-        /// </summary>
-        public event Action<bool> IsPauseChange;
-        
-        /// <summary>
-        /// when the state of start is changed
-        /// </summary>
-        public event Action<bool> IsStartChange;
-
-        /// <summary>
-        /// when the state of frame to frame is changed
-        /// </summary>
-        public event Action<bool> IsFrameByFrameChange;
-        
+        #region element of the associated object
         /// <summary>
         /// media element to manage
         /// </summary>
-        public MediaElement MediaElement { get; set; }
-        
+        public MediaElement MediaElement
+        {
+            get
+            {
+                return AssociatedObject.MediaElementVideo;
+            }
+        }
+
         /// <summary>
         /// slider to manage the time
         /// </summary>
-        public Slider TimeSlider { get; set; }
-        
+        public Slider TimeSlider 
+        { 
+            get 
+            {
+                return AssociatedObject.TimeSlider;
+            } 
+        }
+
         /// <summary>
         /// label to inform the time
         /// </summary>
-        public Label LabelTime { get; set; }
-
-        /// <summary>
-        /// inform if the media is in pause or not
-        /// </summary>
-        public bool IsPause 
-        { 
+        public Label LabelTime 
+        {
             get
             {
-                return isPause;
-            }
-            private set
-            {
-                isPause = value;
-
-                if (IsPauseChange != null)
-                    IsPauseChange(value);
+                return AssociatedObject.SpeedLabel;
             }
         }
-        public bool isPause;
         
         /// <summary>
-        /// inform if the media is in start or not
+        /// speed ratio of the mediaElement
         /// </summary>
-        public bool IsStart
+        public double SpeedRatio
         {
             get
             {
-                return isStart;
-            }
-            private set
-            {
-                isStart = value;
-
-
-                if (IsStartChange != null)
-                    IsStartChange(value);
+                return MediaElement.SpeedRatio;
             }
         }
-        public bool isStart;
-
-        /// <summary>
-        /// inform if the vieo is in frame by frame or not
-        /// </summary>
-        public bool IsFrameByFrame
-        {
-            get
-            {
-                return isFrameByFrame;
-            }
-            set
-            {
-                isFrameByFrame = value;
-
-                if (IsFrameByFrameChange != null)
-                    IsFrameByFrameChange(value);
-            }
-        }
-        private bool isFrameByFrame;
+        #endregion
 
         /// <summary>
         /// timer to update the time value
@@ -120,38 +77,38 @@ namespace CameraArcheryLib.Controller
         /// </summary>
         private object lockerTimer = new object();
 
+        
+
         /// <summary>
-        /// speed ratio of the mediaElement
+        /// on attached associated object
         /// </summary>
-        public double SpeedRatio
+        protected override void OnAttached()
         {
-            get
-            {
-                return MediaElement.SpeedRatio;
-            }
+            base.OnAttached();
+            
+            AssociatedObject.IsFrameByFrame = false;
+            AssociatedObject.IsStart = false;
+            AssociatedObject.PropertyChanged += AssociatedObject_PropertyChanged;
+
+
+            AssociatedObject.FrameByFrameSetup = FrameByFrameSetup;
+            AssociatedObject.RefreshSpeedLabel = RefreshSpeedLabel;
+            AssociatedObject.SpeedUp = SpeedUp;
+            AssociatedObject.SpeedDown = SpeedDown ;
+            AssociatedObject.StartTimer = StartTimer;
+            AssociatedObject.StopTimer = StopTimer;
+            AssociatedObject.LoadVideoFile = LoadVideoFile;
+            AssociatedObject.Stop = Stop;
+            AssociatedObject.Pause = Pause;
+            AssociatedObject.Play = Play;
+            AssociatedObject.Start = Start;
         }
 
-        /// <summary>
-        /// controller to manage the list of file
-        /// </summary>
-        public ListRecordController ListRecordController { get; set; } 
-        
-        /// <summary>
-        /// ctor
-        /// </summary>
-        /// <param name="mediaElement">media element associate</param>
-        /// <param name="timeSlider">slider to inform the time</param>
-        /// <param name="labelTime">label to inform the time</param>
-        public ReplayController(MediaElement mediaElement, Slider timeSlider, Label labelTime, ListBox videoList)
+        void AssociatedObject_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            this.MediaElement = mediaElement;
-            this.TimeSlider = timeSlider;
-            this.LabelTime = labelTime;
-
-            ListRecordController = new ListRecordController(videoList);
-            IsFrameByFrame = false;
-            IsStart = false;
-
+            if(e.PropertyName == "IsFrameByFrame"
+                && !AssociatedObject.IsFrameByFrame && AssociatedObject.IsStart)
+                    Play();
         }
 
         /// <summary>
@@ -159,7 +116,7 @@ namespace CameraArcheryLib.Controller
         /// </summary>
         public void LoadVideoFile()
         {
-            var stringUri = ((VideoFile)ListRecordController.VideoList.SelectedValue).FullName;
+            var stringUri = ((VideoFile) AssociatedObject.VideoList.SelectedValue).FullName;
 
             MediaElement.Stop();
             MediaElement.Source = new Uri(stringUri, UriKind.Relative);
@@ -173,8 +130,9 @@ namespace CameraArcheryLib.Controller
         {
             MediaElement.Stop();
             MediaElement.Position = new TimeSpan(0);
-            IsPause = false;
-            IsStart = false;
+            AssociatedObject.IsPause = false;
+            AssociatedObject.IsStart = false;
+            AssociatedObject.IsFrameByFrame = false;
         }
 
         /// <summary>
@@ -182,7 +140,7 @@ namespace CameraArcheryLib.Controller
         /// </summary>
         public void Pause()
         {
-            IsPause = true;
+            AssociatedObject.IsPause = true;
 
             MediaElement.Pause();
         }
@@ -196,8 +154,8 @@ namespace CameraArcheryLib.Controller
                 return;
             MediaElement.Play();
 
-            IsPause = false;
-            IsStart = true;
+            AssociatedObject.IsPause = false;
+            AssociatedObject.IsStart = true;
         }
 
         /// <summary>
@@ -231,7 +189,7 @@ namespace CameraArcheryLib.Controller
             TimeSpan position = new TimeSpan(0);
             TimeSpan duration = new TimeSpan(0);
             TimeSlider.Value = 0;
-            
+
             if (MediaElement.Source != null)
             {
                 // get time
@@ -271,7 +229,7 @@ namespace CameraArcheryLib.Controller
         /// </summary>
         public void Play()
         {
-            IsPause = false;
+            AssociatedObject.IsPause = false;
             MediaElement.Play();
         }
 
@@ -280,8 +238,8 @@ namespace CameraArcheryLib.Controller
         /// </summary>
         public void SpeedDown()
         {
-            if(MediaElement.SpeedRatio > 0)
-                MediaElement.SpeedRatio -= 0.1;     
+            if (MediaElement.SpeedRatio > 0)
+                MediaElement.SpeedRatio -= 0.1;
         }
 
         /// <summary>
@@ -289,8 +247,8 @@ namespace CameraArcheryLib.Controller
         /// </summary>
         public void SpeedUp()
         {
-            if(MediaElement.SpeedRatio <2)
-                MediaElement.SpeedRatio += 0.1;     
+            if (MediaElement.SpeedRatio < 2)
+                MediaElement.SpeedRatio += 0.1;
         }
 
         /// <summary>
@@ -299,9 +257,9 @@ namespace CameraArcheryLib.Controller
         public bool FrameByFrameSetup()
         {
             var res = false;
-            if (IsStart)
+            if (AssociatedObject.IsStart)
             {
-                if (IsFrameByFrame)
+                if (AssociatedObject.IsFrameByFrame)
                 {
                     MediaElement.Pause();
                     MediaElement.MouseLeftButtonDown += MediaElementVideo_MouseLeftButtonDown;
@@ -310,14 +268,14 @@ namespace CameraArcheryLib.Controller
                 else
                 {
                     MediaElement.MouseLeftButtonDown -= MediaElementVideo_MouseLeftButtonDown;
-                    
-                    if(!isPause)
+
+                    if (!AssociatedObject.IsPause)
                         MediaElement.Play();
                 }
             }
             return res;
         }
-        
+
         /// <summary>
         /// event on the mouse left down in the media element if frame by frame is done
         /// </summary>
@@ -344,16 +302,15 @@ namespace CameraArcheryLib.Controller
         public string RefreshSpeedLabel()
         {
             var time = Convert.ToInt32(SpeedRatio * 100);
-            
+
             // more slowly
-            if(time == 0)
-                time ++;
+            if (time == 0)
+                time++;
             // if stop
             if (time == -10)
                 time = 0;
 
             return time.ToString() + "%";
-        
         }
     }
 }

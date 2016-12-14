@@ -28,7 +28,15 @@ namespace CameraArchery.UsersControl
     /// </summary>
     public partial class CustomBrowser : System.Windows.Controls.UserControl, INotifyPropertyChanged
     {
-        private Brush foreground;
+        /// <summary>
+        /// event to dataBinding
+        /// </summary>
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        /// <summary>
+        /// color of the text in the browse
+        /// initial color = black
+        /// </summary>
         public Brush Foreground
         {
             get
@@ -41,13 +49,11 @@ namespace CameraArchery.UsersControl
                 OnPropertyChanged("Foreground");
             }
         }
+        private Brush foreground = Brushes.Black;
 
         /// <summary>
-        /// event to dataBinding
+        /// selected uri of the browser
         /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        private Uri selectedUri;
         public Uri SelectedUri 
         { 
             get
@@ -62,8 +68,11 @@ namespace CameraArchery.UsersControl
                 FileName = selectedUri.OriginalString.Split('\\').Last();
             }
         }
+        private Uri selectedUri;
 
-        public string fileName;
+        /// <summary>
+        /// file name of the selected file
+        /// </summary>
         public string FileName
         {
             get 
@@ -76,21 +85,26 @@ namespace CameraArchery.UsersControl
                 OnPropertyChanged("FileName");
             }
         }
+        public string fileName;
 
-
+        /// <summary>
+        /// ctor
+        /// </summary>
         public CustomBrowser()
         {
             InitializeComponent();
             this.DataContext = this;
-            Foreground = Brushes.Black;
         }
 
-        public Uri Root { get; set; }
-        private void ShowDialog()
+        #region event
+        /// <summary>
+        /// show the dialog 
+        /// <para>if no selected uri => init to the current directory</para>
+        /// <para>open a FolderBrowserDialog</para>
+        /// <para>change the value of the selectedUri</para>
+        /// </summary>
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if (Root == null)
-                Root = new Uri(Directory.GetCurrentDirectory(), UriKind.Absolute);
-            
             if (SelectedUri == null)
                 SelectedUri = new Uri(Directory.GetCurrentDirectory(), UriKind.Absolute);
 
@@ -100,12 +114,11 @@ namespace CameraArchery.UsersControl
             var result = dialog.ShowDialog();
             var newUri = new Uri(dialog.SelectedPath, UriKind.Absolute);
 
-            if(SettingFactory.CurrentSetting.VideoFolder != newUri.OriginalString)
-                SettingController.UpdateUri(newUri);
-
             SelectedUri = newUri;
         }
-        
+        #endregion
+
+        #region databinding
         /// <summary>
         /// function to dataBinding
         /// </summary>
@@ -117,11 +130,7 @@ namespace CameraArchery.UsersControl
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            ShowDialog();
-        }
-
+        #endregion
+        
     }
 }
