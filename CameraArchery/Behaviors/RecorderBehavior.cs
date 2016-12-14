@@ -20,7 +20,7 @@ namespace CameraArchery.Behaviors
     /// <summary>
     /// controller to recorder
     /// </summary>
-    public class RecorderBehavior : Behavior<CustomVideoImage>
+    public class RecorderBehavior : Behavior<CustomVideoElement>
     {
         /// <summary>
         /// extension of the video files
@@ -53,23 +53,22 @@ namespace CameraArchery.Behaviors
         /// <summary>
         /// writer of video file
         /// </summary>
-        internal VideoFileWriter Writer { get; set; }
-        internal object writerLocker = new object();
-
-        /// <summary>
-        /// inform if the controller is recodring or not
-        /// </summary>
-        public bool IsRecording
+        internal VideoFileWriter Writer 
         {
             get
             {
-                Monitor.Enter(writerLocker);
-                var res = Writer != null;
-                Monitor.Exit(writerLocker);
+                return writer;
+            }
+            set
+            {
+                writer = value;
 
-                return res;
+                AssociatedObject.IsRecording = Writer != null; 
             }
         }
+        private VideoFileWriter writer;
+        private object writerLocker = new object();
+
 
 
         protected override void OnAttached()
@@ -163,7 +162,7 @@ namespace CameraArchery.Behaviors
         public bool Recording()
         {
             // start recording
-            if (!IsRecording)
+            if (!AssociatedObject.IsRecording)
             {
                 StartRecording();
                 VideoBehavior.OnNewFrame += VideoController_OnNewFrame;

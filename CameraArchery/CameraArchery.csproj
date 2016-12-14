@@ -225,7 +225,9 @@
     <Compile Include="UsersControl\CustomBrowser.xaml.cs">
       <DependentUpon>CustomBrowser.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UsersControl\CustomVideoImage.cs" />
+    <Compile Include="UsersControl\CustomVideoElement.xaml.cs">
+      <DependentUpon>CustomVideoElement.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UsersControl\EditableTextBlock\EditableTextBlock.cs" />
     <Compile Include="UsersControl\EditableTextBlock\EditableTextBlockAdorner.cs" />
     <Compile Include="View\CustomMessageBox.xaml.cs">
@@ -270,6 +272,10 @@
     <Page Include="UsersControl\CustomBrowser.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UsersControl\CustomVideoElement.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="View\CustomMessageBox.xaml">
       <SubType>Designer</SubType>

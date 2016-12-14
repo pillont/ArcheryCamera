@@ -17,30 +17,9 @@
 
         </TabControl.Resources>
         <TabItem Header="{DynamicResource ResourceKey=video}">
-            <Grid>
-                <Popup Name="myPopup" IsOpen="True" HorizontalAlignment="Center" 
-                            PlacementTarget="{Binding ElementName=MainPanel}" Placement="Center">
-                    <TextBlock Name="myPopupText" FontSize="20" 
-                            Background="LightBlue" Foreground="Blue"  
-                            Text="{DynamicResource ResourceKey=videoPopUp}"/>
-                </Popup>
-                <DockPanel LastChildFill="True">
-                    <ProgressBar Height="20"  x:Name="ProgressBar"  
-                            DockPanel.Dock="Bottom"/>
-                    <StackPanel Width="150" DockPanel.Dock="Left" VerticalAlignment="Center" 
-                            x:Name="ButtonPanel" Visibility="Collapsed">
-                        <Button Margin="5" HorizontalAlignment="Center" Height="50" Background="CornflowerBlue" 
-                                Content="{DynamicResource ResourceKey=StartRecord}" 
-                            Click="Recording_Click"/>
-
-                        <my:CustomBrowser x:Name="BrowserControl" Width="120"></my:CustomBrowser>
-                        
-                    </StackPanel>
-                    <my:CustomVideoImage x:Name="PictureVideo"/>
-                </DockPanel>    
-            </Grid>
+            <my:CustomVideoElement x:Name="CustomVideoComponent"/>
         </TabItem>
-        <TabItem Header="{DynamicResource ResourceKey=replay}">
+        <TabItem Header="{DynamicResource ResourceKey=replay}" Margin="-2,5,-2,-8">
             <my:CustomReplay x:Name="CustomReplayComponent"/>
         </TabItem>
     </TabControl>

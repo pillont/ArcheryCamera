@@ -78,7 +78,6 @@ namespace CameraArchery.Behaviors
         private object lockerTimer = new object();
 
         
-
         /// <summary>
         /// on attached associated object
         /// </summary>
@@ -88,9 +87,7 @@ namespace CameraArchery.Behaviors
             
             AssociatedObject.IsFrameByFrame = false;
             AssociatedObject.IsStart = false;
-            AssociatedObject.PropertyChanged += AssociatedObject_PropertyChanged;
-
-
+        
             AssociatedObject.FrameByFrameSetup = FrameByFrameSetup;
             AssociatedObject.RefreshSpeedLabel = RefreshSpeedLabel;
             AssociatedObject.SpeedUp = SpeedUp;
@@ -102,13 +99,6 @@ namespace CameraArchery.Behaviors
             AssociatedObject.Pause = Pause;
             AssociatedObject.Play = Play;
             AssociatedObject.Start = Start;
-        }
-
-        void AssociatedObject_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
-        {
-            if(e.PropertyName == "IsFrameByFrame"
-                && !AssociatedObject.IsFrameByFrame && AssociatedObject.IsStart)
-                    Play();
         }
 
         /// <summary>

@@ -177,6 +177,7 @@
     <Compile Include="Interface\IVideoBehavior.cs" />
     <Compile Include="Models\Setting.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils\BehaviorHelper.cs" />
     <Compile Include="Utils\LogHelper.cs" />
     <Compile Include="Utils\FormatHelper.cs" />
     <Compile Include="Utils\SerializeHelper.cs" />

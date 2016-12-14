@@ -11,6 +11,7 @@ using CameraArcheryLib.Factories;
 using System.Collections.ObjectModel;
 using System.Windows.Interactivity;
 using CameraArchery.Behaviors;
+using CameraArcheryLib.Utils;
 
 namespace CameraArchery.UsersControl
 {
@@ -111,7 +112,7 @@ namespace CameraArchery.UsersControl
         /// arg : new value
         /// return : bool to inform if can change
         /// </summary>
-        public event Func<bool> OnFrameClick;
+        public event Action OnFrameClick;
 
         /// <summary>
         /// event to inform the deleting of a file
@@ -171,7 +172,10 @@ namespace CameraArchery.UsersControl
             {
                 isFrameByFrame = value;
                 OnPropertyChanged("IsFrameByFrame");
-           }
+
+                if (FrameByFrameSetup !=  null)
+                    FrameByFrameSetup();
+            }
         }
         private bool isFrameByFrame;
 
@@ -212,12 +216,12 @@ namespace CameraArchery.UsersControl
             
             StartPauseUri = new Uri(URI_PLAY);
 
-            Interaction.GetBehaviors(this).Add(new ReplayBehavior());
-             
+            BehaviorHelper.AddSingleBehavior(new ReplayBehavior(), this);
+            BehaviorHelper.AddSingleBehavior(new VideoBrowserBehavior(), BrowserControl);
+
             Refresh();
 
             BrowserControl.PropertyChanged += BrowserControl_PropertyChanged;
-            Interaction.GetBehaviors(BrowserControl).Add(new VideoBrowserBehavior());
         }
 
         private void BrowserControl_PropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -457,11 +461,8 @@ namespace CameraArchery.UsersControl
         /// <param name="e"></param>
         private void Frame_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            if (OnFrameClick != null
-            && !OnFrameClick())
-                return;
-            
-            FrameByFrameSetup();
+            if (OnFrameClick != null)
+                OnFrameClick();
         }
         
         /// <summary>
