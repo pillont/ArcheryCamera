@@ -217,7 +217,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Behaviors\ThumbnailBehavior.cs" />
+    <Compile Include="Behaviors\TestBehavior.cs" />
     <Compile Include="UsersControl\CustomBrowser.xaml.cs">
       <DependentUpon>CustomBrowser.xaml</DependentUpon>
     </Compile>
@@ -380,6 +380,7 @@
   <ItemGroup>
     <Resource Include="Ressources\Images\delete.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Accord.3.3.0\build\Accord.targets" Condition="Exists('..\packages\Accord.3.3.0\build\Accord.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
