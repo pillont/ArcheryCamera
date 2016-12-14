@@ -1,6 +1,7 @@
 ﻿using CameraArcheryLib.Utils;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,6 +11,7 @@ namespace CameraArcheryLib.Models
 {
     public class Setting
     {
+        private const string VIDEO_FOLDER_NAME = "\\Video";
         /// <summary>
         /// the number of the future video
         /// </summary>
@@ -48,7 +50,7 @@ namespace CameraArcheryLib.Models
             Time = 0;
             Frame = 1;
             this.Language = LanguageController.Languages.English;
-            VideoFolder = "Video";
+            VideoFolder = @""+Directory.GetCurrentDirectory() + VIDEO_FOLDER_NAME ;
         }
 
         /// <summary>

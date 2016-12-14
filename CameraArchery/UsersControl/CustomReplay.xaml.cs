@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using System.IO;
 using System.ComponentModel;
 using CameraArcheryLib.Factories;
+using System.Collections.ObjectModel;
 
 namespace CameraArchery.UsersControl
 {
@@ -159,6 +160,13 @@ namespace CameraArchery.UsersControl
             
             Refresh();
 
+            BrowserControl.PropertyChanged += BrowserControl_PropertyChanged;
+        }
+
+        void BrowserControl_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == "FileName")
+                RefreshList();
         }
         
         /// <summary>
@@ -182,15 +190,22 @@ namespace CameraArchery.UsersControl
             RefreshList();
         }
 
+
+        public ObservableCollection<VideoFile> VideoFileList {get;set;}
+
         /// <summary>
         /// refresh the list of files
         /// </summary>
         /// <param name="list">current file in the list</param>
-        private void RefreshList(IList<VideoFile> list = null)
+        private void RefreshList()
         {
             try
             {
-                VideoList.ItemsSource = ReplayController.ListRecordController.GetList(list);
+                VideoFileList = new ObservableCollection<VideoFile>();
+                foreach(var file in ReplayController.ListRecordController.GetList())
+                    VideoFileList.Add(file);
+
+                OnPropertyChanged("VideoFileList"); 
             }
             catch(Exception e)
             {
@@ -332,7 +347,7 @@ namespace CameraArchery.UsersControl
         /// <param name="e"></param>
         private void VideoList_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
-            RefreshList((IList<VideoFile>)VideoList.ItemsSource);
+            RefreshList();
         }
 
         /// <summary>
@@ -428,6 +443,13 @@ namespace CameraArchery.UsersControl
             {
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
+        }
+
+        private void thumbnail_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        {
+            var me= (sender as MediaElement);
+            me.Position = new TimeSpan(0, 0, 0);
+            me.SpeedRatio = 0;
         }
      }
 }

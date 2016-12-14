@@ -89,15 +89,17 @@ namespace CameraArchery.UsersControl
         private void ShowDialog()
         {
             if (Root == null)
-                Root = new Uri(Directory.GetCurrentDirectory(), UriKind.Relative);
-
+                Root = new Uri(Directory.GetCurrentDirectory(), UriKind.Absolute);
+            
             if (SelectedUri == null)
-                SelectedUri = new Uri(Directory.GetCurrentDirectory(), UriKind.Relative);
+                SelectedUri = new Uri(Directory.GetCurrentDirectory(), UriKind.Absolute);
 
-            var dialog = new CustomBrowserFolder(Root, SelectedUri);
-            dialog.ShowDialog();
+            var dialog = new FolderBrowserDialog();
+            dialog.SelectedPath = SettingFactory.CurrentSetting.VideoFolder;
 
-            var newUri = dialog.SelectedUri;
+            var result = dialog.ShowDialog();
+            var newUri = new Uri(dialog.SelectedPath, UriKind.Absolute);
+
             if(SettingFactory.CurrentSetting.VideoFolder != newUri.OriginalString)
                 SettingController.UpdateUri(newUri);
 

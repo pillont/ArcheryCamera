@@ -4,23 +4,26 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:my="clr-namespace:CameraArchery.UsersControl"
-             
-             mc:Ignorable="d" 
+             xmlns:bhv="clr-namespace:CameraArchery.Behaviors"
+            xmlns:i="using:Microsoft.Xaml.Interactivity"
+            mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300" Unloaded="UserControl_Unloaded" Loaded="UserControl_Loaded">
     <DockPanel LastChildFill="True">
         <DockPanel LastChildFill="True" DockPanel.Dock="Left">
-            <my:CustomBrowser x:Name="BrowserControl" Foreground="White" DockPanel.Dock="Top" Width="120"></my:CustomBrowser>
+            <my:CustomBrowser x:Name="BrowserControl" DockPanel.Dock="Top" Width="120"></my:CustomBrowser>
 
-            <ListBox SelectionMode="Single" Background="MidnightBlue" HorizontalAlignment="Center" x:Name="VideoList" Width="150" 
+            <ListBox SelectionMode="Single" Background="MidnightBlue" HorizontalAlignment="Center" 
+                     x:Name="VideoList" Width="150" ItemsSource="{Binding VideoFileList, Mode=TwoWay}" 
                  SelectionChanged="VideoList_SelectionChanged" Loaded="VideoList_Loaded">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Vertical" HorizontalAlignment="Center" IsEnabled="False" 
                                 ContextMenuService.ShowOnDisabled="True">
                         <TextBlock HorizontalAlignment="Center" Text="{Binding Name}"/>
-                        <Image Source="{Binding Image}" Margin="0,0,0,20" 
-                               Width="100" Height="100" Stretch="UniformToFill" />
-                        <StackPanel.ContextMenu>
+
+                            <MediaElement  Source="{Binding FullName}" Loaded="thumbnail_Loaded" Margin="0,0,0,20"  
+                                    x:Name="thumbnail" Width="100" Height="100"  ScrubbingEnabled="True"/>
+                            <StackPanel.ContextMenu>
                             <ContextMenu>
                                 <MenuItem Header="{DynamicResource ResourceKey=delete}" Click="DeleteItem_Click">
                                     <MenuItem.Icon>
@@ -87,7 +90,7 @@
             </DockPanel>
         </StackPanel>
 
-        <MediaElement  x:Name="MediaElementVideo" Source="video/10.avi" LoadedBehavior="Manual" 
+        <MediaElement  x:Name="MediaElementVideo" LoadedBehavior="Manual" 
                       UnloadedBehavior="Stop" MediaEnded="MediaElementVideo_MediaEnded" ScrubbingEnabled="True"/>
     </DockPanel>
 </UserControl>

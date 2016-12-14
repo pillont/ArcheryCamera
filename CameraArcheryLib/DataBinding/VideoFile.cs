@@ -12,6 +12,10 @@ namespace CameraArchery.DataBinding
     {
         public string Name { get; set; }
         public string FullName { get; set; }
-        public BitmapSource Image { get; set; }
+        
+        public override string ToString()
+        {
+            return this.Name;
+        }
     }
 }

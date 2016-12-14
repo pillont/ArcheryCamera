@@ -205,6 +205,7 @@ namespace CameraArchery
             // start window
             var window = new VideoWindow(selectedDevice);
             window.ShowDialog();
+        
         }
 
         /// <summary>

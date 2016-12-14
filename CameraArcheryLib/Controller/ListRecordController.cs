@@ -4,6 +4,7 @@ using CameraArcheryLib.Factories;
 using CameraArcheryLib.Utils;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -41,33 +42,32 @@ namespace CameraArcheryLib.Controller
         /// </summary>
         /// <param name="list">current list</param>
         /// <returns>list with all the file</returns>
-        public IList<VideoFile> GetList(IList<VideoFile> list = null)
+        public IList<VideoFile> GetList()
         {
             var res = new List<VideoFile>();
 
             // get all the existing file
             var videoNames = getFileNames();
+
+
             foreach (var name in videoNames)
             {
                 try
                 {
-                    VideoFile file = null;
-
-                    // check if file is already existing
-                    if (list != null)
-                        file = list.FirstOrDefault((video) => video.FullName == name);
-
-                    // get the file
-                    if (file == default(VideoFile))
-                        file = StringToVideoFile(name);
-
+                    VideoFile file = new VideoFile()
+                    {
+                        Name = name.Replace(SettingFactory.CurrentSetting.VideoFolder + "\\", ""),
+                        FullName = name
+                    };
+            
                     // add the file in the list
                     if (file != null)
                         res.Add(file);
                 }
                 catch (Exception e)
                 {
-                    continue;
+                    LogHelper.Write("video not load");
+                    LogHelper.Error(e);
                 }
             }
             // order by the number
@@ -75,26 +75,8 @@ namespace CameraArcheryLib.Controller
             return res;
         }
 
-        /// <summary>
-        /// generate the video file by the string url
-        /// </summary>
-        /// <param name="name"></param>
-        /// <returns></returns>
-        public VideoFile StringToVideoFile(string name)
-        {
-            // get the names
-            VideoFile val = new VideoFile()
-            {
-                Name = name.Replace(SettingFactory.CurrentSetting.VideoFolder, ""),
-                FullName = name,
-            };
+        
 
-            // get the image
-            Bitmap tmp = GetFirstImage(name);
-            val.Image = FormatHelper.loadBitmap(tmp);
-
-            return val;
-        }
 
         /// <summary>
         /// function to get the first image of the video
@@ -159,7 +141,7 @@ namespace CameraArcheryLib.Controller
             MediaElementVideo.Source = null;
             var file = VideoList.SelectedItem as VideoFile;
 
-            List<VideoFile> list = new List<VideoFile>((VideoList.ItemsSource as IList<VideoFile>));
+            ObservableCollection<VideoFile> list = new ObservableCollection<VideoFile>((VideoList.ItemsSource as IList<VideoFile>));
             list.Remove(file);
 
             VideoList.ItemsSource = list;

@@ -69,6 +69,8 @@ namespace CameraArchery.VisualModel
                             MessageBox.Show(LanguageController.Get("fileExisting"), LanguageController.Get("fileExistingCaption"), MessageBoxButton.OK, MessageBoxImage.Error);
                             return;
                         }
+
+
                         Directory.Move(Uri.OriginalString, newUri.OriginalString);
                         name = value;
                         Uri = newUri;
@@ -76,7 +78,7 @@ namespace CameraArchery.VisualModel
                     catch (Exception e)
                     {
                         LogHelper.Error(e);
-                        return;
+                        throw e;
                     }
                 }
 

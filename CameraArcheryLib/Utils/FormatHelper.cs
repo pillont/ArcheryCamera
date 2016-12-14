@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Drawing;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Media.Imaging;
 
 namespace CameraArcheryLib.Utils
 {
-    public class FormatHelper
+    public static class FormatHelper
     {
         /// <summary>
         /// inform if the string is numeric of not

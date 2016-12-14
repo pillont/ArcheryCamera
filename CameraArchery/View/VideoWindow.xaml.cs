@@ -72,10 +72,6 @@ namespace CameraArchery.View
             CustomReplayComponent.OnListSelectionChange += CustomReplayComponent_OnListSelectionChange;
             CustomReplayComponent.OnFrameClick += CustomReplayComponent_OnFrameClick;
             CustomReplayComponent.OnDeleteFile += CustomReplayComponent_OnDeleteFile;
-
-            BrowserControl.Root = new Uri(LanguageController.Get("videoFolder"), UriKind.Relative);
-            CustomReplayComponent.BrowserControl.Root = new Uri(LanguageController.Get("videoFolder"), UriKind.Relative);
-      
         }
 
         private bool CustomReplayComponent_OnDeleteFile(DataBinding.VideoFile arg)
@@ -92,7 +88,7 @@ namespace CameraArchery.View
 
         private void CustomReplayComponent_OnListSelectionChange(DataBinding.VideoFile obj)
         {
-            LogHelper.Write("selected file change : " + obj.FullName);
+            LogHelper.Write("selected file change : " + obj);
         }
 
         private void CustomReplayComponent_OnMediaEnded()
@@ -256,8 +252,8 @@ namespace CameraArchery.View
                 else
                 {
                     // update the value in the folder
-                    BrowserControl.SelectedUri = new Uri(SettingFactory.CurrentSetting.VideoFolder, UriKind.Relative);
-                    CustomReplayComponent.BrowserControl.SelectedUri = new Uri(SettingFactory.CurrentSetting.VideoFolder, UriKind.Relative);
+                    BrowserControl.SelectedUri = new Uri(SettingFactory.CurrentSetting.VideoFolder, UriKind.Absolute);
+                    CustomReplayComponent.BrowserControl.SelectedUri = new Uri(SettingFactory.CurrentSetting.VideoFolder, UriKind.Absolute);
                 }
             }
         }
