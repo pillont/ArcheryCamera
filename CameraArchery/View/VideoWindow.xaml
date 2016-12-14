@@ -36,7 +36,7 @@
                         <my:CustomBrowser x:Name="BrowserControl" Width="120"></my:CustomBrowser>
                         
                     </StackPanel>
-                    <Image x:Name="PictureVideo"/>
+                    <my:CustomVideoImage x:Name="PictureVideo"/>
                 </DockPanel>    
             </Grid>
         </TabItem>

@@ -171,19 +171,17 @@
     </Compile>
     <Compile Include="Controller\SettingController.cs" />
     <Compile Include="Controller\TimeLagController.cs" />
-    <Compile Include="Controller\VideoController.cs" />
     <Compile Include="DataBinding\VideoFile.cs" />
     <Compile Include="Factories\SettingFactory.cs" />
     <Compile Include="Controller\LanguageController.cs" />
+    <Compile Include="Interface\IVideoBehavior.cs" />
     <Compile Include="Models\Setting.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\LogHelper.cs" />
     <Compile Include="Utils\FormatHelper.cs" />
     <Compile Include="Utils\SerializeHelper.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Interface\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />

@@ -24,8 +24,7 @@ namespace CameraArchery.View
         /// </summary>
         private TimeLagController timeLagController;
 
-
-        private VideoBehavior VideoBehavior { get; set; }
+        private RecorderBehavior RecorderBehavior;
 
         /// <summary>
         /// ctor
@@ -44,8 +43,12 @@ namespace CameraArchery.View
             InitializeComponent();
 
             // new view Controller
-            VideoBehavior = new VideoBehavior(videoDevice);
-            Interaction.GetBehaviors(PictureVideo).Add(VideoBehavior);
+            var videoBehavior = new VideoBehavior(videoDevice);
+            Interaction.GetBehaviors(PictureVideo).Add(videoBehavior);
+
+            // new recorder Controller
+            RecorderBehavior = new RecorderBehavior(videoBehavior);
+            Interaction.GetBehaviors(PictureVideo).Add(RecorderBehavior);
 
             // init the time lag Controller
             timeLagController = new TimeLagController();
@@ -58,8 +61,8 @@ namespace CameraArchery.View
             ProgressBar.DataContext = timeLagController;
 
             // add lag on the video Controller
-            VideoBehavior.OnNewFrame += (ref Bitmap img) => img = timeLagController.OnNewFrame(img);
-            VideoBehavior.OnVideoClose += () => timeLagController.Clear();
+            videoBehavior.OnNewFrame += (ref Bitmap img) => img = timeLagController.OnNewFrame(img);
+            videoBehavior.OnVideoClose += () => timeLagController.Clear();
         
             Interaction.GetBehaviors(BrowserControl).Add(new VideoBrowserBehavior());
             Interaction.GetBehaviors(CustomReplayComponent).Add(new LogReplayBehavior());
@@ -96,9 +99,6 @@ namespace CameraArchery.View
         /// <param name="e"></param>
         private void Window_Closed(object sender, EventArgs e)
         {
-
-            VideoBehavior.recorderController.StopRecording();
-            
             LogHelper.Write("------------- video window close -------------");
         }
 
@@ -126,7 +126,8 @@ namespace CameraArchery.View
         {
             LogHelper.Write("click recording");
 
-            var isRecording = VideoBehavior.Recording();
+
+            var isRecording = RecorderBehavior.Recording();
 
             if (isRecording)
             {
@@ -147,15 +148,15 @@ namespace CameraArchery.View
         /// <param name="e"></param>
         private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            LogHelper.Write("tab control change to : "+MainTabControl.SelectedValue+ ". Is recording : " + VideoBehavior.recorderController.IsRecording);
+            LogHelper.Write("tab control change to : "+MainTabControl.SelectedValue+ ". Is recording : " + RecorderBehavior.IsRecording);
 
-            if (e.Source is TabControl && VideoBehavior.recorderController.IsRecording)
+            if (e.Source is TabControl && RecorderBehavior.IsRecording)
                 MainTabControl.SelectedIndex = 0;
        
             if (e.Source is System.Windows.Controls.TabControl)
             {
                 // no change
-                if (VideoBehavior.recorderController.IsRecording)
+                if (RecorderBehavior.IsRecording)
                     MainTabControl.SelectedIndex = 0;
                 //change
                 else

@@ -13,31 +13,22 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Windows;
 using System.Windows.Interactivity;
+using CameraArchery.UsersControl;
+using CameraArcheryLib.Interface;
+
 
 namespace CameraArchery.Behaviors
 {
     /// <summary>
     ///  Controller to show the video
     /// </summary>
-    public class VideoBehavior : Behavior<System.Windows.Controls.Image>
+    public class VideoBehavior : Behavior<CustomVideoImage>, IVideoBehavior
     {
-        /// <summary>
-        /// controller to record the video
-        /// </summary>
-        public RecorderController recorderController { get; set; }
-
-        
-        /// <summary>
-        /// delegate to show each frame
-        /// </summary>
-        /// <param name="bm"></param>
-        public delegate void newFrameDelegate(ref Bitmap bm);
-
         /// <summary>
         /// event when the video is close
         /// </summary>
         public event Action OnVideoClose;
-        
+
         /// <summary>
         /// event when new frame is capture
         /// </summary>
@@ -97,7 +88,6 @@ namespace CameraArchery.Behaviors
         {
             base.OnAttached();
         
-            this.recorderController = new RecorderController();
             StartVideo();
             AssociatedObject.Unloaded += AssociatedObject_Unloaded;
         }
@@ -106,23 +96,7 @@ namespace CameraArchery.Behaviors
         {
             CloseVideoSource();
         }
-        /// <summary>
-        /// start the recording if not already start
-        /// </summary>
-        /// <returns>in form the action : true => record / false => stop</returns>
-        public bool Recording()
-        {
-            // start recording
-            if (!recorderController.IsRecording)
-            {
-                recorderController.StartRecording();
-                OnNewFrame += recorderController.VideoController_OnNewFrame;
-                return true;
-            }
-            //stop recording
-            recorderController.StopRecording();
-            return false;
-        }
+        
 
         /// <summary>
         /// start the video
@@ -172,13 +146,14 @@ namespace CameraArchery.Behaviors
         /// </summary>
         public void CloseVideoSource()
         {
-            if(OnVideoClose != null)
-                OnVideoClose();
         
             if (!(videoSource == null))
                 if (videoSource.IsRunning)
                 {
-                    recorderController.StopRecording();
+                    if (OnVideoClose != null)
+                        OnVideoClose();
+        
+                    
                     LogHelper.Write("stop the video");
             
                     videoSource.SignalToStop();

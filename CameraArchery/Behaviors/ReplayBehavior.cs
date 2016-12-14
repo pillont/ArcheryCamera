@@ -51,7 +51,7 @@ namespace CameraArchery.Behaviors
         {
             get
             {
-                return AssociatedObject.SpeedLabel;
+                return AssociatedObject.lblStatus;
             }
         }
         

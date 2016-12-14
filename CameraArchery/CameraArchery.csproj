@@ -218,12 +218,14 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Behaviors\LogReplayBehavior.cs" />
+    <Compile Include="Behaviors\RecorderBehavior.cs" />
     <Compile Include="Behaviors\ReplayBehavior.cs" />
     <Compile Include="Behaviors\VideoBrowserBehavior.cs" />
-    <Compile Include="Behaviors\VideoBehavior2.cs" />
+    <Compile Include="Behaviors\VideoBehavior.cs" />
     <Compile Include="UsersControl\CustomBrowser.xaml.cs">
       <DependentUpon>CustomBrowser.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UsersControl\CustomVideoImage.cs" />
     <Compile Include="UsersControl\EditableTextBlock\EditableTextBlock.cs" />
     <Compile Include="UsersControl\EditableTextBlock\EditableTextBlockAdorner.cs" />
     <Compile Include="View\CustomMessageBox.xaml.cs">
