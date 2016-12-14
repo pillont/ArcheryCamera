@@ -1,19 +1,25 @@
 ﻿using Accord.Video;
 using Accord.Video.DirectShow;
+using CameraArchery.View;
 using CameraArcheryLib.Controller;
+using CameraArcheryLib.Factories;
+using CameraArcheryLib.Models;
 using CameraArcheryLib.Utils;
+using SharpAvi.Output;
 using System;
-using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Controls;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
+using System.Windows;
 using System.Windows.Interactivity;
 
 namespace CameraArchery.Behaviors
 {
-    public class VideoBehavior : Behavior<MediaElement>
+    /// <summary>
+    ///  Controller to show the video
+    /// </summary>
+    public class VideoBehavior : Behavior<System.Windows.Controls.Image>
     {
         /// <summary>
         /// controller to record the video
@@ -42,16 +48,39 @@ namespace CameraArchery.Behaviors
         /// </summary>
         private FilterInfo videoDevice { get;  set; }
 
-        /// <summary>
-        /// function to show each frame
-        /// </summary>
-        private Action<Bitmap> showImage { get; set; }
 
         /// <summary>
         ///  source of the video
         /// </summary>
         private VideoCaptureDevice videoSource { get; set; }
-        
+
+
+        private bool HaveErrorToShow { get; set; }
+
+        /// <summary>
+        /// event to show each image
+        /// </summary>
+        /// <param name="bm">image</param>
+        private void ShowImage(Bitmap bm)
+        {
+            if (!HaveErrorToShow)
+            {
+                try
+                {
+                    Dispatcher.Invoke(() =>
+                        AssociatedObject.Source = FormatHelper.loadBitmap(bm));
+                }
+                catch (Exception e)
+                {
+                    LogHelper.Error(e);
+                    Dispatcher.Invoke(() =>
+                        new CustomMessageBox("Error", "FrameError", e.Message).ShowDialog());
+
+                    Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive).Close();
+                }
+            }
+        }
+
         /// <summary>
         /// ctor
         /// init the Controllers
@@ -59,16 +88,25 @@ namespace CameraArchery.Behaviors
         /// </summary>
         /// <param name="showImageDel">function to show each images in the view</param>
         /// <param name="videoDevices">device to take the video</param>
-        public VideoBehavior(Action<Bitmap> showImageDel,  FilterInfo videoDevices)
+        public VideoBehavior(FilterInfo videoDevices)
         {
-            this.recorderController = new RecorderController();
             this.videoDevice = videoDevices;
-            this.showImage = showImageDel;
-
-            StartVideo();
         }
 
-        /// <summary>
+        protected override void OnAttached()
+        {
+            base.OnAttached();
+        
+            this.recorderController = new RecorderController();
+            StartVideo();
+            AssociatedObject.Unloaded += AssociatedObject_Unloaded;
+        }
+
+        void AssociatedObject_Unloaded(object sender, RoutedEventArgs e)
+        {
+            CloseVideoSource();
+        }
+        /// <summary>
         /// start the recording if not already start
         /// </summary>
         /// <returns>in form the action : true => record / false => stop</returns>
@@ -116,7 +154,7 @@ namespace CameraArchery.Behaviors
 
             NewFraming(ref img);
             if( img != null)
-                showImage(img);
+                ShowImage(img);
         }
 
         /// <summary>
@@ -162,6 +200,5 @@ namespace CameraArchery.Behaviors
             }
             return false;
         }
-
     }
 }

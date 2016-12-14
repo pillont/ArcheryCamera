@@ -220,6 +220,7 @@
     <Compile Include="Behaviors\LogReplayBehavior.cs" />
     <Compile Include="Behaviors\ReplayBehavior.cs" />
     <Compile Include="Behaviors\VideoBrowserBehavior.cs" />
+    <Compile Include="Behaviors\VideoBehavior2.cs" />
     <Compile Include="UsersControl\CustomBrowser.xaml.cs">
       <DependentUpon>CustomBrowser.xaml</DependentUpon>
     </Compile>
