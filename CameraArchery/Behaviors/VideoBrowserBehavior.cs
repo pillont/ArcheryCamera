@@ -10,14 +10,26 @@ using System.Windows.Interactivity;
 
 namespace CameraArchery.Behaviors
 {
+    /// <summary>
+    /// behavior of the video browsrer
+    /// </summary>
     public class VideoBrowserBehavior : Behavior<CustomBrowser>
     {
+        /// <summary>
+        /// on attached event
+        /// </summary>
         protected override void OnAttached()
         {
             base.OnAttached();
             AssociatedObject.PropertyChanged +=AssociatedObject_PropertyChanged; 
         }
 
+        /// <summary>
+        /// event when the property change
+        /// <para>if uri change => change in the current setting</para>
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AssociatedObject_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             if (e.PropertyName == "SelectedUri")
@@ -26,10 +38,5 @@ namespace CameraArchery.Behaviors
                     SettingController.UpdateUri(AssociatedObject.SelectedUri);
             }
         }
-
-
-        
-            
-
     }
 }

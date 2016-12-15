@@ -25,7 +25,7 @@ namespace CameraArchery.Behaviors
         /// <summary>
         /// media element to manage
         /// </summary>
-        public MediaElement MediaElement
+        private MediaElement MediaElement
         {
             get
             {
@@ -36,7 +36,7 @@ namespace CameraArchery.Behaviors
         /// <summary>
         /// slider to manage the time
         /// </summary>
-        public Slider TimeSlider 
+        private Slider TimeSlider 
         { 
             get 
             {
@@ -47,7 +47,7 @@ namespace CameraArchery.Behaviors
         /// <summary>
         /// label to inform the time
         /// </summary>
-        public Label LabelTime 
+        private Label LabelTime 
         {
             get
             {
@@ -58,7 +58,7 @@ namespace CameraArchery.Behaviors
         /// <summary>
         /// speed ratio of the mediaElement
         /// </summary>
-        public double SpeedRatio
+        private double SpeedRatio
         {
             get
             {
@@ -77,7 +77,7 @@ namespace CameraArchery.Behaviors
         /// </summary>
         private object lockerTimer = new object();
 
-        
+        #region event
         /// <summary>
         /// on attached associated object
         /// </summary>
@@ -102,9 +102,36 @@ namespace CameraArchery.Behaviors
         }
 
         /// <summary>
-        /// load the file in the media element
+        /// event on the mouse left down in the media element if frame by frame is done
+        /// <para>get current position</para>
+        /// <para>get the next image</para>
+        /// <para>if position is out the video => go to the begin</para>
         /// </summary>
-        public void LoadVideoFile()
+        private void MediaElementVideo_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            var current = MediaElement.Position;
+            var nextValue = new TimeSpan(current.Days,
+                                                current.Hours,
+                                                current.Minutes,
+                                                current.Seconds,
+                                                current.Milliseconds + (1000 / SettingFactory.CurrentSetting.Frame));
+
+            if (MediaElement.NaturalDuration.TimeSpan.Ticks > nextValue.Ticks)
+                MediaElement.Position = nextValue;
+            else
+                MediaElement.Position = new TimeSpan(0);
+        }
+        #endregion event 
+
+        #region private function
+        /// <summary>
+        /// load the file in the media element
+        /// <para>get the uri of the file</para>
+        /// <para>stop the media element</para>
+        /// <para>change the mediaelement source</para>
+        /// <para>change the mediaelement position to the begin</para>
+        /// </summary>
+        private void LoadVideoFile()
         {
             var stringUri = ((VideoFile) AssociatedObject.VideoList.SelectedValue).FullName;
 
@@ -115,8 +142,13 @@ namespace CameraArchery.Behaviors
 
         /// <summary>
         /// stop the video 
+        /// <para> stop the media element</para>
+        /// <para> change the position to the begin</para>
+        /// <para> IsPause is set to false</para>
+        /// <para> IsFrameByFrame is set to false</para>
+        /// <para> IsStart is set to false</para>
         /// </summary>
-        public void Stop()
+        private void Stop()
         {
             MediaElement.Stop();
             MediaElement.Position = new TimeSpan(0);
@@ -127,8 +159,10 @@ namespace CameraArchery.Behaviors
 
         /// <summary>
         /// pause the video
+        /// <para>IsPause is set to true</para>
+        /// <para>mediaElement is pause</para>
         /// </summary>
-        public void Pause()
+        private void Pause()
         {
             AssociatedObject.IsPause = true;
 
@@ -137,11 +171,16 @@ namespace CameraArchery.Behaviors
 
         /// <summary>
         /// start the video
+        /// <para>if source of the mediaElement is null, do nothing</para>
+        /// <para>play the mediaElement</para>
+        /// IsPause is set to false
+        /// IsStart is set to true
         /// </summary>
-        public void Start()
+        private void Start()
         {
             if (MediaElement.Source == null)
                 return;
+
             MediaElement.Play();
 
             AssociatedObject.IsPause = false;
@@ -152,7 +191,7 @@ namespace CameraArchery.Behaviors
         ///  start the timer
         ///  <para>timer update each second the value on the label timer</para>
         /// </summary>
-        public void StartTimer()
+        private void StartTimer()
         {
             Monitor.Enter(lockerTimer);
 
@@ -204,7 +243,7 @@ namespace CameraArchery.Behaviors
         /// <summary>
         /// stop the timer
         /// </summary>
-        public void StopTimer()
+        private void StopTimer()
         {
             if (timer != null)
             {
@@ -216,8 +255,9 @@ namespace CameraArchery.Behaviors
 
         /// <summary>
         /// play the video
+        /// <para>IsPause is set to false</para>
         /// </summary>
-        public void Play()
+        private void Play()
         {
             AssociatedObject.IsPause = false;
             MediaElement.Play();
@@ -225,8 +265,10 @@ namespace CameraArchery.Behaviors
 
         /// <summary>
         /// speed down the video
+        /// <para>if SpeedRatio <= 0  do nothing</para>
+        /// <para>SpeedRatio -= 0.1</para>
         /// </summary>
-        public void SpeedDown()
+        private void SpeedDown()
         {
             if (MediaElement.SpeedRatio > 0)
                 MediaElement.SpeedRatio -= 0.1;
@@ -234,8 +276,10 @@ namespace CameraArchery.Behaviors
 
         /// <summary>
         /// speed up the video
+        /// <para>if SpeedRatio >= 2  do nothing</para>
+        /// <para>SpeedRatio += 0.1</para>
         /// </summary>
-        public void SpeedUp()
+        private void SpeedUp()
         {
             if (MediaElement.SpeedRatio < 2)
                 MediaElement.SpeedRatio += 0.1;
@@ -243,8 +287,11 @@ namespace CameraArchery.Behaviors
 
         /// <summary>
         /// set the frame by frame of the video
+        /// <para>if IsStart is false => do nothing</para>
+        /// <para>if IsFrameByFrame is true => mediaElement set pause and unsubscribe the click event</para>
+        /// <para>else =>unsubscribe the click event and mediaElement set to play if IsPause</para>
         /// </summary>
-        public bool FrameByFrameSetup()
+        private bool FrameByFrameSetup()
         {
             var res = false;
             if (AssociatedObject.IsStart)
@@ -267,29 +314,9 @@ namespace CameraArchery.Behaviors
         }
 
         /// <summary>
-        /// event on the mouse left down in the media element if frame by frame is done
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void MediaElementVideo_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-            var current = MediaElement.Position;
-            var nextValue = new TimeSpan(current.Days,
-                                                current.Hours,
-                                                current.Minutes,
-                                                current.Seconds,
-                                                current.Milliseconds + (1000 / SettingFactory.CurrentSetting.Frame));
-
-            if (MediaElement.NaturalDuration.TimeSpan.Ticks > nextValue.Ticks)
-                MediaElement.Position = nextValue;
-            else
-                MediaElement.Position = new TimeSpan(0);
-        }
-
-        /// <summary>
         /// get the current time of the mediaElement and show it
         /// </summary>
-        public string RefreshSpeedLabel()
+        private string RefreshSpeedLabel()
         {
             var time = Convert.ToInt32(SpeedRatio * 100);
 
@@ -302,5 +329,6 @@ namespace CameraArchery.Behaviors
 
             return time.ToString() + "%";
         }
+        #endregion private function
     }
 }

@@ -17,7 +17,7 @@ namespace CameraArchery.Behaviors
         /// <summary>
         /// Controller to make feedback
         /// </summary>
-        public LagLoadFeedBackManager lagLoadFeedBackManager { get; set; }
+        private LagLoadFeedBackManager lagLoadFeedBackManager { get; set; }
 
         /// <summary>
         /// list of frame save during the difference of time
@@ -30,7 +30,6 @@ namespace CameraArchery.Behaviors
                 var res = tempsImagesStock;
                 Monitor.Exit(tempsImagesStockLocker);
                 return res;
-
             }
             set
             {
@@ -42,17 +41,28 @@ namespace CameraArchery.Behaviors
         private List<Bitmap> tempsImagesStock;
         private object tempsImagesStockLocker = new object();
 
-        private VideoBehavior VideoBehavior;
+        /// <summary>
+        /// behavior of the video
+        /// </summary>
+        private VideoBehavior VideoBehavior { get; set; }
+
         /// <summary>
         /// ctor
-        /// set the Controller of the feedBack
         /// </summary>
+        /// <param name="videoBehavior">video behavior associated</param>
         public TimeLagBehavior(VideoBehavior videoBehavior)
         {
             this.VideoBehavior = videoBehavior;
         }
 
-
+        #region event
+        /// <summary>
+        /// on attach event
+        /// <para>init the lag load feedBack manager</para>
+        /// <para>clear</para>
+        /// <para>subscribe the event to make lag on the video</para>
+        /// <para>update the view with the time lag Controller</para>
+        /// </summary>
         protected override void OnAttached()
         {
             base.OnAttached();
@@ -78,8 +88,10 @@ namespace CameraArchery.Behaviors
 
         /// <summary>
         /// event when visibility change
+        /// <para>if visibility is visible => open the popUp and collapsed the button to record</para>
+        /// <para>else => close the popUp and make visible the Option Panel</para>
         /// </summary>
-        /// <param name="vs"></param>
+        /// <param name="vs">visibility of the Option Panel</param>
         private void OnVisibilityChange(Visibility vs)
         {
             Dispatcher.Invoke(() =>
@@ -88,22 +100,15 @@ namespace CameraArchery.Behaviors
 
                 if (vs == Visibility.Visible)
                 {
-                    AssociatedObject.myPopup.IsOpen = true;
-                    AssociatedObject.ButtonPanel.Visibility = Visibility.Collapsed;
+                    AssociatedObject.StartPopUp.IsOpen = true;
+                    AssociatedObject.OptionPanel.Visibility = Visibility.Collapsed;
                 }
                 else
                 {
-                    AssociatedObject.myPopup.IsOpen = false;
-                    AssociatedObject.ButtonPanel.Visibility = Visibility.Visible;
+                    AssociatedObject.StartPopUp.IsOpen = false;
+                    AssociatedObject.OptionPanel.Visibility = Visibility.Visible;
                 }
             });
-        }
-        /// <summary>
-        /// clear the memory
-        /// </summary>
-        public void Clear()
-        {
-            TempsImagesStock = new List<Bitmap>();
         }
 
         /// <summary>
@@ -113,7 +118,7 @@ namespace CameraArchery.Behaviors
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="eventArgs"></param>
-        public Bitmap OnNewFrame(Bitmap img)
+        private Bitmap OnNewFrame(Bitmap img)
         {
             TempsImagesStock.Add(img);
             Bitmap res = null;
@@ -124,5 +129,16 @@ namespace CameraArchery.Behaviors
             }
             return res;
         }
+        #endregion event
+
+        #region private function
+        /// <summary>
+        /// clear the memory
+        /// </summary>
+        private void Clear()
+        {
+            TempsImagesStock = new List<Bitmap>();
+        }
+        #endregion private function
     }
 }

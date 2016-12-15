@@ -6,6 +6,7 @@ using CameraArcheryLib.Models;
 using CameraArcheryLib.Utils;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -37,12 +38,15 @@ namespace CameraArchery.Behaviors
         /// </summary>
         public const int HEIGHT = 240;
 
-        private IVideoBehavior VideoBehavior;
+        /// <summary>
+        /// behavior of the video element
+        /// </summary>
+        private IVideoBehavior VideoBehavior { get; set; }
         
         /// <summary>
         /// directory of the videos
         /// </summary>
-        public string VideoDirectory
+        private string VideoDirectory
         {
             get
             {
@@ -53,7 +57,7 @@ namespace CameraArchery.Behaviors
         /// <summary>
         /// writer of video file
         /// </summary>
-        internal VideoFileWriter Writer 
+        private VideoFileWriter Writer 
         {
             get
             {
@@ -70,24 +74,80 @@ namespace CameraArchery.Behaviors
         private object writerLocker = new object();
 
 
-
-        protected override void OnAttached()
-        {
-            base.OnAttached();
-            
-            AssociatedObject.Unloaded += (t,e) => StopRecording();
-        }
-
+        /// <summary>
+        /// ctor
+        /// </summary>
+        /// <param name="videoBehavior">video behavior associated</param>
         public RecorderBehavior(IVideoBehavior videoBehavior)
         {
             this.VideoBehavior = videoBehavior;
-            VideoBehavior.OnVideoClose += () => StopRecording();
-        
         }
+
+        #region event
+        /// <summary>
+        /// on attach event
+        /// <para>subscribe event to stop recording when videoElement is close</para>
+        /// <para>subscribe event to stop recording when videoElement is unload</para>
+        /// </summary>
+        protected override void OnAttached()
+        {
+            base.OnAttached();
+
+            VideoBehavior.OnVideoClose += () => StopRecording();
+            AssociatedObject.Unloaded += (t,e) => StopRecording();
+        }
+
+        /// <summary>
+        /// function to write each frame in the video file
+        /// <para>clone the image</para>
+        /// <para>write the frame in the file</para>
+        /// </summary>
+        /// <param name="refBm">if null, done nothing</param>
+        private void VideoController_OnNewFrame(ref Bitmap refBm)
+        {
+            if (refBm == null)
+                return;
+
+            var bm = refBm.Clone() as Bitmap;
+
+            Monitor.Enter(writerLocker);
+
+            if (Writer != null)
+                Writer.WriteVideoFrame(bm);
+
+            Monitor.Exit(writerLocker);
+        }
+        #endregion event
+
+        #region function public
+        /// <summary>
+        /// start the recording if not already start
+        /// </summary>
+        /// <returns>in form the action : true => record / false => stop</returns>
+        public bool Recording()
+        {
+            // start recording
+            if (!AssociatedObject.IsRecording)
+            {
+                StartRecording();
+                return true;
+            }
+            //stop recording
+            StopRecording();
+            return false;
+        }
+        #endregion function public
+
+        #region private function
         /// <summary>
         /// function to start the recording
+        ///<para>get the name of the file</para>
+        ///<para>update the video name in the setting</para>
+        ///<para>create directory if is not existing</para>
+        ///<para>if file exist, restart with upper name</para>
+        ///<para>start the writer</para>
         /// </summary>
-        public void StartRecording()
+        private void StartRecording()
         {
            // get name
             var name = VideoDirectory +"\\"+SettingFactory.CurrentSetting.VideoNumber + EXTENSION_FILE;
@@ -107,44 +167,37 @@ namespace CameraArchery.Behaviors
                 StartRecording();
                 return;
             }
+            
+            StartWriter(name);
 
-         
+            VideoBehavior.OnNewFrame += VideoController_OnNewFrame;
+        }
+
+        /// <summary>
+        /// start the writer to recorder video
+        /// <para>create instance of video writer</para>
+        /// <para>create new video file</para>
+        /// </summary>
+        /// <param name="uri">full uri of the video file -> must not already exist</param>
+        private void StartWriter(string uri)
+        {
+            Contract.Assert(!File.Exists(uri), "video file already exist");
+
             Monitor.Enter(writerLocker);
             
-            // create instance of video writer
             Writer = new VideoFileWriter();
-
-            // create new video file
-            Writer.Open(name, WIDTH, HEIGHT, SettingFactory.CurrentSetting.Frame);
+            Writer.Open(uri, WIDTH, HEIGHT, SettingFactory.CurrentSetting.Frame);
 
             Monitor.Exit(writerLocker);
         }
         
-        /// <summary>
-        /// function to write each frame in the video file
-        /// </summary>
-        /// <param name="refBm"></param>
-        public void VideoController_OnNewFrame(ref Bitmap refBm)
-        {
-            if (refBm == null)
-                return;
-
-            // get the frame
-            var bm = refBm.Clone() as Bitmap;
-
-            // write the frame
-            Monitor.Enter(writerLocker);
-
-            if (Writer != null)
-                Writer.WriteVideoFrame(bm);
-
-            Monitor.Exit(writerLocker);
-        }
         
         /// <summary>
         /// function to stop the recording
+        /// <para>close the <code>Writer</code> and set to null</para>
+        /// <para>unsubscribe the new frame event to save frame</para>
         /// </summary>
-        public void StopRecording()
+        private void StopRecording()
         {
             Monitor.Enter(writerLocker);
             if (Writer != null)
@@ -153,24 +206,9 @@ namespace CameraArchery.Behaviors
                 Writer = null;
             }
             Monitor.Exit(writerLocker);
-        }
 
-        /// <summary>
-        /// start the recording if not already start
-        /// </summary>
-        /// <returns>in form the action : true => record / false => stop</returns>
-        public bool Recording()
-        {
-            // start recording
-            if (!AssociatedObject.IsRecording)
-            {
-                StartRecording();
-                VideoBehavior.OnNewFrame += VideoController_OnNewFrame;
-                return true;
-            }
-            //stop recording
-            StopRecording();
-            return false;
+            VideoBehavior.OnNewFrame -= VideoController_OnNewFrame;
         }
+        #endregion
     }
 }

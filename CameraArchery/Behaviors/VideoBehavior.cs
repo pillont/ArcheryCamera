@@ -24,6 +24,7 @@ namespace CameraArchery.Behaviors
     /// </summary>
     public class VideoBehavior : Behavior<CustomVideoElement>, IVideoBehavior
     {
+        #region event
         /// <summary>
         /// event when the video is close
         /// </summary>
@@ -33,12 +34,12 @@ namespace CameraArchery.Behaviors
         /// event when new frame is capture
         /// </summary>
         public event newFrameDelegate OnNewFrame;
+        #endregion event
 
         /// <summary>
         /// camera device
         /// </summary>
         private FilterInfo videoDevice { get;  set; }
-
 
         /// <summary>
         ///  source of the video
@@ -53,32 +54,6 @@ namespace CameraArchery.Behaviors
         private VideoCaptureDevice videoSource;
 
 
-        private bool HaveErrorToShow { get; set; }
-
-        /// <summary>
-        /// event to show each image
-        /// </summary>
-        /// <param name="bm">image</param>
-        private void ShowImage(Bitmap bm)
-        {
-            if (!HaveErrorToShow)
-            {
-                try
-                {
-                    Dispatcher.Invoke(() =>
-                        AssociatedObject.PictureVideo.Source = FormatHelper.loadBitmap(bm));
-                }
-                catch (Exception e)
-                {
-                    LogHelper.Error(e);
-                    Dispatcher.Invoke(() =>
-                        new CustomMessageBox("Error", "FrameError", e.Message).ShowDialog());
-
-                    Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive).Close();
-                }
-            }
-        }
-
         /// <summary>
         /// ctor
         /// init the Controllers
@@ -91,6 +66,13 @@ namespace CameraArchery.Behaviors
             this.videoDevice = videoDevices;
         }
 
+
+        #region event
+        
+        /// <summary>
+        /// event on the attack of the associated object
+        /// <para>VideoSource is not null => start the video</para>
+        /// </summary>
         protected override void OnAttached()
         {
             base.OnAttached();
@@ -98,21 +80,40 @@ namespace CameraArchery.Behaviors
             if (VideoSource == null)
                 StartVideo();
 
-            AssociatedObject.Unloaded += AssociatedObject_Unloaded;
             Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive).Closed += VideoBehavior_Closed;
         }
 
-        void AssociatedObject_Unloaded(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// event to show each image
+        /// </summary>
+        /// <param name="bm">image to show</param>
+        private void ShowImage(Bitmap bm)
         {
-            Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive).Closed -= VideoBehavior_Closed;
-        }
+            try
+            {
+                Dispatcher.Invoke(() =>
+                    AssociatedObject.PictureVideo.Source = FormatHelper.loadBitmap(bm));
+            }
+            catch (Exception e)
+            {
+                LogHelper.Error(e);
+                Dispatcher.Invoke(() =>
+                    new CustomMessageBox("Error", "FrameError", e.Message).ShowDialog());
 
-        void VideoBehavior_Closed(object sender, EventArgs e)
+                Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive).Close();
+            }
+        }
+    
+        /// <summary>
+        /// event when videoBehavior is closed
+        /// <para>close the videoSource</para>
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void VideoBehavior_Closed(object sender, EventArgs e)
         {
             CloseVideoSource();
         }
-
-        
 
         /// <summary>
         /// start the video
@@ -127,8 +128,6 @@ namespace CameraArchery.Behaviors
             VideoSource = new VideoCaptureDevice(videoDevice.MonikerString);
             VideoSource.NewFrame += new NewFrameEventHandler(video_NewFrame);
             CloseVideoSource();
-            //videoSource.DesiredFrameSize = new Size(1600, 1200);
-            //videoSource.DesiredFrameRate = SettingFactory.getCurrent.Frame;
             VideoSource.Start();
         }
 
@@ -156,13 +155,14 @@ namespace CameraArchery.Behaviors
             if(OnNewFrame != null)
                 OnNewFrame(ref img);
         }
+        #endregion
 
+        #region public functions
         /// <summary>
         /// close the device safely
         /// </summary>
         public void CloseVideoSource()
         {
-        
             if (!(VideoSource == null))
                 if (VideoSource.IsRunning)
                 {
@@ -176,8 +176,9 @@ namespace CameraArchery.Behaviors
                     VideoSource.Source = null;
                 }
         }
+        #endregion public functions
 
-
+        #region private functions
         /// <summary>
         /// close the video
         /// </summary>
@@ -191,6 +192,6 @@ namespace CameraArchery.Behaviors
             }
             return false;
         }
-
+        #endregion private functions
     }
 }
