@@ -19,7 +19,7 @@
         <TabItem Header="{DynamicResource ResourceKey=video}">
             <my:CustomVideoElement x:Name="CustomVideoComponent"/>
         </TabItem>
-        <TabItem Header="{DynamicResource ResourceKey=replay}" Margin="-2,5,-2,-8">
+        <TabItem Header="{DynamicResource ResourceKey=replay}" >
             <my:CustomReplay x:Name="CustomReplayComponent"/>
         </TabItem>
     </TabControl>

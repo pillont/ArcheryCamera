@@ -164,7 +164,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controller\LagLoadFeedBackController.cs" />
+    <Compile Include="Controller\LagLoadFeedBackManager.cs" />
     <Compile Include="Controller\ListRecordController.cs" />
     <Compile Include="Controller\RecorderController.cs">
       <SubType>Code</SubType>

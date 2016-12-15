@@ -11,12 +11,12 @@ namespace CameraArcheryTest
     [TestClass]
     public class LagLoadFeedBackControllerTest
     {
-        LagLoadFeedBackController Controller;
+        LagLoadFeedBackManager Controller;
         
         [TestInitialize]
         public void test()
         {
-            Controller = new LagLoadFeedBackController();
+            Controller = new LagLoadFeedBackManager();
         }
 
         /// <summary>

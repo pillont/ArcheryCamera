@@ -12,7 +12,7 @@ namespace CameraArcheryLib.Controller
     /// <para>control the progressBar</para>
     /// <para>control the pop up to inform the quit key</para>
     /// </summary>
-    public class LagLoadFeedBackController
+    public class LagLoadFeedBackManager
     {
         /// <summary>
         /// event when progress change
@@ -104,7 +104,7 @@ namespace CameraArcheryLib.Controller
         /// <para><code>progress</code> is set to zero</para>
         /// <para> start a task to start the load</para>
         /// </summary>
-        public LagLoadFeedBackController()
+        public LagLoadFeedBackManager()
         {
             Visibility = System.Windows.Visibility.Visible;
             IsLoad = false;

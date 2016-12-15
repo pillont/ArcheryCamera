@@ -217,9 +217,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Behaviors\LagLoadFeedBackBehavior.cs" />
     <Compile Include="Behaviors\LogReplayBehavior.cs" />
     <Compile Include="Behaviors\RecorderBehavior.cs" />
     <Compile Include="Behaviors\ReplayBehavior.cs" />
+    <Compile Include="Behaviors\TimeLagBehavior.cs" />
     <Compile Include="Behaviors\VideoBrowserBehavior.cs" />
     <Compile Include="Behaviors\VideoBehavior.cs" />
     <Compile Include="UsersControl\CustomBrowser.xaml.cs">

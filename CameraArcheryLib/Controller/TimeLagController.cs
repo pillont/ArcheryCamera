@@ -12,7 +12,7 @@ namespace CameraArcheryLib.Controller
         /// <summary>
         /// Controller to make feedback
         /// </summary>
-        public LagLoadFeedBackController lagLoadFeedBackController { get; set; }
+        public LagLoadFeedBackManager lagLoadFeedBackController { get; set; }
 
 
 
@@ -45,7 +45,7 @@ namespace CameraArcheryLib.Controller
         /// </summary>
         public TimeLagController()
         {
-            lagLoadFeedBackController = new LagLoadFeedBackController();
+            lagLoadFeedBackController = new LagLoadFeedBackManager();
             Clear();
         }
 
