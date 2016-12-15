@@ -10,11 +10,15 @@ namespace CameraArcheryLib.Utils
 {
     public static class BehaviorHelper
     {
-        public static void AddSingleBehavior<T>(Behavior<T> behavior, T obj)  where T : DependencyObject
+        public static bool AddSingleBehavior<T>(Behavior<T> behavior, T obj)  where T : DependencyObject
         {
             var behaviors = Interaction.GetBehaviors(obj);
             if (!behaviors.Any((b) => b.GetType() == behavior.GetType()))
+            {
                 behaviors.Add(behavior);
+                return true;
+            }
+            return false;
         }
     }
 }

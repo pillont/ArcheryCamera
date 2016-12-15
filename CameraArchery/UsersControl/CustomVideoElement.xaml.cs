@@ -33,32 +33,46 @@ namespace CameraArchery.UsersControl
         /// behavior to control the behavior
         /// </summary>
         public RecorderBehavior RecorderBehavior;
+        
         public FilterInfo VideoDevice;
         private TimeLagBehavior timeLagController;
 
         public bool IsRecording { get; set; }
 
-
+        private VideoBehavior VideoBehavior;
         public CustomVideoElement()
         {
             LanguageController.InitLanguage(this.Resources.MergedDictionaries);
             InitializeComponent();
-            this.Loaded +=CustomVideoElement_Loaded;
-
             BehaviorHelper.AddSingleBehavior(new VideoBrowserBehavior(), BrowserControl);
 
         }
 
-        private void CustomVideoElement_Loaded(object sender, RoutedEventArgs e)
+        public void Start(FilterInfo videoDevice)
         {
-            var videoBehavior = new VideoBehavior(VideoDevice);
+            this.VideoDevice = videoDevice;
+            
+            VideoBehavior = new VideoBehavior(VideoDevice);
 
-            BehaviorHelper.AddSingleBehavior(videoBehavior, this);
-            BehaviorHelper.AddSingleBehavior(new TimeLagBehavior(videoBehavior), this);
-            BehaviorHelper.AddSingleBehavior(new RecorderBehavior(videoBehavior), this);
+            BehaviorHelper.AddSingleBehavior(VideoBehavior, this);
+            BehaviorHelper.AddSingleBehavior(new TimeLagBehavior(VideoBehavior), this);
+
+            var behaviors = Interaction.GetBehaviors(this);
+            if (behaviors.OfType<RecorderBehavior>().ToList().Count == 0)
+            {
+                RecorderBehavior = new RecorderBehavior(VideoBehavior);
+                behaviors.Add(RecorderBehavior);    
+            }
         }
 
-        
+
+        public void Stop()
+        {
+            this.VideoDevice = null;
+            VideoBehavior.CloseVideoSource();
+            VideoBehavior = null;
+            RecorderBehavior = null;
+        }
 
  
 

@@ -111,7 +111,8 @@ namespace CameraArchery.Behaviors
         {
             CloseVideoSource();
         }
-        
+
+        
 
         /// <summary>
         /// start the video
@@ -190,5 +191,6 @@ namespace CameraArchery.Behaviors
             }
             return false;
         }
+
     }
 }

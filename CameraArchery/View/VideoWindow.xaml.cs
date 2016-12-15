@@ -37,7 +37,8 @@ namespace CameraArchery.View
             
             LanguageController.InitLanguage(this.Resources.MergedDictionaries);
             InitializeComponent();
-            CustomVideoComponent.VideoDevice = videoDevice;
+            
+            CustomVideoComponent.Start(videoDevice);
         }
 
         /// <summary>
@@ -47,6 +48,7 @@ namespace CameraArchery.View
         /// <param name="e"></param>
         private void Window_Closed(object sender, EventArgs e)
         {
+            CustomVideoComponent.Stop();
             LogHelper.Write("------------- video window close -------------");
         }
 
