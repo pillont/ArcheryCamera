@@ -276,6 +276,14 @@ namespace CameraArchery.UsersControl
         /// <param name="e"></param>
         private void Start_Click(object sender, System.Windows.RoutedEventArgs e)
         {
+            if (!isStart)
+                LogHelper.Write("start click");
+            else if (isPause)
+                LogHelper.Write("replay click");
+            else
+                LogHelper.Write("Pause click");
+          
+
             if (OnStartClick != null
             && !OnStartClick(IsStart, IsPause))
                 return;
@@ -310,6 +318,7 @@ namespace CameraArchery.UsersControl
         /// <param name="e"></param>
         private void Stop_Click(object sender, System.Windows.RoutedEventArgs e)
         {
+            LogHelper.Write("stop click");
             if (OnStopClick != null
             && !OnStopClick())
                 return;
@@ -330,6 +339,7 @@ namespace CameraArchery.UsersControl
             if (VideoList.SelectedValue != null)
                 LoadVideoFile();
 
+            LogHelper.Write("selected file change : " + (VideoList.SelectedValue as VideoFile));
             if (OnListSelectionChange != null)
                 OnListSelectionChange(VideoList.SelectedValue as VideoFile);
         }
@@ -343,7 +353,8 @@ namespace CameraArchery.UsersControl
         {
             if (!IsFrameByFrame)
                 Stop_Click(sender, e);
-        
+
+            LogHelper.Write("media is ended");
             if (OnMediaEnded != null)
                     OnMediaEnded();
             
@@ -368,6 +379,8 @@ namespace CameraArchery.UsersControl
         private void TimeSlider_GotMouseCapture(object sender, System.Windows.Input.MouseEventArgs e)
         {
             MouseCaptureValue = TimeSlider.Value;
+
+            LogHelper.Write("slider is capture at " + MouseCaptureValue  + " sec");
             if (OnSliderCapture != null)
                 OnSliderCapture(MouseCaptureValue);
             
@@ -384,6 +397,8 @@ namespace CameraArchery.UsersControl
         {
             if (!IsPause && MediaElementVideo.Source != null)
                 MediaElementVideo.Play();
+
+            LogHelper.Write("slider is change to " + TimeSlider.Value + " sec");
 
             if (OnSliderChange != null &&
                 OnSliderChange(TimeSlider.Value))
@@ -429,7 +444,9 @@ namespace CameraArchery.UsersControl
         {
             var initValue = MediaElementVideo.SpeedRatio;
             SpeedDown();
-        
+
+            LogHelper.Write("speed down : " + MediaElementVideo.SpeedRatio);
+
             if (OnSpeedDownClick != null
             && !OnSpeedDownClick(MediaElementVideo.SpeedRatio))
                 MediaElementVideo.SpeedRatio = initValue;
@@ -447,6 +464,8 @@ namespace CameraArchery.UsersControl
             var initValue = MediaElementVideo.SpeedRatio;
             SpeedUp();
 
+            LogHelper.Write("speed up : " + MediaElementVideo.SpeedRatio);
+            
             if (OnSpeedUpClick != null
             && !OnSpeedUpClick(MediaElementVideo.SpeedRatio))
                 MediaElementVideo.SpeedRatio = initValue;
@@ -461,6 +480,8 @@ namespace CameraArchery.UsersControl
         /// <param name="e"></param>
         private void Frame_Click(object sender, System.Windows.RoutedEventArgs e)
         {
+            LogHelper.Write("on frame click");
+
             if (OnFrameClick != null)
                 OnFrameClick();
         }
@@ -472,6 +493,8 @@ namespace CameraArchery.UsersControl
         /// <param name="e"></param>
         private void DeleteItem_Click(object sender, System.Windows.RoutedEventArgs e)
         {
+            LogHelper.Write("delete file " + (VideoList.SelectedValue as VideoFile).FullName);
+
             if (OnDeleteFile != null
             && !OnDeleteFile(VideoList.SelectedValue as VideoFile))
                 return;

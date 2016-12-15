@@ -217,8 +217,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Behaviors\LagLoadFeedBackBehavior.cs" />
-    <Compile Include="Behaviors\LogReplayBehavior.cs" />
     <Compile Include="Behaviors\RecorderBehavior.cs" />
     <Compile Include="Behaviors\ReplayBehavior.cs" />
     <Compile Include="Behaviors\TimeLagBehavior.cs" />
