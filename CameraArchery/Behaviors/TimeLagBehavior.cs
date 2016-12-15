@@ -57,15 +57,18 @@ namespace CameraArchery.Behaviors
         {
             base.OnAttached();
 
-            lagLoadFeedBackManager = new LagLoadFeedBackManager();
+            lagLoadFeedBackManager = new LagLoadFeedBackManager()
+            {
+                OnProgressChange = (db) => Dispatcher.Invoke(() => AssociatedObject.ProgressBar.Value = db),
+                OnVisibilityChange = OnVisibilityChange
+            };
+
             Clear();
 
             // add lag on the video Controller
             VideoBehavior.OnNewFrame += (ref Bitmap img) => img = OnNewFrame(img);
             VideoBehavior.OnVideoClose += () => Clear();
 
-            lagLoadFeedBackManager.OnProgressChange = (db) => Dispatcher.Invoke(() => AssociatedObject.ProgressBar.Value = db);
-            lagLoadFeedBackManager.OnVisibilityChange = OnVisibilityChange;
 
             // update the view with the time lag Controller
             AssociatedObject.ProgressBar.Minimum = 0;
