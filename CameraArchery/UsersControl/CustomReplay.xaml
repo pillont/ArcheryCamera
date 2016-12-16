@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:my="clr-namespace:CameraArchery.UsersControl"
+             xmlns:et="clr-namespace:CameraArchery.UsersControl.EditableTextBlock"
              xmlns:bhv="clr-namespace:CameraArchery.Behaviors"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300" Unloaded="UserControl_Unloaded" Loaded="UserControl_Loaded">
@@ -21,13 +22,20 @@
                     <StackPanel Orientation="Vertical" HorizontalAlignment="Center" IsEnabled="False" 
                                 ContextMenuService.ShowOnDisabled="True">
                         <!-- name of the file-->
-                        <TextBlock HorizontalAlignment="Center" Text="{Binding Name}"/> 
+                            <et:EditableTextBlock HorizontalAlignment="Center" Foreground="Gray" Text="{Binding Name, Mode=TwoWay}" IsInEditMode="{Binding IsEditing, Mode=TwoWay}"/> 
                         <!-- image of the file-->
                         <MediaElement  Source="{Binding Uri}" Loaded="thumbnail_Loaded" Margin="0,0,0,20"  
                                     x:Name="thumbnail" Width="100" Height="100"  ScrubbingEnabled="True"/>
                         <!-- context menu of the list-->                            
                         <StackPanel.ContextMenu>
                             <ContextMenu>
+                                <!--rename item -->
+                                    <MenuItem Header="{DynamicResource ResourceKey=rename}" Click="RenameItem_Click">
+                                    <MenuItem.Icon>
+                                            <Image Source="pack://application:,,,/Ressources/Images/edit.png"  Height="20" Width="20"/>
+                                    </MenuItem.Icon>
+                                </MenuItem>
+                                <!--delete item -->
                                 <MenuItem Header="{DynamicResource ResourceKey=delete}" Click="DeleteItem_Click">
                                     <MenuItem.Icon>
                                         <Image Source="pack://application:,,,/Ressources/Images/delete.png"  Height="20" Width="20"/>

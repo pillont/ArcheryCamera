@@ -512,6 +512,26 @@ namespace CameraArchery.UsersControl
         }
 
         /// <summary>
+        /// event on the rename of a video file
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void RenameItem_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            //get current file
+            var file = (VideoList.SelectedValue as VideoFile);
+            //pass to editing
+            file.IsEditing = true;
+
+            //update the IsEditing value
+            //TODO event onPropertyChange in the list and not the item! and delete this
+            var index = VideoFileList.IndexOf(file);
+            VideoFileList.Remove(file);
+            VideoFileList.Insert(index, file);
+            VideoList.SelectedItem = file;
+        }
+
+        /// <summary>
         /// function to delete by the contextual menu
         /// <para>call event ondeleteFile</para>
         /// <para>remove the video</para>

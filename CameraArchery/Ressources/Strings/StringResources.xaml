@@ -33,6 +33,7 @@
     <!-- application text -->
     <system:String x:Key="addFile">Add a folder</system:String>
     <system:String x:Key="delete">Delete</system:String>
+    <system:String x:Key="rename">Rename</system:String>
     <system:String x:Key="exitBox">Quit</system:String>
     <system:String x:Key="frame">Frames per second</system:String>
     <system:String x:Key="framebyframe">Frame by frame</system:String>

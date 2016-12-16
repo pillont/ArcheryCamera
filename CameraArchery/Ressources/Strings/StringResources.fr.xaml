@@ -33,6 +33,7 @@
     <!-- application text -->
     <system:String x:Key="addFile">Ajouter un dossier</system:String>
     <system:String x:Key="delete">Supprimer</system:String>
+    <system:String x:Key="rename">Renommer</system:String>
     <system:String x:Key="exitBox">Quitter</system:String>
     <system:String x:Key="frame">Images par seconde</system:String>
     <system:String x:Key="framebyframe">Image par image</system:String>
