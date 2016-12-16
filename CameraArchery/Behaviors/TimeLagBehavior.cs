@@ -99,15 +99,10 @@ namespace CameraArchery.Behaviors
                 AssociatedObject.ProgressBar.Visibility = vs;
 
                 if (vs == Visibility.Visible)
-                {
-                    AssociatedObject.StartPopUp.IsOpen = true;
                     AssociatedObject.OptionPanel.Visibility = Visibility.Collapsed;
-                }
                 else
-                {
-                    AssociatedObject.StartPopUp.IsOpen = false;
                     AssociatedObject.OptionPanel.Visibility = Visibility.Visible;
-                }
+                
             });
         }
 

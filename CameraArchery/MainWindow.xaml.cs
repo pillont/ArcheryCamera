@@ -184,7 +184,6 @@ namespace CameraArchery
             if (!deviceSelected)
             {
                 LogHelper.Write("no device selected, show pop up");
-                new Task(popUpFunction).Start();
                 return;
             }
 
@@ -195,8 +194,6 @@ namespace CameraArchery
             if (!comboBox1.Items.Contains(selectedDevice.Name))
             {
                 LogHelper.Write("device not still connected");
-
-                new Task(popUpFunction).Start();
                 return;
             }
 
@@ -208,18 +205,6 @@ namespace CameraArchery
         
         }
 
-        /// <summary>
-        /// function to show the popUp of device list
-        /// <para>open the popUp</para>
-        /// <para>wait <code>TimePopUp</code> of time</para>
-        /// <para>close the popUp</para>
-        /// </summary>
-        private void popUpFunction()
-        {
-            Dispatcher.Invoke(() => myPopup.IsOpen = true);
-            Thread.Sleep(TimePopUp);
-            Dispatcher.Invoke(() => myPopup.IsOpen = false);
-        }
 
         /// <summary>
         /// event when the selection is change in the list of devices

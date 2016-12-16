@@ -8,14 +8,6 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-      <!-- popup of the load-->
-        <Popup Name="StartPopUp" IsOpen="True" HorizontalAlignment="Center" 
-                            PlacementTarget="{Binding ElementName=MainPanel}" Placement="Center">
-            <TextBlock Name="myPopupText" FontSize="20" 
-                            Background="LightBlue" Foreground="Blue"  
-                            Text="{DynamicResource ResourceKey=videoPopUp}"/>
-        </Popup>
-      
         <DockPanel LastChildFill="True">
             <!-- progressBar of loaded-->
             <ProgressBar Height="20"  x:Name="ProgressBar"  
@@ -33,7 +25,16 @@
 
             </StackPanel>
             <!-- image of the video-->
-            <Image x:Name="PictureVideo"/>
-        </DockPanel>
+          <Image x:Name="PictureVideo">
+            <!-- popup of the load-->
+            <Image.ToolTip>
+              <ToolTip>
+                <TextBlock Name="myPopupText" FontSize="20"
+                                Background="LightBlue" Foreground="Blue"
+                                Text="{DynamicResource ResourceKey=videoPopUp}"/>
+              </ToolTip>
+            </Image.ToolTip>
+          </Image>
+    </DockPanel>
     </Grid>
 </UserControl>

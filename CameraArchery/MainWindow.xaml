@@ -8,18 +8,21 @@
         Title="MainWindow" Height="300" Width="525"
         ResizeMode="NoResize" WindowStartupLocation="CenterScreen"  Closing="Window_Closing">
     <Grid>
-        <Popup Name="myPopup" IsOpen="False" HorizontalAlignment="Center" PlacementTarget="{Binding ElementName=comboBox1}" Placement="Bottom">
-            <TextBlock Name="myPopupText" 
-             Background="Red" Text="{DynamicResource ResourceKey=devicePopUp}"/>
-        </Popup>
         <StackPanel>
 
             <TextBlock TextAlignment="Center" Margin="0,30" FontSize="30" FontWeight="Bold" Foreground="CornflowerBlue" Text="{DynamicResource ResourceKey=chooseDevice}"/>
 
             <StackPanel Orientation="Horizontal" Margin="30,0,30,10">
-                <ComboBox x:Name="comboBox1" Width="350" Margin="0,0,10,0" HorizontalContentAlignment="Center" SelectionChanged="comboBox1_SelectionChanged" VerticalContentAlignment="Center" Background="Red"/>
-            
-                    <Button x:Name="testbutton" Content="{DynamicResource ResourceKey=refresh}" Height="30" Width="88" Click="rfsh_Click" Background="CornflowerBlue">
+                <ComboBox x:Name="comboBox1" Width="350" Margin="0,0,10,0" HorizontalContentAlignment="Center" SelectionChanged="comboBox1_SelectionChanged" VerticalContentAlignment="Center" Background="Red">
+                    <ComboBox.ToolTip>
+                        <ToolTip x:Name="ToolTipComboBox">
+                            <TextBlock Name="myPopupText" 
+                                Background="Red" Text="{DynamicResource ResourceKey=devicePopUp}"/>
+                        </ToolTip>
+                    </ComboBox.ToolTip>
+                </ComboBox>
+
+                <Button x:Name="testbutton" Content="{DynamicResource ResourceKey=refresh}" Height="30" Width="88" Click="rfsh_Click" Background="CornflowerBlue">
             </Button>
             </StackPanel>
 

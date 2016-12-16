@@ -59,6 +59,7 @@ namespace CameraArchery.UsersControl
             LanguageController.InitLanguage(this.Resources.MergedDictionaries);
             InitializeComponent();
             BehaviorHelper.AddSingleBehavior(new VideoBrowserBehavior(), BrowserControl);
+            
         }
 
 
