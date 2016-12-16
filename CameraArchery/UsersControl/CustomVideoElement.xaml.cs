@@ -28,54 +28,41 @@ namespace CameraArchery.UsersControl
     /// </summary>
     public partial class CustomVideoElement : UserControl
     {
-
+        #region behavior
         /// <summary>
         /// behavior to control the behavior
         /// </summary>
-        public RecorderBehavior RecorderBehavior;
-        
-        public FilterInfo VideoDevice;
-        private TimeLagBehavior timeLagController;
+        private RecorderBehavior RecorderBehavior { get; set; }
 
+        /// <summary>
+        /// behavior of the behavior
+        /// </summary>
+        private VideoBehavior VideoBehavior { get; set; }
+        #endregion behavior
+
+        /// <summary>
+        /// video device associate
+        /// </summary>
+        private FilterInfo VideoDevice { get; set; }
+        
+        /// <summary>
+        /// inform if is recording
+        /// </summary>
         public bool IsRecording { get; set; }
 
-        private VideoBehavior VideoBehavior;
+        /// <summary>
+        /// ctor
+        /// <para>add behavior on the browser</para>
+        /// </summary>
         public CustomVideoElement()
         {
             LanguageController.InitLanguage(this.Resources.MergedDictionaries);
             InitializeComponent();
             BehaviorHelper.AddSingleBehavior(new VideoBrowserBehavior(), BrowserControl);
-
-        }
-
-        public void Start(FilterInfo videoDevice)
-        {
-            this.VideoDevice = videoDevice;
-            
-            VideoBehavior = new VideoBehavior(VideoDevice);
-
-            BehaviorHelper.AddSingleBehavior(VideoBehavior, this);
-            BehaviorHelper.AddSingleBehavior(new TimeLagBehavior(VideoBehavior), this);
-
-            var behaviors = Interaction.GetBehaviors(this);
-            if (behaviors.OfType<RecorderBehavior>().ToList().Count == 0)
-            {
-                RecorderBehavior = new RecorderBehavior(VideoBehavior);
-                behaviors.Add(RecorderBehavior);    
-            }
         }
 
 
-        public void Stop()
-        {
-            this.VideoDevice = null;
-            VideoBehavior.CloseVideoSource();
-            VideoBehavior = null;
-            RecorderBehavior = null;
-        }
-
- 
-
+        #region event
         /// <summary>
         ///  event of the button of click
         /// </summary>
@@ -99,5 +86,43 @@ namespace CameraArchery.UsersControl
                 (sender as Button).Content = LanguageController.Get("StartRecord");
             }
         }
+        #endregion
+
+        #region public function
+        /// <summary>
+        /// start the video
+        /// <para>get the video device</para>
+        /// <para>add video behavior</para>
+        /// <para>add timeLagBehavior</para>
+        /// <para>add recorder behavior</para>
+        /// <para>add </para>
+        /// </summary>
+        /// <param name="videoDevice"></param>
+        public void Start(FilterInfo videoDevice)
+        {
+            this.VideoDevice = videoDevice;
+            
+            VideoBehavior = new VideoBehavior(VideoDevice);
+
+            BehaviorHelper.AddSingleBehavior(VideoBehavior, this);
+            BehaviorHelper.AddSingleBehavior(new TimeLagBehavior(VideoBehavior), this);
+            RecorderBehavior = BehaviorHelper.AddSingleBehavior(new RecorderBehavior(VideoBehavior), this) as RecorderBehavior;
+        }
+
+        /// <summary>
+        /// stop the video
+        /// <para>VideoDevice is set to null</para>
+        /// <para>VideoBehavior is close</para>
+        /// <para>VideoBehavior is set to null</para>
+        /// <para>RecorderBehavior is set to null</para>
+        /// </summary>
+        public void Stop()
+        {
+            this.VideoDevice = null;
+            VideoBehavior.CloseVideoSource();
+            VideoBehavior = null;
+            RecorderBehavior = null;
+        }
+        #endregion
     }
 }

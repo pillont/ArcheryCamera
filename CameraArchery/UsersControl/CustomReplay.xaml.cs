@@ -33,23 +33,63 @@ namespace CameraArchery.UsersControl
         #endregion
 
 
-
-
-        internal Func<bool> FrameByFrameSetup; 
-        internal Func<string> RefreshSpeedLabel;
-        internal Action SpeedUp;
-        internal Action SpeedDown;
-        internal Action StartTimer;
-        internal Action StopTimer;
-        internal Action LoadVideoFile;
-        internal Action Stop;  
-        internal Action Pause;
-        internal Action Start;
-        internal Action Play;
-
-
-
         #region event
+
+        /// <summary>
+        /// frame by frame change
+        /// </summary>
+        public event Func<bool> FrameByFrameSetup;
+ 
+        /// <summary>
+        /// event on refresh speed label
+        /// </summary>
+        public event Func<string> RefreshSpeedLabel;
+
+        /// <summary>
+        /// event on speed up
+        /// </summary>
+        public event Action SpeedUp;
+
+        /// <summary>
+        /// event on speed down
+        /// </summary>
+        public event Action SpeedDown;
+
+        /// <summary>
+        /// event on start timer
+        /// </summary>
+        public event Action StartTimer;
+
+        /// <summary>
+        /// event on stop timer
+        /// </summary>
+        public event Action StopTimer;
+
+        /// <summary>
+        /// event on load video file
+        /// </summary>
+        public event Action LoadVideoFile;
+
+        /// <summary>
+        /// event on stop
+        /// </summary>
+        public event Action Stop;
+
+        /// <summary>
+        /// event on pause
+        /// </summary>
+        public event Action Pause;
+
+        /// <summary>
+        /// event on start
+        /// </summary>
+        public event Action Start;
+
+        /// <summary>
+        /// event on play
+        /// </summary>
+        public event Action Play;
+
         /// <summary>
         /// event to dataBinding
         /// </summary>
@@ -120,7 +160,7 @@ namespace CameraArchery.UsersControl
         /// return : bool to inform if can delete
         /// </summary>
         public event Func<VideoFile, bool> OnDeleteFile;
-        
+
         #endregion
 
         #region states
@@ -158,9 +198,9 @@ namespace CameraArchery.UsersControl
         }
         private bool isStart;
 
-
         /// <summary>
         /// inform if the vieo is in frame by frame or not
+        /// update the mode of frameByFrame
         /// </summary>
         public bool IsFrameByFrame
         {
@@ -180,7 +220,13 @@ namespace CameraArchery.UsersControl
         private bool isFrameByFrame;
 
         #endregion
-        
+
+        /// <summary>
+        /// list of video file in the listview
+        /// binded with the visual
+        /// </summary>
+        public ObservableCollection<VideoFile> VideoFileList { get; set; }
+
         /// <summary>
         /// Uri of the start/pause image
         /// </summary>
@@ -204,8 +250,6 @@ namespace CameraArchery.UsersControl
         private double MouseCaptureValue;
 
         
-
-        
         /// <summary>
         /// ctor
         /// </summary>
@@ -224,66 +268,27 @@ namespace CameraArchery.UsersControl
             BrowserControl.PropertyChanged += BrowserControl_PropertyChanged;
         }
 
+        #region event
         private void BrowserControl_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             if (e.PropertyName == "FileName")
                 RefreshList();
         }
+    
         
-        
-
-        /// <summary>
-        /// refresh the replay view
-        /// </summary>
-        public void Refresh()
-        {
-            Stop();
-            RefreshList();
-        }
-
-
-        public ObservableCollection<VideoFile> VideoFileList {get;set;}
-
-        /// <summary>
-        /// refresh the list of files
-        /// </summary>
-        /// <param name="list">current file in the list</param>
-        private void RefreshList()
-        {
-            try
-            {
-                VideoFileList = new ObservableCollection<VideoFile>();
-                foreach(var file in ListRecordController.GetList())
-                    VideoFileList.Add(file);
-
-                OnPropertyChanged("VideoFileList"); 
-            }
-            catch(Exception e)
-            {
-                var res = MessageBox.Show(LanguageController.Get("VideoFileException"), LanguageController.Get("VideoFileNotFound"), MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
-                if (res == DialogResult.OK)
-                    RefreshList();
-                else
-                    Environment.Exit(-1);
-            }
-            VideoList.SelectedIndex = 0;
-        }
-
         /// <summary>
         /// event to start the file selected
+        /// <para>is file not start </para>
+        /// <para>if on start click return null do nothing</para>
+        /// <para>if IsFrameByFrame is true do nothing</para>
+        /// <para>if is not start => start the video</para>
+        /// <para>if is pause => is started</para>
+        /// <para>else stop the video</para>
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void Start_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            if (!isStart)
-                LogHelper.Write("start click");
-            else if (isPause)
-                LogHelper.Write("replay click");
-            else
-                LogHelper.Write("Pause click");
-          
-
             if (OnStartClick != null
             && !OnStartClick(IsStart, IsPause))
                 return;
@@ -294,49 +299,59 @@ namespace CameraArchery.UsersControl
             //start
             if (!IsStart)
             {
-                Start();
+                LogHelper.Write("start click");
+            
+                if(Start != null)
+                    Start();
                 StartPauseUri = new Uri(URI_PAUSE);
             }
             //reply
             else if (IsPause)
             {
-                Play();
+                LogHelper.Write("replay click");
+            
+                if(Play != null)
+                    Play();
                 StartPauseUri = new Uri(URI_PAUSE);
             }
             //pause
             else
             {
-                Pause();
+                LogHelper.Write("Pause click");
+
+                if (Pause != null)
+                    Pause();
                 StartPauseUri = new Uri(URI_PLAY);
             }
         }
 
         /// <summary>
         /// stop the current replay
+        /// <para>if OnStopClick() return false -> do nothing</para>
+        /// <para> init the uri</para>
+        /// <para>stop the video</para>
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void Stop_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            LogHelper.Write("stop click");
-            if (OnStopClick != null
-            && !OnStopClick())
-                return;
-            
-            StartPauseUri = new Uri(URI_PLAY);
-            Stop();
+            StopReplay();
         }
 
         /// <summary>
         /// event when file selected change
+        ///<para>stop the replay</para>
+        ///<para>if selected file is not null -> load the video file</para>
+        ///<para>call the event OnListSelectionChange</para>
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void VideoList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Stop_Click(sender, e);
+            StopReplay();
 
-            if (VideoList.SelectedValue != null)
+            if (VideoList.SelectedValue != null
+            && LoadVideoFile != null)
                 LoadVideoFile();
 
             LogHelper.Write("selected file change : " + (VideoList.SelectedValue as VideoFile));
@@ -346,25 +361,22 @@ namespace CameraArchery.UsersControl
 
         /// <summary>
         /// event when replay is finished
+        /// <para>if IsFramByFrame if false -> stop the replay</para>
+        /// <para>call the event OnMediaEnded</para>
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void MediaElementVideo_MediaEnded(object sender, System.Windows.RoutedEventArgs e)
         {
             if (!IsFrameByFrame)
-                Stop_Click(sender, e);
+                StopReplay();
 
             LogHelper.Write("media is ended");
             if (OnMediaEnded != null)
-                    OnMediaEnded();
-            
+                OnMediaEnded();
         }
 
         /// <summary>
         /// event when the value change
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void TimeSlider_ValueChanged(object sender, System.Windows.RoutedPropertyChangedEventArgs<double> e)
         {
             if (TimeSlider.IsMouseCaptured)
@@ -373,26 +385,29 @@ namespace CameraArchery.UsersControl
 
         /// <summary>
         /// event when the slider got mouse capture
+        /// <para>set the value <code>MouseCaptureValue</code></para>
+        /// <para>call event OnSliderCapture</para>
+        /// pause the media element
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void TimeSlider_GotMouseCapture(object sender, System.Windows.Input.MouseEventArgs e)
         {
             MouseCaptureValue = TimeSlider.Value;
 
-            LogHelper.Write("slider is capture at " + MouseCaptureValue  + " sec");
+            LogHelper.Write("slider is capture at " + MouseCaptureValue + " sec");
+            
             if (OnSliderCapture != null)
                 OnSliderCapture(MouseCaptureValue);
-            
+
             if (TimeSlider.IsFocused && MediaElementVideo.Source != null)
                 MediaElementVideo.Pause();
         }
 
         /// <summary>
         /// event when the slider lost mouse capture
+        /// <para>play the media element is there is source and is not in pause</para>
+        /// <para>call OnSliderChange</para>
+        /// <para>is OnSliderChange is true => change the value of the timeSlider</para>
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void TimeSlider_LostMouseCapture(object sender, System.Windows.Input.MouseEventArgs e)
         {
             if (!IsPause && MediaElementVideo.Source != null)
@@ -408,8 +423,6 @@ namespace CameraArchery.UsersControl
         /// <summary>
         /// event when the list of files is loaded
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void VideoList_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
             RefreshList();
@@ -422,7 +435,8 @@ namespace CameraArchery.UsersControl
         /// <param name="e"></param>
         private void UserControl_Unloaded(object sender, System.Windows.RoutedEventArgs e)
         {
-            StopTimer();
+            if (StopTimer != null)
+                StopTimer();
         }
 
         /// <summary>
@@ -432,45 +446,56 @@ namespace CameraArchery.UsersControl
         /// <param name="e"></param>
         private void UserControl_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
-            StartTimer();
+            if (StartTimer != null)
+                StartTimer();
         }
 
         /// <summary>
         /// event to speed down the video
+        /// <para>speed down</para>
+        /// <para>call OnSpeedDownClick</para>
+        /// <para>update speedLabel content</para>
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void SpeedDown_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             var initValue = MediaElementVideo.SpeedRatio;
-            SpeedDown();
+
+            if (SpeedDown != null)
+                SpeedDown();
 
             LogHelper.Write("speed down : " + MediaElementVideo.SpeedRatio);
 
             if (OnSpeedDownClick != null
             && !OnSpeedDownClick(MediaElementVideo.SpeedRatio))
                 MediaElementVideo.SpeedRatio = initValue;
-            
-            SpeedLabel.Content = RefreshSpeedLabel();
+
+            if (RefreshSpeedLabel != null)
+                SpeedLabel.Content = RefreshSpeedLabel();
         }
 
         /// <summary>
-        /// eve,t to speed up the video
+        /// event to speed up the video
+        /// <para>speedUp</para>
+        /// <para>call OnSpeedUpClick</para>
+        /// <para>refresh the speed label</para>
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void SpeedUp_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             var initValue = MediaElementVideo.SpeedRatio;
-            SpeedUp();
+
+            if (SpeedUp != null)
+                SpeedUp();
 
             LogHelper.Write("speed up : " + MediaElementVideo.SpeedRatio);
-            
+
             if (OnSpeedUpClick != null
             && !OnSpeedUpClick(MediaElementVideo.SpeedRatio))
                 MediaElementVideo.SpeedRatio = initValue;
 
-            SpeedLabel.Content = RefreshSpeedLabel();
+            if (RefreshSpeedLabel != null)
+                SpeedLabel.Content = RefreshSpeedLabel();
         }
 
         /// <summary>
@@ -485,28 +510,26 @@ namespace CameraArchery.UsersControl
             if (OnFrameClick != null)
                 OnFrameClick();
         }
-        
+
         /// <summary>
         /// function to delete by the contextual menu
+        /// <para>call event ondeleteFile</para>
+        /// <para>remove the video</para>
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void DeleteItem_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            LogHelper.Write("delete file " + (VideoList.SelectedValue as VideoFile).FullName);
+            LogHelper.Write("delete file " + (VideoList.SelectedValue as VideoFile).Uri);
 
             if (OnDeleteFile != null
             && !OnDeleteFile(VideoList.SelectedValue as VideoFile))
                 return;
-            
+
             ListRecordController.RemoveVideo(MediaElementVideo, VideoList);
         }
 
-       
         /// <summary>
         /// function to dataBinding
         /// </summary>
-        /// <param name="propertyName"></param>
         protected void OnPropertyChanged(string propertyName)
         {
             if (PropertyChanged != null)
@@ -515,11 +538,68 @@ namespace CameraArchery.UsersControl
             }
         }
 
+        /// <summary>
+        /// <para>element change position</para>
+        /// <para>element set speedRatio to zero</para>
+        /// </summary>
         private void thumbnail_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
-            var me= (sender as MediaElement);
-            me.Position = new TimeSpan(0, 0, 0);
-            me.SpeedRatio = 0;
+            var element = (sender as MediaElement);
+            element.Position = new TimeSpan(0, 0, 0);
+            element.SpeedRatio = 0;
         }
-     }
+        #endregion event
+
+
+        /// <summary>
+        /// refresh the replay view
+        /// </summary>
+        private void Refresh()
+        {
+            if(Stop != null)
+                Stop();
+            RefreshList();
+        }
+
+        /// <summary>
+        /// refresh the list of files
+        /// <para>init selected file to the first</para>
+        /// </summary>
+        /// <param name="list">current file in the list</param>
+        private void RefreshList()
+        {
+            try
+            {
+                VideoFileList = new ObservableCollection<VideoFile>(
+                                                    ListRecordController.GetList());
+                OnPropertyChanged("VideoFileList"); 
+            }
+            catch(Exception e)
+            {
+                var res = MessageBox.Show(LanguageController.Get("VideoFileException"), LanguageController.Get("VideoFileNotFound"), MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
+                if (res == DialogResult.OK)
+                    RefreshList();
+                else
+                    Environment.Exit(-1);
+            }
+            VideoList.SelectedIndex = 0;
+        }
+
+        /// <summary>
+        /// stop the replay
+        /// </summary>
+        private void StopReplay()
+        {
+
+            LogHelper.Write("stop click");
+            if (OnStopClick != null
+            && !OnStopClick())
+                return;
+
+            StartPauseUri = new Uri(URI_PLAY);
+
+            if (Stop != null)
+                Stop();
+        }
+    }
 }

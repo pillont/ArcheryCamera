@@ -158,10 +158,8 @@
     <Compile Include="LagLoadFeedBackControlerTest.cs" />
     <Compile Include="SerializeHelperTest.cs" />
     <Compile Include="SettingControlerTest.cs" />
-    <Compile Include="TimeLagControlerTest.cs" />
     <Compile Include="SettingFactoryTest.cs" />
     <Compile Include="LogHelperTest.cs" />
-    <Compile Include="RecorderControlerTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CameraArcheryLib\CameraArcheryLib.csproj">

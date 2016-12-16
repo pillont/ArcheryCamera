@@ -5,25 +5,28 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:my="clr-namespace:CameraArchery.UsersControl"
              xmlns:bhv="clr-namespace:CameraArchery.Behaviors"
-            xmlns:i="using:Microsoft.Xaml.Interactivity"
-            mc:Ignorable="d" 
+             mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300" Unloaded="UserControl_Unloaded" Loaded="UserControl_Loaded">
     <DockPanel LastChildFill="True">
         <DockPanel LastChildFill="True" DockPanel.Dock="Left">
+            <!-- browser-->
             <my:CustomBrowser x:Name="BrowserControl" DockPanel.Dock="Top" Width="120"></my:CustomBrowser>
-
+            <!-- list of video file -->
             <ListBox SelectionMode="Single" Background="MidnightBlue" HorizontalAlignment="Center" 
                      x:Name="VideoList" Width="150" ItemsSource="{Binding VideoFileList, Mode=TwoWay}" 
                  SelectionChanged="VideoList_SelectionChanged" Loaded="VideoList_Loaded">
             <ListBox.ItemTemplate>
+            <!-- template of the list-->
                 <DataTemplate>
                     <StackPanel Orientation="Vertical" HorizontalAlignment="Center" IsEnabled="False" 
                                 ContextMenuService.ShowOnDisabled="True">
-                        <TextBlock HorizontalAlignment="Center" Text="{Binding Name}"/>
-
-                            <MediaElement  Source="{Binding FullName}" Loaded="thumbnail_Loaded" Margin="0,0,0,20"  
+                        <!-- name of the file-->
+                        <TextBlock HorizontalAlignment="Center" Text="{Binding Name}"/> 
+                        <!-- image of the file-->
+                        <MediaElement  Source="{Binding Uri}" Loaded="thumbnail_Loaded" Margin="0,0,0,20"  
                                     x:Name="thumbnail" Width="100" Height="100"  ScrubbingEnabled="True"/>
-                            <StackPanel.ContextMenu>
+                        <!-- context menu of the list-->                            
+                        <StackPanel.ContextMenu>
                             <ContextMenu>
                                 <MenuItem Header="{DynamicResource ResourceKey=delete}" Click="DeleteItem_Click">
                                     <MenuItem.Icon>
@@ -39,7 +42,7 @@
         </DockPanel>
         <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Center">
             <DockPanel LastChildFill="True">
-
+                <!-- start or pause button -->
                 <Button DockPanel.Dock="Left" Height="30" Width="70" HorizontalAlignment="Center" 
                         Content="start" x:Name="StartButton" Click="Start_Click">
                     <Button.Template>
@@ -48,7 +51,7 @@
                         </ControlTemplate>
                     </Button.Template>
                 </Button>
-
+                <!-- stop button -->
                 <Button DockPanel.Dock="Left" Height="30" Width="70" HorizontalAlignment="Center" 
                         Content="stop" x:Name="StopButton" Click="Stop_Click">
                     <Button.Template>
@@ -57,7 +60,7 @@
                         </ControlTemplate>
                     </Button.Template>
                 </Button>
-
+                <!-- speed down button-->
                 <Button DockPanel.Dock="Left" Height="30" Width="70" HorizontalAlignment="Center"
                         Click="SpeedDown_Click" Content="speed down">
                     <Button.Template>
@@ -67,12 +70,13 @@
                         </ControlTemplate>
                     </Button.Template>
                 </Button>
-
+                <!-- frame by frame button-->
                 <CheckBox x:Name="CheckButton" Content="{DynamicResource ResourceKey=framebyframe}" Foreground="White" Checked="Frame_Click" VerticalAlignment="Center" 
                           IsChecked="{Binding IsFrameByFrame}" IsEnabled="{Binding IsStart}" DockPanel.Dock="Right"/>
-
+                <!-- speed label-->
                 <Label Background="Black" Foreground="White" DockPanel.Dock="Right" Height="30" Width="70"
                        x:Name="SpeedLabel" Content="100%" HorizontalContentAlignment="Center" Margin="5" />
+                <!-- speed up button-->
                 <Button DockPanel.Dock="Right" Height="30" Width="70" Click="SpeedUp_Click" Content="speed up">
                         <Button.Template>
                             <ControlTemplate>
@@ -81,15 +85,15 @@
                             </ControlTemplate>
                         </Button.Template>
                     </Button>
-
+                <!-- time label -->
                 <Label Background="Black" Foreground="White" HorizontalContentAlignment="Left" DockPanel.Dock="Right" 
                        Name="lblStatus" Margin="5" />
-
+                <!-- slider of time -->
                 <Slider x:Name="TimeSlider" Height="30" Width="500" ValueChanged="TimeSlider_ValueChanged" VerticalAlignment="Center"
                         GotMouseCapture="TimeSlider_GotMouseCapture" LostMouseCapture="TimeSlider_LostMouseCapture"/>
             </DockPanel>
         </StackPanel>
-
+        <!-- media element -->
         <MediaElement  x:Name="MediaElementVideo" LoadedBehavior="Manual" 
                       UnloadedBehavior="Stop" MediaEnded="MediaElementVideo_MediaEnded" ScrubbingEnabled="True"/>
     </DockPanel>

@@ -15,7 +15,6 @@
             <TextBox x:Name="LogTextBox" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
          ScrollViewer.VerticalScrollBarVisibility="Auto" 
                  TextWrapping="Wrap"/>
-                 
         </DockPanel>
     </DockPanel>
 </Window>

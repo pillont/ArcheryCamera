@@ -19,6 +19,9 @@ namespace CameraArchery.View
     /// </summary>
     public partial class VideoWindow : Window
     {
+        /// <summary>
+        /// video device associate
+        /// </summary>
         public FilterInfo VideoDevice { get; set; }
 
         /// <summary>

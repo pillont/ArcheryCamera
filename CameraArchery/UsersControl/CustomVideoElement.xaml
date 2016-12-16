@@ -8,24 +8,31 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
+      <!-- popup of the load-->
         <Popup Name="StartPopUp" IsOpen="True" HorizontalAlignment="Center" 
                             PlacementTarget="{Binding ElementName=MainPanel}" Placement="Center">
             <TextBlock Name="myPopupText" FontSize="20" 
                             Background="LightBlue" Foreground="Blue"  
                             Text="{DynamicResource ResourceKey=videoPopUp}"/>
         </Popup>
+      
         <DockPanel LastChildFill="True">
+            <!-- progressBar of loaded-->
             <ProgressBar Height="20"  x:Name="ProgressBar"  
                             DockPanel.Dock="Bottom"/>
+            <!--option menu-->
             <StackPanel Width="150" DockPanel.Dock="Left" VerticalAlignment="Center" 
                             x:Name="OptionPanel" Visibility="Collapsed">
-                <Button Margin="5" HorizontalAlignment="Center" Height="50" Background="CornflowerBlue" 
+              <!-- recording button-->  
+              <Button Margin="5" HorizontalAlignment="Center" Height="50" Background="CornflowerBlue" 
                                 Content="{DynamicResource ResourceKey=StartRecord}" 
                             Click="Recording_Click"/>
 
-                <my:CustomBrowser x:Name="BrowserControl" Width="120"></my:CustomBrowser>
+              <!-- browser -->
+              <my:CustomBrowser x:Name="BrowserControl" Width="120"></my:CustomBrowser>
 
             </StackPanel>
+            <!-- image of the video-->
             <Image x:Name="PictureVideo"/>
         </DockPanel>
     </Grid>

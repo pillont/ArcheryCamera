@@ -21,6 +21,11 @@ namespace CameraArcheryLib.Controller
     public static class ListRecordController
     {
         /// <summary>
+        /// extension of the video files
+        /// </summary>
+        public const string EXTENSION_FILE = ".avi";
+
+        /// <summary>
         /// get the list of video
         /// <para> check all the file in the directory</para>
         /// <para> check if the file is already existing in the param list</para>
@@ -43,7 +48,7 @@ namespace CameraArcheryLib.Controller
                     VideoFile file = new VideoFile()
                     {
                         Name = name.Replace(SettingFactory.CurrentSetting.VideoFolder + "\\", ""),
-                        FullName = name
+                        Uri = name
                     };
             
                     // add the file in the list
@@ -60,9 +65,6 @@ namespace CameraArcheryLib.Controller
             res.Reverse();
             return res;
         }
-
-        
-
 
         /// <summary>
         /// function to get the first image of the video
@@ -109,7 +111,7 @@ namespace CameraArcheryLib.Controller
                 return new List<string>();
 
             return Directory.EnumerateFiles(SettingFactory.CurrentSetting.VideoFolder).Where(
-                                        (file) => file.EndsWith(RecorderController.ExtensionFile));
+                                        (file) => file.EndsWith(ListRecordController.EXTENSION_FILE));
         }
 
         /// <summary>
@@ -132,7 +134,7 @@ namespace CameraArcheryLib.Controller
 
             VideoList.ItemsSource = list;
 
-            File.Delete(file.FullName);
+            File.Delete(file.Uri);
             VideoList.SelectedIndex = 0;
         }
     }

@@ -164,13 +164,9 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controller\LagLoadFeedBackManager.cs" />
+    <Compile Include="Manager\LagLoadFeedBackManager.cs" />
     <Compile Include="Controller\ListRecordController.cs" />
-    <Compile Include="Controller\RecorderController.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Controller\SettingController.cs" />
-    <Compile Include="Controller\TimeLagController.cs" />
     <Compile Include="DataBinding\VideoFile.cs" />
     <Compile Include="Factories\SettingFactory.cs" />
     <Compile Include="Controller\LanguageController.cs" />

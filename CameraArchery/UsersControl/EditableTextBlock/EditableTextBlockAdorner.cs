@@ -10,7 +10,7 @@ namespace CameraArchery.UsersControl.EditableTextBlock
     /// <summary>
     /// Adorner class which shows textbox over the text block when the Edit mode is on.
     /// </summary>
-    public class EditableTextBlockAdorner : Adorner
+    internal class EditableTextBlockAdorner : Adorner
     {
         private readonly VisualCollection _collection;
 

@@ -8,10 +8,20 @@ using System.Windows.Media.Imaging;
 
 namespace CameraArchery.DataBinding
 {
+    /// <summary>
+    /// element to show a video file in a listView
+    /// </summary>
     public class VideoFile 
     {
+        /// <summary>
+        /// name of the file
+        /// </summary>
         public string Name { get; set; }
-        public string FullName { get; set; }
+
+        /// <summary>
+        /// uri of the file
+        /// </summary>
+        public string Uri { get; set; }
         
         public override string ToString()
         {

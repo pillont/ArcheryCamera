@@ -6,11 +6,13 @@
              mc:Ignorable="d" 
              d:DesignHeight="30" d:DesignWidth="300"
             MouseDown="Button_Click">
+    <!-- main button -->
     <Button Background="CornflowerBlue" Click="Button_Click">
         <DockPanel LastChildFill="True" VerticalAlignment="Bottom">
+            <!-- image of the browser-->
             <Image x:Name="StartImageButton" DockPanel.Dock="Right" Height="25" 
                                            Source="pack://application:,,,/Ressources/Images/searchFile.png"/>
-               
+            <!-- text of the browser-->
             <TextBlock Text="{Binding FileName, Mode=TwoWay}" Foreground="{Binding Foreground}"/>
         </DockPanel>
     </Button>

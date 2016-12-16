@@ -7,7 +7,9 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
         <DockPanel VerticalAlignment="Center" >
+            <!-- text of the ori -->
             <TextBox Text="{Binding ElementName=slValue, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="25" />
+            <!-- slider -->
             <Slider TickPlacement="BottomRight" IsSnapToTickEnabled="True" Name="slValue" />
         </DockPanel>
     </Grid>

@@ -4,7 +4,7 @@
         xmlns:my="clr-namespace:CameraArchery.UsersControl"
         Title="VideoWindow" Height="300" Width="300" WindowState="Maximized" WindowStyle="None"
         Closing="Window_Closed" KeyDown="Window_KeyDown" ShowInTaskbar="False" Background="Black">
-
+    <!-- main tab control-->
     <TabControl x:Name="MainTabControl" BorderThickness="0"  Background="Black" SelectionChanged="TabControl_SelectionChanged">
         <TabControl.Resources>
             <Style TargetType="{x:Type TabPanel}">
@@ -12,14 +12,16 @@
             </Style>
             <Style TargetType="{x:Type TabItem}">
                 <Setter Property="Background" Value="CornflowerBlue"></Setter>
-
             </Style>
-
         </TabControl.Resources>
+        <!-- frst tab-->
         <TabItem Header="{DynamicResource ResourceKey=video}">
+            <!-- custom video element-->
             <my:CustomVideoElement x:Name="CustomVideoComponent"/>
         </TabItem>
+        <!-- second tab-->
         <TabItem Header="{DynamicResource ResourceKey=replay}" >
+            <!-- replay component-->
             <my:CustomReplay x:Name="CustomReplayComponent"/>
         </TabItem>
     </TabControl>

@@ -88,17 +88,17 @@ namespace CameraArchery.Behaviors
             AssociatedObject.IsFrameByFrame = false;
             AssociatedObject.IsStart = false;
         
-            AssociatedObject.FrameByFrameSetup = FrameByFrameSetup;
-            AssociatedObject.RefreshSpeedLabel = RefreshSpeedLabel;
-            AssociatedObject.SpeedUp = SpeedUp;
-            AssociatedObject.SpeedDown = SpeedDown ;
-            AssociatedObject.StartTimer = StartTimer;
-            AssociatedObject.StopTimer = StopTimer;
-            AssociatedObject.LoadVideoFile = LoadVideoFile;
-            AssociatedObject.Stop = Stop;
-            AssociatedObject.Pause = Pause;
-            AssociatedObject.Play = Play;
-            AssociatedObject.Start = Start;
+            AssociatedObject.FrameByFrameSetup += FrameByFrameSetup;
+            AssociatedObject.RefreshSpeedLabel += RefreshSpeedLabel;
+            AssociatedObject.SpeedUp += SpeedUp;
+            AssociatedObject.SpeedDown += SpeedDown ;
+            AssociatedObject.StartTimer += StartTimer;
+            AssociatedObject.StopTimer += StopTimer;
+            AssociatedObject.LoadVideoFile += LoadVideoFile;
+            AssociatedObject.Stop += Stop;
+            AssociatedObject.Pause += Pause;
+            AssociatedObject.Play += Play;
+            AssociatedObject.Start += Start;
         }
 
         /// <summary>
@@ -133,7 +133,7 @@ namespace CameraArchery.Behaviors
         /// </summary>
         private void LoadVideoFile()
         {
-            var stringUri = ((VideoFile) AssociatedObject.VideoList.SelectedValue).FullName;
+            var stringUri = ((VideoFile) AssociatedObject.VideoList.SelectedValue).Uri;
 
             MediaElement.Stop();
             MediaElement.Source = new Uri(stringUri, UriKind.Relative);

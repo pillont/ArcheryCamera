@@ -1,5 +1,6 @@
 ﻿using Accord.Video.FFMPEG;
 using CameraArchery.UsersControl;
+using CameraArcheryLib.Controller;
 using CameraArcheryLib.Factories;
 using CameraArcheryLib.Interface;
 using CameraArcheryLib.Models;
@@ -23,11 +24,6 @@ namespace CameraArchery.Behaviors
     /// </summary>
     public class RecorderBehavior : Behavior<CustomVideoElement>
     {
-        /// <summary>
-        /// extension of the video files
-        /// </summary>
-        public const string EXTENSION_FILE = ".avi";
-
         /// <summary>
         /// width of the video files
         /// </summary>
@@ -150,7 +146,7 @@ namespace CameraArchery.Behaviors
         private void StartRecording()
         {
            // get name
-            var name = VideoDirectory +"\\"+SettingFactory.CurrentSetting.VideoNumber + EXTENSION_FILE;
+            var name = VideoDirectory +"\\"+SettingFactory.CurrentSetting.VideoNumber + ListRecordController.EXTENSION_FILE;
 
             //save new value
             SettingFactory.CurrentSetting.VideoNumber++;
