@@ -67,41 +67,6 @@ namespace CameraArcheryLib.Controller
         }
 
         /// <summary>
-        /// function to get the first image of the video
-        /// <para> set a reader on the file</para>
-        /// <para>get the first image</para>
-        /// </summary>
-        /// <param name="name">full url string of the file</param>
-        /// <returns>the first image of the video file</returns>
-        private static Bitmap GetFirstImage(string name)
-        {
-            FileVideoSource reader = new FileVideoSource(name);
-
-            object locker = new object();
-
-            Bitmap tmp = null;
-            reader.NewFrame += (t, e) =>
-            // get the first image 
-            //close the reader when reading
-            {
-                tmp = e.Frame;
-                Monitor.Enter(locker);
-                Monitor.Pulse(locker);
-                Monitor.Exit(locker);
-                reader.Stop();
-
-            };
-
-            // wait the first image
-            Monitor.Enter(locker);
-            reader.Start();
-            Monitor.Wait(locker, 1000);
-            Monitor.Exit(locker);
-
-            return tmp;
-        }
-
-        /// <summary>
         /// get all the file names in the video directory
         /// </summary>
         /// <returns>list of the names</returns>

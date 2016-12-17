@@ -1,6 +1,7 @@
 ﻿using CameraArchery.UsersControl;
 using CameraArcheryLib.Controller;
 using CameraArcheryLib.Factories;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Threading;
@@ -22,24 +23,7 @@ namespace CameraArchery.Behaviors
         /// <summary>
         /// list of frame save during the difference of time
         /// </summary>
-        private List<Bitmap> TempsImagesStock
-        {
-            get
-            {
-                Monitor.Enter(tempsImagesStockLocker);
-                var res = tempsImagesStock;
-                Monitor.Exit(tempsImagesStockLocker);
-                return res;
-            }
-            set
-            {
-                Monitor.Enter(tempsImagesStockLocker);
-                tempsImagesStock = value;
-                Monitor.Exit(tempsImagesStockLocker);
-            }
-        }
-        private List<Bitmap> tempsImagesStock;
-        private object tempsImagesStockLocker = new object();
+        private ConcurrentQueue<Bitmap> TempsImagesStock { get; set; }
 
         /// <summary>
         /// behavior of the video
@@ -67,12 +51,8 @@ namespace CameraArchery.Behaviors
         {
             base.OnAttached();
 
-            lagLoadFeedBackManager = new LagLoadFeedBackManager()
-            {
-                OnProgressChange = (db) => Dispatcher.Invoke(() => AssociatedObject.ProgressBar.Value = db),
-                OnVisibilityChange = OnVisibilityChange
-            };
-
+            AssociatedObject.Loaded += AssociatedObject_Loaded;
+            
             Clear();
 
             // add lag on the video Controller
@@ -84,6 +64,22 @@ namespace CameraArchery.Behaviors
             AssociatedObject.ProgressBar.Minimum = 0;
             AssociatedObject.ProgressBar.Maximum = SettingFactory.CurrentSetting.Time;
             AssociatedObject.ProgressBar.DataContext = this;
+        }
+
+        /// <summary>
+        /// start the load of the lag after the first load of the associated object
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void AssociatedObject_Loaded(object sender, RoutedEventArgs e)
+        {
+            AssociatedObject.Loaded -= AssociatedObject_Loaded;
+        
+            lagLoadFeedBackManager = new LagLoadFeedBackManager()
+            {
+                OnProgressChange = (db) => Dispatcher.Invoke(() => AssociatedObject.ProgressBar.Value = db),
+                OnVisibilityChange = OnVisibilityChange
+            };
         }
 
         /// <summary>
@@ -115,13 +111,10 @@ namespace CameraArchery.Behaviors
         /// <param name="eventArgs"></param>
         private Bitmap OnNewFrame(Bitmap img)
         {
-            TempsImagesStock.Add(img);
+            TempsImagesStock.Enqueue(img);
             Bitmap res = null;
             if (lagLoadFeedBackManager.IsLoad)
-            {
-                res = TempsImagesStock[0];
-                TempsImagesStock.RemoveAt(0);
-            }
+                TempsImagesStock.TryDequeue(out res);
             return res;
         }
         #endregion event
@@ -132,7 +125,7 @@ namespace CameraArchery.Behaviors
         /// </summary>
         private void Clear()
         {
-            TempsImagesStock = new List<Bitmap>();
+            TempsImagesStock = new ConcurrentQueue<Bitmap>();
         }
         #endregion private function
     }
