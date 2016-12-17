@@ -33,21 +33,20 @@ namespace CameraArcheryLib.Controller
         /// </summary>
         /// <param name="list">current list</param>
         /// <returns>list with all the file</returns>
-        public static IList<VideoFile> GetList()
+        public static IList<VideoFile> GetList(string videoFolder)
         {
             var res = new List<VideoFile>();
 
             // get all the existing file
-            var videoNames = getFileNames();
-
-
+            var videoNames = GetVideoFileNames(videoFolder);
+            
             foreach (var name in videoNames)
             {
                 try
                 {
                     VideoFile file = new VideoFile()
                     {
-                        Name = name.Replace(SettingFactory.CurrentSetting.VideoFolder + "\\", ""),
+                        Name = name.Replace(videoFolder + "\\", ""),
                         Uri = name
                     };
             
@@ -70,37 +69,13 @@ namespace CameraArcheryLib.Controller
         /// get all the file names in the video directory
         /// </summary>
         /// <returns>list of the names</returns>
-        public static IEnumerable<string> getFileNames()
+        public static IEnumerable<string> GetVideoFileNames(string videoFolder)
         {
-            if (!Directory.Exists(SettingFactory.CurrentSetting.VideoFolder))
+            if (!Directory.Exists(videoFolder))
                 return new List<string>();
 
-            return Directory.EnumerateFiles(SettingFactory.CurrentSetting.VideoFolder).Where(
+            return Directory.EnumerateFiles(videoFolder).Where(
                                         (file) => file.EndsWith(ListRecordController.EXTENSION_FILE));
-        }
-
-        /// <summary>
-        ///  remove a video file
-        ///  <para>stop the media element</para>
-        ///  <para> set the source of the mediaElement to null</para>
-        ///  <para>remove the file of the list file</para>
-        ///  <para>delete the file</para>
-        /// </summary>
-        /// <param name="MediaElementVideo">mediaElement to view the file</param>
-        /// <param name="VideoList">list of the video file</param>
-        public static void RemoveVideo(MediaElement MediaElementVideo, ListBox VideoList)
-        {
-            MediaElementVideo.Stop();
-            MediaElementVideo.Source = null;
-            var file = VideoList.SelectedItem as VideoFile;
-
-            ObservableCollection<VideoFile> list = new ObservableCollection<VideoFile>((VideoList.ItemsSource as IList<VideoFile>));
-            list.Remove(file);
-
-            VideoList.ItemsSource = list;
-
-            File.Delete(file.Uri);
-            VideoList.SelectedIndex = 0;
         }
     }
 }

@@ -544,7 +544,29 @@ namespace CameraArchery.UsersControl
             && !OnDeleteFile(VideoList.SelectedValue as VideoFile))
                 return;
 
-            ListRecordController.RemoveVideo(MediaElementVideo, VideoList);
+            RemoveVideo();
+        }
+
+        /// <summary>
+        ///  remove a video file
+        ///  <para>stop the media element</para>
+        ///  <para> set the source of the mediaElement to null</para>
+        ///  <para>remove the file of the list file</para>
+        ///  <para>delete the file</para>
+        /// </summary>
+        private void RemoveVideo()
+        {
+            MediaElementVideo.Stop();
+            MediaElementVideo.Source = null;
+            var file = VideoList.SelectedItem as VideoFile;
+
+            ObservableCollection<VideoFile> list = new ObservableCollection<VideoFile>((VideoList.ItemsSource as IList<VideoFile>));
+            list.Remove(file);
+
+            VideoList.ItemsSource = list;
+
+            File.Delete(file.Uri);
+            VideoList.SelectedIndex = 0;
         }
 
         /// <summary>
@@ -591,7 +613,7 @@ namespace CameraArchery.UsersControl
             try
             {
                 VideoFileList = new ObservableCollection<VideoFile>(
-                                                    ListRecordController.GetList());
+                                                    ListRecordController.GetList(SettingFactory.CurrentSetting.VideoFolder));
                 OnPropertyChanged("VideoFileList"); 
             }
             catch(Exception e)

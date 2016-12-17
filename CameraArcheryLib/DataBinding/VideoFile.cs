@@ -32,7 +32,7 @@ namespace CameraArchery.DataBinding
                 OnPropertyChanged("StartPauseUri");
             }
         }
-        public string name;
+        private string name;
 
         /// <summary>
         /// uri of the file

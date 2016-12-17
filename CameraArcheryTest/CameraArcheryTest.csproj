@@ -153,13 +153,15 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="FormatHelperTest.cs" />
+    <Compile Include="Controller\ListRecordControllerTest.cs" />
+    <Compile Include="Utils\FormatHelperTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="LagLoadFeedBackControlerTest.cs" />
-    <Compile Include="SerializeHelperTest.cs" />
-    <Compile Include="SettingControlerTest.cs" />
-    <Compile Include="SettingFactoryTest.cs" />
-    <Compile Include="LogHelperTest.cs" />
+    <Compile Include="Manager\LagLoadFeedBackManagerTest.cs" />
+    <Compile Include="Utils\SerializeHelperTest.cs" />
+    <Compile Include="Controller\SettingControlerTest.cs" />
+    <Compile Include="Factories\SettingFactoryTest.cs" />
+    <Compile Include="Utils\LogHelperTest.cs" />
+    <Compile Include="Utils\BehaviorHelperTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CameraArcheryLib\CameraArcheryLib.csproj">
