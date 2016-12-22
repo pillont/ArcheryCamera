@@ -184,6 +184,7 @@ namespace CameraArchery.Behaviors
             Writer = new VideoFileWriter();
             Writer.Open(uri, WIDTH, HEIGHT, SettingFactory.CurrentSetting.Frame);
 
+            LogHelper.Write("start to write the file" + uri);
             Monitor.Exit(writerLocker);
         }
         
@@ -198,6 +199,8 @@ namespace CameraArchery.Behaviors
             Monitor.Enter(writerLocker);
             if (Writer != null)
             {
+                LogHelper.Write("stop to write video file" );
+
                 Writer.Close();
                 Writer = null;
             }

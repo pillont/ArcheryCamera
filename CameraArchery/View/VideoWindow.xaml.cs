@@ -77,7 +77,8 @@ namespace CameraArchery.View
         /// <param name="e"></param>
         private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            LogHelper.Write("tab control change to : " + MainTabControl.SelectedValue + ". Is recording : " + CustomVideoComponent.IsRecording);
+            if (((UIElement)MainTabControl.SelectedItem).IsMouseOver)
+                LogHelper.Write("tab control change to : " + MainTabControl.SelectedIndex + ". Is recording : " + CustomVideoComponent.IsRecording);
 
             if (e.Source is TabControl && CustomVideoComponent.IsRecording)
                 MainTabControl.SelectedIndex = 0;

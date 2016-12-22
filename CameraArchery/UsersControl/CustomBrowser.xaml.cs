@@ -2,6 +2,7 @@
 using CameraArcheryLib;
 using CameraArcheryLib.Controller;
 using CameraArcheryLib.Factories;
+using CameraArcheryLib.Utils;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -115,6 +116,8 @@ namespace CameraArchery.UsersControl
             var newUri = new Uri(dialog.SelectedPath, UriKind.Absolute);
 
             SelectedUri = newUri;
+
+            LogHelper.Write("video directory change : " + selectedUri);
         }
         #endregion
 

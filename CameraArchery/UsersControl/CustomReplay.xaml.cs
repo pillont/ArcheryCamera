@@ -12,6 +12,7 @@ using System.Collections.ObjectModel;
 using System.Windows.Interactivity;
 using CameraArchery.Behaviors;
 using CameraArcheryLib.Utils;
+using System.Windows;
 
 namespace CameraArchery.UsersControl
 {
@@ -335,6 +336,8 @@ namespace CameraArchery.UsersControl
         /// <param name="e"></param>
         private void Stop_Click(object sender, System.Windows.RoutedEventArgs e)
         {
+            LogHelper.Write("stop click");
+
             StopReplay();
         }
 
@@ -354,7 +357,9 @@ namespace CameraArchery.UsersControl
             && LoadVideoFile != null)
                 LoadVideoFile();
 
-            LogHelper.Write("selected file change : " + (VideoList.SelectedValue as VideoFile));
+            if (((UIElement)sender).IsMouseCaptured)
+                LogHelper.Write("selected file change : " + (VideoList.SelectedValue as VideoFile));
+            
             if (OnListSelectionChange != null)
                 OnListSelectionChange(VideoList.SelectedValue as VideoFile);
         }
@@ -523,12 +528,16 @@ namespace CameraArchery.UsersControl
             //pass to editing
             file.IsEditing = true;
 
+            LogHelper.Write("start rename the file" + file.Uri);
+
             //update the IsEditing value
             //TODO event onPropertyChange in the list and not the item! and delete this
             var index = VideoFileList.IndexOf(file);
             VideoFileList.Remove(file);
             VideoFileList.Insert(index, file);
             VideoList.SelectedItem = file;
+
+            LogHelper.Write("new name :" + file.Uri);
         }
 
         /// <summary>
@@ -618,7 +627,7 @@ namespace CameraArchery.UsersControl
             }
             catch(Exception e)
             {
-                var res = MessageBox.Show(LanguageController.Get("VideoFileException"), LanguageController.Get("VideoFileNotFound"), MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
+                var res = System.Windows.Forms.MessageBox.Show(LanguageController.Get("VideoFileException"), LanguageController.Get("VideoFileNotFound"), MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
                 if (res == DialogResult.OK)
                     RefreshList();
                 else
@@ -633,7 +642,6 @@ namespace CameraArchery.UsersControl
         private void StopReplay()
         {
 
-            LogHelper.Write("stop click");
             if (OnStopClick != null
             && !OnStopClick())
                 return;
