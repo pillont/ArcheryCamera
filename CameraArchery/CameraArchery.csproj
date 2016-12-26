@@ -222,6 +222,10 @@
     <Compile Include="Behaviors\TimeLagBehavior.cs" />
     <Compile Include="Behaviors\VideoBrowserBehavior.cs" />
     <Compile Include="Behaviors\VideoBehavior.cs" />
+    <Compile Include="ResizeRotateAdorner.cs" />
+    <Compile Include="Thumbs\MoveThumb.cs" />
+    <Compile Include="Thumbs\ResizeThumb.cs" />
+    <Compile Include="Thumbs\RotateThumb.cs" />
     <Compile Include="UsersControl\CustomBrowser.xaml.cs">
       <DependentUpon>CustomBrowser.xaml</DependentUpon>
     </Compile>
@@ -392,6 +396,16 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Ressources\Images\edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Ressources\Images\cercle.png" />
+    <Resource Include="Ressources\Images\restangle.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Ressources\Images\clean.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Ressources\Images\searchFile.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Accord.3.3.0\build\Accord.targets" Condition="Exists('..\packages\Accord.3.3.0\build\Accord.targets')" />

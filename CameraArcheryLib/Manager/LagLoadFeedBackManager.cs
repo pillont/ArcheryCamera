@@ -135,7 +135,6 @@ namespace CameraArcheryLib.Controller
             Visibility = Visibility.Collapsed;
             
             LogHelper.Write("start the video");
-            
         }
 
         /// <summary>

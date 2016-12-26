@@ -1,4 +1,5 @@
 ﻿using Accord.Video.DirectShow;
+using CameraArchery.Adorners;
 using CameraArchery.Behaviors;
 using CameraArcheryLib;
 using CameraArcheryLib.Controller;
@@ -62,7 +63,6 @@ namespace CameraArchery.UsersControl
             
         }
 
-
         #region event
         /// <summary>
         ///  event of the button of click
@@ -86,6 +86,49 @@ namespace CameraArchery.UsersControl
                 LogHelper.Write("stop recording");
                 (sender as Button).Content = LanguageController.Get("StartRecord");
             }
+        }
+
+        /// <summary>
+        /// fucntion to add a ellipse in the canvas
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Ellipse_Click(object sender, RoutedEventArgs e)
+        {
+            var cercle = new Ellipse()
+            {
+                Fill = System.Windows.Media.Brushes.Chartreuse,
+                IsHitTestVisible = false
+            };
+
+            AddItem(cercle);
+        }
+
+        /// <summary>
+        /// function to add a rect in the canvas
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Rect_Click(object sender, RoutedEventArgs e)
+        {
+            var rect = new System.Windows.Shapes.Rectangle()
+            {
+                Fill = System.Windows.Media.Brushes.Chartreuse,
+                IsHitTestVisible = false
+
+            };
+
+            AddItem(rect);
+        }
+
+        /// <summary>
+        /// clear the canvas items
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Clean_Click(object sender, RoutedEventArgs e)
+        {
+            CanvasControl.Children.Clear();
         }
         #endregion
 
@@ -124,6 +167,38 @@ namespace CameraArchery.UsersControl
             VideoBehavior = null;
             RecorderBehavior = null;
         }
+        
+        /// <summary>
+        /// function to add an item in the canvas with the adorner 
+        /// <para>add the content control with the item as content</para>
+        /// <para>set the position</para>
+        /// <para>add in the canvas</para>
+        /// <para>Add the adorner</para>
+        /// </summary>
+        /// <param name="element">element to add in the canvas</param>
+        public void AddItem(FrameworkElement element)
+        {
+            // add the content control with the item as content
+            var content = new ContentControl()
+            {
+                Width = 100,
+                Height = 100,
+                Template = CanvasControl.Resources["DesignerItemTemplate"] as ControlTemplate,
+                Content = element
+            };
+            // set the position
+            Canvas.SetTop(content, 10);
+            Canvas.SetLeft(content, 10);
+
+            // add in the canvas
+            CanvasControl.Children.Add(content);
+
+            // add the adorner
+            var myAdornerLayer = AdornerLayer.GetAdornerLayer(content);
+            myAdornerLayer.Add(new ResizeRotateAdorner(content));
+        }
+
         #endregion
+
     }
 }
