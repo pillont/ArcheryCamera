@@ -11,6 +11,8 @@ using CameraArcheryLib;
 using Accord.Video.DirectShow;
 using System.Windows.Interactivity;
 using CameraArchery.Behaviors;
+using System.Windows.Documents;
+using CameraArchery.Adorners;
 
 namespace CameraArchery.View
 {
@@ -97,5 +99,6 @@ namespace CameraArchery.View
                 }
             }
         }
+
     }
 }

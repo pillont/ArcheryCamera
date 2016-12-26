@@ -35,6 +35,7 @@
     <system:String x:Key="delete">Supprimer</system:String>
     <system:String x:Key="rename">Renommer</system:String>
     <system:String x:Key="exitBox">Quitter</system:String>
+    <system:String x:Key="form">Forme</system:String>
     <system:String x:Key="frame">Images par seconde</system:String>
     <system:String x:Key="framebyframe">Image par image</system:String>
     <system:String x:Key="FrameRate">Images par seconde</system:String>
@@ -43,6 +44,7 @@
     <system:String x:Key="language">Langue</system:String>
     <system:String x:Key="OK">OK</system:String>
     <system:String x:Key="quit">Quitter</system:String>
+    <system:String x:Key="record">Enregistrement</system:String>
     <system:String x:Key="return">Retour</system:String>
     <system:String x:Key="save">Sauvegarder</system:String>
     <system:String x:Key="setting">Paramètres</system:String>

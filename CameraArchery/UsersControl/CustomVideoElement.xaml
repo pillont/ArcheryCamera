@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:my="clr-namespace:CameraArchery.UsersControl"
-
+             xmlns:s="clr-namespace:CameraArchery.Thumbs"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
@@ -15,26 +15,70 @@
             <!--option menu-->
             <StackPanel Width="150" DockPanel.Dock="Left" VerticalAlignment="Center" 
                             x:Name="OptionPanel" Visibility="Collapsed">
-              <!-- recording button-->  
-              <Button Margin="5" HorizontalAlignment="Center" Height="50" Background="CornflowerBlue" 
-                                Content="{DynamicResource ResourceKey=StartRecord}" 
-                            Click="Recording_Click"/>
 
-              <!-- browser -->
+                <TextBlock Foreground="White" HorizontalAlignment="Center" Text="{DynamicResource ResourceKey=record}" 
+                                                FontSize="20" Margin="0,70,0,0" />
+
+                <!-- recording button-->
+                <Button Margin="5" HorizontalAlignment="Center" Height="50" Background="CornflowerBlue" 
+                                Content="{DynamicResource ResourceKey=StartRecord}" Click="Recording_Click"/>
+                <!-- browser -->
               <my:CustomBrowser x:Name="BrowserControl" Width="120"></my:CustomBrowser>
 
+
+                <TextBlock Foreground="White" HorizontalAlignment="Center" Text="{DynamicResource ResourceKey=form}" 
+                                                FontSize="20" Margin="0,70,0,0" /> 
+                
+                <Button Margin="5" HorizontalAlignment="Center" Click="Ellipse_Click" Height="60">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Image Source="pack://application:,,,/Ressources/Images/cercle.png"/>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                
+                <Button Margin="5" HorizontalAlignment="Center" Click="Rect_Click" Height="60">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Image Source="pack://application:,,,/Ressources/Images/restangle.jpg"/>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                
+                <Button Margin="5" HorizontalAlignment="Center" Click="Clean_Click" Height="60">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Image Source="pack://application:,,,/Ressources/Images/clean.png"/>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
             </StackPanel>
-            <!-- image of the video-->
-          <Image x:Name="PictureVideo">
-            <!-- popup of the load-->
-            <Image.ToolTip>
-              <ToolTip>
-                <TextBlock Name="myPopupText" FontSize="20"
-                                Background="LightBlue" Foreground="Blue"
-                                Text="{DynamicResource ResourceKey=videoPopUp}"/>
-              </ToolTip>
-            </Image.ToolTip>
-          </Image>
-    </DockPanel>
+            <Grid>
+                <!-- image of the video-->
+              <Image x:Name="PictureVideo">
+                <!-- popup of the load-->
+                <Image.ToolTip>
+                  <ToolTip>
+                    <TextBlock Name="myPopupText" FontSize="20" Background="LightBlue" Foreground="Blue"
+                                    Text="{DynamicResource ResourceKey=videoPopUp}"/>
+                  </ToolTip>
+                </Image.ToolTip>
+              </Image>
+                <Canvas x:Name="CanvasControl">
+                    <Canvas.Resources>
+                        <ControlTemplate x:Key="MoveThumbTemplate" TargetType="{x:Type s:MoveThumb}">
+                            <Rectangle Fill="Transparent"/>
+                        </ControlTemplate>
+
+                        <ControlTemplate x:Name="ItemTemplate" x:Key="DesignerItemTemplate" TargetType="Control">
+                            <Grid>
+                                <s:MoveThumb Template="{StaticResource MoveThumbTemplate}" DataContext="{Binding RelativeSource={RelativeSource TemplatedParent}}" Cursor="SizeAll"/>
+                                <ContentPresenter Content="{TemplateBinding ContentControl.Content}"/>
+                            </Grid>
+                        </ControlTemplate>
+                    </Canvas.Resources>
+                </Canvas>
+            </Grid>
+        </DockPanel>
     </Grid>
 </UserControl>

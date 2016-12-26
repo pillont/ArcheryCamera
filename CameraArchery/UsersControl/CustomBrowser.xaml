@@ -8,12 +8,12 @@
             MouseDown="Button_Click">
     <!-- main button -->
     <Button Background="CornflowerBlue" Click="Button_Click">
-        <DockPanel LastChildFill="True" VerticalAlignment="Bottom">
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
             <!-- image of the browser-->
-            <Image x:Name="StartImageButton" DockPanel.Dock="Right" Height="25" 
+            <Image x:Name="StartImageButton" Height="25" 
                                            Source="pack://application:,,,/Ressources/Images/searchFile.png"/>
             <!-- text of the browser-->
             <TextBlock Text="{Binding FileName, Mode=TwoWay}" Foreground="{Binding Foreground}"/>
-        </DockPanel>
+        </StackPanel>
     </Button>
 </UserControl>
