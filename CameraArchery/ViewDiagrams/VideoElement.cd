@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Video element">
+    <Position X="4.25" Y="5.25" Height="0.392" Width="1.383" />
+  </Comment>
+  <Comment CommentText="manager of the feedback of lag loading ">
+    <Position X="6.371" Y="7.977" Height="0.392" Width="1.7" />
+  </Comment>
+  <Comment CommentText="behavior of the lag">
+    <Position X="1.457" Y="7.993" Height="0.392" Width="1.7" />
+  </Comment>
+  <Comment CommentText="behavior of the video">
+    <Position X="5.226" Y="11.11" Height="0.392" Width="1.7" />
+  </Comment>
+  <Comment CommentText="behavior of the recording">
+    <Position X="1.344" Y="11.608" Height="0.447" Width="1.7" />
+  </Comment>
+  <Class Name="CameraArchery.UsersControl.CustomVideoElement">
+    <Position X="4" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABAACABAAgACAAAAAAAgAAAAACAIgAAAAAAQAI=</HashCode>
+      <FileName>UsersControl\CustomVideoElement.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CameraArchery.Behaviors.RecorderBehavior">
+    <Position X="1" Y="12.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAkAAEAAAAAAAAACAAAAAAAQIAEAAAwAAgAFAAAA=</HashCode>
+      <FileName>Behaviors\RecorderBehavior.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CameraArchery.Behaviors.TimeLagBehavior">
+    <Position X="1.25" Y="8.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACEAAAAAAAEAAAAAACAAAAAAAAAgCCAABAAAA=</HashCode>
+      <FileName>Behaviors\TimeLagBehavior.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CameraArchery.Behaviors.VideoBehavior">
+    <Position X="5" Y="11.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAQCFACAAAAAAQAAAAAAAwAAAAAAgAAAAIAAEAg=</HashCode>
+      <FileName>Behaviors\VideoBehavior.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CameraArchery.Manager.LagLoadFeedBackManager">
+    <Position X="6" Y="8.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AkAEAAAAQAAAAAAABABAAAgAQAAAAAAAAICAAIDAAAA=</HashCode>
+      <FileName>Manager\LagLoadFeedBackManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -99,6 +99,18 @@ namespace CameraArchery.Behaviors
             AssociatedObject.Pause += Pause;
             AssociatedObject.Play += Play;
             AssociatedObject.Start += Start;
+
+            SettingController.OnVideoDeviceChange += SettingController_OnVideoDeviceChange;
+        }
+
+        /// <summary>
+        /// event during the change of video divice
+        /// <para> source of the mediaElement set to null</para>
+        /// </summary>
+        /// <param name="uri">new Uri</param>
+        private void SettingController_OnVideoDeviceChange(Uri uri)
+        {
+            AssociatedObject.MediaElementVideo.Source = null;
         }
 
         /// <summary>

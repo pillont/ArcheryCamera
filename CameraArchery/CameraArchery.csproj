@@ -222,6 +222,7 @@
     <Compile Include="Behaviors\TimeLagBehavior.cs" />
     <Compile Include="Behaviors\VideoBrowserBehavior.cs" />
     <Compile Include="Behaviors\VideoBehavior.cs" />
+    <Compile Include="Manager\LagLoadFeedBackManager.cs" />
     <Compile Include="ResizeRotateAdorner.cs" />
     <Compile Include="Thumbs\MoveThumb.cs" />
     <Compile Include="Thumbs\ResizeThumb.cs" />
@@ -330,6 +331,10 @@
     </None>
     <AppDesigner Include="Properties\" />
     <None Include="UsersControl\EditableTextBlock\DiagramEditableTextBlock.cd" />
+    <None Include="ViewDiagrams\ReplayElement.cd" />
+    <None Include="ViewDiagrams\SettingView.cd" />
+    <None Include="ViewDiagrams\VideoElement.cd" />
+    <None Include="ViewDiagrams\VideoWindows.cd" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

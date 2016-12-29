@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using CameraArcheryLib.Factories;
 using System.Threading;
 using System.Windows;
+using CameraArchery.Manager;
 
 namespace CameraArcheryTest
 {

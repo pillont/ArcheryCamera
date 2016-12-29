@@ -1,4 +1,5 @@
-﻿using CameraArchery.UsersControl;
+﻿using CameraArchery.Manager;
+using CameraArchery.UsersControl;
 using CameraArcheryLib.Controller;
 using CameraArcheryLib.Factories;
 using System.Collections.Concurrent;

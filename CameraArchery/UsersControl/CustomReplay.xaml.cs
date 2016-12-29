@@ -32,8 +32,7 @@ namespace CameraArchery.UsersControl
         /// </summary>
         public const string URI_PAUSE = "pack://application:,,,/Ressources/Images/pause.png";
         #endregion
-
-
+        
         #region event
 
         /// <summary>

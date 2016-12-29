@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Replay element">
+    <Position X="4.694" Y="2.616" Height="0.392" Width="1.121" />
+  </Comment>
+  <Comment CommentText="Behavior of replay">
+    <Position X="6.577" Y="5.389" Height="0.392" Width="1.328" />
+  </Comment>
+  <Class Name="CameraArchery.UsersControl.CustomReplay">
+    <Position X="4.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QQAiBgAIgKZIUoBA4IIIACBIggUEAAiR5AwBhgCAARE=</HashCode>
+      <FileName>UsersControl\CustomReplay.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CameraArchery.Behaviors.ReplayBehavior">
+    <Position X="6.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAQgACAAECQEEAAAAAJAAAAIgAAAAABAoAQAAgAAAAE=</HashCode>
+      <FileName>Behaviors\ReplayBehavior.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

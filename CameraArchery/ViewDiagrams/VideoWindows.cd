@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Video view">
+    <Position X="10.5" Y="0.75" Height="0.295" Width="0.86" />
+  </Comment>
+  <Comment CommentText="browser of video directory">
+    <Position X="10.75" Y="4.25" Height="0.313" Width="1.7" />
+  </Comment>
+  <Class Name="CameraArchery.View.VideoWindow">
+    <Position X="10.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAABAAAAAAABAAAAAAAAAACAAAAAAAAAAAA=</HashCode>
+      <FileName>View\VideoWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CameraArchery.Behaviors.VideoBrowserBehavior">
+    <Position X="9.5" Y="4.75" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Behaviors\VideoBrowserBehavior.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CameraArchery.UsersControl.CustomBrowser">
+    <Position X="12.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAgAEAAIABAAAEAgAAAAAAAAEAAAABAAAA=</HashCode>
+      <FileName>UsersControl\CustomBrowser.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

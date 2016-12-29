@@ -168,6 +168,10 @@
       <Project>{a7997d98-0919-4943-a06f-e102dd05c0b1}</Project>
       <Name>CameraArcheryLib</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CameraArchery\CameraArchery.csproj">
+      <Project>{06489273-9D2C-4E00-878A-61C448E9F07F}</Project>
+      <Name>CameraArchery</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

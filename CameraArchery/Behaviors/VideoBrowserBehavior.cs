@@ -35,7 +35,7 @@ namespace CameraArchery.Behaviors
             if (e.PropertyName == "SelectedUri")
             {
                 if (SettingFactory.CurrentSetting.VideoFolder != AssociatedObject.SelectedUri.OriginalString)
-                    SettingController.UpdateUri(AssociatedObject.SelectedUri);
+                    SettingController.UpdateVideoDirectory(AssociatedObject.SelectedUri);
             }
         }
     }

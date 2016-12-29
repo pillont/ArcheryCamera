@@ -5,7 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace CameraArcheryLib.Controller
+namespace CameraArchery.Manager
 {
     /// <summary>
     /// Controller to make feedback lag's loaded

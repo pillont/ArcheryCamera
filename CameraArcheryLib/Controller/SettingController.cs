@@ -13,6 +13,21 @@ namespace CameraArcheryLib.Controller
     /// </summary>
     public static class SettingController
     {
+
+        public static event Action<Uri> OnVideoDeviceChange
+        {
+            add
+            {
+                onVideoDeviceChange += value;
+            }
+            remove
+            {
+                onVideoDeviceChange -= value;
+            }
+        }
+        private static event Action<Uri> onVideoDeviceChange;
+
+
         /// <summary>
         /// Function to save the new setting
         /// <para>get current setting</para>
@@ -45,7 +60,7 @@ namespace CameraArcheryLib.Controller
         /// change the uri on the setting
         /// </summary>
         /// <param name="uri">new value of the uri -> must is an existing directory</param>
-        public static void UpdateUri(Uri uri)
+        public static void UpdateVideoDirectory(Uri uri)
         {
             Contract.EnsuresOnThrow<ArgumentException>(Directory.Exists(uri.AbsolutePath), "folder not existing");
 
@@ -53,6 +68,8 @@ namespace CameraArcheryLib.Controller
 
             values.VideoFolder = uri.OriginalString;
             SerializeHelper.Serialization<Setting>(values, SettingFactory.FilePath);
+
+            onVideoDeviceChange(uri);
          }
     }
 }   
