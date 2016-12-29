@@ -14,10 +14,9 @@
 
             <StackPanel Orientation="Horizontal" Margin="30,0,30,10">
                 <ComboBox x:Name="comboBox1" Width="350" Margin="0,0,10,0" HorizontalContentAlignment="Center" SelectionChanged="comboBox1_SelectionChanged" VerticalContentAlignment="Center" Background="Red">
-                    <ComboBox.ToolTip>
+                    <ComboBox.ToolTip >
                         <ToolTip x:Name="ToolTipComboBox">
-                            <TextBlock Name="myPopupText" 
-                                Background="Red" Text="{DynamicResource ResourceKey=devicePopUp}"/>
+                            <TextBlock Name="myPopupText" Text="{DynamicResource ResourceKey=devicePopUp}"/>
                         </ToolTip>
                     </ComboBox.ToolTip>
                 </ComboBox>

@@ -16,6 +16,7 @@
             <StackPanel Width="150" DockPanel.Dock="Left" VerticalAlignment="Center" 
                             x:Name="OptionPanel" Visibility="Collapsed">
 
+                <!-- recorder zone-->
                 <TextBlock Foreground="White" HorizontalAlignment="Center" Text="{DynamicResource ResourceKey=record}" 
                                                 FontSize="20" Margin="0,70,0,0" />
 
@@ -23,12 +24,13 @@
                 <Button Margin="5" HorizontalAlignment="Center" Height="50" Background="CornflowerBlue" 
                                 Content="{DynamicResource ResourceKey=StartRecord}" Click="Recording_Click"/>
                 <!-- browser -->
-              <my:CustomBrowser x:Name="BrowserControl" Width="120"></my:CustomBrowser>
+                <my:CustomBrowser x:Name="BrowserControl" Width="120"></my:CustomBrowser>
 
-
+                <!-- forms zone -->
                 <TextBlock Foreground="White" HorizontalAlignment="Center" Text="{DynamicResource ResourceKey=form}" 
                                                 FontSize="20" Margin="0,70,0,0" /> 
                 
+                <!-- ellipse -->
                 <Button Margin="5" HorizontalAlignment="Center" Click="Ellipse_Click" Height="60">
                     <Button.Template>
                         <ControlTemplate>
@@ -36,7 +38,8 @@
                         </ControlTemplate>
                     </Button.Template>
                 </Button>
-                
+
+                <!-- rectangle -->
                 <Button Margin="5" HorizontalAlignment="Center" Click="Rect_Click" Height="60">
                     <Button.Template>
                         <ControlTemplate>
@@ -45,6 +48,7 @@
                     </Button.Template>
                 </Button>
                 
+                <!-- clean forms-->
                 <Button Margin="5" HorizontalAlignment="Center" Click="Clean_Click" Height="60">
                     <Button.Template>
                         <ControlTemplate>
