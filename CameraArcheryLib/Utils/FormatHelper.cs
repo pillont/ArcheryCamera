@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Text.RegularExpressions;
 using System.Windows;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 namespace CameraArcheryLib.Utils
@@ -54,19 +55,18 @@ namespace CameraArcheryLib.Utils
         /// </summary>
         /// <param name="source">bitmap source</param>
         /// <returns></returns>
-        public static BitmapSource loadBitmap(Bitmap source)
+        public static BitmapSource loadBitmap(Bitmap bitmap)
         {
-            if (source == null)
-                throw new ArgumentNullException();
+            var bitmapData = bitmap.LockBits(
+                new System.Drawing.Rectangle(0, 0, bitmap.Width, bitmap.Height),
+                System.Drawing.Imaging.ImageLockMode.ReadOnly, bitmap.PixelFormat);
 
-            BitmapSource bs = null;
-            IntPtr ip = source.GetHbitmap();
-            bs = System.Windows.Interop.Imaging.CreateBitmapSourceFromHBitmap(ip,
-                                                                   IntPtr.Zero, Int32Rect.Empty,
-            
-            System.Windows.Media.Imaging.BitmapSizeOptions.FromEmptyOptions());
+            var bitmapSource = BitmapSource.Create(
+                bitmapData.Width, bitmapData.Height, 96, 96, PixelFormats.Bgr24, null,
+                bitmapData.Scan0, bitmapData.Stride * bitmapData.Height, bitmapData.Stride);
 
-            return bs;
+            bitmap.UnlockBits(bitmapData);
+            return bitmapSource;
         }
     }
 }

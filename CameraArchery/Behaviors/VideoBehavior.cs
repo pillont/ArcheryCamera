@@ -140,6 +140,7 @@ namespace CameraArchery.Behaviors
         {
             // save new frame
             Bitmap img = (Bitmap)eventArgs.Frame.Clone();
+            eventArgs.Frame.Dispose();
 
             NewFraming(ref img);
             if( img != null)
