@@ -25,20 +25,10 @@ namespace CameraArchery.Behaviors
     public class RecorderBehavior : Behavior<CustomVideoElement>
     {
         /// <summary>
-        /// width of the video files
-        /// </summary>
-        public const int WIDTH = 320;
-
-        /// <summary>
-        /// height of the video files
-        /// </summary>
-        public const int HEIGHT = 240;
-
-        /// <summary>
         /// behavior of the video element
         /// </summary>
         private IVideoBehavior VideoBehavior { get; set; }
-        
+
         /// <summary>
         /// directory of the videos
         /// </summary>
@@ -53,7 +43,7 @@ namespace CameraArchery.Behaviors
         /// <summary>
         /// writer of video file
         /// </summary>
-        private VideoFileWriter Writer 
+        private VideoFileWriter Writer
         {
             get
             {
@@ -63,12 +53,12 @@ namespace CameraArchery.Behaviors
             {
                 writer = value;
 
-                AssociatedObject.IsRecording = Writer != null; 
+                AssociatedObject.IsRecording = Writer != null;
             }
         }
+
         private VideoFileWriter writer;
         private object writerLocker = new object();
-
 
         /// <summary>
         /// ctor
@@ -80,6 +70,7 @@ namespace CameraArchery.Behaviors
         }
 
         #region event
+
         /// <summary>
         /// on attach event
         /// <para>subscribe event to stop recording when videoElement is close</para>
@@ -90,7 +81,7 @@ namespace CameraArchery.Behaviors
             base.OnAttached();
 
             VideoBehavior.OnVideoClose += () => StopRecording();
-            AssociatedObject.Unloaded += (t,e) => StopRecording();
+            AssociatedObject.Unloaded += (t, e) => StopRecording();
         }
 
         /// <summary>
@@ -113,9 +104,11 @@ namespace CameraArchery.Behaviors
 
             Monitor.Exit(writerLocker);
         }
+
         #endregion event
 
         #region function public
+
         /// <summary>
         /// start the recording if not already start
         /// </summary>
@@ -132,9 +125,11 @@ namespace CameraArchery.Behaviors
             StopRecording();
             return false;
         }
+
         #endregion function public
 
         #region private function
+
         /// <summary>
         /// function to start the recording
         ///<para>get the name of the file</para>
@@ -145,13 +140,13 @@ namespace CameraArchery.Behaviors
         /// </summary>
         private void StartRecording()
         {
-           // get name
-            var name = VideoDirectory +"\\"+SettingFactory.CurrentSetting.VideoNumber + ListRecordController.EXTENSION_FILE;
+            // get name
+            var name = VideoDirectory + "\\" + SettingFactory.CurrentSetting.VideoNumber + ListRecordController.EXTENSION_FILE;
 
             //save new value
             SettingFactory.CurrentSetting.VideoNumber++;
             SerializeHelper.Serialization<Setting>(SettingFactory.CurrentSetting, SettingFactory.FilePath);
-        
+
             //create dir
             if (!System.IO.Directory.Exists(VideoDirectory))
                 System.IO.Directory.CreateDirectory(VideoDirectory);
@@ -163,7 +158,7 @@ namespace CameraArchery.Behaviors
                 StartRecording();
                 return;
             }
-            
+
             StartWriter(name);
 
             VideoBehavior.OnNewFrame += VideoController_OnNewFrame;
@@ -180,15 +175,16 @@ namespace CameraArchery.Behaviors
             Contract.Assert(!File.Exists(uri), "video file already exist");
 
             Monitor.Enter(writerLocker);
-            
+
+            var FrameSize = VideoBehavior.VideoSource.VideoCapabilities.First().FrameSize;
+
             Writer = new VideoFileWriter();
-            Writer.Open(uri, WIDTH, HEIGHT, SettingFactory.CurrentSetting.Frame);
+            Writer.Open(uri, FrameSize.Width, FrameSize.Height, SettingFactory.CurrentSetting.Frame);
 
             LogHelper.Write("start to write the file" + uri);
             Monitor.Exit(writerLocker);
         }
-        
-        
+
         /// <summary>
         /// function to stop the recording
         /// <para>close the <code>Writer</code> and set to null</para>
@@ -199,7 +195,7 @@ namespace CameraArchery.Behaviors
             Monitor.Enter(writerLocker);
             if (Writer != null)
             {
-                LogHelper.Write("stop to write video file" );
+                LogHelper.Write("stop to write video file");
 
                 Writer.Close();
                 Writer = null;
@@ -208,6 +204,7 @@ namespace CameraArchery.Behaviors
 
             VideoBehavior.OnNewFrame -= VideoController_OnNewFrame;
         }
-        #endregion
+
+        #endregion private function
     }
 }

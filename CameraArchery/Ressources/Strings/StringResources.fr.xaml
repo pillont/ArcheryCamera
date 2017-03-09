@@ -11,7 +11,6 @@
     <system:String x:Key="exitBoxMessage">Souhaitez vous quittez l'application?</system:String>
     <system:String x:Key="videoPopUp">Appuyez sur |échape| pour quitter</system:String>
 
-
     <!-- error message -->
     <system:String x:Key="CollectDeviceError">Erreur de collecte</system:String>
     <system:String x:Key="CollectDeviceErrorMessage">Erreur pendant la collecte des cameras</system:String>
@@ -28,14 +27,13 @@
     <system:String x:Key="SettingErrorMessage">Erreur durant la récupération du fichier de paramètres, les paramètres sont réinitialisés par default</system:String>
     <system:String x:Key="VideoFileException">Erreur de lecture des vidéos</system:String>
     <system:String x:Key="VideoFileNotFound">Les vidéos n'ont pas été trouvées</system:String>
-    
 
     <!-- application text -->
     <system:String x:Key="addFile">Ajouter un dossier</system:String>
     <system:String x:Key="delete">Supprimer</system:String>
     <system:String x:Key="rename">Renommer</system:String>
     <system:String x:Key="exitBox">Quitter</system:String>
-    <system:String x:Key="form">Forme</system:String>
+    <system:String x:Key="geometry">Géométrie</system:String>
     <system:String x:Key="frame">Images par seconde</system:String>
     <system:String x:Key="framebyframe">Image par image</system:String>
     <system:String x:Key="FrameRate">Images par seconde</system:String>
@@ -55,8 +53,7 @@
     <system:String x:Key="refresh">Recharger</system:String>
     <system:String x:Key="replay">Revoir</system:String>
     <system:String x:Key="video">Vidéo</system:String>
-    
-    
+
     <!-- file name -->
     <system:String x:Key="newDirectoryName">Nouveau dossier</system:String>
     <system:String x:Key="videoFolder">Video</system:String>

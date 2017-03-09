@@ -1,11 +1,6 @@
 ﻿using CameraArchery.UsersControl;
 using CameraArcheryLib.Controller;
 using CameraArcheryLib.Factories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Interactivity;
 
 namespace CameraArchery.Behaviors
@@ -21,7 +16,7 @@ namespace CameraArchery.Behaviors
         protected override void OnAttached()
         {
             base.OnAttached();
-            AssociatedObject.PropertyChanged +=AssociatedObject_PropertyChanged; 
+            AssociatedObject.PropertyChanged += AssociatedObject_PropertyChanged;
         }
 
         /// <summary>

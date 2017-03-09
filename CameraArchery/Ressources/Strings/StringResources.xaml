@@ -11,7 +11,6 @@
     <system:String x:Key="exitBoxMessage">Would you want to quit the application?</system:String>
     <system:String x:Key="videoPopUp">Put |escape| to quit</system:String>
 
-    
     <!-- error message -->
     <system:String x:Key="CollectDeviceError">Collect device error</system:String>
     <system:String x:Key="CollectDeviceErrorMessage">Error during the collect of devices</system:String>
@@ -29,13 +28,12 @@
     <system:String x:Key="VideoFileException">Error to read videos</system:String>
     <system:String x:Key="VideoFileNotFound">Video files not found</system:String>
 
-    
     <!-- application text -->
     <system:String x:Key="addFile">Add a folder</system:String>
     <system:String x:Key="delete">Delete</system:String>
     <system:String x:Key="rename">Rename</system:String>
     <system:String x:Key="exitBox">Quit</system:String>
-    <system:String x:Key="form">Form</system:String>
+    <system:String x:Key="geometry">Geometry</system:String>
     <system:String x:Key="frame">Frames per second</system:String>
     <system:String x:Key="framebyframe">Frame by frame</system:String>
     <system:String x:Key="FrameRate">Frame Rate</system:String>
@@ -55,8 +53,7 @@
     <system:String x:Key="StartRecord">Start record</system:String>
     <system:String x:Key="StopRecord">Stop record</system:String>
     <system:String x:Key="video">Video</system:String>
-    
-    
+
     <!-- file name -->
     <system:String x:Key="newDirectoryName">New folder</system:String>
     <system:String x:Key="videoFolder">Video</system:String>

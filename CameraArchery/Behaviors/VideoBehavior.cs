@@ -16,7 +16,6 @@ using System.Windows.Interactivity;
 using CameraArchery.UsersControl;
 using CameraArcheryLib.Interface;
 
-
 namespace CameraArchery.Behaviors
 {
     /// <summary>
@@ -25,6 +24,7 @@ namespace CameraArchery.Behaviors
     public class VideoBehavior : Behavior<CustomVideoElement>, IVideoBehavior
     {
         #region event
+
         /// <summary>
         /// event when the video is close
         /// </summary>
@@ -34,25 +34,26 @@ namespace CameraArchery.Behaviors
         /// event when new frame is capture
         /// </summary>
         public event newFrameDelegate OnNewFrame;
+
         #endregion event
 
         /// <summary>
         /// camera device
         /// </summary>
-        private FilterInfo videoDevice { get;  set; }
+        private FilterInfo videoDevice { get; set; }
 
         /// <summary>
         ///  source of the video
         /// </summary>
-        private VideoCaptureDevice VideoSource
+        public VideoCaptureDevice VideoSource
         {
             get
             { return videoSource; }
-            set
+            private set
             { videoSource = value; }
         }
-        private VideoCaptureDevice videoSource;
 
+        private VideoCaptureDevice videoSource;
 
         /// <summary>
         /// ctor
@@ -66,9 +67,8 @@ namespace CameraArchery.Behaviors
             this.videoDevice = videoDevices;
         }
 
-
         #region event
-        
+
         /// <summary>
         /// event on the attack of the associated object
         /// <para>VideoSource is not null => start the video</para>
@@ -103,7 +103,7 @@ namespace CameraArchery.Behaviors
                 Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive).Close();
             }
         }
-    
+
         /// <summary>
         /// event when videoBehavior is closed
         /// <para>close the videoSource</para>
@@ -124,7 +124,7 @@ namespace CameraArchery.Behaviors
         private void StartVideo()
         {
             LogHelper.Write("video start");
-            
+
             VideoSource = new VideoCaptureDevice(videoDevice.MonikerString);
             VideoSource.NewFrame += new NewFrameEventHandler(video_NewFrame);
             CloseVideoSource();
@@ -143,7 +143,7 @@ namespace CameraArchery.Behaviors
             eventArgs.Frame.Dispose();
 
             NewFraming(ref img);
-            if( img != null)
+            if (img != null)
                 ShowImage(img);
         }
 
@@ -153,12 +153,14 @@ namespace CameraArchery.Behaviors
         /// <param name="img"></param>
         private void NewFraming(ref Bitmap img)
         {
-            if(OnNewFrame != null)
+            if (OnNewFrame != null)
                 OnNewFrame(ref img);
         }
-        #endregion
+
+        #endregion event
 
         #region public functions
+
         /// <summary>
         /// close the device safely
         /// </summary>
@@ -169,17 +171,18 @@ namespace CameraArchery.Behaviors
                 {
                     if (OnVideoClose != null)
                         OnVideoClose();
-        
-                    
+
                     LogHelper.Write("stop the video");
-            
+
                     VideoSource.SignalToStop();
                     VideoSource.Source = null;
                 }
         }
+
         #endregion public functions
 
         #region private functions
+
         /// <summary>
         /// close the video
         /// </summary>
@@ -193,6 +196,7 @@ namespace CameraArchery.Behaviors
             }
             return false;
         }
+
         #endregion private functions
     }
 }
