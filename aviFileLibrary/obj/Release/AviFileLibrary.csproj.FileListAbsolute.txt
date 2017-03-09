@@ -1,4 +1,0 @@
-F:\CameraArchery\aviFileLibrary\bin\Release\aviFileLibrary.dll
-F:\CameraArchery\aviFileLibrary\bin\Release\aviFileLibrary.pdb
-F:\CameraArchery\aviFileLibrary\obj\Release\aviFileLibrary.dll
-F:\CameraArchery\aviFileLibrary\obj\Release\aviFileLibrary.pdb
