@@ -1,12 +1,6 @@
-﻿using Accord.Video.VFW;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Media.Imaging;
 
 namespace CameraArchery.DataBinding
 {
@@ -16,11 +10,11 @@ namespace CameraArchery.DataBinding
     public class VideoFile : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
-    
+
         /// <summary>
         /// name of the file
         /// </summary>
-        public string Name 
+        public string Name
         {
             get
             {
@@ -32,6 +26,7 @@ namespace CameraArchery.DataBinding
                 OnPropertyChanged("StartPauseUri");
             }
         }
+
         private string name;
 
         /// <summary>
@@ -56,20 +51,21 @@ namespace CameraArchery.DataBinding
                     var packages = Uri.Split('\\');
                     if (packages.Last() == Name)
                         return;
-                    
+
                     // get new name
                     var newUri = "";
                     foreach (var dir in packages)
-                        if(dir != packages.Last())
+                        if (dir != packages.Last())
                             newUri += dir + "\\";
                     newUri += name;
-                    
+
                     // change the name
                     File.Move(Uri, newUri);
                     Uri = newUri;
                 }
             }
         }
+
         private bool isEditing;
 
         public override string ToString()

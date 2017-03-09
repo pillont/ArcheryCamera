@@ -1,9 +1,7 @@
 ﻿using System;
 using System.IO;
-using CameraArcheryLib.Controller;
 using CameraArcheryLib.Models;
 using CameraArcheryLib.Utils;
-
 
 namespace CameraArcheryLib.Factories
 {
@@ -27,22 +25,22 @@ namespace CameraArcheryLib.Factories
         /// path of the setting path
         /// </summary>
         public const string FilePath = @"setting.xml";
-        
+
         /// <summary>
         /// default setting
         /// </summary>
         public static Setting DefaultSetting
         {
-            get 
+            get
             {
                 if (defaultSetting == null)
-                    defaultSetting = new Setting(SecondDefault, LanguageDefault, FrameDefault) { VideoNumber=0};
+                    defaultSetting = new Setting(SecondDefault, LanguageDefault, FrameDefault) { VideoNumber = 0 };
 
                 return defaultSetting;
             }
         }
-        private static Setting defaultSetting;
 
+        private static Setting defaultSetting;
 
         /// <summary>
         /// current setting
@@ -54,7 +52,7 @@ namespace CameraArcheryLib.Factories
                 // get the last setting if exist
                 if (current != null)
                     return current;
-                
+
                 // get values in the file is exist
                 try
                 {
@@ -62,7 +60,7 @@ namespace CameraArcheryLib.Factories
                 }
                 // if error during the read of the file
                 // init to the default file and set new setting file
-                catch(FileNotFoundException)
+                catch (FileNotFoundException)
                 {
                     InitSetting();
                     return current;
@@ -72,16 +70,17 @@ namespace CameraArcheryLib.Factories
                     LogHelper.Error(e);
                     InitSetting();
 
-                    if(OnErrorFindSetting != null)
+                    if (OnErrorFindSetting != null)
                         OnErrorFindSetting(e);
-               } 
-                
+                }
+
                 LogHelper.Write("Deserialization of setting : " + current);
                 return current;
             }
         }
+
         private static Setting current;
-        
+
         /// <summary>
         ///set default setting
         /// </summary>

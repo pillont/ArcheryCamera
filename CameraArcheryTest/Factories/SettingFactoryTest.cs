@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using CameraArcheryLib.Factories;
 using CameraArcheryLib;
 using CameraArcheryLib.Controller;
@@ -25,7 +24,7 @@ namespace CameraArcheryTest
         {
             var setting = SettingFactory.DefaultSetting;
             Assert.IsTrue(setting.Language == LanguageController.Languages.English);
-            Assert.IsTrue(setting.Time == 5, "time = "+setting.Time);
+            Assert.IsTrue(setting.Time == 5, "time = " + setting.Time);
             Assert.IsTrue(setting.VideoNumber == 0);
         }
 

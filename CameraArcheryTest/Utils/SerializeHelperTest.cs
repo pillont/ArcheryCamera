@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using CameraArcheryLib.Factories;
 using System.IO;
 using CameraArcheryLib;
@@ -43,7 +38,6 @@ namespace CameraArcheryTest
             res = SerializeHelper.Deserialization<Setting>(SettingFactory.FilePath);
 
             Assert.IsTrue(res == setting);
-
         }
     }
 }

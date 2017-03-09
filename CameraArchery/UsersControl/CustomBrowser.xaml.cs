@@ -1,26 +1,12 @@
-﻿using CameraArchery.View;
-using CameraArcheryLib;
-using CameraArcheryLib.Controller;
-using CameraArcheryLib.Factories;
+﻿using CameraArcheryLib.Factories;
 using CameraArcheryLib.Utils;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Diagnostics.Contracts;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Forms;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace CameraArchery.UsersControl
 {
@@ -50,13 +36,14 @@ namespace CameraArchery.UsersControl
                 OnPropertyChanged("Foreground");
             }
         }
+
         private Brush foreground = Brushes.Black;
 
         /// <summary>
         /// selected uri of the browser
         /// </summary>
-        public Uri SelectedUri 
-        { 
+        public Uri SelectedUri
+        {
             get
             {
                 return selectedUri;
@@ -69,6 +56,7 @@ namespace CameraArchery.UsersControl
                 FileName = selectedUri.OriginalString.Split('\\').Last();
             }
         }
+
         private Uri selectedUri;
 
         /// <summary>
@@ -76,16 +64,17 @@ namespace CameraArchery.UsersControl
         /// </summary>
         public string FileName
         {
-            get 
-            { 
+            get
+            {
                 return fileName;
             }
-            set 
+            set
             {
                 fileName = value;
                 OnPropertyChanged("FileName");
             }
         }
+
         public string fileName;
 
         /// <summary>
@@ -98,8 +87,9 @@ namespace CameraArchery.UsersControl
         }
 
         #region event
+
         /// <summary>
-        /// show the dialog 
+        /// show the dialog
         /// <para>if no selected uri => init to the current directory</para>
         /// <para>open a FolderBrowserDialog</para>
         /// <para>change the value of the selectedUri</para>
@@ -119,9 +109,11 @@ namespace CameraArchery.UsersControl
 
             LogHelper.Write("video directory change : " + selectedUri);
         }
-        #endregion
+
+        #endregion event
 
         #region databinding
+
         /// <summary>
         /// function to dataBinding
         /// </summary>
@@ -133,7 +125,7 @@ namespace CameraArchery.UsersControl
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
-        #endregion
-        
+
+        #endregion databinding
     }
 }

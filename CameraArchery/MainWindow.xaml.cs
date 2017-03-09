@@ -1,13 +1,7 @@
-﻿using CameraArcheryLib.Controller;
-using CameraArcheryLib.Utils;
-using CameraArcheryLib.Controller;
-using CameraArcheryLib.Utils;
+﻿using CameraArcheryLib.Utils;
 using System;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Threading;
 using CameraArchery.View;
 using CameraArcheryLib;
 using System.Windows.Media.Imaging;
@@ -25,7 +19,6 @@ namespace CameraArchery
         /// </summary>
         private const int TimePopUp = 5000;
 
-        
         /// <summary>
         ///  inform if a device in selected
         /// </summary>
@@ -34,13 +27,12 @@ namespace CameraArchery
         /// <summary>
         /// collection of the devices
         /// </summary>
-        private FilterInfoCollection videoDevices { get;  set; }
+        private FilterInfoCollection videoDevices { get; set; }
 
         /// <summary>
         /// inform if the window will be restart or not
         /// </summary>
         private bool IsWindowsRestart { get; set; }
-
 
         /// <summary>
         /// init the view
@@ -48,14 +40,14 @@ namespace CameraArchery
         /// <para>check if the application in not already existing</para>
         /// <para>if existing, open message box end close application</para>
         /// <para>init the components</para>
-        /// <para>refresh the list in the combo box of device</para> 
+        /// <para>refresh the list in the combo box of device</para>
         /// <para>init the Controller</para>
         /// </summary>
         public MainWindow()
         {
             LogHelper.Write(""); LogHelper.Write(""); // saut de ligne
             LogHelper.Write("-----------------START OF THE APPLICATION--------------------");
-            
+
             // init the dictionnary
             LanguageController.InitLanguage(this.Resources.MergedDictionaries);
 
@@ -64,7 +56,7 @@ namespace CameraArchery
             if (exists)
             {
                 MessageBox.Show(LanguageController.Get("DuplicationApplication"), LanguageController.Get("AlreadyStart"), MessageBoxButton.OK, MessageBoxImage.Error);
-                LogHelper.Write("--------------------STOP DUPLICATE  APPLICATION---------------------"); 
+                LogHelper.Write("--------------------STOP DUPLICATE  APPLICATION---------------------");
                 LogHelper.Write(""); LogHelper.Write(""); // saut de ligne
                 Environment.Exit(1);
             }
@@ -74,14 +66,13 @@ namespace CameraArchery
 
             IsWindowsRestart = false;
 
-            // init icon 
+            // init icon
             Uri iconUri = new Uri(@"pack://application:,,,/Ressources/Logos/logoViseur.ico");
             this.Icon = BitmapFrame.Create(iconUri);
 
-
             rfsh_Click();
         }
-        
+
         /// <summary>
         /// event of the refresh button
         /// <para>refresh the list of the combo box of devices</para>
@@ -123,7 +114,6 @@ namespace CameraArchery
             Environment.Exit(0);
         }
 
-
         /// <summary>
         ///  get the list of devices name
         ///  <para>get all the devices</para>
@@ -142,16 +132,15 @@ namespace CameraArchery
                 new CustomMessageBox("CollectDeviceError", "CollectDeviceErrorMessage", e.Message).ShowDialog();
                 Environment.Exit(4);
             }
-                comboBox1.Items.Clear();
+            comboBox1.Items.Clear();
 
             if (videoDevices.Count == 0)
             {
                 LogHelper.Write("empty values in the devices list");
-                
+
                 comboBox1.SelectedIndex = -1;
                 return;
             }
-
 
             foreach (FilterInfo device in videoDevices)
             {
@@ -161,7 +150,7 @@ namespace CameraArchery
             //log the list of device
             var listDevices = "";
             foreach (var item in comboBox1.Items)
-	            listDevices += item.ToString() +", ";
+                listDevices += item.ToString() + ", ";
             LogHelper.Write("new value in the devices list : " + listDevices);
 
             // change the seleted index
@@ -202,9 +191,7 @@ namespace CameraArchery
             // start window
             var window = new VideoWindow(selectedDevice);
             window.ShowDialog();
-        
         }
-
 
         /// <summary>
         /// event when the selection is change in the list of devices

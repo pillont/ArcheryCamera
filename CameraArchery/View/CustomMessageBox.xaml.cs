@@ -1,5 +1,4 @@
 ﻿using CameraArcheryLib;
-using CameraArcheryLib.Controller;
 using CameraArcheryLib.Utils;
 using System.Windows;
 
@@ -33,9 +32,9 @@ namespace CameraArchery.View
             DetailBlock.Text = detail;
 
             // get the last log
-             LogTextBox.Text = "";
-             foreach (var item in LogHelper.ReadLast())
-                 LogTextBox.Text += item + "\n";
+            LogTextBox.Text = "";
+            foreach (var item in LogHelper.ReadLast())
+                LogTextBox.Text += item + "\n";
         }
 
         /// <summary>
@@ -54,7 +53,7 @@ namespace CameraArchery.View
                 DetailButton.Content = LanguageController.Get("HideDetail");
             }
             //hide detail
-            else 
+            else
             {
                 PanelDetail.Visibility = Visibility.Collapsed;
                 this.Height = 200;

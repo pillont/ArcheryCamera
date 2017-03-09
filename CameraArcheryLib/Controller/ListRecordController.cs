@@ -1,17 +1,9 @@
-﻿using Accord.Video.DirectShow;
-using CameraArchery.DataBinding;
-using CameraArcheryLib.Factories;
+﻿using CameraArchery.DataBinding;
 using CameraArcheryLib.Utils;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Controls;
 
 namespace CameraArcheryLib.Controller
 {
@@ -39,7 +31,7 @@ namespace CameraArcheryLib.Controller
 
             // get all the existing file
             var videoNames = GetVideoFileNames(videoFolder);
-            
+
             foreach (var name in videoNames)
             {
                 try
@@ -49,7 +41,7 @@ namespace CameraArcheryLib.Controller
                         Name = name.Replace(videoFolder + "\\", ""),
                         Uri = name
                     };
-            
+
                     // add the file in the list
                     if (file != null)
                         res.Add(file);

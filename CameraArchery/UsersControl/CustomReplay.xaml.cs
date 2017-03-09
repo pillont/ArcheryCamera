@@ -9,7 +9,6 @@ using System.IO;
 using System.ComponentModel;
 using CameraArcheryLib.Factories;
 using System.Collections.ObjectModel;
-using System.Windows.Interactivity;
 using CameraArchery.Behaviors;
 using CameraArcheryLib.Utils;
 using System.Windows;
@@ -22,6 +21,7 @@ namespace CameraArchery.UsersControl
     public partial class CustomReplay : System.Windows.Controls.UserControl, INotifyPropertyChanged
     {
         #region constant
+
         /// <summary>
         /// uri of the play image
         /// </summary>
@@ -31,15 +31,16 @@ namespace CameraArchery.UsersControl
         /// uri of the pause image
         /// </summary>
         public const string URI_PAUSE = "pack://application:,,,/Ressources/Images/pause.png";
-        #endregion
-        
+
+        #endregion constant
+
         #region event
 
         /// <summary>
         /// frame by frame change
         /// </summary>
         public event Func<bool> FrameByFrameSetup;
- 
+
         /// <summary>
         /// event on refresh speed label
         /// </summary>
@@ -161,9 +162,10 @@ namespace CameraArchery.UsersControl
         /// </summary>
         public event Func<VideoFile, bool> OnDeleteFile;
 
-        #endregion
+        #endregion event
 
         #region states
+
         /// <summary>
         /// inform if the media is in pause or not
         /// </summary>
@@ -176,9 +178,9 @@ namespace CameraArchery.UsersControl
             set
             {
                 isPause = value;
-
-             }
+            }
         }
+
         private bool isPause;
 
         /// <summary>
@@ -196,6 +198,7 @@ namespace CameraArchery.UsersControl
                 CheckButton.IsEnabled = value;
             }
         }
+
         private bool isStart;
 
         /// <summary>
@@ -213,13 +216,14 @@ namespace CameraArchery.UsersControl
                 isFrameByFrame = value;
                 OnPropertyChanged("IsFrameByFrame");
 
-                if (FrameByFrameSetup !=  null)
+                if (FrameByFrameSetup != null)
                     FrameByFrameSetup();
             }
         }
+
         private bool isFrameByFrame;
 
-        #endregion
+        #endregion states
 
         /// <summary>
         /// list of video file in the listview
@@ -242,6 +246,7 @@ namespace CameraArchery.UsersControl
                 OnPropertyChanged("StartPauseUri");
             }
         }
+
         private Uri startPauseUri;
 
         /// <summary>
@@ -249,7 +254,6 @@ namespace CameraArchery.UsersControl
         /// </summary>
         private double MouseCaptureValue;
 
-        
         /// <summary>
         /// ctor
         /// </summary>
@@ -257,7 +261,7 @@ namespace CameraArchery.UsersControl
         {
             InitializeComponent();
             this.DataContext = this;
-            
+
             StartPauseUri = new Uri(URI_PLAY);
 
             BehaviorHelper.AddSingleBehavior(new ReplayBehavior(), this);
@@ -269,13 +273,13 @@ namespace CameraArchery.UsersControl
         }
 
         #region event
+
         private void BrowserControl_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             if (e.PropertyName == "FileName")
                 RefreshList();
         }
-    
-        
+
         /// <summary>
         /// event to start the file selected
         /// <para>is file not start </para>
@@ -292,7 +296,7 @@ namespace CameraArchery.UsersControl
             if (OnStartClick != null
             && !OnStartClick(IsStart, IsPause))
                 return;
-            
+
             if (IsFrameByFrame)
                 return;
 
@@ -300,8 +304,8 @@ namespace CameraArchery.UsersControl
             if (!IsStart)
             {
                 LogHelper.Write("start click");
-            
-                if(Start != null)
+
+                if (Start != null)
                     Start();
                 StartPauseUri = new Uri(URI_PAUSE);
             }
@@ -309,8 +313,8 @@ namespace CameraArchery.UsersControl
             else if (IsPause)
             {
                 LogHelper.Write("replay click");
-            
-                if(Play != null)
+
+                if (Play != null)
                     Play();
                 StartPauseUri = new Uri(URI_PAUSE);
             }
@@ -358,7 +362,7 @@ namespace CameraArchery.UsersControl
 
             if (((UIElement)sender).IsMouseCaptured)
                 LogHelper.Write("selected file change : " + (VideoList.SelectedValue as VideoFile));
-            
+
             if (OnListSelectionChange != null)
                 OnListSelectionChange(VideoList.SelectedValue as VideoFile);
         }
@@ -398,7 +402,7 @@ namespace CameraArchery.UsersControl
             MouseCaptureValue = TimeSlider.Value;
 
             LogHelper.Write("slider is capture at " + MouseCaptureValue + " sec");
-            
+
             if (OnSliderCapture != null)
                 OnSliderCapture(MouseCaptureValue);
 
@@ -598,15 +602,15 @@ namespace CameraArchery.UsersControl
             element.Position = new TimeSpan(0, 0, 0);
             element.SpeedRatio = 0;
         }
-        #endregion event
 
+        #endregion event
 
         /// <summary>
         /// refresh the replay view
         /// </summary>
         private void Refresh()
         {
-            if(Stop != null)
+            if (Stop != null)
                 Stop();
             RefreshList();
         }
@@ -622,9 +626,9 @@ namespace CameraArchery.UsersControl
             {
                 VideoFileList = new ObservableCollection<VideoFile>(
                                                     ListRecordController.GetList(SettingFactory.CurrentSetting.VideoFolder));
-                OnPropertyChanged("VideoFileList"); 
+                OnPropertyChanged("VideoFileList");
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 var res = System.Windows.Forms.MessageBox.Show(LanguageController.Get("VideoFileException"), LanguageController.Get("VideoFileNotFound"), MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
                 if (res == DialogResult.OK)
@@ -640,7 +644,6 @@ namespace CameraArchery.UsersControl
         /// </summary>
         private void StopReplay()
         {
-
             if (OnStopClick != null
             && !OnStopClick())
                 return;

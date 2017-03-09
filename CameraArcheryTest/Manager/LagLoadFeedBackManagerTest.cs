@@ -1,6 +1,4 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using CameraArcheryLib.Controller;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Threading.Tasks;
 using CameraArcheryLib.Factories;
 using System.Threading;
@@ -12,8 +10,8 @@ namespace CameraArcheryTest
     [TestClass]
     public class LagLoadFeedBackControllerTest
     {
-        LagLoadFeedBackManager Controller;
-        
+        private LagLoadFeedBackManager Controller;
+
         [TestInitialize]
         public void test()
         {
@@ -34,15 +32,15 @@ namespace CameraArcheryTest
             Assert.IsFalse(Controller.IsLoad);
             Assert.IsTrue(Controller.Visibility == Visibility.Visible);
             Assert.IsTrue(Controller.Progress == 0);
-            
+
             // start load
             new Task(() => Controller.StartLoad()).Start();
-            Thread.Sleep((time+1) * 1000);
+            Thread.Sleep((time + 1) * 1000);
 
             // after load
             Assert.IsTrue(Controller.IsLoad);
             Assert.IsTrue(Controller.Visibility == Visibility.Collapsed);
-            Assert.IsTrue(time - 1 <= Controller.Progress, "time = " + time + " progress = "+Controller.Progress);
+            Assert.IsTrue(time - 1 <= Controller.Progress, "time = " + time + " progress = " + Controller.Progress);
         }
     }
 }
