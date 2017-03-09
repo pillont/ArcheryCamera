@@ -1,0 +1,79 @@
+jeudi 9 mars 2017 09:44:44 : Deserialization of setting : Setting : Time = 5, Language = English
+/!\/!\/!\  ERROR   /!\/!\
+Impossible de trouver la ressource 'ressources/strings/stringresources.xaml'.
+   à MS.Internal.AppModel.ResourcePart.GetStreamCore(FileMode mode, FileAccess access)
+   à System.IO.Packaging.PackagePart.GetStream(FileMode mode, FileAccess access)
+   à System.IO.Packaging.PackWebResponse.CachedResponse.GetResponseStream()
+   à System.IO.Packaging.PackWebResponse.GetResponseStream()
+   à System.IO.Packaging.PackWebResponse.get_ContentType()
+   à MS.Internal.WpfWebRequestHelper.GetContentType(WebResponse response)
+   à MS.Internal.WpfWebRequestHelper.GetResponseStream(WebRequest request, ContentType& contentType)
+   à System.Windows.ResourceDictionary.set_Source(Uri value)
+   à CameraArcheryLib.LanguageController.get_CurrentDictionnary()
+/!\/!\/!\  ERROR   /!\/!\
+Impossible de trouver la ressource 'ressources/strings/stringresources.xaml'.
+   à MS.Internal.AppModel.ResourcePart.GetStreamCore(FileMode mode, FileAccess access)
+   à System.IO.Packaging.PackagePart.GetStream(FileMode mode, FileAccess access)
+   à System.IO.Packaging.PackWebResponse.CachedResponse.GetResponseStream()
+   à System.IO.Packaging.PackWebResponse.GetResponseStream()
+   à System.IO.Packaging.PackWebResponse.get_ContentType()
+   à MS.Internal.WpfWebRequestHelper.GetContentType(WebResponse response)
+   à MS.Internal.WpfWebRequestHelper.GetResponseStream(WebRequest request, ContentType& contentType)
+   à System.Windows.ResourceDictionary.set_Source(Uri value)
+   à CameraArcheryLib.LanguageController.get_CurrentDictionnary()
+/!\/!\/!\  ERROR   /!\/!\
+Impossible de trouver la ressource 'ressources/strings/stringresources.xaml'.
+   à MS.Internal.AppModel.ResourcePart.GetStreamCore(FileMode mode, FileAccess access)
+   à System.IO.Packaging.PackagePart.GetStream(FileMode mode, FileAccess access)
+   à System.IO.Packaging.PackWebResponse.CachedResponse.GetResponseStream()
+   à System.IO.Packaging.PackWebResponse.GetResponseStream()
+   à System.IO.Packaging.PackWebResponse.get_ContentType()
+   à MS.Internal.WpfWebRequestHelper.GetContentType(WebResponse response)
+   à MS.Internal.WpfWebRequestHelper.GetResponseStream(WebRequest request, ContentType& contentType)
+   à System.Windows.ResourceDictionary.set_Source(Uri value)
+   à CameraArcheryLib.LanguageController.get_CurrentDictionnary()
+/!\/!\/!\  ERROR   /!\/!\
+Impossible de trouver la ressource 'ressources/strings/stringresources.xaml'.
+   à MS.Internal.AppModel.ResourcePart.GetStreamCore(FileMode mode, FileAccess access)
+   à System.IO.Packaging.PackagePart.GetStream(FileMode mode, FileAccess access)
+   à System.IO.Packaging.PackWebResponse.CachedResponse.GetResponseStream()
+   à System.IO.Packaging.PackWebResponse.GetResponseStream()
+   à System.IO.Packaging.PackWebResponse.get_ContentType()
+   à MS.Internal.WpfWebRequestHelper.GetContentType(WebResponse response)
+   à MS.Internal.WpfWebRequestHelper.GetResponseStream(WebRequest request, ContentType& contentType)
+   à System.Windows.ResourceDictionary.set_Source(Uri value)
+   à CameraArcheryLib.LanguageController.get_CurrentDictionnary()
+jeudi 9 mars 2017 09:46:36 : Deserialization of setting : Setting : Time = 5, Language = English
+/!\/!\/!\  ERROR   /!\/!\
+Impossible de trouver la ressource 'ressources/strings/stringresources.xaml'.
+   à MS.Internal.AppModel.ResourcePart.GetStreamCore(FileMode mode, FileAccess access)
+   à System.IO.Packaging.PackagePart.GetStream(FileMode mode, FileAccess access)
+   à System.IO.Packaging.PackWebResponse.CachedResponse.GetResponseStream()
+   à System.IO.Packaging.PackWebResponse.GetResponseStream()
+   à System.IO.Packaging.PackWebResponse.get_ContentType()
+   à MS.Internal.WpfWebRequestHelper.GetContentType(WebResponse response)
+   à MS.Internal.WpfWebRequestHelper.GetResponseStream(WebRequest request, ContentType& contentType)
+   à System.Windows.ResourceDictionary.set_Source(Uri value)
+   à CameraArcheryLib.LanguageController.get_CurrentDictionnary()
+/!\/!\/!\  ERROR   /!\/!\
+Impossible de trouver la ressource 'ressources/strings/stringresources.xaml'.
+   à MS.Internal.AppModel.ResourcePart.GetStreamCore(FileMode mode, FileAccess access)
+   à System.IO.Packaging.PackagePart.GetStream(FileMode mode, FileAccess access)
+   à System.IO.Packaging.PackWebResponse.CachedResponse.GetResponseStream()
+   à System.IO.Packaging.PackWebResponse.GetResponseStream()
+   à System.IO.Packaging.PackWebResponse.get_ContentType()
+   à MS.Internal.WpfWebRequestHelper.GetContentType(WebResponse response)
+   à MS.Internal.WpfWebRequestHelper.GetResponseStream(WebRequest request, ContentType& contentType)
+   à System.Windows.ResourceDictionary.set_Source(Uri value)
+   à CameraArcheryLib.LanguageController.get_CurrentDictionnary()
+/!\/!\/!\  ERROR   /!\/!\
+Impossible de trouver la ressource 'ressources/strings/stringresources.xaml'.
+   à MS.Internal.AppModel.ResourcePart.GetStreamCore(FileMode mode, FileAccess access)
+   à System.IO.Packaging.PackagePart.GetStream(FileMode mode, FileAccess access)
+   à System.IO.Packaging.PackWebResponse.CachedResponse.GetResponseStream()
+   à System.IO.Packaging.PackWebResponse.GetResponseStream()
+   à System.IO.Packaging.PackWebResponse.get_ContentType()
+   à MS.Internal.WpfWebRequestHelper.GetContentType(WebResponse response)
+   à MS.Internal.WpfWebRequestHelper.GetResponseStream(WebRequest request, ContentType& contentType)
+   à System.Windows.ResourceDictionary.set_Source(Uri value)
+   à CameraArcheryLib.LanguageController.get_CurrentDictionnary()
