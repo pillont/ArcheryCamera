@@ -1,18 +1,11 @@
 ﻿using CameraArcheryLib.Factories;
 using CameraArcheryLib.Utils;
-using CameraArcheryLib.Controller;
 using System;
-using System.Drawing;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows.Threading;
 using CameraArcheryLib;
 using Accord.Video.DirectShow;
-using System.Windows.Interactivity;
-using CameraArchery.Behaviors;
-using System.Windows.Documents;
-using CameraArchery.Adorners;
 
 namespace CameraArchery.View
 {
@@ -39,10 +32,10 @@ namespace CameraArchery.View
         {
             VideoDevice = videoDevice;
             LogHelper.Write("--------------- open video view -----------------");
-            
+
             LanguageController.InitLanguage(this.Resources.MergedDictionaries);
             InitializeComponent();
-            
+
             CustomVideoComponent.Start(videoDevice);
         }
 
@@ -66,9 +59,9 @@ namespace CameraArchery.View
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
             var key = e.Key;
-            LogHelper.Write("video window key down : "+key);
+            LogHelper.Write("video window key down : " + key);
 
-            if(key == Key.Escape)
+            if (key == Key.Escape)
                 this.Close();
         }
 
@@ -86,7 +79,7 @@ namespace CameraArchery.View
 
             if (e.Source is TabControl && CustomVideoComponent.IsRecording)
                 MainTabControl.SelectedIndex = 0;
-       
+
             if (e.Source is System.Windows.Controls.TabControl)
             {
                 // no change
@@ -101,6 +94,5 @@ namespace CameraArchery.View
                 }
             }
         }
-
     }
 }

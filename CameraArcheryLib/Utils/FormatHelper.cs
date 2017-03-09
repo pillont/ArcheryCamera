@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Linq;
 using System.Drawing;
+using System.IO;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Drawing.Imaging;
 
 namespace CameraArcheryLib.Utils
 {
@@ -49,7 +52,6 @@ namespace CameraArcheryLib.Utils
             }
         }
 
-
         /// <summary>
         /// transform the image to adapt in the image content
         /// </summary>
@@ -57,16 +59,35 @@ namespace CameraArcheryLib.Utils
         /// <returns></returns>
         public static BitmapSource loadBitmap(Bitmap bitmap)
         {
-            var bitmapData = bitmap.LockBits(
-                new System.Drawing.Rectangle(0, 0, bitmap.Width, bitmap.Height),
-                System.Drawing.Imaging.ImageLockMode.ReadOnly, bitmap.PixelFormat);
+            if (bitmap == null)
+                throw new ArgumentNullException("bitmap");
 
-            var bitmapSource = BitmapSource.Create(
-                bitmapData.Width, bitmapData.Height, 96, 96, PixelFormats.Bgr24, null,
-                bitmapData.Scan0, bitmapData.Stride * bitmapData.Height, bitmapData.Stride);
+            using (MemoryStream memoryStream = new MemoryStream())
+            {
+                try
+                {
+                    // You need to specify the image format to fill the stream.
+                    // I'm assuming it is PNG
+                    bitmap.Save(memoryStream, ImageFormat.Png);
+                    memoryStream.Seek(0, SeekOrigin.Begin);
 
-            bitmap.UnlockBits(bitmapData);
-            return bitmapSource;
+                    BitmapDecoder bitmapDecoder = BitmapDecoder.Create(
+                        memoryStream,
+                        BitmapCreateOptions.PreservePixelFormat,
+                        BitmapCacheOption.OnLoad);
+
+                    // This will disconnect the stream from the image completely...
+                    WriteableBitmap writable =
+            new WriteableBitmap(bitmapDecoder.Frames.Single());
+                    writable.Freeze();
+
+                    return writable;
+                }
+                catch (Exception)
+                {
+                    return null;
+                }
+            }
         }
     }
 }

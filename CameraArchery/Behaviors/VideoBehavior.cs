@@ -126,17 +126,12 @@ namespace CameraArchery.Behaviors
             LogHelper.Write("video start");
 
             VideoSource = new VideoCaptureDevice(videoDevice.MonikerString);
-            VideoSource.NewFrame += new NewFrameEventHandler(video_NewFrame);
+            VideoSource.NewFrame += VideoSource_NewFrame;
             CloseVideoSource();
             VideoSource.Start();
         }
 
-        /// <summary>
-        /// eventhandler if new frame is ready
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="eventArgs"></param>
-        private void video_NewFrame(object sender, NewFrameEventArgs eventArgs)
+        private void VideoSource_NewFrame(object sender, NewFrameEventArgs eventArgs)
         {
             // save new frame
             Bitmap img = (Bitmap)eventArgs.Frame.Clone();
