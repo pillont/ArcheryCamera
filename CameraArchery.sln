@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CameraArchery", "CameraArchery\CameraArchery.csproj", "{06489273-9D2C-4E00-878A-61C448E9F07F}"
 EndProject
@@ -13,8 +13,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{F30686
 	ProjectSection(SolutionItems) = preProject
 		.nuget\packages.config = .nuget\packages.config
 	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AviFileLibrary", "aviFileLibrary\AviFileLibrary.csproj", "{6592DBEA-D16F-4F49-9970-2FC5FA6FAA9C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -78,19 +76,6 @@ Global
 		{2915DE95-9080-4DBF-82A5-AA7CB7619678}.Release|x64.ActiveCfg = Release|Any CPU
 		{2915DE95-9080-4DBF-82A5-AA7CB7619678}.Release|x86.ActiveCfg = Release|x86
 		{2915DE95-9080-4DBF-82A5-AA7CB7619678}.Release|x86.Build.0 = Release|x86
-		{6592DBEA-D16F-4F49-9970-2FC5FA6FAA9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6592DBEA-D16F-4F49-9970-2FC5FA6FAA9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6592DBEA-D16F-4F49-9970-2FC5FA6FAA9C}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{6592DBEA-D16F-4F49-9970-2FC5FA6FAA9C}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{6592DBEA-D16F-4F49-9970-2FC5FA6FAA9C}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{6592DBEA-D16F-4F49-9970-2FC5FA6FAA9C}.Debug|x64.Build.0 = Debug|Any CPU
-		{6592DBEA-D16F-4F49-9970-2FC5FA6FAA9C}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{6592DBEA-D16F-4F49-9970-2FC5FA6FAA9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6592DBEA-D16F-4F49-9970-2FC5FA6FAA9C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6592DBEA-D16F-4F49-9970-2FC5FA6FAA9C}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{6592DBEA-D16F-4F49-9970-2FC5FA6FAA9C}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{6592DBEA-D16F-4F49-9970-2FC5FA6FAA9C}.Release|x64.ActiveCfg = Release|Any CPU
-		{6592DBEA-D16F-4F49-9970-2FC5FA6FAA9C}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
