@@ -1,14 +1,8 @@
-﻿using Accord.Video.DirectShow;
-using CameraArchery.DataBinding;
+﻿using CameraArchery.DataBinding;
 using CameraArchery.UsersControl;
 using CameraArcheryLib.Controller;
 using CameraArcheryLib.Factories;
-using CameraArcheryLib.Utils;
 using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.IO;
-using System.Linq;
 using System.Threading;
 using System.Windows.Controls;
 using System.Windows.Interactivity;
@@ -22,6 +16,7 @@ namespace CameraArchery.Behaviors
     public class ReplayBehavior : Behavior<CustomReplay>
     {
         #region element of the associated object
+
         /// <summary>
         /// media element to manage
         /// </summary>
@@ -36,25 +31,25 @@ namespace CameraArchery.Behaviors
         /// <summary>
         /// slider to manage the time
         /// </summary>
-        private Slider TimeSlider 
-        { 
-            get 
+        private Slider TimeSlider
+        {
+            get
             {
                 return AssociatedObject.TimeSlider;
-            } 
+            }
         }
 
         /// <summary>
         /// label to inform the time
         /// </summary>
-        private Label LabelTime 
+        private Label LabelTime
         {
             get
             {
                 return AssociatedObject.lblStatus;
             }
         }
-        
+
         /// <summary>
         /// speed ratio of the mediaElement
         /// </summary>
@@ -65,7 +60,8 @@ namespace CameraArchery.Behaviors
                 return MediaElement.SpeedRatio;
             }
         }
-        #endregion
+
+        #endregion element of the associated object
 
         /// <summary>
         /// timer to update the time value
@@ -78,20 +74,21 @@ namespace CameraArchery.Behaviors
         private object lockerTimer = new object();
 
         #region event
+
         /// <summary>
         /// on attached associated object
         /// </summary>
         protected override void OnAttached()
         {
             base.OnAttached();
-            
+
             AssociatedObject.IsFrameByFrame = false;
             AssociatedObject.IsStart = false;
-        
+
             AssociatedObject.FrameByFrameSetup += FrameByFrameSetup;
             AssociatedObject.RefreshSpeedLabel += RefreshSpeedLabel;
             AssociatedObject.SpeedUp += SpeedUp;
-            AssociatedObject.SpeedDown += SpeedDown ;
+            AssociatedObject.SpeedDown += SpeedDown;
             AssociatedObject.StartTimer += StartTimer;
             AssociatedObject.StopTimer += StopTimer;
             AssociatedObject.LoadVideoFile += LoadVideoFile;
@@ -133,9 +130,13 @@ namespace CameraArchery.Behaviors
             else
                 MediaElement.Position = new TimeSpan(0);
         }
-        #endregion event 
+
+        #endregion event
+
+
 
         #region private function
+
         /// <summary>
         /// load the file in the media element
         /// <para>get the uri of the file</para>
@@ -145,7 +146,7 @@ namespace CameraArchery.Behaviors
         /// </summary>
         private void LoadVideoFile()
         {
-            var stringUri = ((VideoFile) AssociatedObject.VideoList.SelectedValue).Uri;
+            var stringUri = ((VideoFile)AssociatedObject.VideoList.SelectedValue).Uri;
 
             MediaElement.Stop();
             MediaElement.Source = new Uri(stringUri, UriKind.Relative);
@@ -153,7 +154,7 @@ namespace CameraArchery.Behaviors
         }
 
         /// <summary>
-        /// stop the video 
+        /// stop the video
         /// <para> stop the media element</para>
         /// <para> change the position to the begin</para>
         /// <para> IsPause is set to false</para>
@@ -341,6 +342,7 @@ namespace CameraArchery.Behaviors
 
             return time.ToString() + "%";
         }
+
         #endregion private function
     }
 }

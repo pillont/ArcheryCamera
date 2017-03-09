@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Windows.Interactivity;
 using System.Windows;
 using CameraArcheryLib.Utils;
@@ -10,7 +9,7 @@ namespace CameraArcheryTest.Utils
     public class BehaviorHelperTest
     {
         internal class BehaviorTest : Behavior<DependencyObject>
-        { 
+        {
         }
 
         [TestMethod]
@@ -27,7 +26,6 @@ namespace CameraArcheryTest.Utils
 
             Assert.IsTrue(Interaction.GetBehaviors(obj).Count == 1);
             Assert.IsTrue(res == default(BehaviorTest));
-
         }
     }
 }

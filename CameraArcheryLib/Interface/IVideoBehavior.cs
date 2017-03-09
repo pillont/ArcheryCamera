@@ -1,10 +1,6 @@
 ﻿using Accord.Video.DirectShow;
 using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CameraArcheryLib.Interface
 {

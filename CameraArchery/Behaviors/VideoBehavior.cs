@@ -1,16 +1,10 @@
 ﻿using Accord.Video;
 using Accord.Video.DirectShow;
 using CameraArchery.View;
-using CameraArcheryLib.Controller;
-using CameraArcheryLib.Factories;
-using CameraArcheryLib.Models;
 using CameraArcheryLib.Utils;
-using SharpAvi.Output;
 using System;
 using System.Linq;
 using System.Drawing;
-using System.Drawing.Imaging;
-using System.IO;
 using System.Windows;
 using System.Windows.Interactivity;
 using CameraArchery.UsersControl;

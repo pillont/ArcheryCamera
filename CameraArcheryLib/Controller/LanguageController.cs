@@ -3,7 +3,6 @@ using CameraArcheryLib.Utils;
 using System;
 using System.Collections.ObjectModel;
 using System.Windows;
-using System.Windows.Threading;
 
 namespace CameraArcheryLib
 {
@@ -26,7 +25,7 @@ namespace CameraArcheryLib
         /// Uri of the french dictionnary
         /// </summary>
         public const string FrUri = @"../Ressources/Strings/StringResources.fr.xaml";
-        
+
         /// <summary>
         /// Uri of the default dictionnary
         /// </summary>
@@ -35,13 +34,13 @@ namespace CameraArcheryLib
         /// <summary>
         /// function to get the current dictionnary
         /// </summary>
-        public static ResourceDictionary CurrentDictionnary 
+        public static ResourceDictionary CurrentDictionnary
         {
-            get 
+            get
             {
                 ResourceDictionary dict = new ResourceDictionary();
 
-                try 
+                try
                 {
                     // found the good dictionnary
                     if (SettingFactory.CurrentSetting.Language == Languages.Français)
@@ -49,7 +48,7 @@ namespace CameraArcheryLib
                     else
                         dict.Source = new Uri(DefaultUri, UriKind.Relative);
                 }
-                catch(Exception e)
+                catch (Exception e)
                 {
                     LogHelper.Error(e);
                     if (OnErrorFindDictionary != null)
@@ -57,7 +56,7 @@ namespace CameraArcheryLib
                     else
                         throw e;
                 }
-                
+
                 return dict;
             }
         }

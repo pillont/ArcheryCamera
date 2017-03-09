@@ -2,7 +2,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.IO;
 using CameraArcheryLib.Controller;
-using CameraArchery.DataBinding;
 using System.Collections.Generic;
 
 namespace CameraArcheryTest.Controller
@@ -27,7 +26,7 @@ namespace CameraArcheryTest.Controller
         [TestCleanup]
         public void Clean()
         {
-            Directory.Delete("test",true);
+            Directory.Delete("test", true);
         }
 
         [TestMethod]
@@ -35,9 +34,9 @@ namespace CameraArcheryTest.Controller
         {
             // get file
             var res = ListRecordController.GetList("test");
-            
+
             Assert.IsTrue(res.Count == 2);
-            
+
             //check first file
             Assert.IsTrue(res[0].IsEditing == false);
             Assert.IsTrue(res[0].Name == "file2.avi");

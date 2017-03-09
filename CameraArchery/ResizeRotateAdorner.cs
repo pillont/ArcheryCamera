@@ -3,11 +3,9 @@ using System;
 using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Shapes;
 
 namespace CameraArchery.Adorners
 
@@ -15,13 +13,15 @@ namespace CameraArchery.Adorners
     public class ResizeRotateAdorner : Adorner
     {
         private Timer timer;
-        // Resizing adorner uses Thumbs for visual elements.  
+
+        // Resizing adorner uses Thumbs for visual elements.
         // The Thumbs have built-in mouse input handling.
-        ResizeThumb topLeft, topRight, bottomLeft, bottomRight;
-        RotateThumb rotation;
+        private ResizeThumb topLeft, topRight, bottomLeft, bottomRight;
+
+        private RotateThumb rotation;
 
         // To store and manage the adorner's visual children.
-        VisualCollection visualChildren;
+        private VisualCollection visualChildren;
 
         // Initialize the ResizingAdorner.
         public ResizeRotateAdorner(UIElement adornedElement)
@@ -29,7 +29,7 @@ namespace CameraArchery.Adorners
         {
             Visibility = Visibility.Collapsed;
             adornedElement.GotMouseCapture += adornedElement_GotMouseCapture;
-        
+
             visualChildren = new VisualCollection(this);
 
             // Call a helper method to initialize the Thumbs
@@ -38,7 +38,6 @@ namespace CameraArchery.Adorners
             BuildAdornerCorner(ref topRight, Cursors.SizeNESW, HorizontalAlignment.Right, VerticalAlignment.Top);
             BuildAdornerCorner(ref bottomLeft, Cursors.SizeNESW, HorizontalAlignment.Left, VerticalAlignment.Bottom);
             BuildAdornerCorner(ref bottomRight, Cursors.SizeNWSE, HorizontalAlignment.Right, VerticalAlignment.Bottom);
-
 
             rotation = new RotateThumb(AdornedElement as ContentControl);
             rotation.DragCompleted += (t, e) => RestartTimer();
@@ -50,30 +49,27 @@ namespace CameraArchery.Adorners
             rotation.Background = new SolidColorBrush(Colors.Green);
 
             visualChildren.Add(rotation);
-     
         }
 
-        void adornedElement_GotMouseCapture(object sender, MouseEventArgs e)
+        private void adornedElement_GotMouseCapture(object sender, MouseEventArgs e)
         {
-            
             if (timer != null)
                 timer.Stop();
 
-            RestartTimer();   
+            RestartTimer();
         }
 
-        void timer_Elapsed(object sender, ElapsedEventArgs e)
+        private void timer_Elapsed(object sender, ElapsedEventArgs e)
         {
-            Dispatcher.Invoke(()=>Visibility = Visibility.Collapsed);
+            Dispatcher.Invoke(() => Visibility = Visibility.Collapsed);
         }
 
-        void StopTimer()
+        private void StopTimer()
         {
             timer.Stop();
         }
 
-        
-        void RestartTimer()
+        private void RestartTimer()
         {
             Visibility = Visibility.Visible;
 
@@ -85,8 +81,8 @@ namespace CameraArchery.Adorners
         // Arrange the Adorners.
         protected override Size ArrangeOverride(Size finalSize)
         {
-            // desiredWidth and desiredHeight are the width and height of the element that's being adorned.  
-            // These will be used to place the ResizingAdorner at the corners of the adorned element.  
+            // desiredWidth and desiredHeight are the width and height of the element that's being adorned.
+            // These will be used to place the ResizingAdorner at the corners of the adorned element.
             double desiredWidth = AdornedElement.DesiredSize.Width;
             double desiredHeight = AdornedElement.DesiredSize.Height;
             // adornerWidth & adornerHeight are used for placement as well.
@@ -103,9 +99,9 @@ namespace CameraArchery.Adorners
             return finalSize;
         }
 
-        // Helper method to instantiate the corner Thumbs, set the Cursor property, 
+        // Helper method to instantiate the corner Thumbs, set the Cursor property,
         // set some appearance properties, and add the elements to the visual tree.
-        void BuildAdornerCorner(ref ResizeThumb cornerThumb, Cursor customizedCursor, HorizontalAlignment horizontalAlign, VerticalAlignment verticalAlign)
+        private void BuildAdornerCorner(ref ResizeThumb cornerThumb, Cursor customizedCursor, HorizontalAlignment horizontalAlign, VerticalAlignment verticalAlign)
         {
             if (cornerThumb != null) return;
 
@@ -125,7 +121,7 @@ namespace CameraArchery.Adorners
         // This method ensures that the Widths and Heights are initialized.  Sizing to content produces
         // Width and Height values of Double.NaN.  Because this Adorner explicitly resizes, the Width and Height
         // need to be set first.  It also sets the maximum size of the adorned element.
-        void EnforceSize(FrameworkElement adornedElement)
+        private void EnforceSize(FrameworkElement adornedElement)
         {
             if (adornedElement.Width.Equals(Double.NaN))
                 adornedElement.Width = adornedElement.DesiredSize.Width;
@@ -139,9 +135,14 @@ namespace CameraArchery.Adorners
                 adornedElement.MaxWidth = parent.ActualWidth;
             }
         }
-        // Override the VisualChildrenCount and GetVisualChild properties to interface with 
+
+        // Override the VisualChildrenCount and GetVisualChild properties to interface with
         // the adorner's visual collection.
         protected override int VisualChildrenCount { get { return visualChildren.Count; } }
-        protected override Visual GetVisualChild(int index) { return visualChildren[index]; }
+
+        protected override Visual GetVisualChild(int index)
+        {
+            return visualChildren[index];
+        }
     }
 }

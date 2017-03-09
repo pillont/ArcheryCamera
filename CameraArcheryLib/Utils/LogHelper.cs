@@ -1,5 +1,4 @@
-﻿using CameraArcheryLib.Controller;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -12,9 +11,10 @@ namespace CameraArcheryLib.Utils
     public static class LogHelper
     {
         /// <summary>
-        /// path of the log file 
+        /// path of the log file
         /// </summary>
         public const string PathLogFile = "log.txt";
+
         public const string ErrorHeader = "/!\\/!\\/!\\  ERROR   /!\\/!\\";
 
         /// <summary>

@@ -3,7 +3,6 @@ using System.Windows;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Data;
-using System;
 
 namespace CameraArchery.UsersControl.EditableTextBlock
 {
@@ -13,7 +12,7 @@ namespace CameraArchery.UsersControl.EditableTextBlock
     public class EditableTextBlock : TextBlock
     {
         private string InitText;
-        
+
         public bool IsInEditMode
         {
             get

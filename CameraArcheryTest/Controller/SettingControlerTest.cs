@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using CameraArcheryLib;
 using CameraArcheryLib.Factories;
 using CameraArcheryLib.Controller;
@@ -27,7 +26,7 @@ namespace CameraArcheryTest
 
             // second value
             SettingController.SaveSetting(24, LanguageController.Languages.Français, 10);
-            
+
             setting = SerializeHelper.Deserialization<Setting>(SettingFactory.FilePath);
             Assert.IsTrue(setting.Frame == 10);
             Assert.IsTrue(setting.Time == 24);
