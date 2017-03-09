@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Accord.Video.DirectShow;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -16,7 +17,9 @@ namespace CameraArcheryLib.Interface
     public interface IVideoBehavior
     {
         event Action OnVideoClose;
+
         event newFrameDelegate OnNewFrame;
-             
+
+        VideoCaptureDevice VideoSource { get; }
     }
 }

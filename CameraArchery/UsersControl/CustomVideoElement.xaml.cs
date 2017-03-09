@@ -30,6 +30,7 @@ namespace CameraArchery.UsersControl
     public partial class CustomVideoElement : UserControl
     {
         #region behavior
+
         /// <summary>
         /// behavior to control the behavior
         /// </summary>
@@ -39,13 +40,14 @@ namespace CameraArchery.UsersControl
         /// behavior of the behavior
         /// </summary>
         private VideoBehavior VideoBehavior { get; set; }
+
         #endregion behavior
 
         /// <summary>
         /// video device associate
         /// </summary>
         private FilterInfo VideoDevice { get; set; }
-        
+
         /// <summary>
         /// inform if is recording
         /// </summary>
@@ -60,10 +62,10 @@ namespace CameraArchery.UsersControl
             LanguageController.InitLanguage(this.Resources.MergedDictionaries);
             InitializeComponent();
             BehaviorHelper.AddSingleBehavior(new VideoBrowserBehavior(), BrowserControl);
-            
         }
 
         #region event
+
         /// <summary>
         ///  event of the button of click
         /// </summary>
@@ -72,7 +74,6 @@ namespace CameraArchery.UsersControl
         private void Recording_Click(object sender, RoutedEventArgs e)
         {
             LogHelper.Write("click recording");
-
 
             var isRecording = RecorderBehavior.Recording();
 
@@ -115,7 +116,6 @@ namespace CameraArchery.UsersControl
             {
                 Fill = System.Windows.Media.Brushes.Chartreuse,
                 IsHitTestVisible = false
-
             };
 
             AddItem(rect);
@@ -130,9 +130,11 @@ namespace CameraArchery.UsersControl
         {
             CanvasControl.Children.Clear();
         }
-        #endregion
+
+        #endregion event
 
         #region public function
+
         /// <summary>
         /// start the video
         /// <para>get the video device</para>
@@ -145,7 +147,7 @@ namespace CameraArchery.UsersControl
         public void Start(FilterInfo videoDevice)
         {
             this.VideoDevice = videoDevice;
-            
+
             VideoBehavior = new VideoBehavior(VideoDevice);
 
             BehaviorHelper.AddSingleBehavior(VideoBehavior, this);
@@ -167,9 +169,9 @@ namespace CameraArchery.UsersControl
             VideoBehavior = null;
             RecorderBehavior = null;
         }
-        
+
         /// <summary>
-        /// function to add an item in the canvas with the adorner 
+        /// function to add an item in the canvas with the adorner
         /// <para>add the content control with the item as content</para>
         /// <para>set the position</para>
         /// <para>add in the canvas</para>
@@ -198,7 +200,6 @@ namespace CameraArchery.UsersControl
             myAdornerLayer.Add(new ResizeRotateAdorner(content));
         }
 
-        #endregion
-
+        #endregion public function
     }
 }

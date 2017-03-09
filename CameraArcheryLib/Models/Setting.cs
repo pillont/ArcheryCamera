@@ -12,12 +12,13 @@ namespace CameraArcheryLib.Models
     public class Setting
     {
         private const string VIDEO_FOLDER_NAME = "\\Video";
+
         /// <summary>
         /// the number of the future video
         /// </summary>
         [XmlElement(ElementName = "RateFrame")]
         public int Frame { get; set; }
-        
+
         /// <summary>
         /// the number of the future video
         /// </summary>
@@ -40,7 +41,7 @@ namespace CameraArcheryLib.Models
         /// language of the application
         /// </summary>
         [XmlElement(ElementName = "VideoFolder")]
-        public String VideoFolder { get; set; }
+        public string VideoFolder { get; set; }
 
         /// <summary>
         /// default ctor to serializations
@@ -50,7 +51,11 @@ namespace CameraArcheryLib.Models
             Time = 0;
             Frame = 1;
             this.Language = LanguageController.Languages.English;
-            VideoFolder = @""+Directory.GetCurrentDirectory() + VIDEO_FOLDER_NAME ;
+            VideoFolder = @"" + Directory.GetCurrentDirectory() + VIDEO_FOLDER_NAME;
+
+            // create default folder if not existing
+            if (!Directory.Exists(VideoFolder))
+                Directory.CreateDirectory(VideoFolder);
         }
 
         /// <summary>
@@ -59,7 +64,7 @@ namespace CameraArcheryLib.Models
         /// <param name="time">time of lag in second</param>
         /// <param name="language">language</param>
         public Setting(int time, LanguageController.Languages language, int frame)
-            :this()
+            : this()
         {
             this.Time = time;
             this.Language = language;
@@ -68,21 +73,21 @@ namespace CameraArcheryLib.Models
 
         public override string ToString()
         {
-            return typeof(Setting).Name + " : Time = " + Time + ", Language = " + Language; 
+            return typeof(Setting).Name + " : Time = " + Time + ", Language = " + Language;
         }
 
         public static bool operator ==(Setting x, Setting y)
         {
             if (x as object == null && y as object == null)
                 return true;
-            if((x as object == null && y as object != null)
+            if ((x as object == null && y as object != null)
                 || (x as object != null && y as object == null))
                 return false;
             if (x.Time != y.Time)
                 return false;
             if (x.Language != y.Language)
                 return false;
-            if (x.Frame!= y.Frame)
+            if (x.Frame != y.Frame)
                 return false;
 
             return true;
