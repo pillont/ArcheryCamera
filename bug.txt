@@ -1,0 +1,3 @@
+replay : 
+	slider par rapport au seconde et pas au temps total
+	FrameRate dans les setting à virer
