@@ -91,10 +91,6 @@ namespace CameraArchery.Behaviors
             catch (Exception e)
             {
                 LogHelper.Error(e);
-                Dispatcher.Invoke(() =>
-                    new CustomMessageBox("Error", "FrameError", e.Message).ShowDialog());
-
-                Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive).Close();
             }
         }
 
