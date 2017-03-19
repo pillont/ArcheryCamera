@@ -133,8 +133,6 @@ namespace CameraArchery.Behaviors
 
         #endregion event
 
-
-
         #region private function
 
         /// <summary>
@@ -238,12 +236,12 @@ namespace CameraArchery.Behaviors
                 if (MediaElement.NaturalDuration.HasTimeSpan)
                 {
                     position = MediaElement.Position;
-                    TimeSlider.Maximum = MediaElement.NaturalDuration.TimeSpan.Seconds;
+                    TimeSlider.Maximum = MediaElement.NaturalDuration.TimeSpan.TotalSeconds;
                     duration = MediaElement.NaturalDuration.TimeSpan;
                 }
                 // change the values
-                TimeSlider.Value = position.Seconds;
-                LabelTime.Content = String.Format("{0} / {1}", new TimeSpan(0, 0, position.Seconds).ToString(@"mm\:ss"), duration.ToString(@"mm\:ss"));
+                TimeSlider.Value = position.TotalSeconds;
+                LabelTime.Content = String.Format("{0} / {1}", position.ToString(@"mm\:ss"), duration.ToString(@"mm\:ss"));
             }
             // no file selected
             else

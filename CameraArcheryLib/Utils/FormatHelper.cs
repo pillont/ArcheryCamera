@@ -4,6 +4,8 @@ using System.Drawing;
 using System.IO;
 using System.Windows.Media.Imaging;
 using System.Drawing.Imaging;
+using System.Windows.Media;
+using System.Windows;
 
 namespace CameraArcheryLib.Utils
 {
@@ -49,6 +51,10 @@ namespace CameraArcheryLib.Utils
             }
         }
 
+        //Somewhere in the class
+        [System.Runtime.InteropServices.DllImport("gdi32.dll")]
+        public static extern bool DeleteObject(IntPtr hObject);
+
         /// <summary>
         /// transform the image to adapt in the image content
         /// </summary>
@@ -57,34 +63,13 @@ namespace CameraArcheryLib.Utils
         public static BitmapSource loadBitmap(Bitmap bitmap)
         {
             if (bitmap == null)
-                throw new ArgumentNullException("bitmap");
+                return null;
+            var hBitmap = bitmap.GetHbitmap();
+            var res = System.Windows.Interop.Imaging.CreateBitmapSourceFromHBitmap(hBitmap, IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+            DeleteObject(hBitmap); //delete gdi object
 
-            using (MemoryStream memoryStream = new MemoryStream())
-            {
-                try
-                {
-                    // You need to specify the image format to fill the stream.
-                    // I'm assuming it is PNG
-                    bitmap.Save(memoryStream, ImageFormat.Png);
-                    memoryStream.Seek(0, SeekOrigin.Begin);
-
-                    BitmapDecoder bitmapDecoder = BitmapDecoder.Create(
-                        memoryStream,
-                        BitmapCreateOptions.PreservePixelFormat,
-                        BitmapCacheOption.OnLoad);
-
-                    // This will disconnect the stream from the image completely...
-                    WriteableBitmap writable =
-            new WriteableBitmap(bitmapDecoder.Frames.Single());
-                    writable.Freeze();
-
-                    return writable;
-                }
-                catch (Exception)
-                {
-                    return null;
-                }
-            }
+            bitmap.Dispose();
+            return res;
         }
     }
 }
