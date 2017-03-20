@@ -2,6 +2,7 @@
 using CameraArchery.Adorners;
 using CameraArchery.Behaviors;
 using CameraArcheryLib;
+using CameraArcheryLib.Factories;
 using CameraArcheryLib.Utils;
 using System.Windows;
 using System.Windows.Controls;
@@ -134,10 +135,9 @@ namespace CameraArchery.UsersControl
         {
             this.VideoDevice = videoDevice;
 
-            VideoBehavior = new VideoBehavior(VideoDevice);
-
+            VideoBehavior = new VideoBehavior(VideoDevice) { Delay = SettingFactory.CurrentSetting.Time };
             BehaviorHelper.AddSingleBehavior(VideoBehavior, this);
-            BehaviorHelper.AddSingleBehavior(new TimeLagBehavior(VideoBehavior), this);
+            BehaviorHelper.AddSingleBehavior(new TimeLagBehavior(VideoBehavior.Delay), this);
             RecorderBehavior = BehaviorHelper.AddSingleBehavior(new RecorderBehavior(VideoBehavior), this) as RecorderBehavior;
         }
 

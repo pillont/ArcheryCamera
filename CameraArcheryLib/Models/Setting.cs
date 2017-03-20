@@ -10,12 +10,6 @@ namespace CameraArcheryLib.Models
         /// <summary>
         /// the number of the future video
         /// </summary>
-        [XmlElement(ElementName = "RateFrame")]
-        public int Frame { get; set; }
-
-        /// <summary>
-        /// the number of the future video
-        /// </summary>
         [XmlElement(ElementName = "VideoNumber")]
         public int VideoNumber { get; set; }
 
@@ -43,7 +37,6 @@ namespace CameraArcheryLib.Models
         public Setting()
         {
             Time = 0;
-            Frame = 1;
             this.Language = LanguageController.Languages.English;
             VideoFolder = @"" + Directory.GetCurrentDirectory() + VIDEO_FOLDER_NAME;
 
@@ -57,12 +50,11 @@ namespace CameraArcheryLib.Models
         /// </summary>
         /// <param name="time">time of lag in second</param>
         /// <param name="language">language</param>
-        public Setting(int time, LanguageController.Languages language, int frame)
+        public Setting(int time, LanguageController.Languages language)
             : this()
         {
             this.Time = time;
             this.Language = language;
-            this.Frame = frame;
         }
 
         public override string ToString()
@@ -80,8 +72,6 @@ namespace CameraArcheryLib.Models
             if (x.Time != y.Time)
                 return false;
             if (x.Language != y.Language)
-                return false;
-            if (x.Frame != y.Frame)
                 return false;
 
             return true;

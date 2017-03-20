@@ -1,6 +1,5 @@
 ﻿using Accord.Video;
 using Accord.Video.DirectShow;
-using CameraArchery.View;
 using CameraArcheryLib.Utils;
 using System;
 using System.Linq;
@@ -9,6 +8,7 @@ using System.Windows;
 using System.Windows.Interactivity;
 using CameraArchery.UsersControl;
 using CameraArcheryLib.Interface;
+using System.Threading.Tasks;
 
 namespace CameraArchery.Behaviors
 {
@@ -46,6 +46,8 @@ namespace CameraArchery.Behaviors
             private set
             { videoSource = value; }
         }
+
+        public int Delay { get; set; }
 
         private VideoCaptureDevice videoSource;
 
@@ -127,6 +129,12 @@ namespace CameraArchery.Behaviors
             Bitmap img = (Bitmap)eventArgs.Frame.Clone();
             eventArgs.Frame.Dispose();
 
+            ShowAsynch(img);
+        }
+
+        private async Task ShowAsynch(Bitmap img)
+        {
+            await Task.Delay(1000 * Delay);
             NewFraming(ref img);
             if (img != null)
                 ShowImage(img);

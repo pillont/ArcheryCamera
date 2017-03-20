@@ -42,19 +42,19 @@ namespace CameraArcheryTest
             Assert.IsTrue(SettingFactory.CurrentSetting == SettingFactory.DefaultSetting);
 
             //same value if value already load
-            SettingController.SaveSetting(10, LanguageController.Languages.Français, 15);
+            SettingController.SaveSetting(10, LanguageController.Languages.Français);
             Assert.IsTrue(SettingFactory.CurrentSetting == SettingFactory.DefaultSetting);
 
             // refresh value and get value save
             SettingFactory.RefreshSettingValue();
             Assert.IsTrue(SettingFactory.CurrentSetting ==
-                            new Setting(10, LanguageController.Languages.Français, 15));
+                            new Setting(10, LanguageController.Languages.Français));
         }
 
         [TestMethod]
         public void TestInitSetting()
         {
-            SettingController.SaveSetting(10, LanguageController.Languages.Français, 10);
+            SettingController.SaveSetting(10, LanguageController.Languages.Français);
             SettingFactory.InitSetting();
             Assert.IsTrue(SettingFactory.CurrentSetting == SettingFactory.DefaultSetting);
         }

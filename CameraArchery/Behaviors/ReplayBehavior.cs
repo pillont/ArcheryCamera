@@ -1,7 +1,6 @@
 ﻿using CameraArchery.DataBinding;
 using CameraArchery.UsersControl;
 using CameraArcheryLib.Controller;
-using CameraArcheryLib.Factories;
 using System;
 using System.Threading;
 using System.Windows.Controls;
@@ -66,7 +65,7 @@ namespace CameraArchery.Behaviors
         /// <summary>
         /// timer to update the time value
         /// </summary>
-        private DispatcherTimer timer { get; set; }
+        public DispatcherTimer timer { get; private set; }
 
         /// <summary>
         /// locker to acces at the time
@@ -123,7 +122,7 @@ namespace CameraArchery.Behaviors
                                                 current.Hours,
                                                 current.Minutes,
                                                 current.Seconds,
-                                                current.Milliseconds + (1000 / SettingFactory.CurrentSetting.Frame));
+                                                current.Milliseconds + 100);
 
             if (MediaElement.NaturalDuration.TimeSpan.Ticks > nextValue.Ticks)
                 MediaElement.Position = nextValue;
@@ -206,6 +205,9 @@ namespace CameraArchery.Behaviors
         {
             Monitor.Enter(lockerTimer);
 
+            if (timer != null)
+                timer.Stop();
+
             timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(1);
             timer.Tick += timer_Tick;
@@ -223,7 +225,7 @@ namespace CameraArchery.Behaviors
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void timer_Tick(object sender, EventArgs e)
+        public void timer_Tick(object sender, EventArgs e)
         {
             // set to zero
             TimeSpan position = new TimeSpan(0);
