@@ -15,7 +15,7 @@ namespace CameraArcheryTest
         [TestInitialize]
         public void test()
         {
-            Controller = new LagLoadFeedBackManager();
+            Controller = new LagLoadFeedBackManager((d) => { }, (v) => { });
         }
 
         /// <summary>

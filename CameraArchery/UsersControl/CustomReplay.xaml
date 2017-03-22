@@ -98,7 +98,7 @@
                        Name="lblStatus" Margin="5" />
                 <!-- slider of time -->
                 <Slider x:Name="TimeSlider" Height="30" Width="500" VerticalAlignment="Center"
-                        GotMouseCapture="TimeSlider_GotMouseCapture" ValueChanged="TimeSlider_ValueChanged" LostMouseCapture="TimeSlider_LostMouseCapture" />
+                        GotMouseCapture="TimeSlider_GotMouseCapture" LostMouseCapture="TimeSlider_LostMouseCapture" />
             </DockPanel>
         </StackPanel>
         <!-- media element -->

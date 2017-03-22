@@ -47,7 +47,10 @@ namespace CameraArchery.Behaviors
             { videoSource = value; }
         }
 
-        public int Delay { get; set; }
+        /// <summary>
+        /// behavior to make timeLag loading
+        /// </summary>
+        private TimeLagBehavior TimeLagBehavior { get; set; }
 
         private VideoCaptureDevice videoSource;
 
@@ -63,6 +66,24 @@ namespace CameraArchery.Behaviors
             this.videoDevice = videoDevices;
         }
 
+        /// <summary>
+        /// ctor with lag
+        /// </summary>
+        /// <param name="videoDevices"></param>
+        /// <param name="timeLagBehavior"></param>
+        public VideoBehavior(FilterInfo videoDevices, TimeLagBehavior timeLagBehavior) : this(videoDevices)
+        {
+            this.TimeLagBehavior = timeLagBehavior;
+        }
+
+        /// <summary>
+        /// stop current load
+        /// </summary>
+        public void StopLoad()
+        {
+            TimeLagBehavior.StopLoad();
+        }
+
         #region event
 
         /// <summary>
@@ -72,10 +93,6 @@ namespace CameraArchery.Behaviors
         protected override void OnAttached()
         {
             base.OnAttached();
-
-            if (VideoSource == null)
-                StartVideo();
-
             Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive).Closed += VideoBehavior_Closed;
         }
 
@@ -113,14 +130,31 @@ namespace CameraArchery.Behaviors
         /// </summary>
         /// <param name="selectedItem"></param>
         /// <returns></returns>
-        private void StartVideo()
+        public void StartVideo()
         {
+            if (VideoSource != null
+            && VideoSource.IsRunning)
+                return;
+
             LogHelper.Write("video start");
 
             VideoSource = new VideoCaptureDevice(videoDevice.MonikerString);
             VideoSource.NewFrame += VideoSource_NewFrame;
             CloseVideoSource();
             VideoSource.Start();
+        }
+
+        /// <summary>
+        ///  function to dispose the video
+        /// </summary>
+        public void StopVideo()
+        {
+            Interaction.GetBehaviors(AssociatedObject).Remove(TimeLagBehavior);
+
+            LogHelper.Write("video stop");
+
+            VideoSource.NewFrame -= VideoSource_NewFrame;
+            CloseVideo();
         }
 
         private void VideoSource_NewFrame(object sender, NewFrameEventArgs eventArgs)
@@ -134,7 +168,7 @@ namespace CameraArchery.Behaviors
 
         private async Task ShowAsynch(Bitmap img)
         {
-            await Task.Delay(1000 * Delay);
+            await Task.Delay(1000 * TimeLagBehavior.Delay);
             NewFraming(ref img);
             if (img != null)
                 ShowImage(img);
@@ -157,7 +191,7 @@ namespace CameraArchery.Behaviors
         /// <summary>
         /// close the device safely
         /// </summary>
-        public void CloseVideoSource()
+        private void CloseVideoSource()
         {
             if (!(VideoSource == null))
                 if (VideoSource.IsRunning)

@@ -1,11 +1,14 @@
 ﻿using CameraArcheryLib.Factories;
 using CameraArcheryLib.Utils;
 using System;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using CameraArcheryLib;
 using Accord.Video.DirectShow;
+using System.Windows.Interactivity;
+using CameraArchery.Behaviors;
 
 namespace CameraArchery.View
 {
@@ -74,24 +77,24 @@ namespace CameraArchery.View
         {
             if (MainTabControl.SelectedItem == null)
                 return;
+
             if (((UIElement)MainTabControl.SelectedItem).IsMouseOver)
                 LogHelper.Write("tab control change to : " + MainTabControl.SelectedIndex + ". Is recording : " + CustomVideoComponent.IsRecording);
 
-            if (e.Source is TabControl && CustomVideoComponent.IsRecording)
-                MainTabControl.SelectedIndex = 0;
-
-            if (e.Source is System.Windows.Controls.TabControl)
+            if (e.Source is TabControl)
             {
                 // no change
                 if (CustomVideoComponent.IsRecording)
-                    MainTabControl.SelectedIndex = 0;
-                //change
-                else
                 {
-                    // update the value in the folder
-                    CustomVideoComponent.BrowserControl.SelectedUri = new Uri(SettingFactory.CurrentSetting.VideoFolder, UriKind.Absolute);
-                    CustomReplayComponent.BrowserControl.SelectedUri = new Uri(SettingFactory.CurrentSetting.VideoFolder, UriKind.Absolute);
+                    MainTabControl.SelectedIndex = 0;
+                    return;
                 }
+
+                // update the value of the folder
+                CustomVideoComponent.BrowserControl.SelectedUri = new Uri(SettingFactory.CurrentSetting.VideoFolder, UriKind.Absolute);
+                CustomReplayComponent.BrowserControl.SelectedUri = new Uri(SettingFactory.CurrentSetting.VideoFolder, UriKind.Absolute);
+
+                var videoBehavior = Interaction.GetBehaviors(CustomVideoComponent).OfType<VideoBehavior>().FirstOrDefault();
             }
         }
     }

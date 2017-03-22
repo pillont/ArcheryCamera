@@ -13,12 +13,12 @@ namespace CameraArchery.Behaviors
         /// <summary>
         /// Controller to make feedback
         /// </summary>
-        private LagLoadFeedBackManager lagLoadFeedBackManager { get; set; }
+        private LagLoadFeedBackManager LagLoadFeedBackManager { get; set; }
 
         /// <summary>
         /// behavior of the video
         /// </summary>
-        private int Delay { get; set; }
+        public int Delay { get; set; }
 
         /// <summary>
         /// ctor
@@ -43,11 +43,6 @@ namespace CameraArchery.Behaviors
             base.OnAttached();
 
             AssociatedObject.Loaded += AssociatedObject_Loaded;
-
-            // update the view with the time lag Controller
-            AssociatedObject.ProgressBar.Minimum = 0;
-            AssociatedObject.ProgressBar.Maximum = Delay;
-            AssociatedObject.ProgressBar.DataContext = this;
         }
 
         /// <summary>
@@ -57,13 +52,26 @@ namespace CameraArchery.Behaviors
         /// <param name="e"></param>
         private void AssociatedObject_Loaded(object sender, RoutedEventArgs e)
         {
-            AssociatedObject.Loaded -= AssociatedObject_Loaded;
+            //FIXME : use sender because, some time AssociatedObject property is null...
+            var element = sender as CustomVideoElement;
+            element.ProgressBar.DataContext = this;
 
-            lagLoadFeedBackManager = new LagLoadFeedBackManager()
-            {
-                OnProgressChange = (db) => Dispatcher.Invoke(() => AssociatedObject.ProgressBar.Value = db),
-                OnVisibilityChange = OnVisibilityChange
-            };
+            // update the view with the time lag Controller
+            element.ProgressBar.Minimum = 0;
+            element.ProgressBar.Maximum = Delay;
+
+            LagLoadFeedBackManager = new LagLoadFeedBackManager(
+                onProgressChange: (db) => Dispatcher.Invoke(() => element.ProgressBar.Value = db),
+                onVisibilityChange: vs => OnVisibilityChange(vs, element)
+            );
+        }
+
+        /// <summary>
+        /// function to stop current load
+        /// </summary>
+        public void StopLoad()
+        {
+            LagLoadFeedBackManager.StopLoad();
         }
 
         /// <summary>
@@ -72,16 +80,23 @@ namespace CameraArchery.Behaviors
         /// <para>else => close the popUp and make visible the Option Panel</para>
         /// </summary>
         /// <param name="vs">visibility of the Option Panel</param>
-        private void OnVisibilityChange(Visibility vs)
+        /// <param name="element">FIXME : use sender because, some time AssociatedObject property is null...</param>
+        private void OnVisibilityChange(Visibility vs, CustomVideoElement element)
         {
             Dispatcher.Invoke(() =>
             {
-                AssociatedObject.ProgressBar.Visibility = vs;
+                element.ProgressBar.Visibility = vs;
 
                 if (vs == Visibility.Visible)
-                    AssociatedObject.OptionPanel.Visibility = Visibility.Collapsed;
+                {
+                    element.PictureVideo.Visibility = Visibility.Hidden;
+                    element.OptionPanel.Visibility = Visibility.Collapsed;
+                }
                 else
-                    AssociatedObject.OptionPanel.Visibility = Visibility.Visible;
+                {
+                    element.PictureVideo.Visibility = Visibility.Visible;
+                    element.OptionPanel.Visibility = Visibility.Visible;
+                }
             });
         }
 

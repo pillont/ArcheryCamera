@@ -52,7 +52,6 @@ namespace CameraArchery.Behaviors
             }
         }
 
-        private const int FrameRateDiff = 3;
         private VideoFileWriter writer;
         private object writerLocker = new object();
 
@@ -177,7 +176,7 @@ namespace CameraArchery.Behaviors
             var frameRate = capacity.AverageFrameRate;
 
             Writer = new VideoFileWriter();
-            Writer.Open(uri, FrameSize.Width, FrameSize.Height, frameRate / FrameRateDiff);
+            Writer.Open(uri, FrameSize.Width, FrameSize.Height);
 
             LogHelper.Write("start to write the file" + uri);
             Monitor.Exit(writerLocker);
