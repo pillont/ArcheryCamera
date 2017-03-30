@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Windows;
 
 namespace CameraArcheryLib.Controller
 {
@@ -25,7 +26,7 @@ namespace CameraArcheryLib.Controller
         /// </summary>
         /// <param name="list">current list</param>
         /// <returns>list with all the file</returns>
-        public static IList<VideoFile> GetList(string videoFolder)
+        public static IList<VideoFile> GetList(string videoFolder, Action<VideoFile, string> changeName)
         {
             var res = new List<VideoFile>();
 
@@ -38,6 +39,7 @@ namespace CameraArcheryLib.Controller
                 {
                     VideoFile file = new VideoFile()
                     {
+                        ChangeName = changeName,
                         Name = name.Replace(videoFolder + "\\", ""),
                         Uri = name
                     };

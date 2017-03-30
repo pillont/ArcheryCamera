@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Data;
+using System.Diagnostics.Contracts;
 
 namespace CameraArchery.UsersControl.EditableTextBlock
 {
@@ -47,6 +48,8 @@ namespace CameraArchery.UsersControl.EditableTextBlock
                 //Get the adorner layer of the uielement (here TextBlock)
                 AdornerLayer layer = AdornerLayer.GetAdornerLayer(textBlock);
 
+                if (layer == null)
+                    return;
                 //If the IsInEditMode set to true means the user has enabled the edit mode then
                 //add the adorner to the adorner layer of the TextBlock.
                 if (textBlock.IsInEditMode)

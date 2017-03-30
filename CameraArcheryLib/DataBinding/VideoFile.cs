@@ -1,6 +1,9 @@
-﻿using System.ComponentModel;
+﻿using CameraArcheryLib;
+using System;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
+using System.Windows;
 
 namespace CameraArchery.DataBinding
 {
@@ -45,26 +48,26 @@ namespace CameraArchery.DataBinding
                 isEditing = value;
                 OnPropertyChanged("StartPauseUri");
 
-                if (Uri != null)
-                {
-                    // check if the name is changed
-                    var packages = Uri.Split('\\');
-                    if (packages.Last() == Name)
-                        return;
+                if (Uri == null)
+                    return;
 
-                    // get new name
-                    var newUri = "";
-                    foreach (var dir in packages)
-                        if (dir != packages.Last())
-                            newUri += dir + "\\";
-                    newUri += name;
+                // check if the name is changed
+                var packages = Uri.Split('\\');
+                if (packages.Last() == Name)
+                    return;
 
-                    // change the name
-                    File.Move(Uri, newUri);
-                    Uri = newUri;
-                }
+                // get new name
+                var newUri = "";
+                foreach (var dir in packages)
+                    if (dir != packages.Last())
+                        newUri += dir + "\\";
+                newUri += name;
+
+                ChangeName?.Invoke(this, newUri);
             }
         }
+
+        public Action<VideoFile, string> ChangeName { get; set; }
 
         private bool isEditing;
 
