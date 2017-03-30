@@ -573,6 +573,7 @@ namespace CameraArchery.UsersControl
             VideoList.ItemsSource = list;
 
             File.Delete(file.Uri);
+            Refresh();
             VideoList.SelectedIndex = 0;
         }
 
@@ -620,7 +621,7 @@ namespace CameraArchery.UsersControl
             try
             {
                 VideoFileList = new ObservableCollection<VideoFile>(
-                                                    ListRecordController.GetList(SettingFactory.CurrentSetting.VideoFolder));
+                                                    ListRecordController.GetList(SettingFactory.CurrentSetting.VideoFolder, VideoFile_ChangeName));
                 OnPropertyChanged("VideoFileList");
             }
             catch (Exception e)
@@ -632,6 +633,19 @@ namespace CameraArchery.UsersControl
                     Environment.Exit(-1);
             }
             VideoList.SelectedIndex = 0;
+        }
+
+        private void VideoFile_ChangeName(VideoFile videoFile, string newUri)
+        {
+            if (!File.Exists(videoFile.Uri))
+            {
+                System.Windows.MessageBox.Show(LanguageController.Get("VideoFileException"), LanguageController.Get("Error"), MessageBoxButton.OK);
+                Refresh();
+                return;
+            }
+            // change the name
+            File.Move(videoFile.Uri, newUri);
+            videoFile.Uri = newUri;
         }
 
         /// <summary>

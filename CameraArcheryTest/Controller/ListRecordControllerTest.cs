@@ -33,7 +33,7 @@ namespace CameraArcheryTest.Controller
         public void TestGetList()
         {
             // get file
-            var res = ListRecordController.GetList("test");
+            var res = ListRecordController.GetList("test", null);
 
             Assert.IsTrue(res.Count == 2);
 

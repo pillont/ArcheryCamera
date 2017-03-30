@@ -143,8 +143,8 @@ namespace CameraArchery.Behaviors
             SerializeHelper.Serialization<Setting>(SettingFactory.CurrentSetting, SettingFactory.FilePath);
 
             //create dir
-            if (!System.IO.Directory.Exists(VideoDirectory))
-                System.IO.Directory.CreateDirectory(VideoDirectory);
+            if (!Directory.Exists(VideoDirectory))
+                Directory.CreateDirectory(VideoDirectory);
 
             // check if file exist
             // if exist create with number +1
