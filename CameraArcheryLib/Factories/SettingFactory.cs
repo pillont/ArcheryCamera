@@ -11,7 +11,6 @@ namespace CameraArcheryLib.Factories
     public class SettingFactory
     {
         public const int SecondDefault = 5;
-        public const int FrameDefault = 5;
         public const LanguageController.Languages LanguageDefault = LanguageController.Languages.English;
 
         public delegate void ErrorFindSettingDel(Exception e);
@@ -34,7 +33,7 @@ namespace CameraArcheryLib.Factories
             get
             {
                 if (defaultSetting == null)
-                    defaultSetting = new Setting(SecondDefault, LanguageDefault, FrameDefault) { VideoNumber = 0 };
+                    defaultSetting = new Setting(SecondDefault, LanguageDefault) { VideoNumber = 0 };
 
                 return defaultSetting;
             }

@@ -34,10 +34,9 @@ namespace CameraArchery.View
 
             InitializeComponent();
 
-            // init icon 
+            // init icon
             Uri iconUri = new Uri(@"pack://application:,,,/Ressources/Logos/logoSetting.ico");
             this.Icon = BitmapFrame.Create(iconUri);
-
 
             LanguageComboBox.ItemsSource = Enum.GetValues(typeof(LanguageController.Languages)).Cast<LanguageController.Languages>();
             GetSetting();
@@ -50,11 +49,10 @@ namespace CameraArchery.View
         {
             var values = SettingFactory.CurrentSetting;
             LogHelper.Write("Current setting " + values);
-            
+
             Spliter.Value = values.Time;
             LanguageComboBox.SelectedItem = values.Language;
-            FrameInput.Text = values.Frame.ToString();
-       }
+        }
 
         /// <summary>
         /// event to close the windows
@@ -77,7 +75,7 @@ namespace CameraArchery.View
             {
                 SettingController.SaveSetting(
                                             Convert.ToInt32(Spliter.Value),
-                                            (LanguageController.Languages)LanguageComboBox.SelectedItem, Int32.Parse(FrameInput.Text));
+                                            (LanguageController.Languages)LanguageComboBox.SelectedItem);
                 IsChange = true;
                 this.Close();
             }
@@ -88,8 +86,6 @@ namespace CameraArchery.View
                 MessageBox.Show("Error", "IncorrectInput", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-
-        
 
         /// <summary>
         /// event when the windows is closed

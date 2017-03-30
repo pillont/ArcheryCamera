@@ -2,7 +2,6 @@
 using CameraArcheryLib.Utils;
 using System;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace CameraArchery.Manager
@@ -14,6 +13,14 @@ namespace CameraArchery.Manager
     /// </summary>
     public class LagLoadFeedBackManager
     {
+        private readonly object timerLock = new object();
+
+        /// <summary>
+        /// timer to make the load of the lag
+        /// use timer lock before use it!
+        /// </summary>
+        private System.Timers.Timer Timer { get; set; }
+
         /// <summary>
         /// event when progress change
         /// </summary>
@@ -46,6 +53,7 @@ namespace CameraArchery.Manager
                     OnProgressChange(value);
             }
         }
+
         private double progress;
         private object progressLocker = new object();
 
@@ -68,6 +76,7 @@ namespace CameraArchery.Manager
                 Monitor.Exit(loadLocker);
             }
         }
+
         private object loadLocker = new object();
         private bool isLoad;
 
@@ -88,12 +97,12 @@ namespace CameraArchery.Manager
                 Monitor.Enter(visibilityLocker);
                 visibility = value;
                 Monitor.Exit(visibilityLocker);
-                
 
                 if (OnVisibilityChange != null)
                     OnVisibilityChange(value);
             }
         }
+
         private System.Windows.Visibility visibility;
         private object visibilityLocker = new object();
 
@@ -104,12 +113,25 @@ namespace CameraArchery.Manager
         /// <para><code>progress</code> is set to zero</para>
         /// <para> start a task to start the load</para>
         /// </summary>
-        public LagLoadFeedBackManager()
+        public LagLoadFeedBackManager(Action<double> onProgressChange, Action<Visibility> onVisibilityChange)
         {
+            this.OnProgressChange = onProgressChange;
+            this.OnVisibilityChange = onVisibilityChange;
             Visibility = System.Windows.Visibility.Visible;
             IsLoad = false;
             Progress = 0;
-            new Task(() => StartLoad()).Start();
+
+            StartLoad();
+        }
+
+        public void StopLoad()
+        {
+            lock (timerLock)
+            {
+                Timer.Stop();
+                Timer.Disposed -= Timer_Disposed;
+                Timer.Dispose();
+            }
         }
 
         /// <summary>
@@ -121,19 +143,23 @@ namespace CameraArchery.Manager
         /// </summary>
         public void StartLoad()
         {
-            LogHelper.Write("start video load for : "+SettingFactory.CurrentSetting.Time+ " seconds");
-            
-            System.Timers.Timer timer = new System.Timers.Timer(1000);
-            timer.Elapsed += timer_Elapsed;
-            timer.Start();
-            Thread.Sleep(SettingFactory.CurrentSetting.Time *1000);
-            
+            LogHelper.Write("start video load for : " + SettingFactory.CurrentSetting.Time + " seconds");
+
+            lock (timerLock)
+            {
+                Timer = new System.Timers.Timer(1000);
+                Timer.Elapsed += timer_Elapsed;
+                Timer.Disposed += Timer_Disposed;
+                Timer.Start();
+            }
             LogHelper.Write("end of video load");
-            
-            timer.Stop();
+        }
+
+        private void Timer_Disposed(object sender, EventArgs e)
+        {
             IsLoad = true;
             Visibility = Visibility.Collapsed;
-            
+
             LogHelper.Write("start the video");
         }
 
@@ -145,7 +171,15 @@ namespace CameraArchery.Manager
         private void timer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
             Progress++;
+
+            if (Progress >= SettingFactory.CurrentSetting.Time)
+            {
+                lock (timerLock)
+                {
+                    Timer.Stop();
+                    Timer.Dispose();
+                }
+            }
         }
     }
 }
-    

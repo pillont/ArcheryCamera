@@ -249,10 +249,7 @@ namespace CameraArchery.UsersControl
 
         private Uri startPauseUri;
 
-        /// <summary>
-        /// variable to save the value on mouse capture on the slider
-        /// </summary>
-        private double MouseCaptureValue;
+        private ReplayBehavior ReplayBehavior { get; set; }
 
         /// <summary>
         /// ctor
@@ -264,7 +261,8 @@ namespace CameraArchery.UsersControl
 
             StartPauseUri = new Uri(URI_PLAY);
 
-            BehaviorHelper.AddSingleBehavior(new ReplayBehavior(), this);
+            ReplayBehavior = new ReplayBehavior();
+            BehaviorHelper.AddSingleBehavior(ReplayBehavior, this);
             BehaviorHelper.AddSingleBehavior(new VideoBrowserBehavior(), BrowserControl);
 
             Refresh();
@@ -383,15 +381,6 @@ namespace CameraArchery.UsersControl
         }
 
         /// <summary>
-        /// event when the value change
-        /// </summary>
-        private void TimeSlider_ValueChanged(object sender, System.Windows.RoutedPropertyChangedEventArgs<double> e)
-        {
-            if (TimeSlider.IsMouseCaptured)
-                MediaElementVideo.Position = new TimeSpan(0, 0, Convert.ToInt32(e.NewValue));
-        }
-
-        /// <summary>
         /// event when the slider got mouse capture
         /// <para>set the value <code>MouseCaptureValue</code></para>
         /// <para>call event OnSliderCapture</para>
@@ -399,15 +388,18 @@ namespace CameraArchery.UsersControl
         /// </summary>
         private void TimeSlider_GotMouseCapture(object sender, System.Windows.Input.MouseEventArgs e)
         {
-            MouseCaptureValue = TimeSlider.Value;
+            if (TimeSlider.IsFocused && MediaElementVideo.Source != null)
+            {
+                MediaElementVideo.Pause();
+                ReplayBehavior.timer.Stop();
+            }
+
+            double MouseCaptureValue = TimeSlider.Value;
 
             LogHelper.Write("slider is capture at " + MouseCaptureValue + " sec");
 
             if (OnSliderCapture != null)
                 OnSliderCapture(MouseCaptureValue);
-
-            if (TimeSlider.IsFocused && MediaElementVideo.Source != null)
-                MediaElementVideo.Pause();
         }
 
         /// <summary>
@@ -418,14 +410,17 @@ namespace CameraArchery.UsersControl
         /// </summary>
         private void TimeSlider_LostMouseCapture(object sender, System.Windows.Input.MouseEventArgs e)
         {
-            if (!IsPause && MediaElementVideo.Source != null)
-                MediaElementVideo.Play();
-
             LogHelper.Write("slider is change to " + TimeSlider.Value + " sec");
 
-            if (OnSliderChange != null &&
+            if (OnSliderChange == null ||
                 OnSliderChange(TimeSlider.Value))
-                TimeSlider.Value = MouseCaptureValue;
+                MediaElementVideo.Position = TimeSpan.FromSeconds(TimeSlider.Value);
+
+            if (!IsPause && MediaElementVideo.Source != null)
+            {
+                ReplayBehavior.timer.Start();
+                MediaElementVideo.Play();
+            }
         }
 
         /// <summary>

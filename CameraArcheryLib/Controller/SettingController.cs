@@ -4,7 +4,6 @@ using CameraArcheryLib.Utils;
 using System;
 using System.Diagnostics.Contracts;
 using System.IO;
-using System.Windows;
 
 namespace CameraArcheryLib.Controller
 {
@@ -13,7 +12,6 @@ namespace CameraArcheryLib.Controller
     /// </summary>
     public static class SettingController
     {
-
         public static event Action<Uri> OnVideoDeviceChange
         {
             add
@@ -25,8 +23,8 @@ namespace CameraArcheryLib.Controller
                 onVideoDeviceChange -= value;
             }
         }
-        private static event Action<Uri> onVideoDeviceChange;
 
+        private static event Action<Uri> onVideoDeviceChange;
 
         /// <summary>
         /// Function to save the new setting
@@ -36,7 +34,7 @@ namespace CameraArcheryLib.Controller
         /// <para>serialize the setting</para>
         /// </summary>
         /// <returns>bool to inform if the new values is saved</returns>
-        public static void SaveSetting(int time, LanguageController.Languages language, int frameRate)
+        public static void SaveSetting(int time, LanguageController.Languages language)
         {
             // get current setting
             Setting values = SettingFactory.CurrentSetting;
@@ -44,12 +42,10 @@ namespace CameraArcheryLib.Controller
             LogHelper.Write("Current setting " + values);
             LogHelper.Write("New time " + time);
             LogHelper.Write("New Language " + language);
-            
+
             //convert the new values
             values.Time = Convert.ToInt32(time);
             values.Language = language;
-            values.Frame = frameRate;
-
 
             // save the setting
             SerializeHelper.Serialization<Setting>(values, SettingFactory.FilePath);
@@ -70,6 +66,6 @@ namespace CameraArcheryLib.Controller
             SerializeHelper.Serialization<Setting>(values, SettingFactory.FilePath);
 
             onVideoDeviceChange(uri);
-         }
+        }
     }
-}   
+}

@@ -53,6 +53,7 @@ namespace CameraArcheryLib.Controller
                 }
             }
             // order by the number
+            res = res.OrderBy((value) => File.GetCreationTimeUtc(value.Uri)).ToList();
             res.Reverse();
             return res;
         }

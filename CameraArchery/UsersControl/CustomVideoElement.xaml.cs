@@ -2,6 +2,7 @@
 using CameraArchery.Adorners;
 using CameraArchery.Behaviors;
 using CameraArcheryLib;
+using CameraArcheryLib.Factories;
 using CameraArcheryLib.Utils;
 using System.Windows;
 using System.Windows.Controls;
@@ -48,6 +49,22 @@ namespace CameraArchery.UsersControl
             LanguageController.InitLanguage(this.Resources.MergedDictionaries);
             InitializeComponent();
             BehaviorHelper.AddSingleBehavior(new VideoBrowserBehavior(), BrowserControl);
+
+            this.Loaded += CustomVideoElement_Loaded;
+            this.Unloaded += CustomVideoElement_Unloaded;
+        }
+
+        private void CustomVideoElement_Unloaded(object sender, RoutedEventArgs e)
+        {
+            if (VideoBehavior == null)
+                return;
+            VideoBehavior.StopLoad();
+            VideoBehavior.StopVideo();
+        }
+
+        private void CustomVideoElement_Loaded(object sender, RoutedEventArgs e)
+        {
+            VideoBehavior.StartVideo();
         }
 
         #region event
@@ -134,10 +151,12 @@ namespace CameraArchery.UsersControl
         {
             this.VideoDevice = videoDevice;
 
-            VideoBehavior = new VideoBehavior(VideoDevice);
+            var TimeLagBehavior = new TimeLagBehavior(SettingFactory.CurrentSetting.Time);
+            BehaviorHelper.AddSingleBehavior(TimeLagBehavior, this);
 
+            VideoBehavior = new VideoBehavior(VideoDevice, TimeLagBehavior);
             BehaviorHelper.AddSingleBehavior(VideoBehavior, this);
-            BehaviorHelper.AddSingleBehavior(new TimeLagBehavior(VideoBehavior), this);
+
             RecorderBehavior = BehaviorHelper.AddSingleBehavior(new RecorderBehavior(VideoBehavior), this) as RecorderBehavior;
         }
 
@@ -151,7 +170,7 @@ namespace CameraArchery.UsersControl
         public void Stop()
         {
             this.VideoDevice = null;
-            VideoBehavior.CloseVideoSource();
+            VideoBehavior.StopVideo();
             VideoBehavior = null;
             RecorderBehavior = null;
         }
