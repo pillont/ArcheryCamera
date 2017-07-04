@@ -14,6 +14,8 @@ namespace CameraArchery
     /// </summary>
     public partial class MainWindow : Window
     {
+        private VideoWindow VideoWindow;
+
         /// <summary>
         /// time of the PopUp
         /// </summary>
@@ -71,6 +73,15 @@ namespace CameraArchery
             this.Icon = BitmapFrame.Create(iconUri);
 
             rfsh_Click();
+        }
+
+        protected override void OnPropertyChanged(DependencyPropertyChangedEventArgs e)
+        {
+            base.OnPropertyChanged(e);
+            if (e.Property == IsActiveProperty && (bool)e.NewValue)
+            {
+                VideoWindow?.Activate();
+            }
         }
 
         /// <summary>
@@ -189,8 +200,9 @@ namespace CameraArchery
             LogHelper.Write("video window will be started");
 
             // start window
-            var window = new VideoWindow(selectedDevice);
-            window.ShowDialog();
+            VideoWindow = new VideoWindow(selectedDevice);
+            VideoWindow.ShowDialog();
+            VideoWindow = null;
         }
 
         /// <summary>
