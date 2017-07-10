@@ -1,3 +1,7 @@
+
+![alt text](https://github.com/pillont/ArcheryCamera/blob/master/CameraArchery/Ressources/Logos/logoViseur.ico)
+
+
 # ArcheryCamera
 
 Solution permettant de donner un retour visuel continue à un sportif durant sa pratique grâce à une caméra.
