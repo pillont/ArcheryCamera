@@ -1,11 +1,12 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Xml.Serialization;
 
 namespace CameraArcheryLib.Models
 {
     public class Setting
     {
-        private const string VIDEO_FOLDER_NAME = "\\Video";
+        private const string VIDEO_FOLDER_NAME = "\\ArcheryVideo";
 
         /// <summary>
         /// the number of the future video
@@ -38,7 +39,8 @@ namespace CameraArcheryLib.Models
         {
             Time = 0;
             this.Language = LanguageController.Languages.English;
-            VideoFolder = @"" + Directory.GetCurrentDirectory() + VIDEO_FOLDER_NAME;
+            string myVideoFolder = Environment.GetFolderPath(Environment.SpecialFolder.MyVideos);
+            VideoFolder = @"" + myVideoFolder + VIDEO_FOLDER_NAME;
 
             // create default folder if not existing
             if (!Directory.Exists(VideoFolder))
