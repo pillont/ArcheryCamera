@@ -11,7 +11,7 @@ namespace CameraArcheryLib.Factories
     public class SettingFactory
     {
         public const int SecondDefault = 5;
-        public const LanguageController.Languages LanguageDefault = LanguageController.Languages.English;
+        public const LanguageController.Languages LanguageDefault = LanguageController.Languages.Français;
 
         public delegate void ErrorFindSettingDel(Exception e);
 
