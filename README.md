@@ -36,8 +36,13 @@ Passons maintenant à l'utilisation du logiciel.
 >
 >N'oubliez pas de sauvegarder et lancez la vidéo dans la fenètre principe. Un temps de chargement égal au temps de décalage précédera l'affichage de l'image.
 
+![alt text](https://github.com/pillont/ArcheryCamera/blob/master/CameraArchery/ReadMeImageRessources/video.png)
+
 ### Repère Visuel
 > Grâce aux boutons de formes (cercle et rectangle à gauche de l'écran) vous pouvez insérer des repères sur la vidéos pour améliorer l'annalyse des reproduction faites par le sportif.
+
+![alt text](https://github.com/pillont/ArcheryCamera/blob/master/CameraArchery/ReadMeImageRessources/videoWithForm.png)
+
 
 ### Enregistrement
 >Le bouton enregistrement peut être aussi très utile. Les vidéos enregistrées sont stockées dans le dossier indiqué au dessous du bouton (par défault le dossier "ArcheryVideo" du dossier "Mes Vidéos" de windows).

@@ -3,6 +3,7 @@ using CameraArcheryLib.Factories;
 using CameraArcheryLib.Utils;
 using System;
 using System.Windows;
+using System.Windows.Threading;
 
 namespace CameraArchery
 {
@@ -15,6 +16,14 @@ namespace CameraArchery
         {
             SettingFactory.OnErrorFindSetting += SettingFactory_OnErrorFindSetting;
             LanguageController.OnErrorFindDictionary += LanguageController_OnErrorFindDictionary;
+
+            DispatcherUnhandledException += App_DispatcherUnhandledException;
+        }
+
+        private void App_DispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
+        {
+            MessageBox.Show(e.Exception.Message, "error");
+            throw e.Exception;
         }
 
         private void LanguageController_OnErrorFindDictionary(Exception e)
