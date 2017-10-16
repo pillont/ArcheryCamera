@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using static System.Environment;
 
 namespace CameraArcheryLib.Utils
 {
@@ -13,8 +14,10 @@ namespace CameraArcheryLib.Utils
         /// <summary>
         /// path of the log file
         /// </summary>
-        public const string PathLogFile = "log.txt";
+        public const string LogFileName = "log.txt";
 
+        public static string PathLogFile => PathDirectory + "/" + LogFileName;
+        public static string PathDirectory => Environment.GetFolderPath(SpecialFolder.MyDocuments) + "/" + nameof(CameraArchery);
         public const string ErrorHeader = "/!\\/!\\/!\\  ERROR   /!\\/!\\";
 
         /// <summary>
@@ -23,10 +26,20 @@ namespace CameraArcheryLib.Utils
         /// <param name="message">message to write</param>
         public static void Write(string message)
         {
+            createFolderIfNotExist();
+
             using (StreamWriter w = File.AppendText(PathLogFile))
             {
                 w.Write(DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString() + " : ");
                 w.WriteLine(message);
+            }
+        }
+
+        private static void createFolderIfNotExist()
+        {
+            if (!Directory.Exists(PathDirectory))
+            {
+                Directory.CreateDirectory(PathDirectory);
             }
         }
 
@@ -37,6 +50,8 @@ namespace CameraArcheryLib.Utils
         /// <param name="stackTrace"></param>
         public static void Error(Exception e)
         {
+            createFolderIfNotExist();
+
             using (StreamWriter w = File.AppendText(PathLogFile))
             {
                 w.WriteLine(ErrorHeader);

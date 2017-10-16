@@ -2,6 +2,7 @@
 using CameraArcheryLib.Utils;
 using System;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Windows;
 
 namespace CameraArcheryLib
@@ -24,12 +25,12 @@ namespace CameraArcheryLib
         /// <summary>
         /// Uri of the french dictionnary
         /// </summary>
-        public const string FrUri = @"../Ressources/Strings/StringResources.fr.xaml";
+        public const string FrUri = @"Ressources/Strings/StringResources.fr.xaml";
 
         /// <summary>
         /// Uri of the default dictionnary
         /// </summary>
-        public const string DefaultUri = @"../Ressources/Strings/StringResources.xaml";
+        public const string DefaultUri = @"Ressources/Strings/StringResources.xaml";
 
         /// <summary>
         /// function to get the current dictionnary
@@ -42,11 +43,7 @@ namespace CameraArcheryLib
 
                 try
                 {
-                    // found the good dictionnary
-                    if (SettingFactory.CurrentSetting.Language == Languages.Français)
-                        dict.Source = new Uri(FrUri, UriKind.Relative);
-                    else
-                        dict.Source = new Uri(DefaultUri, UriKind.Relative);
+                    dict.Source = GetDictionaryPath();
                 }
                 catch (Exception e)
                 {
@@ -56,9 +53,22 @@ namespace CameraArcheryLib
                     else
                         throw e;
                 }
-
                 return dict;
             }
+        }
+
+        public static Uri GetDictionaryPath()
+        {
+            Uri uri;
+            var dir = Directory.GetCurrentDirectory();
+            // found the good dictionnary
+            if (SettingFactory.CurrentSetting.Language == Languages.Français)
+                uri = new Uri(dir + @"/" + FrUri, UriKind.Absolute);
+            else
+                uri = new Uri(dir + @"/" + DefaultUri, UriKind.Absolute);
+
+            LogHelper.Write(uri.OriginalString);
+            return uri;
         }
 
         /// <summary>
