@@ -2,6 +2,7 @@
 using System.IO;
 using CameraArcheryLib.Models;
 using CameraArcheryLib.Utils;
+using static System.Environment;
 
 namespace CameraArcheryLib.Factories
 {
@@ -23,7 +24,9 @@ namespace CameraArcheryLib.Factories
         /// <summary>
         /// path of the setting path
         /// </summary>
-        public const string FilePath = @"setting.xml";
+        public static string FilePath => Environment.GetFolderPath(SpecialFolder.MyDocuments) + "/" + FileName;
+
+        public const string FileName = @"setting.xml";
 
         /// <summary>
         /// default setting
