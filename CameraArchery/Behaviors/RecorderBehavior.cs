@@ -172,11 +172,11 @@ namespace CameraArchery.Behaviors
             Monitor.Enter(writerLocker);
 
             var capacity = VideoBehavior.VideoSource.VideoCapabilities.First();
-            var FrameSize = capacity.FrameSize;
-            var frameRate = capacity.AverageFrameRate;
+            var frameSize = capacity.FrameSize;
+            int rate = capacity.AverageFrameRate;
 
             Writer = new VideoFileWriter();
-            Writer.Open(uri, FrameSize.Width, FrameSize.Height);
+            Writer.Open(uri, frameSize.Width, frameSize.Height, rate);
 
             LogHelper.Write("start to write the file" + uri);
             Monitor.Exit(writerLocker);

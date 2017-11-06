@@ -103,6 +103,6 @@
         </StackPanel>
         <!-- media element -->
         <MediaElement  x:Name="MediaElementVideo" LoadedBehavior="Manual"
-                      UnloadedBehavior="Stop" MediaEnded="MediaElementVideo_MediaEnded" ScrubbingEnabled="True" />
+                       UnloadedBehavior="Stop" MediaEnded="MediaElementVideo_MediaEnded" ScrubbingEnabled="True" />
     </DockPanel>
 </UserControl>
