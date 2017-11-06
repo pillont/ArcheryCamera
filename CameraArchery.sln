@@ -14,6 +14,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{F30686
 		.nuget\packages.config = .nuget\packages.config
 	EndProjectSection
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "CameraArcherySetup", "CameraArcherySetup\CameraArcherySetup.vdproj", "{4C97C8BD-D503-426B-AF4E-6A898E7FDF37}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -76,6 +78,14 @@ Global
 		{2915DE95-9080-4DBF-82A5-AA7CB7619678}.Release|x64.ActiveCfg = Release|Any CPU
 		{2915DE95-9080-4DBF-82A5-AA7CB7619678}.Release|x86.ActiveCfg = Release|x86
 		{2915DE95-9080-4DBF-82A5-AA7CB7619678}.Release|x86.Build.0 = Release|x86
+		{4C97C8BD-D503-426B-AF4E-6A898E7FDF37}.Debug|Any CPU.ActiveCfg = Debug
+		{4C97C8BD-D503-426B-AF4E-6A898E7FDF37}.Debug|Mixed Platforms.ActiveCfg = Debug
+		{4C97C8BD-D503-426B-AF4E-6A898E7FDF37}.Debug|x64.ActiveCfg = Debug
+		{4C97C8BD-D503-426B-AF4E-6A898E7FDF37}.Debug|x86.ActiveCfg = Debug
+		{4C97C8BD-D503-426B-AF4E-6A898E7FDF37}.Release|Any CPU.ActiveCfg = Release
+		{4C97C8BD-D503-426B-AF4E-6A898E7FDF37}.Release|Mixed Platforms.ActiveCfg = Release
+		{4C97C8BD-D503-426B-AF4E-6A898E7FDF37}.Release|x64.ActiveCfg = Release
+		{4C97C8BD-D503-426B-AF4E-6A898E7FDF37}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

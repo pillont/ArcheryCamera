@@ -56,6 +56,7 @@ namespace CameraArcheryLib.Utils
             {
                 w.WriteLine(ErrorHeader);
                 w.WriteLine(e.Message);
+                w.WriteLine(e.GetType());
                 w.WriteLine(e.StackTrace);
             }
         }

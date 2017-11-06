@@ -23,6 +23,8 @@ namespace CameraArchery
         private void App_DispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
         {
             MessageBox.Show(e.Exception.Message, "error");
+
+            LogHelper.Error(e.Exception);
             throw e.Exception;
         }
 
