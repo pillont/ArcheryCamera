@@ -6,6 +6,7 @@ using System.Threading;
 using System.Windows.Controls;
 using System.Windows.Interactivity;
 using System.Windows.Threading;
+using System.Windows.Input;
 
 namespace CameraArchery.Behaviors
 {
@@ -67,6 +68,8 @@ namespace CameraArchery.Behaviors
         /// </summary>
         public DispatcherTimer timer { get; private set; }
 
+        private const int FrameStep = 10;
+
         /// <summary>
         /// locker to acces at the time
         /// </summary>
@@ -117,12 +120,32 @@ namespace CameraArchery.Behaviors
         /// </summary>
         private void MediaElementVideo_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
+            ShowNextFrame();
+        }
+
+        /// <summary>
+        /// event on the mouse right down in the media element if frame by frame is done
+        /// <para>get current position</para>
+        /// <para>get the previous image</para>
+        /// <para>if position is positive => go to the previous</para>
+        /// </summary>
+        private void MediaElementVideo_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            ShowPreviousFrame();
+        }
+
+        #endregion event
+
+        #region private function
+
+        private void ShowNextFrame()
+        {
             var current = MediaElement.Position;
             var nextValue = new TimeSpan(current.Days,
                                                 current.Hours,
                                                 current.Minutes,
                                                 current.Seconds,
-                                                current.Milliseconds + 100);
+                                                current.Milliseconds + FrameStep);
 
             if (MediaElement.NaturalDuration.TimeSpan.Ticks > nextValue.Ticks)
                 MediaElement.Position = nextValue;
@@ -130,9 +153,18 @@ namespace CameraArchery.Behaviors
                 MediaElement.Position = new TimeSpan(0);
         }
 
-        #endregion event
+        private void ShowPreviousFrame()
+        {
+            var current = MediaElement.Position;
+            var previous = new TimeSpan(current.Days,
+                                                current.Hours,
+                                                current.Minutes,
+                                                current.Seconds,
+                                                current.Milliseconds - FrameStep);
 
-        #region private function
+            if (previous.Ticks >= 0)
+                MediaElement.Position = previous;
+        }
 
         /// <summary>
         /// load the file in the media element
@@ -313,11 +345,13 @@ namespace CameraArchery.Behaviors
                 {
                     MediaElement.Pause();
                     MediaElement.MouseLeftButtonDown += MediaElementVideo_MouseLeftButtonDown;
+                    MediaElement.MouseRightButtonDown += MediaElementVideo_MouseRightButtonDown;
                     res = true;
                 }
                 else
                 {
                     MediaElement.MouseLeftButtonDown -= MediaElementVideo_MouseLeftButtonDown;
+                    MediaElement.MouseRightButtonDown -= MediaElementVideo_MouseRightButtonDown;
 
                     if (!AssociatedObject.IsPause)
                         MediaElement.Play();
